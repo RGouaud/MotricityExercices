@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ROUGE_CHARTE_GRAPHIQUE">#bc3421</color>
+    <color name="MARRON_CHARTE_GRAPHIQUE">#855b5d</color>
+    <color name="GRIS_CHARTE_GRAPHIQUE">#d4d4d4</color>
+    <color name="COLOR_ERROR">#cc3300</color>
+    <color name="BLANC">#FFFFFF</color>
+    <color name="NOIR">#000000</color>
+    <color name="BLEU_BOUTONS">#5E69F6</color>
+
+</resources>

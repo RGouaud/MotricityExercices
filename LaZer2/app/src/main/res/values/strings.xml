@@ -1,0 +1,73 @@
+<resources>
+    <!--Menu Principal -->
+    <string name="APP_NAME">LaZer</string>
+    <string name="STATIC_EXERCICE">Static Exercice</string>
+    <string name="RYTHM_EXERCICE">Rythm Exercice</string>
+    <string name="DATA_MANAGER">Data Manager</string>
+    <string name="CAMERA">Camera</string>
+
+    <!-- Texte Parametres-->
+    <string name="Patient_Name">Patient name</string>
+    <string name="Err_Patient_Name">You have not filled the patient name</string>
+
+    <string name="Operator_Name">Operator name</string>
+    <string name="Err_Operator_Name">You have not filled the operator name</string>
+
+    <string name="Mark_Distance">Mark distance (cm) </string>
+    <string name="Err_Mark_Distance">You have not filled the distance mark</string>
+    <string name="Err_Mark_Distance_Point">The mark distance cannot be equal 0 and you have to put a number before and after the point.</string>
+
+    <string name="Time">Time (s)</string>
+    <string name="Err_Time">You have not filled the time</string>
+    <string name="Err_Time_Point">The time cannot be equal 0 and cannot be a float.</string>
+
+    <string name="Bip_Interval">Bip Interval (s)</string>
+    <string name="Err_Bip_Interval">You have not fill Bip Interval</string>
+    <string name="Err_Bip_Intervalle_Point">The time cannot be equal 0 and you have to put a number before and after the point.</string>
+    <string name = "Comments" > Commments </string>
+    <string name="Final_Bip">Final Bip</string>
+    <string name="Start_Button">START</string>
+
+
+    <!-- Data Manager-->
+    <string name="Delete_Button">Delete</string>
+    <string name="Send_Button">Send</string>
+    <string name="SelectAll_Checkbox">Select All</string>
+    <string name="fileDeleted">File(s) has been deleted</string>
+    <!-- Boite de dialogue -->
+    <string name="Bouton_Cancel">Cancel</string>
+    <!-- Autorisation-->
+    <string name="Titre_Autorisation_Camera">Authorize LaZer to use the camera?</string>
+    <string name="Contenu_Autorisatoin_Camera">LaZer need your authorization to use the camera in order to track the movements of the laser.</string>
+    <string name="Bouton_Autoriser">Autorize</string>
+    <string name="Titre_Autorisation_Fichier">Authorize LaZer to have access at your files?</string>
+    <string name="Contenu_Autorisatoin_Fichier">LaZer needs your authorization to access your files.</string>
+    <string name="Titre_Autorisation_Double"> Authorize LaZer to use camera and storage.</string>
+    <string name="Contenu_Autorisatoin_Double">LaZer needs your authorization to access your files and to use camera in order to track the movement of the laser</string>
+
+    <!--Confirmation Formulaire-->
+    <string name="Titre_Confirmation_Temps">Alert Time</string>
+    <string name="Contenu_Confirmation_Temps">The time is more than 3min (180s), do you want to continue?</string>
+    <string name="Bouton_Conformation_Temps">Continue</string>
+
+    <!-- camera activity -->
+    <string name="Start">Start</string>
+    <string name="TempsRestant">Remaining time:</string>
+
+    <!--Confirmation Suppression-->
+    <string name="Titre_Confirmation_Suppresion">Delete</string>
+    <string name="Contenu_Confirmation_Suppresion">Do you want to delete?</string>
+    <string name="Bouton_Conformation_Suppresion_Yes">Yes</string>
+    <string name="Bouton_Conformation_Suppresion_No">No</string>
+
+    <!--Confirmation Envoie-->
+    <string name="Titre_Confirmation_Envoie">Send</string>
+    <string name="Contenu_Confirmation_Envoie">Do you want to send the file?</string>
+    <string name="Bouton_Conformation_Envoie_Yes">Yes</string>
+    <string name="Bouton_Conformation_Envoie_No">No</string>
+
+    <!--transition-->
+    <string name="TransitionStatic">TransitionStatic</string>
+    <string name="TransitionRythm">TransitionRythm</string>
+    <string name="TransitionData">TransitionData</string>
+</resources>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.projet15.lazer.ActivityMenuPrincipal"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_marginTop="@dimen/MARGIN_TOP_BUTTON"
+                android:layout_marginBottom="@dimen/MARGIN_BOTTOM_LOGO"
+                android:layout_marginStart="@dimen/MARGIN_LEFT_LOGO"
+                android:layout_marginLeft="@dimen/MARGIN_LEFT_LOGO"
+                android:layout_marginEnd="@dimen/MARGIN_RIGHT_LOGO"
+                android:layout_marginRight="@dimen/MARGIN_RIGHT_LOGO"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="top|center_horizontal"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo_large" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+
+            <Button
+                android:id="@+id/STATIC_BUTTON_ID"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="@dimen/MARGIN_TOP_BUTTON"
+                android:layout_marginBottom="@dimen/MARGIN_BOTTOM_BUTTON"
+                android:layout_marginStart="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginLeft="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginEnd="@dimen/MARGIN_RIGHT_BUTTON"
+                android:layout_marginRight="@dimen/MARGIN_RIGHT_BUTTON"
+                android:textAllCaps="false"
+                android:textSize="@dimen/TAILLE_TEXTE_BOUTON"
+                android:text="@string/STATIC_EXERCICE"
+                android:theme="@style/BoutonMenuPrincipal"
+                android:transitionName="@string/TransitionStatic"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+
+            <Button
+                android:id="@+id/RYTHM_BUTTON_ID"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+
+                android:layout_marginTop="@dimen/MARGIN_TOP_BUTTON"
+                android:layout_marginBottom="@dimen/MARGIN_BOTTOM_BUTTON"
+                android:layout_marginStart="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginLeft="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginEnd="@dimen/MARGIN_RIGHT_BUTTON"
+                android:layout_marginRight="@dimen/MARGIN_RIGHT_BUTTON"
+                android:textSize="@dimen/TAILLE_TEXTE_BOUTON"
+                android:textAllCaps="false"
+                android:text="@string/RYTHM_EXERCICE"
+                android:theme="@style/BoutonMenuPrincipal"
+                android:transitionName="@string/TransitionRythm"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+
+            <Button
+                android:id="@+id/DATAMANAGER_BUTTON_ID"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="@dimen/MARGIN_TOP_BUTTON"
+                android:layout_marginBottom="@dimen/MARGIN_BOTTOM_BUTTON"
+                android:layout_marginStart="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginLeft="@dimen/MARGIN_LEFT_BUTTON"
+                android:layout_marginEnd="@dimen/MARGIN_RIGHT_BUTTON"
+                android:layout_marginRight="@dimen/MARGIN_RIGHT_BUTTON"
+                android:textSize="@dimen/TAILLE_TEXTE_BOUTON"
+                android:textAllCaps="false"
+                android:text="@string/DATA_MANAGER"
+                android:theme="@style/BoutonMenuPrincipal"
+                android:transitionName="@string/TransitionData"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="11.5"/>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

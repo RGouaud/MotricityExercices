@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.projet15.lazer.ActivityCamera">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <FrameLayout
+            android:id="@+id/FRAME_LAYOUT_CAMERA_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical">
+
+            <FrameLayout
+                android:id="@+id/CAMERA_FRAME_LAYOUT_ID"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/TEXTE_COMPTE_A_REBOURS_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:visibility="visible"
+                android:layout_marginBottom="60dp"
+                android:textColor="@color/ROUGE_CHARTE_GRAPHIQUE"
+                android:textSize="80sp"
+                android:textStyle="bold"/>
+
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FRAME_LAYOUT_COLOR_ID"
+            android:layout_width="275px"
+            android:minWidth="175px"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TempsRestant"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/TEMPS_RESTANT_TEXT_VIEW_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/CALLBACK_TEXT_VIEW_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:text="Coordonnée"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+            <Button
+                android:id="@+id/BOUTON_LANCER_EXERCICE_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/Start"/>
+
+            <!--<com.projet15.lazer.MyView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>-->
+        </FrameLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

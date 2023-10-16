@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.projet15.lazer">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/APP_NAME"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true">
+        <activity
+            android:name=".ActivityMenuPrincipal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeMenuPrincipal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityStaticExerciceParameter"
+            android:label="@string/STATIC_EXERCICE"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeStaticExerciceParameter" />
+        <activity
+            android:name=".ActivityRythmExerciceParameter"
+            android:label="@string/RYTHM_EXERCICE"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeRythmExerciceParameter" />
+        <activity
+            android:name=".ActivityCamera"
+            android:label="@string/CAMERA"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeCamera" />
+        <activity android:name=".ActivityDataManager"
+            android:label="@string/DATA_MANAGER"
+            android:theme="@style/AppThemeDataManager" />
+    </application>
+
+</manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/tools">
+    <!-- Menu Principal -->
+    <!-- boutons -->
+    <dimen name="TAILLE_TEXTE_BOUTON">18sp</dimen>
+    <dimen name="MARGIN_TOP_BUTTON">20dip</dimen>
+    <dimen name="MARGIN_BOTTOM_BUTTON">20dip</dimen>
+    <dimen name="MARGIN_LEFT_BUTTON">50dip</dimen>
+    <dimen name="MARGIN_RIGHT_BUTTON">50dip</dimen>
+
+    <!-- logo -->
+    <dimen name="MARGIN_TOP_LOGO">20dip</dimen>
+    <dimen name="MARGIN_BOTTOM_LOGO">20dip</dimen>
+    <dimen name="MARGIN_LEFT_LOGO">50dip</dimen>
+    <dimen name="MARGIN_RIGHT_LOGO">50dip</dimen>
+    <!-- Static Exercice Parameter -->
+</resources>
