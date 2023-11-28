@@ -64,12 +64,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:paddingTop="100dp"
+                android:paddingBottom="100dp"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/layout_static"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="top"
+                    android:layout_gravity="center"
+                    android:background="#A9A9A9"
                     android:orientation="vertical">
 
                     <TextView
@@ -84,14 +88,21 @@
                         android:id="@+id/iv_static"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@tools:sample/avatars" />
+                        android:src="@drawable/test" />
+
                 </LinearLayout>
 
-                <LinearLayout
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/layout_patient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#A9A9A9"
                     android:orientation="vertical">
 
                     <TextView
@@ -107,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@tools:sample/avatars" />
+                        android:src="@drawable/icone" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -117,17 +128,24 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <Space
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                    android:gravity="center_vertical"
+                <LinearLayout
+                    android:id="@+id/layout_rythm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#A9A9A9"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_rythm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Rythm Exercice"
                         android:textColor="#ffffff" />
 
@@ -135,8 +153,14 @@
                         android:id="@+id/iv_rythm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@tools:sample/avatars" />
+                        android:layout_gravity="center"
+                        android:src="@drawable/test" />
                 </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
