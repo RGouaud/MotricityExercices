@@ -27,32 +27,32 @@ public class homePageActivity extends AppCompatActivity {
         /*layout_static.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, staticActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(homePageActivity.this, staticActivity.class);
+                //startActivity(intent);
             }
         });
 
         layout_rythm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, rythmActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(homePageActivity.this, rythmActivity.class);
+                //startActivity(intent);
             }
         });
 
         layout_patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, patientActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(homePageActivity.this, patientActivity.class);
+               // startActivity(intent);
             }
         });
 
         iv_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, settingsActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(homePageActivity.this, settingsActivity.class);
+                //startActivity(intent);
             }
         });*/
 
