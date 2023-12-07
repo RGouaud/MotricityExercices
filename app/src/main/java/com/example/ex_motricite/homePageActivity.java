@@ -24,7 +24,7 @@ public class homePageActivity extends AppCompatActivity {
         layout_patient = findViewById(R.id.layout_patient);
         iv_settings =  findViewById(R.id.iv_settings);
 
-        layout_static.setOnClickListener(new View.OnClickListener() {
+        /*layout_static.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(homePageActivity.this, staticActivity.class);
@@ -54,7 +54,7 @@ public class homePageActivity extends AppCompatActivity {
                 Intent intent = new Intent(homePageActivity.this, settingsActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 }
