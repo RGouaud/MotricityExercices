@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.ex_motricite"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.ex_motricite"

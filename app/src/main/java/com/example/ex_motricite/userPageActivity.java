@@ -1,14 +1,12 @@
 package com.example.ex_motricite;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class homePageActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class userPageActivity extends AppCompatActivity {
 
     private LinearLayout layout_static;
     private LinearLayout layout_rythm;
@@ -17,7 +15,7 @@ public class homePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.user_page);
 
         layout_static = findViewById(R.id.layout_static);
         layout_rythm = findViewById(R.id.layout_rythm);
@@ -38,17 +36,16 @@ public class homePageActivity extends AppCompatActivity {
                 Intent intent = new Intent(homePageActivity.this, rythmActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         layout_patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, userPageActivity.class);
+                Intent intent = new Intent(homePageActivity.this, patientActivity.class);
                 startActivity(intent);
             }
         });
 
-        /*
         iv_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
