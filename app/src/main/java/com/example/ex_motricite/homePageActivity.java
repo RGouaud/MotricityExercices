@@ -24,6 +24,8 @@ public class homePageActivity extends AppCompatActivity {
         layout_patient = findViewById(R.id.layout_patient);
         iv_settings =  findViewById(R.id.iv_settings);
 
+        // LINKS SETUP TO OTHERS ACTIVITY
+
         /*layout_static.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

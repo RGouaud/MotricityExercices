@@ -11,7 +11,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <include layout="@layout/header_layout" />
+
+        </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,37 +26,8 @@
             android:orientation="horizontal"
             android:background="#FAD552">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <!-- import du header -->
 
-                <ImageView
-                    android:id="@+id/iv_applogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:src="@drawable/logo_motricity" />
-
-                <TextView
-                    android:id="@+id/tv_appname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="DEVELOPMENT MOTRICITY"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/iv_settings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:src="@drawable/settings" />
-            </LinearLayout>
 
         </LinearLayout>
 
