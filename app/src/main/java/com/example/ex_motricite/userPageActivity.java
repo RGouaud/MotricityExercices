@@ -17,6 +17,7 @@ public class userPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_page);
 
+        //le push fonctionne
         layout_static = findViewById(R.id.layout_static);
         layout_rythm = findViewById(R.id.layout_rythm);
         layout_patient = findViewById(R.id.layout_patient);
