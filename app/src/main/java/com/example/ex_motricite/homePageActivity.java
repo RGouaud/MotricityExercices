@@ -17,7 +17,7 @@ public class homePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.activity_home_page);
 
         layout_static = findViewById(R.id.layout_static);
         layout_rythm = findViewById(R.id.layout_rythm);
