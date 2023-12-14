@@ -24,10 +24,11 @@ public class homePageActivity extends AppCompatActivity {
         layout_patient = findViewById(R.id.layout_patient);
         iv_settings =  findViewById(R.id.iv_settings);
 
-        /*layout_static.setOnClickListener(new View.OnClickListener() {
+        layout_static.setOnClickListener(new View.OnClickListener() {
             @Override
-            /public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, staticActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(homePageActivity.this, ExercisesSettingsActivity.class);
+                intent.putExtra("Exercice", "static");
                 startActivity(intent);
             }
         });
@@ -35,10 +36,11 @@ public class homePageActivity extends AppCompatActivity {
         layout_rythm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, rythmActivity.class);
+                Intent intent = new Intent(homePageActivity.this, ExercisesSettingsActivity.class);
+                intent.putExtra("Exercice", "rythm");
                 startActivity(intent);
             }
-        });*/
+        });
 
         layout_patient.setOnClickListener(new View.OnClickListener() {
             @Override

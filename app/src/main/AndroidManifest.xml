@@ -16,6 +16,9 @@
             android:name=".CrudUserActivity"
             android:exported="false" />
         <activity
+            android:name=".ExercisesSettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".homePageActivity"
             android:exported="true">
             <intent-filter>
