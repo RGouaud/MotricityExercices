@@ -9,10 +9,10 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private String table_patient="create table patient ("
             + "idPatient INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"Name TEXT NOT NULL,"
+            +"name TEXT NOT NULL,"
             +"firstName TEXT NOT NULL,"
             +"birthDate TEXT NOT NULL,"
-            +"remarques TEXT NOT NULL);";
+            +"remarks TEXT NOT NULL);";
 
     private String table_operator="create table operator ("
             + "idOperator INTEGER PRIMARY KEY AUTOINCREMENT,"
