@@ -43,7 +43,7 @@ public class homePageActivity extends AppCompatActivity {
         layout_patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, userPageActivity.class);
+                Intent intent = new Intent(homePageActivity.this, listUserPageActivity.class);
                 startActivity(intent);
             }
         });

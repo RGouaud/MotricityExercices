@@ -1,0 +1,18 @@
+
+<
+java:S1604+"(Make this anonymous inner class a lambda(ÿÂQ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÕúìÿÿÿÿÿ
+m	java:S116"XRename this field "layout_static" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‚”‰
+q	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ
+s	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡þÿÿÿÿ
+k	java:S116"VRename this field "iv_settings" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¯¦Á
+p
+java:S1450"ZRemove the "iv_settings" field and declare it as a local variable in the relevant methods.(¡¯¦Á
+x
+java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡þÿÿÿÿ
+v
+java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ
+r
+java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰
+Q	java:S125"<This block of commented-out lines of code should be removed.(Áª›ì
+Q	java:S1254"<This block of commented-out lines of code should be removed.(—˜¡

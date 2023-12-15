@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- rounded_button.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#FAD552" />
+            <corners android:radius="50dp" />
+            <stroke android:color="#3C3C3C" android:width="1dp" />
+        </shape>
+    </item>
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#FAD552" />
+                    <corners android:radius="50dp" />
+                    <stroke android:color="#000000" android:width="3dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
+
+
