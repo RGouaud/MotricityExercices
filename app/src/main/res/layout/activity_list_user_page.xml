@@ -41,20 +41,26 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
 
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:background="#FAD552"
+                    android:background="@drawable/rounded_background"
                     android:orientation="horizontal">
 
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
                     <ToggleButton
-                        android:id="@+id/toggleButton"
+                        android:id="@+id/buttonOperator"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_button"
-                        android:text="ToggleButton"
+                        android:text="Operator"
                         android:textOff="Operator"
                         android:textOn="Operator" />
 
@@ -64,15 +70,20 @@
                         android:layout_weight="1" />
 
                     <ToggleButton
-                        android:id="@+id/toggleButton2"
+                        android:id="@+id/buttonPatient"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_button"
                         android:checked="true"
-                        android:text="ToggleButton"
+                        android:text="Patient"
                         android:textOff="Patient"
                         android:textOn="Patient" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <Space
