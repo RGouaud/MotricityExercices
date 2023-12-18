@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Create a new operator"
+                android:text="Create a new patient"
                 android:gravity="center"
                 android:textSize="45dp"
                 android:textColor="#ffffff" />
@@ -95,6 +95,27 @@
                 android:ems="10"
                 android:inputType="text"
                 android:hint="Birthday" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextTextMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Remarks"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:maxHeight="150dp"
+                    android:background="#D3D3D3" />
+            </ScrollView>
 
             <Space
                 android:layout_width="match_parent"

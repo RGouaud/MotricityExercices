@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,14 @@ public class CrudUserActivity extends AppCompatActivity {
         b_confirm = findViewById(R.id.b_confirm);
         tv_new = findViewById(R.id.tv_new);
 
+        Intent myIntent = getIntent();
+        String user = myIntent.getStringExtra("User");
+
+        if (user.equals("patient")){
+            tv_new.setText("Create a new patient");
+        }else{
+            tv_new.setText("Create a new operator");
+        }
         b_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
