@@ -68,9 +68,6 @@ public class PatientDAO {
         }
     }
 
-
-
-
     private ArrayList<Patient> cursorToPatientArrayList(Cursor curseur){
         ArrayList<Patient> listPatients = new ArrayList<Patient>();
         long idPatient;
