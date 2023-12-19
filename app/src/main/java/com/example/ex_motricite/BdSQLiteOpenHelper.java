@@ -31,8 +31,6 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(table_patient);
         db.execSQL(table_operator);
-
-        db.execSQL("insert into operator (Name, firstName) values('Hentrics', 'Samuel')");
     }
 
     @Override
