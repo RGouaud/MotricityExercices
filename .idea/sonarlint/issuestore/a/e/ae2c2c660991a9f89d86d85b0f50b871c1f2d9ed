@@ -10,12 +10,13 @@ m	java:S116"XRename this field "layout_static" to match the regular expressio
 q	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ
 s	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡şÿÿÿÿ
 k	java:S116"VRename this field "iv_settings" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¯¦Á
-p
-java:S1450"ZRemove the "iv_settings" field and declare it as a local variable in the relevant methods.(¡¯¦Á
 x
 java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡şÿÿÿÿ
 v
 java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ
 r
 java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰
+]	java:S125"<This block of commented-out lines of code should be removed.(õ¬ÙÑúÿÿÿÿ8ëÇÚ“È1
 Q	java:S1256"<This block of commented-out lines of code should be removed.(—˜¡
+L
+java:S1068"/Remove this unused "iv_settings" private field.(¡¯¦Á8òÇÚ“È1

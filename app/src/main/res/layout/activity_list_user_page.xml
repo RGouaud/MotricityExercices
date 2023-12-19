@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".listUserPageActivity">
+    tools:context=".ListUserPageActivity">
 
 
     <LinearLayout
@@ -55,7 +55,7 @@
                         android:layout_weight="1" />
 
                     <ToggleButton
-                        android:id="@+id/buttonOperator"
+                        android:id="@+id/b_ToggleOperator"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
@@ -70,7 +70,7 @@
                         android:layout_weight="1" />
 
                     <ToggleButton
-                        android:id="@+id/buttonPatient"
+                        android:id="@+id/b_TogglePatient"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
@@ -110,7 +110,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/buttonAddPatient"
+                    android:id="@+id/b_Add"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

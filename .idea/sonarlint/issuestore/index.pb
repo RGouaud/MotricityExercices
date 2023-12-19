@@ -51,3 +51,13 @@ g
 7app/src/main/java/com/example/ex_motricite/Patient.java,8/c/8c5c9fcf02d14757e66630ffb739a837a05d989f
 j
 :app/src/main/java/com/example/ex_motricite/listOfTest.java,c/c/cce9b195a76d236e3381a13939e471112af15d36
+p
+@app/src/main/java/com/example/ex_motricite/testPageActivity.java,4/d/4d819cdfc8c06ec950a0eef632c5f134f5521038
+t
+Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6/9/690a2f8c07cb1da82d961d2142b42b25081da824
+p
+@app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4/d/4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
+p
+@app/src/main/java/com/example/ex_motricite/ListTestActivity.java,6/3/632bcdfe1764f54be38613ff44adea6a48a53391
+p
+@app/src/main/java/com/example/ex_motricite/TestPageActivity.java,2/8/2852c891388ba3ec2805af12d8862f67c4cad611
