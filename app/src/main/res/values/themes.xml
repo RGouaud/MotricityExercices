@@ -5,5 +5,13 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+
+    <style name="Base.Theme.AppCompat.CustomTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
     <style name="Theme.Ex_Motricite" parent="Base.Theme.Ex_Motricite" />
+
+
 </resources>
