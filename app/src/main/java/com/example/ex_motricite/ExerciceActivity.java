@@ -4,11 +4,14 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 import static androidx.core.content.PermissionChecker.checkSelfPermission;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,20 +34,22 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.MatOfPoint;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ExerciceActivity extends CameraActivity {
 
-    TextView tv_x,tv_y;
+    TextView tv_x,tv_y,countdown_text;
     CameraBridgeViewBase cameraBridgeViewBase;
     Mat prev_gray,rgb,curr_gray, diff, result, output;
     boolean is_init;
     List<MatOfPoint> cnts;
-    Chronometer chrono;
+    CountDownTimer countDownTimer;
     Button b_start;
     boolean isRunning;
+    private long timerLeftInMilliseconds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +58,11 @@ public class ExerciceActivity extends CameraActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tv_x = findViewById(R.id.tv_x);
         tv_y = findViewById(R.id.tv_y);
+        countdown_text= findViewById (R.id.countdown_text);
         is_init= false;
 
         isRunning = false;
+        timerLeftInMilliseconds = 10000;
         getPermission();
 
         cameraBridgeViewBase = findViewById(R.id.java_camera_view);
@@ -181,30 +188,63 @@ public class ExerciceActivity extends CameraActivity {
             cameraBridgeViewBase.enableView();
         }
         b_start = findViewById(R.id.b_Start);
-        chrono = findViewById(R.id.idCMmeter);
 
 
 
         b_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isRunning){
-                    b_start.setText("Start Chronometer");
-                    isRunning= false;
-                    chrono.stop();
-                }
-                else{
-                    b_start.setText("Stop Chronometer");
-                    isRunning= true;
-                    chrono.start();
-                    tv_x.setText("Bonjour");
-                }
+                startstop();
             }
         });
 
 
     }
+    public void startstop(){
+        if (isRunning){
+            stopTimer();
+        }
+        else {
+            startTimer();
+        }
+    }
+    public void startTimer(){
+        countDownTimer = new CountDownTimer(timerLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerLeftInMilliseconds = millisUntilFinished;
+                updateTimer();
+            }
 
+            @Override
+            public void onFinish() {
+                startActivity(new Intent(ExerciceActivity.this,Pop.class));
+            }
+        }.start();
+
+        b_start.setText("CANCEL");
+        isRunning= true;
+    }
+    public void stopTimer(){
+        countDownTimer.cancel();
+        timerLeftInMilliseconds=600000;
+        isRunning= false;
+        b_start.setText("START");
+    }
+
+    private void updateTimer(){
+        int minutes = (int) timerLeftInMilliseconds / 60000;
+        int seconds = (int) timerLeftInMilliseconds % 60000 / 1000;
+
+        String TimeLeftText;
+
+        TimeLeftText = ""+ minutes;
+        TimeLeftText += ":";
+        if (seconds <10) TimeLeftText += "0";
+        TimeLeftText+=seconds;
+
+        countdown_text.setText(TimeLeftText);
+    }
     @Override
     protected List<?extends CameraBridgeViewBase> getCameraViewList(){
         return Collections.singletonList(cameraBridgeViewBase);
