@@ -6,6 +6,7 @@ import static androidx.core.content.PermissionChecker.checkSelfPermission;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +49,8 @@ public class ExerciceActivity extends CameraActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercice);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tv_x = findViewById(R.id.tv_x);
         tv_y = findViewById(R.id.tv_y);
         is_init= false;
