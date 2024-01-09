@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -82,85 +83,90 @@ public class ExerciceActivity extends CameraActivity {
                 }
 
                 rgb = inputFrame.rgba();
-                curr_gray = inputFrame.gray();
+
+
+                if (isRunning){
+
+
+                    curr_gray = inputFrame.gray();
 
 
 
 
-                //Convertir l'image en espace colorimetrique HSV
-                Mat hsv = new Mat();
-                Imgproc.cvtColor(inputFrame.rgba(), hsv, Imgproc.COLOR_BGR2HSV);
-
-                // Définir la plage de couleur du laser dans l'espace HSV
-                Scalar lowerLaserColor = new Scalar(160, 50 ,50);
-                Scalar upperLaserColor = new Scalar(180, 255, 255);
-
-                // Créer un masque pour la couleur du laser
-                Mat mask = new Mat();
-                Core.inRange(hsv, lowerLaserColor, upperLaserColor, mask);
+                    //Convertir l'image en espace colorimetrique HSV
+                    Mat hsv = new Mat();
+                    Imgproc.cvtColor(inputFrame.rgba(), hsv, Imgproc.COLOR_BGR2HSV);
 
 
 
-                // Trouver le contour le plus grand (point lumineux du laser)
-                /*double maxArea = 0;
-                int maxAreaIdx = -1;
-                for (int idx = 0; idx < contours.size(); idx++) {
-                    double contourArea = Imgproc.contourArea(contours.get(idx));
-                    if (contourArea > maxArea) {
-                        maxArea = contourArea;
-                        maxAreaIdx = idx;
+
+                    // Convertir l'image en espace de couleur HSV
+                    /*Imgproc.cvtColor(inputFrame.rgba(), hsv, Imgproc.COLOR_RGB2HSV);
+
+                    // Fractionner les canaux HSV
+                    Mat[] channels = new Mat[3];
+                    Core.split(hsv, channels);
+
+                    // Maximiser la valeur de saturation (le canal 1)
+                    Core.setNumThreads(8); // Optimisation du traitement parallèle
+                    Core.add(channels[1], new Scalar(255 - Double.MIN_VALUE), channels[1]);
+
+                    // Fusionner les canaux HSV pour créer l'image modifiée
+                    Core.merge(Arrays.asList(channels), hsv);
+
+                    // Convertir l'image de nouveau en espace de couleur RGB
+                    Imgproc.cvtColor(hsv, hsv, Imgproc.COLOR_HSV2RGB);*/
+
+
+
+
+                    Core.absdiff(curr_gray,prev_gray,diff);
+                    Imgproc.threshold(diff,diff,40,255,Imgproc.THRESH_BINARY);
+                    Imgproc.findContours(diff,cnts,new Mat(),Imgproc.RETR_CCOMP,Imgproc.CHAIN_APPROX_SIMPLE);
+
+                    Imgproc.drawContours(rgb,cnts,-1,new Scalar(255,0,0), 4);
+
+
+                    for (MatOfPoint m: cnts){
+                        Rect r=Imgproc.boundingRect(m);
+                        Imgproc.rectangle(rgb,r,new Scalar(0,255,0),3);
+                        // Accédez aux points
+                        //Point[] points = m.toArray();
+
+                        // Affichez les coordonnées
+                    /*for (Point p : points) {
+
+                    }*/
+
                     }
-                }*/
-
-                // Dessiner un cercle autour du point lumineux du laser
-                /*if (maxAreaIdx != -1) {
-                    Scalar color = new Scalar(255, 0, 0); // Couleur bleue
-                    Imgproc.drawContours(rgb, contours, maxAreaIdx, color, -1);
-
-                    // Obtenez le rectangle englobant du contour
-                    MatOfPoint2f approxCurve = new MatOfPoint2f();
-                    Imgproc.approxPolyDP(new MatOfPoint2f(contours.get(maxAreaIdx).toArray()), approxCurve, 0.02 * Imgproc.arcLength(new MatOfPoint2f(contours.get(maxAreaIdx).toArray()), true), true);
-                    Point[] points = approxCurve.toArray();
-                    Point center = new Point();
-                    float[] radius = new float[1];
-                    Imgproc.minEnclosingCircle(new MatOfPoint2f(points), center, radius);
-
-                    // Dessiner un cercle autour du centre du laser
-                    Imgproc.circle(rgb, center, (int) radius[0], color, -1);
-                }*/
 
 
 
-                Core.absdiff(curr_gray,prev_gray,diff);
-                Imgproc.threshold(diff,diff,40,255,Imgproc.THRESH_BINARY);
-                Imgproc.findContours(diff,cnts,new Mat(),Imgproc.RETR_CCOMP,Imgproc.CHAIN_APPROX_SIMPLE);
 
-                Imgproc.drawContours(rgb,cnts,-1,new Scalar(255,0,0), 4);
+                    /*int var = cnts.size();
+                    String varStr = String.valueOf(var);
+
+                    tv_x.setText(varStr);
+                    cnts.get(var);
+                    MatOfPoint dernierMOP = cnts.get(1);
+                    Point[] pointsArray = dernierMOP.toArray();
+                    Point point = pointsArray[-1];
+                    double x = point.x;
+                    double y = point.y;
+                    String xStr = String.valueOf(x);
+                    String yStr = String.valueOf(y);
+
+                    tv_x.setText("x : " + xStr);
+                    tv_y.setText("y : " + yStr);*/
+
+                    displayCoordinate(cnts);
+
+                    cnts.clear();
 
 
-                for (MatOfPoint m: cnts){
-                    Rect r=Imgproc.boundingRect(m);
-                    Imgproc.rectangle(rgb,r,new Scalar(0,255,0),3);
+                    prev_gray = curr_gray.clone();
                 }
 
-
-                /*int var = cnts.size();
-                cnts.get(var);
-                MatOfPoint dernierMOP = cnts.get(1);
-                Point[] pointsArray = dernierMOP.toArray();
-                Point point = pointsArray[-1];
-                double x = point.x;
-                double y = point.y;
-                String xStr = String.valueOf(x);
-                String yStr = String.valueOf(y);
-
-                tv_x.setText("x : " + xStr);
-                tv_y.setText("y : " + yStr);*/
-
-                cnts.clear();
-
-
-                prev_gray = curr_gray.clone();
 
                 // Afficher le résultat ou le transmettre à d'autres opérations
 
@@ -188,6 +194,7 @@ public class ExerciceActivity extends CameraActivity {
                     b_start.setText("Stop Chronometer");
                     isRunning= true;
                     chrono.start();
+                    tv_x.setText("Bonjour");
                 }
             }
         });
@@ -212,5 +219,19 @@ public class ExerciceActivity extends CameraActivity {
             getPermission();
         }
 
+    }
+
+
+
+    void displayCoordinate(List<MatOfPoint> listeMatOfPoints){
+        for (MatOfPoint contour : listeMatOfPoints) {
+            // Accéder aux points du contour
+            Point[] pointsArray = contour.toArray();
+
+            // Afficher les coordonnées des points dans la console (logcat)
+            for (Point point : pointsArray) {
+                Log.d("ContourPoint", "X: " + point.x + ", Y: " + point.y);
+            }
+        }
     }
 }
