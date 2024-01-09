@@ -19,7 +19,13 @@
             android:name=".ExerciceActivity"
             android:exported="false" />
         <activity
-            android:name=".listUserPageActivity"
+            android:name=".TestPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListUserPageActivity"
             android:exported="false" />
         <activity
             android:name=".CrudUserActivity"
@@ -37,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".userPageActivity"
+            android:name=".UserPageActivity"
             android:exported="false" />
     </application>
 

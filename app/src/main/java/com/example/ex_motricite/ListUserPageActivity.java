@@ -5,29 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ToggleButton;
 
 
-public class listUserPageActivity extends AppCompatActivity {
+public class ListUserPageActivity extends AppCompatActivity {
 
-    private View buttonAddPatient;
+    private Button buttonAdd;
+    private ToggleButton toggleButtonPatient;
+    private ToggleButton toggleButtonOperator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user_page);
 
-        buttonAddPatient = findViewById(R.id.buttonAddPatient);
-        ToggleButton toggleButtonPatient = findViewById(R.id.buttonOperator);
-        ToggleButton toggleButtonOperator = findViewById(R.id.buttonPatient);
+        buttonAdd = findViewById(R.id.b_Add);
+        toggleButtonPatient = findViewById(R.id.b_TogglePatient);
+        toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
 
-        buttonAddPatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(listUserPageActivity.this, userPageActivity.class);
-                startActivity(intent);
-            }
-        });
 
         toggleButtonPatient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +32,21 @@ public class listUserPageActivity extends AppCompatActivity {
                 if (toggleButtonPatient.isChecked()) {
                     // If patient toggle button is checked, uncheck the operator toggle button
                     toggleButtonOperator.setChecked(false);
+                    buttonAdd.setText("Add a patient");
+                    buttonAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "patient");
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     // If patient toggle button is unchecked
                     if (!toggleButtonOperator.isChecked()) {
                         // If operator toggle button is also unchecked, check the patient toggle button
                         toggleButtonPatient.setChecked(true);
+                        buttonAdd.setText("Add a patient");
                     } else {
                         // If operator toggle button is checked, keep both buttons checked
                         toggleButtonOperator.setChecked(true);
@@ -56,11 +62,22 @@ public class listUserPageActivity extends AppCompatActivity {
                 if (toggleButtonOperator.isChecked()) {
                     // If operator toggle button is checked, uncheck the patient toggle button
                     toggleButtonPatient.setChecked(false);
+                    buttonAdd.setText("Add an operator");
+
+                    buttonAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "operator");
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     // If operator toggle button is unchecked
                     if (!toggleButtonPatient.isChecked()) {
                         // If patient toggle button is also unchecked, check the operator toggle button
                         toggleButtonOperator.setChecked(true);
+                        buttonAdd.setText("Add an operator");
                     } else {
                         // If patient toggle button is checked, keep both buttons checked
                         toggleButtonPatient.setChecked(true);
