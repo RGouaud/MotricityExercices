@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
     private EditText et_interval;
     private TextView tv_settings_tittle;
     private SeekBar sb_interval;
+    private Button b_start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
         sb_interval = findViewById(R.id.sb_interval);
         tv_settings_tittle = findViewById(R.id.tv_settings_title);
         sb_interval = findViewById(R.id.sb_interval);
+        b_start = findViewById(R.id.b_start);
 
         Intent myIntent = getIntent();
         String exercice = myIntent.getStringExtra("Exercice");
@@ -34,6 +37,15 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
             tv_settings_tittle.setText("Static test settings");
             et_interval.setVisibility(View.INVISIBLE);
             sb_interval.setVisibility(View.INVISIBLE);
+
+            b_start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ExercisesSettingsActivity.this, ExerciceActivity.class);
+                    intent.putExtra("User", "patient");
+                    startActivity(intent);
+                }
+            });
         }
         else {
             tv_settings_tittle.setText("Rythm test settings");
