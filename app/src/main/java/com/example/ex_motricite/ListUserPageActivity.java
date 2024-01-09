@@ -11,26 +11,17 @@ import android.widget.ToggleButton;
 
 public class ListUserPageActivity extends AppCompatActivity {
 
-    private Button buttonAddPatient;
-    private ToggleButton toggleButtonPatient;
-    private ToggleButton toggleButtonOperator;
+    private Button buttonAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user_page);
 
-        buttonAddPatient = findViewById(R.id.b_Add);
-        toggleButtonPatient = findViewById(R.id.b_ToggleOperator);
-        toggleButtonOperator = findViewById(R.id.b_TogglePatient);
+        buttonAdd = findViewById(R.id.b_Add);
+        ToggleButton toggleButtonPatient = findViewById(R.id.b_TogglePatient);
+        ToggleButton toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
 
-        buttonAddPatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListUserPageActivity.this, UserPageActivity.class);
-                startActivity(intent);
-            }
-        });
 
         toggleButtonPatient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +30,21 @@ public class ListUserPageActivity extends AppCompatActivity {
                 if (toggleButtonPatient.isChecked()) {
                     // If patient toggle button is checked, uncheck the operator toggle button
                     toggleButtonOperator.setChecked(false);
+                    buttonAdd.setText("Add a patient");
+                    buttonAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "patient");
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     // If patient toggle button is unchecked
                     if (!toggleButtonOperator.isChecked()) {
                         // If operator toggle button is also unchecked, check the patient toggle button
                         toggleButtonPatient.setChecked(true);
+                        buttonAdd.setText("Add a patient");
                     } else {
                         // If operator toggle button is checked, keep both buttons checked
                         toggleButtonOperator.setChecked(true);
@@ -59,11 +60,22 @@ public class ListUserPageActivity extends AppCompatActivity {
                 if (toggleButtonOperator.isChecked()) {
                     // If operator toggle button is checked, uncheck the patient toggle button
                     toggleButtonPatient.setChecked(false);
+                    buttonAdd.setText("Add an operator");
+
+                    buttonAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "operator");
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     // If operator toggle button is unchecked
                     if (!toggleButtonPatient.isChecked()) {
                         // If patient toggle button is also unchecked, check the operator toggle button
                         toggleButtonOperator.setChecked(true);
+                        buttonAdd.setText("Add an operator");
                     } else {
                         // If patient toggle button is checked, keep both buttons checked
                         toggleButtonPatient.setChecked(true);
