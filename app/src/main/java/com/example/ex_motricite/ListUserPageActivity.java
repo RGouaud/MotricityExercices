@@ -12,6 +12,8 @@ import android.widget.ToggleButton;
 public class ListUserPageActivity extends AppCompatActivity {
 
     private Button buttonAdd;
+    private ToggleButton toggleButtonPatient;
+    private ToggleButton toggleButtonOperator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,8 @@ public class ListUserPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_user_page);
 
         buttonAdd = findViewById(R.id.b_Add);
-        ToggleButton toggleButtonPatient = findViewById(R.id.b_TogglePatient);
-        ToggleButton toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
+        toggleButtonPatient = findViewById(R.id.b_TogglePatient);
+        toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
 
 
         toggleButtonPatient.setOnClickListener(new View.OnClickListener() {
