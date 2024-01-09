@@ -61,3 +61,7 @@ p
 @app/src/main/java/com/example/ex_motricite/ListTestActivity.java,6/3/632bcdfe1764f54be38613ff44adea6a48a53391
 p
 @app/src/main/java/com/example/ex_motricite/TestPageActivity.java,2/8/2852c891388ba3ec2805af12d8862f67c4cad611
+r
+Bapp/src/main/java/com/example/ex_motricite/BdSQLiteOpenHelper.java,6/2/62e98436b84cb46ffc65af8d79f79da74881ecab
+p
+@app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3/2/3286bc2b9b890903a5c2e7d0454675e3ccd2a853

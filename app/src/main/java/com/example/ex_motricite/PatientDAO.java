@@ -14,14 +14,14 @@ public class PatientDAO {
     }
 
     public Patient getPatient(int idPatient){
-        Patient lePatient = null;
+        Patient patient = null;
         Cursor curseur;
         curseur = accesBD.getReadableDatabase().rawQuery("select * from patient where idPatient="+idPatient+";",null);
         if (curseur.getCount() > 0) {
             curseur.moveToFirst();
-            lePatient = new Patient(idPatient, curseur.getString(1),curseur.getString(2), curseur.getString(3),curseur.getString(4));
+            patient = new Patient(idPatient, curseur.getString(1),curseur.getString(2), curseur.getString(3),curseur.getString(4));
         }
-        return lePatient;
+        return patient;
     }
 
     public void addPatient(Patient patient){
@@ -34,7 +34,7 @@ public class PatientDAO {
         accesBD.close();
     }
 
-    public ArrayList<Patient> getPlats(){
+    public ArrayList<Patient> getPatients(){
         Cursor curseur;
         String req = "select * from patient;";
         curseur = accesBD.getReadableDatabase().rawQuery(req,null);
