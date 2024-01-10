@@ -31,6 +31,8 @@ public class CrudUserActivity extends AppCompatActivity {
 
         b_confirm = findViewById(R.id.b_confirm);
         tv_newuser = findViewById(R.id.tv_newuser);
+        et_name = findViewById(R.id.et_name);
+        et_firstName = findViewById(R.id.et_firstname);
         et_birthdate = findViewById(R.id.et_birthdate);
         et_remarks = findViewById(R.id.et_remarks);
 
@@ -45,7 +47,6 @@ public class CrudUserActivity extends AppCompatActivity {
             b_confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                     String name = et_name.getText().toString();
                     String firstName = et_firstName.getText().toString();
                     String birthDate = et_birthdate.getText().toString();
@@ -53,7 +54,7 @@ public class CrudUserActivity extends AppCompatActivity {
 
                     patient = new Patient(name, firstName, birthDate, remarks);
                     patientDAO.addPatient(patient);
-
+                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                     startActivity(intent);
                 }
             });
@@ -69,24 +70,16 @@ public class CrudUserActivity extends AppCompatActivity {
             b_confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                     String name = et_name.getText().toString();
                     String firstName = et_firstName.getText().toString();
 
                     operator = new Operator(name, firstName);
                     operatorDAO.addOperator(operator);
-
+                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                     startActivity(intent);
                 }
             });
 
         }
-        b_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(homePageActivity.this, patientActivity.class);
-                // startActivity(intent);
-            }
-        });
     }
 }
