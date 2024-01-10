@@ -1,30 +1,23 @@
 package com.example.ex_motricite;
 
-public class Patient {
-    private long idPatient;
-    private String name;
-    private String firstName;
+public class Patient extends Actor {
     private String birthDate;
     private String remarks;
 
-    public Patient(long idPatient, String name, String firstName, String birthDate, String remarks){
-        this.idPatient = idPatient;
-        this.name = name;
-        this.firstName = firstName;
+    public Patient(long id, String name, String firstName, String birthDate, String remarks){
+        super(id, name, firstName);
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
 
     public Patient( String name, String firstName, String birthDate, String remarks){
-        this.idPatient = -1;
-        this.name = name;
-        this.firstName = firstName;
+        super(-1, name, firstName);
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
 
-    public long getIdPatient(){
-        return this.idPatient;
+    public long getId(){
+        return this.id;
     }
 
     public String getName(){
@@ -44,7 +37,7 @@ public class Patient {
     }
 
     public void setIdPatient(long idPatient){
-         this.idPatient = idPatient;
+         this.id = idPatient;
     }
 
     public void setName(String name){
@@ -64,6 +57,6 @@ public class Patient {
     }
 
     public String toString(){
-        return "Id of Patient : " + this.getIdPatient() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName() + ", birthdate of patient : " + this.getBirthDate() + ", remarks : " + this.getRemarks();
+        return "Id of Patient : " + this.getId() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName() + ", birthdate of patient : " + this.getBirthDate() + ", remarks : " + this.getRemarks();
     }
 }
