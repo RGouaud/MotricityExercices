@@ -1,21 +1,21 @@
 
 J
-java:S1604"(Make this anonymous inner class a lambda(ãë²€ûÿÿÿÿ8ŒÆŞ•Ï1
+java:S1604"(Make this anonymous inner class a lambda(ãë²€ûÿÿÿÿ8–üÖ—Ï1
 E
-java:S1604$"(Make this anonymous inner class a lambda(Ú•Ô8ŒÆŞ•Ï1
+java:S1604$"(Make this anonymous inner class a lambda(Ú•Ô8—üÖ—Ï1
 C
-java:S1604-"(Make this anonymous inner class a lambda(ÿÂQ8ŒÆŞ•Ï1
+java:S1604-"(Make this anonymous inner class a lambda(ÿÂQ8—üÖ—Ï1
 E
-java:S16045"(Make this anonymous inner class a lambda(¦çíö8ŒÆŞ•Ï1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÕúìÿÿÿÿÿ8ÆŞ•Ï1
-t	java:S116"XRename this field "layout_static" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‚”‰8ÆŞ•Ï1
-x	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ8ñôİ•Ï1
-z	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡şÿÿÿÿ8ñôİ•Ï1
+java:S16045"(Make this anonymous inner class a lambda(¦çíö8—üÖ—Ï1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÕúìÿÿÿÿÿ8—üÖ—Ï1
+t	java:S116"XRename this field "layout_static" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‚”‰8šüÖ—Ï1
+x	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ8šüÖ—Ï1
+z	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡şÿÿÿÿ8šüÖ—Ï1
 „
-java:S1450"bRemove the "imageButtonListTest" field and declare it as a local variable in the relevant methods.(Ë¢“õÿÿÿÿÿ8öôİ•Ï1
+java:S1450"bRemove the "imageButtonListTest" field and declare it as a local variable in the relevant methods.(Ë¢“õÿÿÿÿÿ8üÖ—Ï1
 
-java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡şÿÿÿÿ8öôİ•Ï1
+java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡şÿÿÿÿ8üÖ—Ï1
 }
-java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ8öôİ•Ï1
+java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ8üÖ—Ï1
 y
-java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰8•ÆŞ•Ï1
+java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰8üÖ—Ï1

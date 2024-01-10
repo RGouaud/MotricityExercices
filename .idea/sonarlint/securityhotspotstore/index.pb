@@ -81,3 +81,5 @@ h
 8app/src/main/java/com/example/ex_motricite/Operator.java,b/0/b0665aa222fd0c12a8a1ef8d8c7c3fcb18ed6217
 C
 settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
+p
+@app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e/f/ef1252fa77ad5e56c4019c20b40e3f4b618a60d1

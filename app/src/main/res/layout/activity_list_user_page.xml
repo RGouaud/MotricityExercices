@@ -59,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:background="@drawable/rounded_button"
+                        android:background="@drawable/rounded_toggle_button"
                         android:text="Operator"
                         android:textOff="Operator"
                         android:textOn="Operator" />
@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:background="@drawable/rounded_button"
+                        android:background="@drawable/rounded_toggle_button"
                         android:checked="true"
                         android:text="Patient"
                         android:textOff="Patient"
