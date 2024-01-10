@@ -107,19 +107,15 @@ public class ListUserPageActivity extends AppCompatActivity {
 
         try {
             operators = operatorDAO.getOperators();
-            // Le reste du code...
         } catch (Exception e) {
             e.printStackTrace();
-            // Gérez l'exception de manière appropriée, par exemple, affichez un message d'erreur
             Toast.makeText(this, "Erreur lors de la récupération des opérateurs", Toast.LENGTH_SHORT).show();
         }
 
         try {
             patients = patientDAO.getPatients();
-            // Le reste du code...
         } catch (Exception e) {
             e.printStackTrace();
-            // Gérez l'exception de manière appropriée, par exemple, affichez un message d'erreur
             Toast.makeText(this, "Erreur lors de la récupération des opérateurs", Toast.LENGTH_SHORT).show();
         }
 
