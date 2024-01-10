@@ -45,12 +45,13 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="4" />
 
                     <TextView
                         android:id="@+id/tv_Parameters"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Export Parameters"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
@@ -59,28 +60,50 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="4" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:background="@drawable/layout_bg_rounded"
                         android:orientation="vertical">
 
-                        <RadioButton
-                            android:id="@+id/radioButton"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton"
-                            android:textColor="#FFFFFF" />
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="  Email :"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp" />
+
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="10" />
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/editTextText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:ems="10"
                             android:inputType="text"
-                            android:text="Name"
+                            android:text="xxxxxxx@xxxx"
+                            android:textAlignment="center"
                             android:textColor="#FFFFFF" />
 
                     </LinearLayout>
@@ -88,85 +111,124 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="5" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="10"
                         android:background="@drawable/layout_bg_rounded"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:orientation="horizontal">
 
-                            <RadioButton
-                                android:id="@+id/radioButton2"
+                            <Space
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="RadioButton"
-                                android:textColor="#FFFFFF" />
+                                android:layout_height="match_parent"
+                                android:layout_weight="6" />
+
+                            <RadioButton
+                                android:id="@+id/rb_server"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="  Server :"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp" />
 
                             <EditText
                                 android:id="@+id/editTextText2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:layout_weight="10"
                                 android:ems="10"
                                 android:inputType="text"
-                                android:text="Name"
+                                android:text="http://urlserver"
                                 android:textColor="#FFFFFF" />
                         </LinearLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2" />
 
                         <TextView
                             android:id="@+id/textView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textColor="#FFFFFF" />
+                            android:layout_weight="1"
+                            android:text="id :                                 "
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
 
                         <EditText
                             android:id="@+id/editTextText3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:ems="10"
                             android:inputType="text"
-                            android:text="Name"
+                            android:text="xxxxxx"
+                            android:textAlignment="center"
                             android:textColor="#FFFFFF" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2" />
 
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textColor="#FFFFFF" />
+                            android:layout_weight="1"
+                            android:text="password :                   "
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
 
                         <EditText
                             android:id="@+id/editTextText4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:ems="10"
                             android:inputType="text"
-                            android:text="Name"
+                            android:text="xxxxxx"
+                            android:textAlignment="center"
                             android:textColor="#FFFFFF" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2" />
 
                         <Button
                             android:id="@+id/b_TestConnection"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
                             android:backgroundTint="#FAD552"
                             android:text="Test Connection"
                             android:textColor="#000000" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2" />
 
                     </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="5" />
 
                     <Button
                         android:id="@+id/button3"
@@ -179,7 +241,7 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="5" />
 
                 </LinearLayout>
 

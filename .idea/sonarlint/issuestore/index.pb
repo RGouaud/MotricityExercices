@@ -69,14 +69,6 @@ F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
 @
 build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
-
-Oapp/src/main/java/com/example/ex_motricite/ui/dashboard/DashboardViewModel.java,6/7/67d65f8a0d619d7ff10e27fd2bc3ff018a7a1eb5
-{
-Kapp/src/main/java/com/example/ex_motricite/ui/gallery/GalleryViewModel.java,5/5/55ec611af39528fa9fbfb0898f98150ece435b59
-u
-Eapp/src/main/java/com/example/ex_motricite/ui/home/HomeViewModel.java,9/8/98dbdf84414c5be515ad7727e51d6bedd0868ff2
-
-Oapp/src/main/java/com/example/ex_motricite/ui/slideshow/SlideshowViewModel.java,3/8/38b7455b4c4ef83cddd0e0fe86f48fdfc3c8f682
 h
 8app/src/main/java/com/example/ex_motricite/Operator.java,b/0/b0665aa222fd0c12a8a1ef8d8c7c3fcb18ed6217
 C
