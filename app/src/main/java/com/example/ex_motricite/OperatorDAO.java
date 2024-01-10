@@ -30,7 +30,7 @@ public class OperatorDAO {
     }
 
     public void delOperator(Operator operator){
-        accesBD.getWritableDatabase().execSQL("delete from operator where idP="+operator.getIdOperator()+";");
+        accesBD.getWritableDatabase().execSQL("delete from operator where idP="+operator.getId()+";");
         accesBD.close();
     }
 
