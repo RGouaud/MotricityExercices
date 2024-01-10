@@ -10,4 +10,28 @@ public abstract class Actor {
         this.name = name;
         this.firstName = firstName;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
 }

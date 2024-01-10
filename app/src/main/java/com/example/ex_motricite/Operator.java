@@ -10,26 +10,6 @@ public class Operator extends Actor {
         super(-1, name, firstName);
     }
 
-    public long getId(){
-        return this.id;
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public String getFirstName(){
-        return this.firstName;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-
     public String toString(){
         return "Id of Patient : " + this.getId() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName();
     }

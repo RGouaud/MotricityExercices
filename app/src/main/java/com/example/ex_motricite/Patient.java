@@ -15,19 +15,6 @@ public class Patient extends Actor {
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
-
-    public long getId(){
-        return this.id;
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public String getFirstName(){
-        return this.firstName;
-    }
-
     public String getBirthDate(){
         return this.birthDate;
     }
@@ -38,14 +25,6 @@ public class Patient extends Actor {
 
     public void setIdPatient(long idPatient){
          this.id = idPatient;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
     }
 
     public void setBirthDate(String birthDate){
