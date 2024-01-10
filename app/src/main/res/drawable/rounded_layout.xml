@@ -1,0 +1,5 @@
+<!-- res/drawable/rounded_corners.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#3D3D3D" /> <!-- Couleur de fond, ajustez selon vos besoins -->
+    <corners android:radius="10dp" /> <!-- Rayon des coins en dp -->
+</shape>

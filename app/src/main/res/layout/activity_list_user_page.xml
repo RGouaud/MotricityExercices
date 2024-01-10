@@ -129,10 +129,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/sv_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50" />
+                android:layout_weight="50"
+                android:orientation="vertical" />
         </LinearLayout>
 
 
