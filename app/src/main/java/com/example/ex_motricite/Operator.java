@@ -1,24 +1,17 @@
 package com.example.ex_motricite;
 
-public class Operator {
-    private long idOperator;
-    private String name;
-    private String firstName;
+public class Operator extends Actor {
 
-    public Operator(long idOperator, String name, String firstName){
-        this.idOperator = idOperator;
-        this.name = name;
-        this.firstName = firstName;
+    public Operator(long id, String name, String firstName){
+        super(id, name, firstName);
     }
 
     public Operator( String name, String firstName){
-        this.idOperator = -1;
-        this.name = name;
-        this.firstName = firstName;
+        super(-1, name, firstName);
     }
 
-    public long getIdOperator(){
-        return this.idOperator;
+    public long getId(){
+        return this.id;
     }
 
     public String getName(){
@@ -38,6 +31,6 @@ public class Operator {
     }
 
     public String toString(){
-        return "Id of Patient : " + this.getIdOperator() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName();
+        return "Id of Patient : " + this.getId() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName();
     }
 }
