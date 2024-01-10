@@ -23,9 +23,6 @@ public class Patient extends Actor {
         return this.remarks;
     }
 
-    public void setIdPatient(long idPatient){
-         this.id = idPatient;
-    }
 
     public void setBirthDate(String birthDate){
         this.birthDate = birthDate;
