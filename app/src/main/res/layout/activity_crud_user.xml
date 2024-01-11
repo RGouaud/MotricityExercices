@@ -70,8 +70,8 @@
                 android:layout_height="48dp"
                 android:background="#D3D3D3"
                 android:ems="10"
-                android:inputType="text"
-                android:hint="Birthday" />
+                android:hint="Birthday DD/MM/YYYY"
+                android:inputType="date" />
 
             <Space
                 android:layout_width="match_parent"

@@ -19,6 +19,13 @@
             android:name=".ExerciceActivity"
             android:exported="false" />
         <activity
+            android:name=".Pop"
+            android:theme="@style/Base.Theme.AppCompat.CustomTheme"
+            />
+        <activity
+            android:name=".GraphicsTestPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestPageActivity"
             android:exported="false" />
         <activity

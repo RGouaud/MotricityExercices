@@ -1,22 +1,21 @@
 
 J
-java:S1604"(Make this anonymous inner class a lambda(ãë²€ûÿÿÿÿ8ÇÃãÇ1
+java:S1604"(Make this anonymous inner class a lambda(ãë²€ûÿÿÿÿ8ŒÆŞ•Ï1
 E
-java:S1604$"(Make this anonymous inner class a lambda(Ú•Ô8ÈÃãÇ1
+java:S1604$"(Make this anonymous inner class a lambda(Ú•Ô8ŒÆŞ•Ï1
 C
-java:S1604-"(Make this anonymous inner class a lambda(ÿÂQ8ÈÃãÇ1
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÕúìÿÿÿÿÿ
-m	java:S116"XRename this field "layout_static" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‚”‰
-q	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ
-s	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡şÿÿÿÿ
-k	java:S116"VRename this field "iv_settings" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¯¦Á
-x
-java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡şÿÿÿÿ
-v
-java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ
-r
-java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰
-]	java:S125"<This block of commented-out lines of code should be removed.(õ¬ÙÑúÿÿÿÿ8ëÇÚ“È1
-Q	java:S1256"<This block of commented-out lines of code should be removed.(—˜¡
-L
-java:S1068"/Remove this unused "iv_settings" private field.(¡¯¦Á8òÇÚ“È1
+java:S1604-"(Make this anonymous inner class a lambda(ÿÂQ8ŒÆŞ•Ï1
+E
+java:S16045"(Make this anonymous inner class a lambda(¦çíö8ŒÆŞ•Ï1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÕúìÿÿÿÿÿ8ÆŞ•Ï1
+t	java:S116"XRename this field "layout_static" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‚”‰8ÆŞ•Ï1
+x	java:S116"WRename this field "layout_rythm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù³†ùÿÿÿÿ8ñôİ•Ï1
+z	java:S116"YRename this field "layout_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¡Û‡şÿÿÿÿ8ñôİ•Ï1
+„
+java:S1450"bRemove the "imageButtonListTest" field and declare it as a local variable in the relevant methods.(Ë¢“õÿÿÿÿÿ8öôİ•Ï1
+
+java:S1450"]Remove the "layout_patient" field and declare it as a local variable in the relevant methods.(¼¡Û‡şÿÿÿÿ8öôİ•Ï1
+}
+java:S1450"[Remove the "layout_rythm" field and declare it as a local variable in the relevant methods.(Ù³†ùÿÿÿÿ8öôİ•Ï1
+y
+java:S1450"\Remove the "layout_static" field and declare it as a local variable in the relevant methods.(€‚”‰8•ÆŞ•Ï1

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class homePageActivity extends AppCompatActivity {
@@ -13,7 +13,7 @@ public class homePageActivity extends AppCompatActivity {
     private LinearLayout layout_static;
     private LinearLayout layout_rythm;
     private LinearLayout layout_patient;
-    private ImageView iv_settings;
+    private ImageButton imageButtonListTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +22,7 @@ public class homePageActivity extends AppCompatActivity {
         layout_static = findViewById(R.id.layout_static);
         layout_rythm = findViewById(R.id.layout_rythm);
         layout_patient = findViewById(R.id.layout_patient);
-        //iv_settings =  findViewById(R.id.iv_settings);
+        imageButtonListTest = findViewById(R.id.ib_ListTest);
 
         layout_static.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,14 +50,13 @@ public class homePageActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        iv_settings.setOnClickListener(new View.OnClickListener() {
+        imageButtonListTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(homePageActivity.this, settingsActivity.class);
+                Intent intent = new Intent(homePageActivity.this, ListTestActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 }
