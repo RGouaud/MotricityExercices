@@ -68,38 +68,81 @@ public class CrudUserActivity extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         String user = myIntent.getStringExtra("User");
+        String crud = myIntent.getStringExtra("Crud");
+        String userId = myIntent.getStringExtra("UserId");
 
-        if (user.equals("patient")){
+        if (user.equals("patient")){ // User type : patient
+            if(crud.equals("create")){ // create a patient
+                tv_newuser.setText("Create a new patient");
+                patientDAO = new PatientDAO(this);
 
-            tv_newuser.setText("Create a new patient");
-            patientDAO = new PatientDAO(this);
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+                        String birthDate = et_birthdate.getText().toString();
+                        String remarks = et_remarks.getText().toString();
 
-            b_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String name = et_name.getText().toString();
-                    String firstName = et_firstName.getText().toString();
-                    String birthDate = et_birthdate.getText().toString();
-                    String remarks = et_remarks.getText().toString();
-
-                    if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
-                        if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
-                            patient = new Patient(name, firstName, birthDate, remarks);
-                            patientDAO.addPatient(patient);
-                            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
-                            startActivity(intent);
+                        if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
+                            if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                                patient = new Patient(name, firstName, birthDate, remarks);
+                                patientDAO.addPatient(patient);
+                                Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                                startActivity(intent);
+                            }
+                            else{ // error on date
+                                showPopup(CrudUserActivity.this, "Type a valid date");
+                            }
                         }
-                        else{ // error on date
-                            showPopup(CrudUserActivity.this, "Type a valid date");
+                        else{ // not all obligatory fields are completed
+                            showPopup(CrudUserActivity.this, "Complete all fields");
                         }
                     }
-                    else{ // not all obligatory fields are completed
-                        showPopup(CrudUserActivity.this, "Complete all fields");
+                });
+
+            } else if (crud.equals("update")) {
+                //get previous informations
+                PatientDAO patientDao = new PatientDAO(this);
+                Patient patient = patientDao.getPatient(Integer.parseInt(userId));
+
+                //put previous informations in field
+                et_name.setText(patient.getName());
+                et_firstName.setText(patient.getFirstName());
+                et_birthdate.setText(patient.getBirthDate());
+                et_remarks.setText(patient.getRemarks());
+
+                // confirm update
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+                        String birthDate = et_birthdate.getText().toString();
+                        String remarks = et_remarks.getText().toString();
+
+                        if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
+                            if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                                patientDAO.updatePatient(patient);
+                                Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                                startActivity(intent);
+                            }
+                            else{ // error on date
+                                showPopup(CrudUserActivity.this, "Type a valid date");
+                            }
+                        }
+                        else{ // not all obligatory fields are completed
+                            showPopup(CrudUserActivity.this, "Complete all fields");
+                        }
                     }
-                }
-            });
+                });
+
+                // delete button
+
+
+            }
         }
-        else{
+        else{ // User type : manipulator
 
             tv_newuser.setText("Create a new operator");
             et_birthdate.setVisibility(View.INVISIBLE);
