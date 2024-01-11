@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class PatientDAO {
     }
 
     public void delPatient(Patient patient){
-        accesBD.getWritableDatabase().execSQL("delete from plat where idP="+patient.getId()+";");
+        accesBD.getWritableDatabase().execSQL("delete from patient where idPatient="+patient.getId()+";");
         accesBD.close();
     }
 
@@ -53,9 +54,9 @@ public class PatientDAO {
         if (!patient.getBirthDate().isEmpty()) {
             updateQuery.append("birthDate = '").append(patient.getBirthDate()).append("',");
         }
-        if (!patient.getRemarks().isEmpty()) {
-            updateQuery.append("remarks = '").append(patient.getRemarks()).append("',");
-        }
+        // Don't check if remarks are empty, we could want to delete it.
+        updateQuery.append("remarks = '").append(patient.getRemarks()).append("',");
+
 
         // Delete final coma if the request is not empty
         if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
@@ -63,7 +64,6 @@ public class PatientDAO {
             updateQuery.append(" ");
             updateQuery.append("WHERE idPatient = '").append(patient.getId()).append("';");
         }
-
         accesBD.getWritableDatabase().execSQL(updateQuery.toString());
         accesBD.close();
     }

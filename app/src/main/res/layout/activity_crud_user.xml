@@ -104,6 +104,15 @@
                 android:textColor="@color/black"
                 android:text="Confirm" />
 
+            <Button
+                android:id="@+id/b_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FAD552"
+                android:text="Delete"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

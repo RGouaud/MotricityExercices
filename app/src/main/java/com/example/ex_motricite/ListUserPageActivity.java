@@ -68,11 +68,26 @@ public class ListUserPageActivity extends AppCompatActivity {
                         4f)); // weight
 
                 // Create and configure ImageButtons
-                ImageButton modify = new ImageButton(this);
-                modify.setImageResource(android.R.drawable.ic_menu_set_as);
-                modify.setBackgroundColor(Color.parseColor("#00000000"));
+                ImageButton b_modify = new ImageButton(this);
+                b_modify.setImageResource(android.R.drawable.ic_menu_set_as);
+                b_modify.setBackgroundColor(Color.parseColor("#00000000"));
                 ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
-                modify.setLayoutParams(params);
+                b_modify.setLayoutParams(params);
+
+                String.valueOf(actors.get(i).getId());
+                int finalI = i;
+                b_modify.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                        intent.putExtra("User", "patient");
+                        intent.putExtra("Crud", "update");
+                        intent.putExtra("UserId", String.valueOf(actors.get(finalI).getId()));
+                        startActivity(intent);
+                    }
+                });
+
+
 
                 // Setup spaces between layouts
                 Space space = new Space(this);
@@ -83,7 +98,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                 // Add TextView to LinearLayout
                 aLayout.addView(name);
                 aLayout.addView(firstName);
-                aLayout.addView(modify);
+                aLayout.addView(b_modify);
 
                 // Add LinearLayout to sv_list
                 sv_list.addView(aLayout);
@@ -124,6 +139,8 @@ public class ListUserPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", "patient");
+                intent.putExtra("Crud","create");
+                intent.putExtra("UserId","");
                 startActivity(intent);
             }
         });

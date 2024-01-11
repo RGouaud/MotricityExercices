@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import java.util.regex.Pattern;
 public class CrudUserActivity extends AppCompatActivity {
 
     private Button b_confirm;
+    private Button b_delete;
     private TextView tv_newuser;
     private EditText et_name;
     private EditText et_firstName;
@@ -60,6 +62,7 @@ public class CrudUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crud_user);
 
         b_confirm = findViewById(R.id.b_confirm);
+        b_delete = findViewById(R.id.b_delete);
         tv_newuser = findViewById(R.id.tv_newuser);
         et_name = findViewById(R.id.et_name);
         et_firstName = findViewById(R.id.et_firstname);
@@ -72,9 +75,9 @@ public class CrudUserActivity extends AppCompatActivity {
         String userId = myIntent.getStringExtra("UserId");
 
         if (user.equals("patient")){ // User type : patient
+            patientDAO = new PatientDAO(this);
             if(crud.equals("create")){ // create a patient
                 tv_newuser.setText("Create a new patient");
-                patientDAO = new PatientDAO(this);
 
                 b_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,9 +105,12 @@ public class CrudUserActivity extends AppCompatActivity {
                 });
 
             } else if (crud.equals("update")) {
+                // setup display
+                tv_newuser.setText("Edit patient");
+                b_delete.setVisibility(View.VISIBLE);
+
                 //get previous informations
-                PatientDAO patientDao = new PatientDAO(this);
-                Patient patient = patientDao.getPatient(Integer.parseInt(userId));
+                Patient patient = patientDAO.getPatient(Integer.parseInt(userId));
 
                 //put previous informations in field
                 et_name.setText(patient.getName());
@@ -123,6 +129,12 @@ public class CrudUserActivity extends AppCompatActivity {
 
                         if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
                             if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+
+                                //update of information for current patient object instance
+                                patient.setName(name);
+                                patient.setFirstName(firstName);
+                                patient.setBirthDate(birthDate);
+                                patient.setRemarks(remarks);
                                 patientDAO.updatePatient(patient);
                                 Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                                 startActivity(intent);
@@ -138,8 +150,14 @@ public class CrudUserActivity extends AppCompatActivity {
                 });
 
                 // delete button
-
-
+                b_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        patientDAO.delPatient(patient);
+                        Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         }
         else{ // User type : manipulator
