@@ -41,14 +41,25 @@ public class ListUserPageActivity extends AppCompatActivity {
 
                 // Setup the layout
                 aLayout.setOrientation(LinearLayout.HORIZONTAL);
-                if (actors.get(i) instanceof  Operator) {
-                    aLayout.setBackgroundResource(R.drawable.rounded_layout);
-                    aLayout.setPadding(20, 50, 0, 50);
-                }
                 aLayout.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
+                if (actors.get(i) instanceof  Operator) {
+                    aLayout.setBackgroundResource(R.drawable.rounded_layout);
+                    aLayout.setPadding(20, 50, 0, 50);
 
+                    Operator operator = (Operator) actors.get(i);
+                    aLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "operator");
+                            intent.putExtra("Crud", "read");
+                            intent.putExtra("idOperator", operator.getId());
+                            startActivity(intent);
+                        }
+                    });
+                }
 
                 // Create TextView for name and firstname
                 TextView name = new TextView(this);
@@ -108,6 +119,17 @@ public class ListUserPageActivity extends AppCompatActivity {
                     parentLayout.addView(aLayout);
                     parentLayout.addView(birthDate);
 
+                    parentLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "patient");
+                            intent.putExtra("Crud", "read");
+                            intent.putExtra("idPatient", patient.getId());
+                            startActivity(intent);
+                        }
+                    });
+
                     sv_list.addView(parentLayout);
                 }
 
@@ -152,6 +174,7 @@ public class ListUserPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", "patient");
+                intent.putExtra("Crud", "add");
                 startActivity(intent);
             }
         });
@@ -172,6 +195,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "patient");
+                            intent.putExtra("Crud", "add");
                             startActivity(intent);
                         }
                     });
@@ -207,6 +231,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
+                            intent.putExtra("Crud", "add");
                             startActivity(intent);
                         }
                     });

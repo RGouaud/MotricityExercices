@@ -13,7 +13,7 @@ public class PatientDAO {
         accesBD = new BdSQLiteOpenHelper(ct, base, null, version);
     }
 
-    public Patient getPatient(int idPatient){
+    public Patient getPatient(long idPatient){
         Patient patient = null;
         Cursor curseur;
         curseur = accesBD.getReadableDatabase().rawQuery("select * from patient where idPatient="+idPatient+";",null);
