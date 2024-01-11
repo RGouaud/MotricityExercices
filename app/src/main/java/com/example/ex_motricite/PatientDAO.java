@@ -61,7 +61,7 @@ public class PatientDAO {
         if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
             updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
             updateQuery.append(" ");
-            updateQuery.append("WHERE id = '").append(patient.getId()).append("';");
+            updateQuery.append("WHERE idPatient = '").append(patient.getId()).append("';");
         }
 
         accesBD.getWritableDatabase().execSQL(updateQuery.toString());

@@ -41,6 +41,27 @@ public class OperatorDAO {
         return cursorToOperatorArrayList(curseur);
     }
 
+    public void updateOperator(Operator operator) {
+        StringBuilder updateQuery = new StringBuilder("UPDATE Operator SET ");
+
+        if (!operator.getName().isEmpty()) {
+            updateQuery.append("name = '").append(operator.getName()).append("', ");
+        }
+        if (!operator.getFirstName().isEmpty()) {
+            updateQuery.append("firstName = '").append(operator.getFirstName()).append("', ");
+        }
+
+        // Supprimer la virgule finale si la requête n'est pas vide
+        if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
+            updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
+            updateQuery.append(" ");
+            updateQuery.append("WHERE idOperator = '").append(operator.getId()).append("';");
+
+            accesBD.getWritableDatabase().execSQL(updateQuery.toString());
+            accesBD.close();
+        }
+    }
+
     public void updateOperator(String oldName, String newName, String newFirstName) {
         StringBuilder updateQuery = new StringBuilder("UPDATE Operator SET ");
 
