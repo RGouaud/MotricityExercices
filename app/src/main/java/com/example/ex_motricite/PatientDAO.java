@@ -42,29 +42,13 @@ public class PatientDAO {
         return cursorToPatientArrayList(curseur);
     }
 
-    public void updatePatient(Patient patient) {
-        StringBuilder updateQuery = new StringBuilder("UPDATE Patient SET ");
-
-        if (!patient.getName().isEmpty()) {
-            updateQuery.append("name = '").append(patient.getName()).append("', ");
-        }
-        if (!patient.getFirstName().isEmpty()) {
-            updateQuery.append("firstName = '").append(patient.getFirstName()).append("',");
-        }
-        if (!patient.getBirthDate().isEmpty()) {
-            updateQuery.append("birthDate = '").append(patient.getBirthDate()).append("',");
-        }
-        // Don't check if remarks are empty, we could want to delete it.
-        updateQuery.append("remarks = '").append(patient.getRemarks()).append("',");
-
-
-        // Delete final coma if the request is not empty
-        if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
-            updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
-            updateQuery.append(" ");
-            updateQuery.append("WHERE idPatient = '").append(patient.getId()).append("';");
-        }
-        accesBD.getWritableDatabase().execSQL(updateQuery.toString());
+    public void updatePatient(Patient patient){
+        accesBD.getWritableDatabase().execSQL("UPDATE patient SET " +
+                "name='"+patient.getName()+"', " +
+                "firstName='"+patient.getFirstName()+"', " +
+                "birthDate='"+patient.getBirthDate()+"', " +
+                "remarks='" + patient.getRemarks() + "' " +
+                "WHERE idPatient=" + patient.getId() + ";");
         accesBD.close();
     }
 
