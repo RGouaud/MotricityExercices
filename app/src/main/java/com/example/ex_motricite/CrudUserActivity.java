@@ -112,11 +112,15 @@ public class CrudUserActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     String name = et_name.getText().toString();
                     String firstName = et_firstName.getText().toString();
-
-                    operator = new Operator(name, firstName);
-                    operatorDAO.addOperator(operator);
-                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
-                    startActivity(intent);
+                    if(!(name.isEmpty()) && !(firstName.isEmpty())){
+                        operator = new Operator(name, firstName);
+                        operatorDAO.addOperator(operator);
+                        Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        showPopup(CrudUserActivity.this, "Complete all fields");
+                    }
                 }
             });
 
