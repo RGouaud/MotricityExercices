@@ -41,31 +41,31 @@ public class PatientDAO {
         return cursorToPatientArrayList(curseur);
     }
 
-    public void updatePatient(String oldName, String newName, String newFirstName, String newBirthDate, String newRemarks) {
+    public void updatePatient(Patient patient) {
         StringBuilder updateQuery = new StringBuilder("UPDATE Patient SET ");
 
-        if (!newName.isEmpty()) {
-            updateQuery.append("name = '").append(newName).append("', ");
+        if (!patient.getName().isEmpty()) {
+            updateQuery.append("name = '").append(patient.getName()).append("', ");
         }
-        if (!newFirstName.isEmpty()) {
-            updateQuery.append("firstName = '").append(newFirstName).append("', ");
+        if (!patient.getFirstName().isEmpty()) {
+            updateQuery.append("firstName = '").append(patient.getFirstName()).append("',");
         }
-        if (!newBirthDate.isEmpty()) {
-            updateQuery.append("birthDate = '").append(newBirthDate).append("', ");
+        if (!patient.getBirthDate().isEmpty()) {
+            updateQuery.append("birthDate = '").append(patient.getBirthDate()).append("',");
         }
-        if (!newRemarks.isEmpty()) {
-            updateQuery.append("remarks = '").append(newRemarks).append("', ");
+        if (!patient.getRemarks().isEmpty()) {
+            updateQuery.append("remarks = '").append(patient.getRemarks()).append("',");
         }
 
-        // Supprimer la virgule finale si la requête n'est pas vide
+        // Delete final coma if the request is not empty
         if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
             updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
             updateQuery.append(" ");
-            updateQuery.append("WHERE name = '").append(oldName).append("';");
-
-            accesBD.getWritableDatabase().execSQL(updateQuery.toString());
-            accesBD.close();
+            updateQuery.append("WHERE id = '").append(patient.getId()).append("';");
         }
+
+        accesBD.getWritableDatabase().execSQL(updateQuery.toString());
+        accesBD.close();
     }
 
     private ArrayList<Patient> cursorToPatientArrayList(Cursor curseur){
