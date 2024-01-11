@@ -96,15 +96,16 @@
                         </LinearLayout>
 
                         <EditText
-                            android:id="@+id/editTextText"
+                            android:id="@+id/et_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="text"
-                            android:text="xxxxxxx@xxxx"
+                            android:hint="xxxxxxx@xxxx"
+                            android:inputType="text|textEmailAddress"
                             android:textAlignment="center"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#616161" />
 
                     </LinearLayout>
 
@@ -141,14 +142,15 @@
                                 android:textSize="16sp" />
 
                             <EditText
-                                android:id="@+id/editTextText2"
+                                android:id="@+id/et_urlServer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="10"
                                 android:ems="10"
-                                android:inputType="text"
-                                android:text="http://urlserver"
-                                android:textColor="#FFFFFF" />
+                                android:hint="http://urlserver"
+                                android:inputType="text|textWebEditText"
+                                android:textColor="#FFFFFF"
+                                android:textColorHint="#616161" />
                         </LinearLayout>
 
                         <Space
@@ -167,15 +169,15 @@
                             android:textSize="16sp" />
 
                         <EditText
-                            android:id="@+id/editTextText3"
+                            android:id="@+id/et_idServer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="text"
-                            android:text="xxxxxx"
                             android:textAlignment="center"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#616161" />
 
                         <Space
                             android:layout_width="match_parent"
@@ -193,15 +195,15 @@
                             android:textSize="16sp" />
 
                         <EditText
-                            android:id="@+id/editTextText4"
+                            android:id="@+id/et_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="text"
-                            android:text="xxxxxx"
+                            android:inputType="text|textPassword"
                             android:textAlignment="center"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#616161" />
 
                         <Space
                             android:layout_width="match_parent"
@@ -209,7 +211,7 @@
                             android:layout_weight="2" />
 
                         <Button
-                            android:id="@+id/b_TestConnection"
+                            android:id="@+id/b_testConnection"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -231,7 +233,7 @@
                         android:layout_weight="5" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/b_confirmSave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#FAD552"
