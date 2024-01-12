@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -39,12 +41,25 @@ public class ListUserPageActivity extends AppCompatActivity {
 
                 // Setup the layout
                 aLayout.setOrientation(LinearLayout.HORIZONTAL);
-                aLayout.setBackgroundResource(R.drawable.rounded_layout);
-                aLayout.setPadding(20, 50, 0, 50);
                 aLayout.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
+                if (actors.get(i) instanceof  Operator) {
+                    aLayout.setBackgroundResource(R.drawable.rounded_layout);
+                    aLayout.setPadding(20, 50, 0, 50);
 
+                    Operator operator = (Operator) actors.get(i);
+                    aLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "operator");
+                            intent.putExtra("Crud", "read");
+                            intent.putExtra("idOperator", operator.getId());
+                            startActivity(intent);
+                        }
+                    });
+                }
 
                 // Create TextView for name and firstname
                 TextView name = new TextView(this);
@@ -85,8 +100,43 @@ public class ListUserPageActivity extends AppCompatActivity {
                 aLayout.addView(firstName);
                 aLayout.addView(modify);
 
+                //Creation of birthdate for patient
+                if (actors.get(i) instanceof  Patient) {
+                    LinearLayout parentLayout = new LinearLayout(this);
+                    parentLayout.setOrientation(LinearLayout.VERTICAL);
+                    parentLayout.setBackgroundResource(R.drawable.rounded_layout);
+                    parentLayout.setPadding(20, 50, 0, 50);
+                    parentLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT));
+
+                    TextView birthDate = new TextView(this);
+                    Patient patient = (Patient) actors.get(i);
+                    birthDate.setText("Birthdate : " + patient.getBirthDate());
+                    birthDate.setTextColor(Color.parseColor("#FFFFFF"));
+                    birthDate.setPadding(0, 20, 0, 0);
+
+                    parentLayout.addView(aLayout);
+                    parentLayout.addView(birthDate);
+
+                    parentLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                            intent.putExtra("User", "patient");
+                            intent.putExtra("Crud", "read");
+                            intent.putExtra("idPatient", patient.getId());
+                            startActivity(intent);
+                        }
+                    });
+
+                    sv_list.addView(parentLayout);
+                }
+
                 // Add LinearLayout to sv_list
-                sv_list.addView(aLayout);
+                if (actors.get(i) instanceof  Operator) {
+                    sv_list.addView(aLayout);
+                }
                 sv_list.addView(space);
 
             }
@@ -124,6 +174,7 @@ public class ListUserPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", "patient");
+                intent.putExtra("Crud", "create");
                 startActivity(intent);
             }
         });
@@ -144,6 +195,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "patient");
+                            intent.putExtra("Crud", "create");
                             startActivity(intent);
                         }
                     });
@@ -179,6 +231,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
+                            intent.putExtra("Crud", "create");
                             startActivity(intent);
                         }
                     });

@@ -13,7 +13,7 @@ public class OperatorDAO {
         accesBD = new BdSQLiteOpenHelper(ct, base, null, version);
     }
 
-    public Operator getOperator(int idOperator){
+    public Operator getOperator(long idOperator){
         Operator anOperator = null;
         Cursor curseur;
         curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);

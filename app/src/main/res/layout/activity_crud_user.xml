@@ -18,6 +18,7 @@
             android:layout_weight="20"/>
 
         <LinearLayout
+            android:id="@+id/ll_crud"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -29,21 +30,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Create a new patient"
                 android:gravity="center"
-                android:textSize="45dp"
-                android:textColor="#ffffff" />
-
+                android:text="Create a new patient"
+                android:textColor="#ffffff"
+                android:textSize="45dp" />
 
 
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:ems="10"
                 android:background="#D3D3D3"
-                android:inputType="text"
-                android:hint="Name" />
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="text" />
 
             <Space
                 android:layout_width="match_parent"
@@ -78,17 +78,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1" />
 
-                <EditText
-                    android:id="@+id/et_remarks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:background="#D3D3D3"
-                    android:hint="Remarks"
-                    android:inputType="textMultiLine"
-                    android:maxHeight="150dp" />
-
+            <EditText
+                android:id="@+id/et_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#D3D3D3"
+                android:hint="Remarks"
+                android:inputType="textMultiLine"
+                android:maxHeight="150dp" />
 
 
             <Space
@@ -101,8 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
-                android:textColor="@color/black"
-                android:text="Confirm" />
+                android:text="Confirm"
+                android:textColor="@color/black" />
 
             <Space
                 android:layout_width="match_parent"
