@@ -174,7 +174,7 @@ public class ListUserPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", "patient");
-                intent.putExtra("Crud", "add");
+                intent.putExtra("Crud", "create");
                 startActivity(intent);
             }
         });
@@ -195,7 +195,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "patient");
-                            intent.putExtra("Crud", "add");
+                            intent.putExtra("Crud", "create");
                             startActivity(intent);
                         }
                     });
@@ -231,7 +231,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
-                            intent.putExtra("Crud", "add");
+                            intent.putExtra("Crud", "create");
                             startActivity(intent);
                         }
                     });

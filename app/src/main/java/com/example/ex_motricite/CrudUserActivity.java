@@ -79,7 +79,7 @@ public class CrudUserActivity extends AppCompatActivity {
 
         if (user.equals("patient")){
             patientDAO = new PatientDAO(this);
-            if (crud.equals("add")) {
+            if (crud.equals("create")) {
                 tv_newuser.setText("Create a new patient");
 
                 b_confirm.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +173,7 @@ public class CrudUserActivity extends AppCompatActivity {
             et_birthdate.setVisibility(View.INVISIBLE);
             et_remarks.setVisibility(View.INVISIBLE);
 
-            if (crud.equals("add")) {
+            if (crud.equals("create")) {
                 tv_newuser.setText("Create a new operator");
                 b_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
