@@ -45,6 +45,10 @@ public class DynamicExerciceActivity extends CameraActivity {
     private int TIME;
     private int INTERVAL;
 
+
+    List<Double> listX = new ArrayList<Double>();
+    List<Double> listY = new ArrayList<Double>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,7 @@ public class DynamicExerciceActivity extends CameraActivity {
 
         isRunning = false;
         timerLeftInMilliseconds = TIME *1000;
+
         updateTimer();
         getPermission();
 
@@ -297,6 +302,8 @@ public class DynamicExerciceActivity extends CameraActivity {
 
             // Afficher les coordonnées des points dans la console (logcat)
             for (Point point : pointsArray) {
+                listX.add(point.x);
+                listY.add(point.y);
                 Log.d("ContourPoint", "X: " + point.x + ", Y: " + point.y);
             }
         }
