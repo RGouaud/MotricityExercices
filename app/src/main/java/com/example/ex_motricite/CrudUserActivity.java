@@ -3,11 +3,14 @@ package com.example.ex_motricite;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +22,7 @@ import java.util.regex.Pattern;
 
 public class CrudUserActivity extends AppCompatActivity {
 
+    private LinearLayout ll_crud;
     private Button b_confirm;
     private Button b_delete;
     private TextView tv_newuser;
@@ -61,6 +65,7 @@ public class CrudUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crud_user);
 
+        ll_crud = findViewById(R.id.ll_crud);
         b_confirm = findViewById(R.id.b_confirm);
         b_delete = findViewById(R.id.b_delete);
         tv_newuser = findViewById(R.id.tv_newuser);
@@ -77,6 +82,7 @@ public class CrudUserActivity extends AppCompatActivity {
         if (user.equals("patient")){ // User type : patient
             patientDAO = new PatientDAO(this);
             if(crud.equals("create")){ // create a patient
+
                 tv_newuser.setText("Create a new patient");
 
                 b_confirm.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +154,7 @@ public class CrudUserActivity extends AppCompatActivity {
                         }
                     }
                 });
-
+              
                 // delete button
                 b_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -156,6 +162,65 @@ public class CrudUserActivity extends AppCompatActivity {
                         // Check if patient is in an existing test
                         patientDAO.delPatient(patient);
                         Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+            }
+
+            else if(crud.equals(("read"))){
+                Patient patient = patientDAO.getPatient(idPatient);
+                tv_newuser.setText("Patient");
+
+                et_name.setText(patient.getName());
+                et_name.setTextColor(Color.parseColor("#FFFFFF"));
+                GradientDrawable gradientDrawable = new GradientDrawable();
+                gradientDrawable.setColor(Color.BLACK);
+                gradientDrawable.setStroke(2, Color.parseColor("#FFA500"));
+                gradientDrawable.setCornerRadius(8);
+                et_name.setBackground(gradientDrawable);
+                et_name.setClickable(false);
+                et_name.setFocusable(false);
+                TextView name = new TextView(this);
+                name.setText("Name : ");
+                name.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(name, 1);
+
+                et_firstName.setText(patient.getFirstName());
+                et_firstName.setTextColor(Color.parseColor("#FFFFFF"));
+                et_firstName.setBackground(gradientDrawable);
+                et_firstName.setClickable(false);
+                et_firstName.setFocusable(false);
+                TextView firstName = new TextView(this);
+                firstName.setText("First Name : ");
+                firstName.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(firstName, 4);
+
+
+                et_birthdate.setText(patient.getBirthDate());
+                et_birthdate.setTextColor(Color.parseColor("#FFFFFF"));
+                et_birthdate.setBackground(gradientDrawable);
+                et_birthdate.setClickable(false);
+                et_birthdate.setFocusable(false);
+                TextView birthDate = new TextView(this);
+                birthDate.setText("Birthdate : ");
+                birthDate.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(birthDate, 7);
+
+                et_remarks.setText(patient.getRemarks());
+                et_remarks.setTextColor(Color.parseColor("#FFFFFF"));
+                et_remarks.setBackground(gradientDrawable);
+                et_remarks.setClickable(false);
+                et_remarks.setFocusable(false);
+                TextView remarks = new TextView(this);
+                remarks.setText("Remarks : ");
+                remarks.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(remarks, 10);
+
+                b_confirm.setText("Modify");
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
+                        intent.putExtra("User", "patient");
+                        intent.putExtra("Crud", "update");
+                        intent.putExtra("idPatient", patient.getId());
                         startActivity(intent);
                     }
                 });
@@ -167,13 +232,13 @@ public class CrudUserActivity extends AppCompatActivity {
             et_remarks.setVisibility(View.INVISIBLE);
 
             if(crud.equals("create")){
-                Log.d("debug", "ouverture de create");
                 tv_newuser.setText("Create a new operator");
                 b_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String name = et_name.getText().toString();
                         String firstName = et_firstName.getText().toString();
+                       
                         if(!(name.isEmpty()) && !(firstName.isEmpty())){
                             operator = new Operator(name, firstName);
                             operatorDAO.addOperator(operator);
@@ -233,7 +298,47 @@ public class CrudUserActivity extends AppCompatActivity {
 
             }
 
+            if (crud.equals("read")){
+                Operator operator = operatorDAO.getOperator(idOperator);
+                tv_newuser.setText("Operator");
 
+                et_name.setText(operator.getName());
+                et_name.setTextColor(Color.parseColor("#FFFFFF"));
+                GradientDrawable gradientDrawable = new GradientDrawable();
+                gradientDrawable.setColor(Color.BLACK);
+                gradientDrawable.setStroke(2, Color.parseColor("#FFA500"));
+                gradientDrawable.setCornerRadius(8);
+                et_name.setBackground(gradientDrawable);
+                et_name.setClickable(false);
+                et_name.setFocusable(false);  TextView name = new TextView(this);
+                name.setText("Name : ");
+                name.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(name, 1);
+
+
+                et_firstName.setText(operator.getFirstName());
+                et_firstName.setTextColor(Color.parseColor("#FFFFFF"));
+                et_firstName.setBackground(gradientDrawable);
+                et_firstName.setClickable(false);
+                et_firstName.setFocusable(false);
+                TextView firstName = new TextView(this);
+                firstName.setText("First Name : ");
+                firstName.setTextColor(Color.parseColor("#FFFFFF"));
+                ll_crud.addView(firstName, 4);
+
+                b_confirm.setText("Modify");
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
+                        intent.putExtra("User", "operator");
+                        intent.putExtra("Crud", "update");
+                        intent.putExtra("idPatient", operator.getId());
+                        startActivity(intent);
+                    }
+                });
+            }
+            }
         }
-    }
+
 }
