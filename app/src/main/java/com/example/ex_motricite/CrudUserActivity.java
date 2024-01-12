@@ -133,8 +133,8 @@ public class CrudUserActivity extends AppCompatActivity {
                         String birthDate = et_birthdate.getText().toString();
                         String remarks = et_remarks.getText().toString();
 
-                        if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
-                            if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                        if (!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())) { // check if all obligatory fields are completed
+                            if (isValidDate(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
 
                                 //update of information for current patient object instance
                                 patient.setName(name);
@@ -144,17 +144,15 @@ public class CrudUserActivity extends AppCompatActivity {
                                 patientDAO.updatePatient(patient);
                                 Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                                 startActivity(intent);
-                            }
-                            else{ // error on date
+                            } else { // error on date
                                 showPopup(CrudUserActivity.this, "Type a valid date");
                             }
-                        }
-                        else{ // not all obligatory fields are completed
+                        } else { // not all obligatory fields are completed
                             showPopup(CrudUserActivity.this, "Complete all fields");
                         }
                     }
                 });
-              
+
                 // delete button
                 b_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -162,10 +160,11 @@ public class CrudUserActivity extends AppCompatActivity {
                         // Check if patient is in an existing test
                         patientDAO.delPatient(patient);
                         Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                    }
+                });
             }
-
             else if(crud.equals(("read"))){
-                Patient patient = patientDAO.getPatient(idPatient);
+                Patient patient = patientDAO.getPatient(Long.parseLong(userId));
                 tv_newuser.setText("Patient");
 
                 et_name.setText(patient.getName());
@@ -299,7 +298,7 @@ public class CrudUserActivity extends AppCompatActivity {
             }
 
             if (crud.equals("read")){
-                Operator operator = operatorDAO.getOperator(idOperator);
+                Operator operator = operatorDAO.getOperator(Long.parseLong(userId));
                 tv_newuser.setText("Operator");
 
                 et_name.setText(operator.getName());
