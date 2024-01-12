@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class PatientDAO {
     }
 
     public void delPatient(Patient patient){
-        accesBD.getWritableDatabase().execSQL("delete from plat where idP="+patient.getId()+";");
+        accesBD.getWritableDatabase().execSQL("delete from patient where idPatient="+patient.getId()+";");
         accesBD.close();
     }
 
@@ -41,31 +42,14 @@ public class PatientDAO {
         return cursorToPatientArrayList(curseur);
     }
 
-    public void updatePatient(String oldName, String newName, String newFirstName, String newBirthDate, String newRemarks) {
-        StringBuilder updateQuery = new StringBuilder("UPDATE Patient SET ");
-
-        if (!newName.isEmpty()) {
-            updateQuery.append("name = '").append(newName).append("', ");
-        }
-        if (!newFirstName.isEmpty()) {
-            updateQuery.append("firstName = '").append(newFirstName).append("', ");
-        }
-        if (!newBirthDate.isEmpty()) {
-            updateQuery.append("birthDate = '").append(newBirthDate).append("', ");
-        }
-        if (!newRemarks.isEmpty()) {
-            updateQuery.append("remarks = '").append(newRemarks).append("', ");
-        }
-
-        // Supprimer la virgule finale si la requête n'est pas vide
-        if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
-            updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
-            updateQuery.append(" ");
-            updateQuery.append("WHERE name = '").append(oldName).append("';");
-
-            accesBD.getWritableDatabase().execSQL(updateQuery.toString());
-            accesBD.close();
-        }
+    public void updatePatient(Patient patient){
+        accesBD.getWritableDatabase().execSQL("UPDATE patient SET " +
+                "name='"+patient.getName()+"', " +
+                "firstName='"+patient.getFirstName()+"', " +
+                "birthDate='"+patient.getBirthDate()+"', " +
+                "remarks='" + patient.getRemarks() + "' " +
+                "WHERE idPatient=" + patient.getId() + ";");
+        accesBD.close();
     }
 
     private ArrayList<Patient> cursorToPatientArrayList(Cursor curseur){

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class CrudUserActivity extends AppCompatActivity {
 
     private LinearLayout ll_crud;
     private Button b_confirm;
+    private Button b_delete;
     private TextView tv_newuser;
     private EditText et_name;
     private EditText et_firstName;
@@ -65,6 +67,7 @@ public class CrudUserActivity extends AppCompatActivity {
 
         ll_crud = findViewById(R.id.ll_crud);
         b_confirm = findViewById(R.id.b_confirm);
+        b_delete = findViewById(R.id.b_delete);
         tv_newuser = findViewById(R.id.tv_newuser);
         et_name = findViewById(R.id.et_name);
         et_firstName = findViewById(R.id.et_firstname);
@@ -74,12 +77,12 @@ public class CrudUserActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         String user = myIntent.getStringExtra("User");
         String crud = myIntent.getStringExtra("Crud");
-        long idPatient = myIntent.getLongExtra("idPatient", 0);
-        long idOperator = myIntent.getLongExtra("idOperator", 0);
+        String userId = myIntent.getStringExtra("UserId");
 
-        if (user.equals("patient")){
+        if (user.equals("patient")){ // User type : patient
             patientDAO = new PatientDAO(this);
-            if (crud.equals("create")) {
+            if(crud.equals("create")){ // create a patient
+
                 tv_newuser.setText("Create a new patient");
 
                 b_confirm.setOnClickListener(new View.OnClickListener() {
@@ -90,23 +93,78 @@ public class CrudUserActivity extends AppCompatActivity {
                         String birthDate = et_birthdate.getText().toString();
                         String remarks = et_remarks.getText().toString();
 
-                        if (!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())) { // check if all obligatory fields are completed
-                            if (isValidDate(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
+                        if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
+                            if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
                                 patient = new Patient(name, firstName, birthDate, remarks);
                                 patientDAO.addPatient(patient);
                                 Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                                 startActivity(intent);
-                            } else { // error on date
+                            }
+                            else{ // error on date
                                 showPopup(CrudUserActivity.this, "Type a valid date");
                             }
-                        } else { // not all obligatory fields are completed
+                        }
+                        else{ // not all obligatory fields are completed
                             showPopup(CrudUserActivity.this, "Complete all fields");
                         }
                     }
                 });
+
+            } else if (crud.equals("update")) {
+                // setup display
+                tv_newuser.setText("Edit patient");
+                b_delete.setVisibility(View.VISIBLE);
+
+                //get previous informations
+                Patient patient = patientDAO.getPatient(Long.parseLong(userId));
+
+                //put previous informations in field
+                et_name.setText(patient.getName());
+                et_firstName.setText(patient.getFirstName());
+                et_birthdate.setText(patient.getBirthDate());
+                et_remarks.setText(patient.getRemarks());
+
+                // confirm update
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+                        String birthDate = et_birthdate.getText().toString();
+                        String remarks = et_remarks.getText().toString();
+
+                        if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
+                            if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+
+                                //update of information for current patient object instance
+                                patient.setName(name);
+                                patient.setFirstName(firstName);
+                                patient.setBirthDate(birthDate);
+                                patient.setRemarks(remarks);
+                                patientDAO.updatePatient(patient);
+                                Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                                startActivity(intent);
+                            }
+                            else{ // error on date
+                                showPopup(CrudUserActivity.this, "Type a valid date");
+                            }
+                        }
+                        else{ // not all obligatory fields are completed
+                            showPopup(CrudUserActivity.this, "Complete all fields");
+                        }
+                    }
+                });
+              
+                // delete button
+                b_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Check if patient is in an existing test
+                        patientDAO.delPatient(patient);
+                        Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
             }
 
-            if(crud.equals(("read"))){
+            else if(crud.equals(("read"))){
                 Patient patient = patientDAO.getPatient(idPatient);
                 tv_newuser.setText("Patient");
 
@@ -168,28 +226,76 @@ public class CrudUserActivity extends AppCompatActivity {
                 });
             }
         }
-        else{
+        else{ // User type : manipulator
             operatorDAO = new OperatorDAO(this);
             et_birthdate.setVisibility(View.INVISIBLE);
             et_remarks.setVisibility(View.INVISIBLE);
 
-            if (crud.equals("create")) {
+            if(crud.equals("create")){
                 tv_newuser.setText("Create a new operator");
                 b_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String name = et_name.getText().toString();
                         String firstName = et_firstName.getText().toString();
-                        if (!(name.isEmpty()) && !(firstName.isEmpty())) {
+                       
+                        if(!(name.isEmpty()) && !(firstName.isEmpty())){
                             operator = new Operator(name, firstName);
                             operatorDAO.addOperator(operator);
                             Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                             startActivity(intent);
-                        } else {
+                        }
+                        else{
                             showPopup(CrudUserActivity.this, "Complete all fields");
                         }
                     }
                 });
+            }
+            else if(crud.equals("update")){
+                // setup display
+                tv_newuser.setText("Edit manipulator");
+                b_delete.setVisibility(View.VISIBLE);
+
+                //get previous informations
+                Operator operator = operatorDAO.getOperator(Long.parseLong(userId));
+
+                //put previous informations in field
+                et_name.setText(operator.getName());
+                et_firstName.setText(operator.getFirstName());
+
+                // confirm update
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+
+                        if(!(name.isEmpty()) && !(firstName.isEmpty())){ // check if all obligatory fields are completed
+                            //update of information for current patient object instance
+                            operator.setName(name);
+                            operator.setFirstName(firstName);
+                            operatorDAO.updateOperator(operator);
+                            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                            startActivity(intent);
+                        }
+
+                        else{ // not all obligatory fields are completed
+                            showPopup(CrudUserActivity.this, "Complete all fields");
+                        }
+                    }
+                });
+
+                // delete button
+                b_delete.setOnClickListener(new View.OnClickListener() {
+                    // Check if operator is in an existing test
+                    @Override
+                    public void onClick(View v) {
+                        operatorDAO.delOperator(operator);
+                        Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
 
             if (crud.equals("read")){

@@ -30,7 +30,7 @@ public class OperatorDAO {
     }
 
     public void delOperator(Operator operator){
-        accesBD.getWritableDatabase().execSQL("delete from operator where idP="+operator.getId()+";");
+        accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+operator.getId()+";");
         accesBD.close();
     }
 
@@ -41,25 +41,12 @@ public class OperatorDAO {
         return cursorToOperatorArrayList(curseur);
     }
 
-    public void updateOperator(String oldName, String newName, String newFirstName) {
-        StringBuilder updateQuery = new StringBuilder("UPDATE Operator SET ");
-
-        if (!newName.isEmpty()) {
-            updateQuery.append("name = '").append(newName).append("', ");
-        }
-        if (!newFirstName.isEmpty()) {
-            updateQuery.append("firstName = '").append(newFirstName).append("', ");
-        }
-
-        // Supprimer la virgule finale si la requête n'est pas vide
-        if (updateQuery.charAt(updateQuery.length() - 1) == ' ') {
-            updateQuery.setLength(updateQuery.length() - 2); // Supprimer la virgule et l'espace
-            updateQuery.append(" ");
-            updateQuery.append("WHERE name = '").append(oldName).append("';");
-
-            accesBD.getWritableDatabase().execSQL(updateQuery.toString());
-            accesBD.close();
-        }
+    public void updateOperator(Operator operator) {
+        accesBD.getWritableDatabase().execSQL("UPDATE operator SET " +
+                "name='" + operator.getName() + "', " +
+                "firstName='" + operator.getFirstName() + "' " +  // Correction : Suppression de la virgule ici
+                "WHERE idOperator=" + operator.getId() + ";");
+        accesBD.close();
     }
 
     private ArrayList<Operator> cursorToOperatorArrayList(Cursor curseur){
