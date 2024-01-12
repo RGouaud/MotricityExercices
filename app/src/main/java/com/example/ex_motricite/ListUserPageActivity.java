@@ -210,7 +210,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                             Log.d("debug","clic sur add");
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
-                            intent.putExtra("Crud", "update");
+                            intent.putExtra("Crud", "create");
                             intent.putExtra("UserId", "");
                             Log.d("debug", "passage des parametres");
                             startActivity(intent);

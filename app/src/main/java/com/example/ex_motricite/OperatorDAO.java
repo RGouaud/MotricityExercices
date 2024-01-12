@@ -13,7 +13,7 @@ public class OperatorDAO {
         accesBD = new BdSQLiteOpenHelper(ct, base, null, version);
     }
 
-    public Operator getOperator(int idOperator){
+    public Operator getOperator(long idOperator){
         Operator anOperator = null;
         Cursor curseur;
         curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
@@ -43,9 +43,9 @@ public class OperatorDAO {
 
     public void updateOperator(Operator operator) {
         accesBD.getWritableDatabase().execSQL("UPDATE operator SET " +
-                "name='"+operator.getName()+"', " +
-                "firstName='"+operator.getFirstName()+"', " +
-                "WHERE idPatient=" + operator.getId() + ";");
+                "name='" + operator.getName() + "', " +
+                "firstName='" + operator.getFirstName() + "' " +  // Correction : Suppression de la virgule ici
+                "WHERE idOperator=" + operator.getId() + ";");
         accesBD.close();
     }
 

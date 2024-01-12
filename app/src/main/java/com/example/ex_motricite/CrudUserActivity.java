@@ -110,7 +110,7 @@ public class CrudUserActivity extends AppCompatActivity {
                 b_delete.setVisibility(View.VISIBLE);
 
                 //get previous informations
-                Patient patient = patientDAO.getPatient(Integer.parseInt(userId));
+                Patient patient = patientDAO.getPatient(Long.parseLong(userId));
 
                 //put previous informations in field
                 et_name.setText(patient.getName());
@@ -163,12 +163,12 @@ public class CrudUserActivity extends AppCompatActivity {
         }
         else{ // User type : manipulator
             operatorDAO = new OperatorDAO(this);
+            et_birthdate.setVisibility(View.INVISIBLE);
+            et_remarks.setVisibility(View.INVISIBLE);
 
             if(crud.equals("create")){
                 Log.d("debug", "ouverture de create");
                 tv_newuser.setText("Create a new operator");
-                et_birthdate.setVisibility(View.INVISIBLE);
-                et_remarks.setVisibility(View.INVISIBLE);
                 b_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -192,7 +192,7 @@ public class CrudUserActivity extends AppCompatActivity {
                 b_delete.setVisibility(View.VISIBLE);
 
                 //get previous informations
-                Operator operator = operatorDAO.getOperator(Integer.parseInt(userId));
+                Operator operator = operatorDAO.getOperator(Long.parseLong(userId));
 
                 //put previous informations in field
                 et_name.setText(operator.getName());
