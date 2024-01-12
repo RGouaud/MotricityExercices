@@ -23,6 +23,9 @@
             android:theme="@style/Base.Theme.AppCompat.CustomTheme"
             />
         <activity
+            android:name=".GraphicsTestPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestPageActivity"
             android:exported="false" />
         <activity

@@ -30,7 +30,7 @@ public class PatientDAO {
     }
 
     public void delPatient(Patient patient){
-        accesBD.getWritableDatabase().execSQL("delete from plat where idP="+patient.getIdPatient()+";");
+        accesBD.getWritableDatabase().execSQL("delete from plat where idP="+patient.getId()+";");
         accesBD.close();
     }
 
