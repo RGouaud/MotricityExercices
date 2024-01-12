@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,8 +32,19 @@ public class ListUserPageActivity extends AppCompatActivity {
     private ArrayList<Operator> operators;
 
     public void displayActors(ArrayList<? extends Actor> actors){
+        sv_list.removeAllViews();
         if(actors != null && actors.size() > 0){
-            sv_list.removeAllViews();
+            // Set user value
+            Class<?> actorType = actors.get(0).getClass();
+            String actorTypeString;
+            if(actorType.equals(Patient.class)){
+                actorTypeString = "patient";
+            }
+            else{
+                actorTypeString = "operator";
+            }
+
+
             for(int i = 0; i < actors.size(); i++) {
                 // Create a new LinearLayout for each actor to display
                 LinearLayout aLayout = new LinearLayout(this);
@@ -80,7 +92,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
                         Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                        intent.putExtra("User", "patient");
+                        intent.putExtra("User", actorTypeString);
                         intent.putExtra("Crud", "update");
                         intent.putExtra("UserId", String.valueOf(actors.get(finalI).getId()));
                         startActivity(intent);
@@ -160,6 +172,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "patient");
+                            intent.putExtra("Crud", "create");
                             startActivity(intent);
                         }
                     });
@@ -194,8 +207,12 @@ public class ListUserPageActivity extends AppCompatActivity {
                     buttonAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Log.d("debug","clic sur add");
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
+                            intent.putExtra("Crud", "update");
+                            intent.putExtra("UserId", "");
+                            Log.d("debug", "passage des parametres");
                             startActivity(intent);
                         }
                     });

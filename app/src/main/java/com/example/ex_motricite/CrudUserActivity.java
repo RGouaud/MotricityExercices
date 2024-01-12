@@ -153,6 +153,7 @@ public class CrudUserActivity extends AppCompatActivity {
                 b_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // Check if patient is in an existing test
                         patientDAO.delPatient(patient);
                         Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                         startActivity(intent);
@@ -161,29 +162,77 @@ public class CrudUserActivity extends AppCompatActivity {
             }
         }
         else{ // User type : manipulator
-
-            tv_newuser.setText("Create a new operator");
-            et_birthdate.setVisibility(View.INVISIBLE);
-            et_remarks.setVisibility(View.INVISIBLE);
-
             operatorDAO = new OperatorDAO(this);
 
-            b_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String name = et_name.getText().toString();
-                    String firstName = et_firstName.getText().toString();
-                    if(!(name.isEmpty()) && !(firstName.isEmpty())){
-                        operator = new Operator(name, firstName);
-                        operatorDAO.addOperator(operator);
+            if(crud.equals("create")){
+                Log.d("debug", "ouverture de create");
+                tv_newuser.setText("Create a new operator");
+                et_birthdate.setVisibility(View.INVISIBLE);
+                et_remarks.setVisibility(View.INVISIBLE);
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+                        if(!(name.isEmpty()) && !(firstName.isEmpty())){
+                            operator = new Operator(name, firstName);
+                            operatorDAO.addOperator(operator);
+                            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            showPopup(CrudUserActivity.this, "Complete all fields");
+                        }
+                    }
+                });
+            }
+            else if(crud.equals("update")){
+                // setup display
+                tv_newuser.setText("Edit manipulator");
+                b_delete.setVisibility(View.VISIBLE);
+
+                //get previous informations
+                Operator operator = operatorDAO.getOperator(Integer.parseInt(userId));
+
+                //put previous informations in field
+                et_name.setText(operator.getName());
+                et_firstName.setText(operator.getFirstName());
+
+                // confirm update
+                b_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = et_name.getText().toString();
+                        String firstName = et_firstName.getText().toString();
+
+                        if(!(name.isEmpty()) && !(firstName.isEmpty())){ // check if all obligatory fields are completed
+                            //update of information for current patient object instance
+                            operator.setName(name);
+                            operator.setFirstName(firstName);
+                            operatorDAO.updateOperator(operator);
+                            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                            startActivity(intent);
+                        }
+
+                        else{ // not all obligatory fields are completed
+                            showPopup(CrudUserActivity.this, "Complete all fields");
+                        }
+                    }
+                });
+
+                // delete button
+                b_delete.setOnClickListener(new View.OnClickListener() {
+                    // Check if operator is in an existing test
+                    @Override
+                    public void onClick(View v) {
+                        operatorDAO.delOperator(operator);
                         Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
                         startActivity(intent);
                     }
-                    else{
-                        showPopup(CrudUserActivity.this, "Complete all fields");
-                    }
-                }
-            });
+                });
+
+            }
+
 
         }
     }
