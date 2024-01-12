@@ -43,7 +43,7 @@ public class ExerciceActivity extends CameraActivity {
 
     TextView tv_x,tv_y,countdown_text;
     CameraBridgeViewBase cameraBridgeViewBase;
-    Mat prev_gray,rgb,curr_gray, diff, result, output;
+    Mat prev_gray,rgb,curr_gray, diff, result, output, image_rgb, rgb_affich;
     boolean is_init;
     List<MatOfPoint> cnts;
     CountDownTimer countDownTimer;
@@ -76,6 +76,8 @@ public class ExerciceActivity extends CameraActivity {
                 prev_gray = new Mat();
                 diff = new Mat();
                 output = new Mat();
+                rgb_affich = new Mat();
+                image_rgb = new Mat();
                 cnts = new ArrayList<>();
             }
 
@@ -92,40 +94,58 @@ public class ExerciceActivity extends CameraActivity {
                     return prev_gray;
                 }
 
-                rgb = inputFrame.rgba();
+                //rgb = inputFrame.rgba();
+                rgb_affich = inputFrame.rgba();
 
 
                 if (isRunning){
 
 
-                    curr_gray = inputFrame.gray();
 
+                    //curr_gray = inputFrame.gray();
+                    image_rgb = inputFrame.rgba();
 
 
 
                     //Convertir l'image en espace colorimetrique HSV
-                    Mat hsv = new Mat();
-                    Imgproc.cvtColor(inputFrame.rgba(), hsv, Imgproc.COLOR_BGR2HSV);
+                    Imgproc.cvtColor(image_rgb, rgb, Imgproc.COLOR_RGB2HSV);
 
 
 
+                    // SATURATION MAX
+                    // Diviser les canaux H, S et V
+                    List<Mat> hsvChannels = new ArrayList<>();
+                    Core.split(rgb, hsvChannels);
 
-                    // Convertir l'image en espace de couleur HSV
-                    /*Imgproc.cvtColor(inputFrame.rgba(), hsv, Imgproc.COLOR_RGB2HSV);
+                    // Ajuster la composante de saturation
+                    Mat s = hsvChannels.get(1);
+                    Core.multiply(s, new Scalar(1, 1, 1), s);
+                    Core.normalize(s, s, 0, 255, Core.NORM_MINMAX);
 
-                    // Fractionner les canaux HSV
-                    Mat[] channels = new Mat[3];
-                    Core.split(hsv, channels);
+                    // Fusionner les canaux H, S et V mis à jour
+                    Core.merge(hsvChannels, rgb);
 
-                    // Maximiser la valeur de saturation (le canal 1)
-                    Core.setNumThreads(8); // Optimisation du traitement parallèle
-                    Core.add(channels[1], new Scalar(255 - Double.MIN_VALUE), channels[1]);
+                    Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_HSV2RGB);
+                    Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_RGB2HSV);
+                    //Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_HSV2BGR);
 
-                    // Fusionner les canaux HSV pour créer l'image modifiée
-                    Core.merge(Arrays.asList(channels), hsv);
 
-                    // Convertir l'image de nouveau en espace de couleur RGB
-                    Imgproc.cvtColor(hsv, hsv, Imgproc.COLOR_HSV2RGB);*/
+
+                    //RED FILTER
+                    // Définir la plage de teintes pour la composante
+                    Scalar lowerRed = new Scalar(160, 100, 20);  // Valeurs HSV pour le
+                    Scalar upperRed = new Scalar(179, 255, 255);
+
+                    // Créer un masque pour la composante red
+                    Mat mask = new Mat();
+                    Core.inRange(rgb, lowerRed, upperRed, mask);
+
+                    // Appliquer le masque à l'image d'origine
+                    Mat redImage = new Mat();
+                    Core.bitwise_and(rgb, rgb, redImage, mask);
+
+
+                    Imgproc.cvtColor(redImage, curr_gray, Imgproc.COLOR_BGR2GRAY);
 
 
 
@@ -134,40 +154,15 @@ public class ExerciceActivity extends CameraActivity {
                     Imgproc.threshold(diff,diff,40,255,Imgproc.THRESH_BINARY);
                     Imgproc.findContours(diff,cnts,new Mat(),Imgproc.RETR_CCOMP,Imgproc.CHAIN_APPROX_SIMPLE);
 
-                    Imgproc.drawContours(rgb,cnts,-1,new Scalar(255,0,0), 4);
+                    //Imgproc.cvtColor(rgb, rgb_affich, Imgproc.COLOR_HSV2BGR);
+
+                    Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(255,0,0), 4);
 
 
-                    for (MatOfPoint m: cnts){
+                    /*for (MatOfPoint m: cnts){
                         Rect r=Imgproc.boundingRect(m);
-                        Imgproc.rectangle(rgb,r,new Scalar(0,255,0),3);
-                        // Accédez aux points
-                        //Point[] points = m.toArray();
-
-                        // Affichez les coordonnées
-                    /*for (Point p : points) {
-
+                        Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
                     }*/
-
-                    }
-
-
-
-
-                    /*int var = cnts.size();
-                    String varStr = String.valueOf(var);
-
-                    tv_x.setText(varStr);
-                    cnts.get(var);
-                    MatOfPoint dernierMOP = cnts.get(1);
-                    Point[] pointsArray = dernierMOP.toArray();
-                    Point point = pointsArray[-1];
-                    double x = point.x;
-                    double y = point.y;
-                    String xStr = String.valueOf(x);
-                    String yStr = String.valueOf(y);
-
-                    tv_x.setText("x : " + xStr);
-                    tv_y.setText("y : " + yStr);*/
 
                     displayCoordinate(cnts);
 
@@ -175,12 +170,28 @@ public class ExerciceActivity extends CameraActivity {
 
 
                     prev_gray = curr_gray.clone();
+
+
+
                 }
+
+                int largeur = rgb_affich.cols();
+                int hauteur = rgb_affich.rows();
+                Log.d("Largeur", String.valueOf(largeur));
+                //Log.d("Hauteur", String.valueOf(hauteur));
+
+                Imgproc.circle(rgb_affich, new Point(400, 360), 17, new Scalar(0, 0, 0), 10);
+                Imgproc.circle(rgb_affich, new Point(1040, 360), 17, new Scalar(0, 0, 0), 10);
+
+
+
+
+
 
 
                 // Afficher le résultat ou le transmettre à d'autres opérations
 
-                return rgb;
+                return rgb_affich;
             }
         });
 
@@ -225,6 +236,7 @@ public class ExerciceActivity extends CameraActivity {
         b_start.setText("CANCEL");
         isRunning= true;
     }
+
     public void stopTimer(){
         countDownTimer.cancel();
         timerLeftInMilliseconds=600000;
