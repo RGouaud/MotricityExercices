@@ -220,8 +220,7 @@ public class DynamicExerciceActivity extends CameraActivity {
             stopTimer();
         }
         else {
-            int intervalleBeep = 2;
-            startTimer(intervalleBeep);
+            startTimer(INTERVAL);
         }
     }
     public void startTimer(int intervalleBeep){

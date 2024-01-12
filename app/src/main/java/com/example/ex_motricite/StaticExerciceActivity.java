@@ -216,21 +216,15 @@ public class StaticExerciceActivity extends CameraActivity {
             stopTimer();
         }
         else {
-            int intervalleBeep = 2;
-            startTimer(intervalleBeep);
+
+            startTimer();
         }
     }
-    public void startTimer(int intervalleBeep){
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 8000); // Volume 100
+    public void startTimer(){
         countDownTimer = new CountDownTimer(timerLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerLeftInMilliseconds = millisUntilFinished;
-                int secondes = Math.round(millisUntilFinished/1000);
-                Log.d("milli", String.valueOf(secondes));
-                if(secondes%intervalleBeep == 0){
-                    toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 200);
-                }
                 updateTimer();
             }
 
