@@ -1,11 +1,6 @@
 package com.example.ex_motricite;
 
-import static androidx.core.app.ActivityCompat.requestPermissions;
-import static androidx.core.content.PermissionChecker.checkSelfPermission;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -17,7 +12,6 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
 
 import org.opencv.android.CameraActivity;
@@ -26,22 +20,15 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.OpenCVLoader;
-import org.opencv.core.MatOfPoint;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ExerciceActivity extends CameraActivity {
+public class StaticExerciceActivity extends CameraActivity {
 
     TextView tv_x,tv_y,countdown_text;
     CameraBridgeViewBase cameraBridgeViewBase;
@@ -53,19 +40,29 @@ public class ExerciceActivity extends CameraActivity {
     Button b_start;
     boolean isRunning;
     private long timerLeftInMilliseconds;
+    private int DISTANCE;
+    private int TIME;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercice);
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        //Get the settings value
+
+        Intent myIntent = getIntent();
+        DISTANCE = Integer.parseInt(myIntent.getStringExtra("Distance"));
+        TIME = Integer.parseInt(myIntent.getStringExtra("Time"));
+
         tv_x = findViewById(R.id.tv_x);
         tv_y = findViewById(R.id.tv_y);
         countdown_text= findViewById (R.id.countdown_text);
         is_init= false;
 
         isRunning = false;
-        timerLeftInMilliseconds = 10000;
+        timerLeftInMilliseconds = TIME *1000;
+        updateTimer();
         getPermission();
 
         cameraBridgeViewBase = findViewById(R.id.java_camera_view);
@@ -240,7 +237,7 @@ public class ExerciceActivity extends CameraActivity {
             @Override
             public void onFinish() {
                 isRunning = false;
-                startActivity(new Intent(ExerciceActivity.this,Pop.class));
+                startActivity(new Intent(StaticExerciceActivity.this,Pop.class));
             }
         }.start();
 
@@ -250,8 +247,9 @@ public class ExerciceActivity extends CameraActivity {
 
     public void stopTimer(){
         countDownTimer.cancel();
-        timerLeftInMilliseconds=600000;
+        timerLeftInMilliseconds=TIME*1000;
         isRunning= false;
+        updateTimer();
         b_start.setText("START");
     }
 

@@ -20,10 +20,10 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/b_Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Go back home" />
+            android:text="Go Back Home" />
 
     </LinearLayout>
 
