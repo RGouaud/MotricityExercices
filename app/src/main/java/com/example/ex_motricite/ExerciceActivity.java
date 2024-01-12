@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -44,6 +46,7 @@ public class ExerciceActivity extends CameraActivity {
     TextView tv_x,tv_y,countdown_text;
     CameraBridgeViewBase cameraBridgeViewBase;
     Mat prev_gray,rgb,curr_gray, diff, result, output, image_rgb, rgb_affich;
+    ToneGenerator toneGenerator;
     boolean is_init;
     List<MatOfPoint> cnts;
     CountDownTimer countDownTimer;
@@ -156,7 +159,7 @@ public class ExerciceActivity extends CameraActivity {
 
                     //Imgproc.cvtColor(rgb, rgb_affich, Imgproc.COLOR_HSV2BGR);
 
-                    Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(255,0,0), 4);
+                    Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(0,255,0), 4);
 
 
                     /*for (MatOfPoint m: cnts){
@@ -216,19 +219,27 @@ public class ExerciceActivity extends CameraActivity {
             stopTimer();
         }
         else {
-            startTimer();
+            int intervalleBeep = 2;
+            startTimer(intervalleBeep);
         }
     }
-    public void startTimer(){
+    public void startTimer(int intervalleBeep){
+        toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 8000); // Volume 100
         countDownTimer = new CountDownTimer(timerLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerLeftInMilliseconds = millisUntilFinished;
+                int secondes = Math.round(millisUntilFinished/1000);
+                Log.d("milli", String.valueOf(secondes));
+                if(secondes%intervalleBeep == 0){
+                    toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 200);
+                }
                 updateTimer();
             }
 
             @Override
             public void onFinish() {
+                isRunning = false;
                 startActivity(new Intent(ExerciceActivity.this,Pop.class));
             }
         }.start();
