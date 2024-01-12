@@ -11,6 +11,7 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.os.Environment;
+import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,8 +40,24 @@ public class ListTestActivity extends AppCompatActivity {
         buttonFilters = findViewById(R.id.b_filters);
         LayoutListTest = findViewById(R.id.l_listTest);
 
+        createCSVFile("test1");
+        createCSVFile("test2");
+        createCSVFile("test3");
+        createCSVFile("test4");
+        createCSVFile("test5");
+        createCSVFile("test6");
+        createCSVFile("test7");
+        createCSVFile("test8");
+        createCSVFile("test9");
+        createCSVFile("test10");
+        createCSVFile("test11");
+        createCSVFile("test12");
+        createCSVFile("test13");
+        createCSVFile("test14");
+        createCSVFile("test15");
         // Afficher tous les fichiers CSV au démarrage
         displayAllCSVFiles();
+        selectedFiles.clear();
 
         buttonSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,26 +124,35 @@ public class ListTestActivity extends AppCompatActivity {
 
         // Ajoutez dynamiquement des éléments pour chaque fichier dans la liste
         for (File file : selectedFiles) {
-            Button fileButton = createFileButton(file.getName());
-            LayoutListTest.addView(fileButton);
+            ToggleButton fileToggleButton = createFileToggleButtonn(file);
+            LayoutListTest.addView(fileToggleButton);
         }
     }
 
-    private Button createFileButton(final String fileName) {
-        Button fileButton = new Button(this);
-        fileButton.setText(fileName);
-
+    private ToggleButton createFileToggleButtonn(final File file) {
+        ToggleButton fileToggleButton = new ToggleButton(this);
+        fileToggleButton.setText(file.getName());
+        fileToggleButton.setTextOn(file.getName());
+        fileToggleButton.setTextOff(file.getName());
+        fileToggleButton.setBackgroundColor(0xFF615321);
         // Définissez une action pour le clic sur le bouton du fichier
-        fileButton.setOnClickListener(new View.OnClickListener() {
+        fileToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (fileToggleButton.isChecked()) {
+                    fileToggleButton.setBackgroundColor(0xFFFAD552);
+                    selectedFiles.add(file);
+                } else {
+                    fileToggleButton.setBackgroundColor(0xFF615321);
+                    selectedFiles.remove(file);
+                }
                 // Implémentez une action spécifique au clic sur le fichier si nécessaire
                 // Vous pouvez ouvrir le fichier, afficher des détails, etc.
-                Toast.makeText(ListTestActivity.this, "Clic sur le fichier : " + fileName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListTestActivity.this, "Clic sur le fichier : " + file.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        return fileButton;
+        return fileToggleButton;
     }
 
     private void selectAllFiles() {
@@ -148,11 +174,30 @@ public class ListTestActivity extends AppCompatActivity {
                 }
             }
         }
+        updateToggleButtonsState(true);
     }
 
     private void deselectAllFiles() {
         // Videz la liste des fichiers sélectionnés
         selectedFiles.clear();
+
+        updateToggleButtonsState(false);
+    }
+
+    private void updateToggleButtonsState(boolean isChecked) {
+        // Parcourez tous les ToggleButtons dans le layout et mettez à jour leur état
+        for (int i = 0; i < LayoutListTest.getChildCount(); i++) {
+            View view = LayoutListTest.getChildAt(i);
+            if (view instanceof ToggleButton) {
+                ToggleButton toggleButton = (ToggleButton) view;
+                toggleButton.setChecked(isChecked);
+                if (isChecked) {
+                    toggleButton.setBackgroundColor(0xFFFAD552);
+                } else {
+                    toggleButton.setBackgroundColor(0xFF615321);
+                }
+            }
+        }
     }
 
     private void exportSelectedFiles() {

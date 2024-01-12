@@ -129,12 +129,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <LinearLayout
-            android:id="@+id/l_listTest"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="30"
-            android:orientation="vertical"></LinearLayout>
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/l_listTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- Add your buttons dynamically to this LinearLayout -->
+            </LinearLayout>
+        </ScrollView>
 
         <Space
             android:layout_width="match_parent"
