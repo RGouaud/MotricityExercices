@@ -2,10 +2,12 @@ package com.example.ex_motricite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,12 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
         sb_interval = findViewById(R.id.sb_interval);
         b_start = findViewById(R.id.b_start);
 
+        et_interval.setFilters(new InputFilter[]{new MinMaxFilter(1, 15)});
+
+        sb_interval.setMax(15);
+        sb_interval.setProgress(0);
+
+
         Intent myIntent = getIntent();
         String exercice = myIntent.getStringExtra("Exercice");
 
@@ -63,6 +71,35 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
         }
         else {
             tv_settings_tittle.setText("Rythm test settings");
+            sb_interval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+                // When Progress value changed.
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                    et_interval.setText(String.valueOf(sb_interval.getProgress()));
+                }
+
+                // Notification that the user has started a touch gesture.
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                // Notification that the user has finished a touch gesture
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+            et_interval.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if(!hasFocus){
+                        sb_interval.setProgress(Integer.valueOf(et_interval.getText().toString()));
+                    }
+                }
+            });
             b_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -79,8 +116,12 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                     }
                 }
             });
+
         }
+
     }
+
+
 
     // logique
     /*
