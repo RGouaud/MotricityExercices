@@ -21,39 +21,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:layout_weight="2"
-            android:background="#282424">
+            android:background="@drawable/background_home_page"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingTop="100dp"
-                android:paddingBottom="100dp">
+                android:padding="20dp">
 
                 <LinearLayout
                     android:id="@+id/layout_static"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="#A9A9A9"
-                    android:orientation="vertical">
+                    android:layout_gravity="center|center_horizontal"
+                    android:background="@drawable/seethrough_grey_box"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tv_static"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Static Exercice"
-                        android:textColor="#ffffff" />
-
+                        android:padding="10dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="center"
+                        android:text="Rythm Exercice"
+                        android:textColor="#ffffff"
+                        android:textSize="24sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/gradient_box"
+                        android:gravity="center"
+                        android:padding="20dp">
                     <ImageView
                         android:id="@+id/iv_static"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/test" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -66,24 +77,36 @@
                     android:id="@+id/layout_patient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="#A9A9A9"
-                    android:orientation="vertical">
+                    android:layout_gravity="center|center_horizontal"
+                    android:background="@drawable/seethrough_grey_box"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tv_patient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Consult Patient"
-                        android:textColor="#ffffff" />
-
+                        android:padding="10dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="center"
+                        android:text="Rythm Exercice"
+                        android:textColor="#ffffff"
+                        android:textSize="24sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/gradient_box"
+                        android:gravity="center"
+                        android:padding="20dp">
                     <ImageView
                         android:id="@+id/iv_patient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:src="@drawable/icone" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -91,7 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <ImageButton
                     android:id="@+id/ib_ListTest"
@@ -110,24 +134,41 @@
                     android:id="@+id/layout_rythm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="#A9A9A9"
-                    android:orientation="vertical">
+                    android:layout_gravity="center|center_horizontal"
+                    android:background="@drawable/seethrough_grey_box"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tv_rythm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="center"
                         android:text="Rythm Exercice"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="24sp" />
 
-                    <ImageView
-                        android:id="@+id/iv_rythm"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:src="@drawable/test" />
+                        android:background="@drawable/gradient_box"
+                        android:gravity="center"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/iv_rythm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/test"
+
+                            />
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <Space
