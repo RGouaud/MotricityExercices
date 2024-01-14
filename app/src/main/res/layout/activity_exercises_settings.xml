@@ -17,31 +17,32 @@
             layout="@layout/header_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="20"
-            />
+            android:layout_weight="20" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
+            android:background="#282424"
+            android:gravity="center"
             android:orientation="vertical"
-            android:background="#282424">
+            android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/tv_settings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:textSize="48dp"
-                android:textColor="#ffffff" />
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="48dp" />
 
             <Spinner
                 android:id="@+id/s_patient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/edit_text_rounded"
                 android:hint="Entrez votre texte ici" />
 
             <Space
@@ -54,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#ffffff"/>
+                android:background="@drawable/edit_text_rounded" />
 
             <Space
                 android:layout_width="match_parent"
@@ -66,10 +67,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/edit_text_rounded"
                 android:ems="10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:hint="Distance between points (cm)"
                 android:inputType="numberSigned"
-                android:background="#D3D3D3"
-                android:hint="Distance between points (cm)"/>
+                android:paddingHorizontal="20dp"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -81,10 +85,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/edit_text_rounded"
                 android:ems="10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:hint="Exercise duration (seconds)"
                 android:inputType="numberSigned"
-                android:background="#D3D3D3"
-                android:hint="Exercise duration (seconds)"/>
+                android:paddingHorizontal="20dp"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -96,7 +103,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#ffffff"/>
+                android:background="@drawable/edit_text_rounded"
+                android:thumb="@drawable/custom_thumb"
+                android:thumbOffset="0dp"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -108,10 +117,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/edit_text_rounded"
                 android:ems="10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:hint="Bips interval (seconds)"
                 android:inputType="numberSigned"
-                android:background="#D3D3D3"
-                android:hint="Bips interval (seconds)"/>
+                android:paddingHorizontal="20dp"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -123,16 +135,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
-                android:textColor="@color/black"
-                android:text="Start" />
+                android:text="Start"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/b_recover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
-                android:textColor="@color/black"
-                android:text="Recover previous test's settings" />
+                android:text="Recover previous test's settings"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
