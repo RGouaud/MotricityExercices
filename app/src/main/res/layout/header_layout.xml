@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="20"
     android:layout_gravity="center"
-    android:background="#FAD552">
+    android:layout_weight="20"
+    android:background="@drawable/header_gradient">
 
 
     <ImageButton
@@ -24,6 +24,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="DEVELOPMENT MOTRICITY"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible" />

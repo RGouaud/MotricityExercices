@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#737373">
+    android:background="@drawable/grey_box_rounded_with_stroke"
+    android:gravity="center">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/textView7"
@@ -17,13 +19,18 @@
             android:text="Test Successful"
             android:textColor="#000000"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:padding="20dp"/>
 
         <Button
             android:id="@+id/b_Home"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go Back Home" />
+            android:background="@drawable/gradient_box_with_stroke"
+            android:text="Go Back Home"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
 
     </LinearLayout>
 
