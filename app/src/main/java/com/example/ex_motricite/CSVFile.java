@@ -23,8 +23,9 @@ public class CSVFile {
     private final Integer exerciceTime;
     private final Integer intervalTime;
     private final int distance;
+    private Context context;
 
-    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance){
+    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance, Context context){
         this.listX = listX;
         this.listY = listY;
         this.listNbFrame = listNbFrame;
@@ -32,10 +33,13 @@ public class CSVFile {
         this.exerciceTime = exerciceTime;
         this.intervalTime = intervalTime;
         this.distance = distance;
+        this.context = context;
     }
 
     //Path: /sdcard/LaZer
      public boolean sauvegarde() {
+
+        Log.d("lancement", "lancement");
 
         if (!isExternalStorageWritable()) {
             Environment.getExternalStoragePublicDirectory("").setWritable(true);
@@ -58,11 +62,12 @@ public class CSVFile {
                 + date + ".csv";
 
 
+
         //recupération du dossier de sauvegarde
 
 
         //file represente le fichier de sauvegarde
-        File file = new File(DIR.getAbsolutePath() + File.separator + savefilename);
+        /*File file = new File(DIR.getAbsolutePath() + File.separator + savefilename);*/
         String comment = "TestComment";
         //Recapitulation des parametre de l'exercice réalisé (',' juste pour la mise en forme
 
@@ -73,35 +78,37 @@ public class CSVFile {
                 + "Mark Distance= " + this.distance + "\n"
                 + "Time(s) = " + this.exerciceTime + "\n"
                 +"Comments : " + comment +"\n";
-        recapExercice += (this.intervalTime > 0) ? "#Bip Interval = ,"
+        recapExercice += (this.intervalTime > 0) ? "#Bip Interval = "
                 + this.intervalTime + "\n\n" : "\n";
 
         //En-tête du tableau
-        String entete = "time(s),x,y\n"; //Entete du fichier
+         String entete = "time(s),x,y\n"; //Entete du fichier
+
+         Log.d("try", "try");
 
 
-
-         Context context = null;
-         context = context.getApplicationContext();
          // Obtention du répertoire de fichiers interne
          File repertoireInterne = context.getFilesDir();
 
          // Création du fichier dans le répertoire de fichiers interne
-         File fichier = new File(repertoireInterne, savefilename);
+         File file = new File(repertoireInterne, savefilename);
 
-        FileOutputStream outputStream;
-        try {
-            if (!file.exists()) { //retourne si le fichier existe
-                if (!file.createNewFile()) { //cree le fichier si il n'existe pas
-                    Log.e("ErrFile", "File was not Created");
-                }
-            }
+         FileOutputStream outputStream;
+
+         try {
+             if (!file.exists()) { //retourne si le fichier existe
+                 if (!file.createNewFile()) { //cree le fichier si il n'existe pas
+                     Log.e("ErrFile", "File was not Created");
+                 }
+             }
 
 
+             FileWriter writer = new FileWriter(file);
+             writer.write(recapExercice);
+             writer.write(entete);
 
-            FileWriter writer = new FileWriter(fichier);
-            writer.write(recapExercice);
-            writer.write(entete);
+             Log.d("recap", recapExercice);
+             Log.d("entete", entete);
 
 
 
@@ -111,22 +118,23 @@ public class CSVFile {
             outputStream.write(entete.getBytes()); // affiche l'entete du tableau*/
 
             //enregistrement de la liste dans le fichier
-            int nbFrame = listNbFrame.size();
-            for (int i = 0; i < nbFrame; i++) {
-                int frame = listNbFrame.get(i); // Frame number in the list
-                double time = transformFrameInTime(frame, exerciceTime, nbFrame);
-                double coordX = listX.get(i); // Coord X number in the list
-                double coordY = listY.get(i); // Coord Y number in the list
-                String line = time + "," + coordX + "," + coordY + "\n";
-                //Ecrire Line
-                writer.write(line);
-            }
-            writer.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+             int nbFrame = listNbFrame.size();
+             for (int i = 0; i < nbFrame; i++) {
+                 int frame = listNbFrame.get(i); // Frame number in the list
+                 double time = transformFrameInTime(frame, exerciceTime, nbFrame);
+                 double coordX = listX.get(i); // Coord X number in the list
+                 double coordY = listY.get(i); // Coord Y number in the list
+                 String line = time + "," + coordX + "," + coordY + "\n";
+                 //Ecrire Line
+                 writer.write(line);
+                 Log.d("ligne", line);
+             }
+             writer.close();
+             return true;
+         } catch (Exception e) {
+             e.printStackTrace();
+             return false;
+         }
     }
 
 

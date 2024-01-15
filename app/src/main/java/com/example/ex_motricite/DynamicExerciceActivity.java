@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import androidx.annotation.NonNull;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -323,10 +324,11 @@ public class DynamicExerciceActivity extends CameraActivity {
 
 
     void createCSV(){
+        Log.d("debut", "debut");
         String exerciceType = "Dynamic";
         //CSVFile creation
-        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE);
-
+        Context context = getApplicationContext();
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context);
         csvFile.sauvegarde();
 
     }
