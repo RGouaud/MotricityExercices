@@ -42,12 +42,15 @@ public class DynamicExerciceActivity extends CameraActivity {
     private long timerLeftInMilliseconds;
 
     private int DISTANCE;
+    private int nbFrame;
     private int TIME;
     private int INTERVAL;
 
 
     List<Double> listX = new ArrayList<Double>();
     List<Double> listY = new ArrayList<Double>();
+
+    List<Integer> listNbFrame = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class DynamicExerciceActivity extends CameraActivity {
         tv_y = findViewById(R.id.tv_y);
         countdown_text= findViewById (R.id.countdown_text);
         is_init= false;
+        nbFrame = 0;
 
         isRunning = false;
         timerLeftInMilliseconds = TIME *1000;
@@ -174,7 +178,9 @@ public class DynamicExerciceActivity extends CameraActivity {
                         Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
                     }*/
 
-                    displayCoordinate(cnts);
+                    nbFrame += 1;
+                    stockCoordinate(cnts);
+                    stockTime(nbFrame);
 
                     cnts.clear();
 
@@ -246,6 +252,7 @@ public class DynamicExerciceActivity extends CameraActivity {
             public void onFinish() {
                 isRunning = false;
                 startActivity(new Intent(DynamicExerciceActivity.this,Pop.class));
+                createCSV();
             }
         }.start();
 
@@ -295,17 +302,40 @@ public class DynamicExerciceActivity extends CameraActivity {
 
 
 
-    void displayCoordinate(List<MatOfPoint> listeMatOfPoints){
+    void stockCoordinate(List<MatOfPoint> listeMatOfPoints){
         for (MatOfPoint contour : listeMatOfPoints) {
             // Accéder aux points du contour
             Point[] pointsArray = contour.toArray();
 
-            // Afficher les coordonnées des points dans la console (logcat)
+            // stocker les coordonnées des points dans les listes
             for (Point point : pointsArray) {
                 listX.add(point.x);
                 listY.add(point.y);
-                Log.d("ContourPoint", "X: " + point.x + ", Y: " + point.y);
+                //Log.d("ContourPoint", "X: " + point.x + ", Y: " + point.y);
             }
         }
+    }
+
+
+    void stockTime(int nbFrame){
+        listNbFrame.add(nbFrame);
+    }
+
+
+    void createCSV(){
+        // Créer un intent pour passer à ActivityB
+        Intent intent = new Intent(DynamicExerciceActivity.this, CSVFile.class);
+
+        // Ajouter la variable au intent
+        intent.putExtra("listX", new ArrayList<>(listX));
+        intent.putExtra("listY", new ArrayList<>(listY));
+        intent.putExtra("exerciceType", "Dynamic");
+        intent.putExtra("listNbFrame", new ArrayList<>(listNbFrame));
+        intent.putExtra("exerciceTime", TIME);
+        intent.putExtra("intervalTime", INTERVAL);
+        intent.putExtra("distance", DISTANCE);
+
+        // Démarrer l'ActivityB
+        startActivity(intent);
     }
 }

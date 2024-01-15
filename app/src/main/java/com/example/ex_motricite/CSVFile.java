@@ -1,13 +1,43 @@
-/*package com.example.ex_motricite;
+package com.example.ex_motricite;
 
+
+import android.content.Intent;
+import android.os.Environment;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class CSVFile {
 
     static String DIRFILENAME = "LaZer";
     static File DIR = getPublicStorageDir(DIRFILENAME);
 
+    Intent myIntent = getIntent();
+
+    List<Integer> listX;
+    List<Integer> listY;
+    List<Integer> listNbFrame;
+    private String exerciceType;
+    private Integer exerciceTime;
+    private Integer intervalTime;
+    private int distance;
+
+
     //Path: /sdcard/LaZer
-    static public boolean sauvegarde(ArrayList<CoordonneesCmEnFonctionDuTemps> data, Parameter _parametreDeLexercice) {
+    static public boolean sauvegarde() {
+
+        //Variables
+        listX = myIntent.getIntegerArrayListExtra("listX");
+        listY = myIntent.getIntegerArrayListExtra("listX");
+        exerciceType = myIntent.getIntegerArrayListExtra("exerciceType");
+        listNbFrame = myIntent.getIntegerArrayListExtra("listNbFrame");
+        exerciceTime = myIntent.getIntegerArrayListExtra("exerciceTime");
+        intervalTime = myIntent.getIntegerArrayListExtra("intervalTime");
+        distance = myIntent.getIntegerArrayListExtra("distance");
 
         if (!isExternalStorageWritable()) {
             Environment.getExternalStoragePublicDirectory("").setWritable(true);
@@ -22,9 +52,11 @@ public class CSVFile {
                 rightNow.get(Calendar.MINUTE);
 
         //nom du fichier suvegarder au format csv
-        String savefilename = _parametreDeLexercice.get_patientName().replaceAll("\\s", "")
-                + _parametreDeLexercice.get_operatorName().replaceAll("\\s", "")
-                + _parametreDeLexercice.get_typeExercice()
+        String patientName = "PatientTeste";
+        String operatorName = "PatientTeste";
+        String savefilename = patientName.replaceAll("\\s", "")
+                + operatorName.replaceAll("\\s", "")
+                + exerciceType.get_typeExercice()
                 + date + ".csv";
 
 
@@ -33,17 +65,18 @@ public class CSVFile {
 
         //file represente le fichier de sauvegarde
         File file = new File(DIR.getAbsolutePath() + File.separator + savefilename);
-
+        String comment = "TestComment";
         //Recapitulation des parametre de l'exercice réalisé (',' juste pour la mise en forme
+
         String recapExercice = "Recap of the exercice \n"
-                + "Exercice = " + _parametreDeLexercice.get_typeExercice() + "\n"
-                + "Patient Name = " + _parametreDeLexercice.get_patientName() + "\n"
-                + "Operator Name = " + _parametreDeLexercice.get_operatorName() + "\n"
-                + "Mark Distance= " + _parametreDeLexercice.get_markDistance() + "\n"
-                + "Time(s) = " + _parametreDeLexercice.get_time() + "\n"
-                +"Comments : " + _parametreDeLexercice.get_commentaire()+"\n";
-        recapExercice += (_parametreDeLexercice.get_bipIntervale() > 0) ? "#Bip Interval = ,"
-                + _parametreDeLexercice.get_bipIntervale() + "\n\n" : "\n";
+                + "Exercice = " + exerciceType + "\n"
+                + "Patient Name = " + patientName + "\n"
+                + "Operator Name = " + operatorName + "\n"
+                + "Mark Distance= " + distance + "\n"
+                + "Time(s) = " + exerciceTime + "\n"
+                +"Comments : " + comment +"\n";
+        recapExercice += (intervalTime > 0) ? "#Bip Interval = ,"
+                + intervalTime + "\n\n" : "\n";
 
         //En-tête du tableau
         String entete = "time(s),x,y\n"; //Entete du fichier
@@ -60,8 +93,12 @@ public class CSVFile {
             outputStream.write(entete.getBytes()); // affiche l'entete du tableau
 
             //enregistrement de la liste dans le fichier
-            for (int i = 0; i < data.size(); i++) {
-                CoordonneesCmEnFonctionDuTemps courrant = data.get(i);//Recuperation de l'élément i de la liste
+            int nbFrame = listNbFrame.size();
+            for (int i = 0; i < nbFrame; i++) {
+                int frame = listNbFrame.get(i); // Frame number in the list
+                time = transformFrameInTime(frame, exerciceTime, nbFrame);
+                int coordX = listX.get(i); // Coord X number in the list
+                int coordY = listY.get(i); // Coord Y number in the list
                 String line = courrant.get_seconde() + "," + courrant.get_x() + "," + courrant.get_y() + "\n";
                 //Ecrire Line
                 outputStream.write(line.getBytes());//ecris la ligne courrante
@@ -74,9 +111,9 @@ public class CSVFile {
         }
     }
 
-*/
+
     /* Checks if external storage is available for read and write */
-    /*public static boolean isExternalStorageWritable() {
+    public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;
@@ -95,9 +132,9 @@ public class CSVFile {
         }
         return file;
     }
-*/
+
     /* Checks if external storage is available to at least read */
-    /*public static boolean isExternalStorageReadable() {
+    public static boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -125,4 +162,15 @@ public class CSVFile {
         return true;
     }
 
-}*/
+    static public double transformFrameInTime(int numFrame, int nbFrame, int exerciceTime){
+        double time;
+        double timeByFrame;
+
+        timeByFrame = exerciceTime/nbFrame;
+
+        time = timeByFrame*numFrame;
+
+        return time;
+    }
+
+}
