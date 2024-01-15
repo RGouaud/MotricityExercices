@@ -35,7 +35,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
             android:orientation="horizontal">
 
             <Space
@@ -44,23 +43,15 @@
                 android:layout_weight="1" />
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_ListOfTest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center|center_vertical"
-                    android:text="List of Test:"
-                    android:textColor="#FFFFFF"
-                    android:textSize="48sp" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_ListOfTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="List of Test:"
+                android:textColor="#FFFFFF"
+                android:textSize="48sp" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -140,8 +131,18 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="30" />
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/l_listTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- Add your buttons dynamically to this LinearLayout -->
+            </LinearLayout>
+        </ScrollView>
 
         <Space
             android:layout_width="match_parent"
