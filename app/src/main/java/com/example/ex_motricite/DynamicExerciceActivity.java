@@ -323,19 +323,11 @@ public class DynamicExerciceActivity extends CameraActivity {
 
 
     void createCSV(){
-        // Créer un intent pour passer à ActivityB
-        Intent intent = new Intent(DynamicExerciceActivity.this, CSVFile.class);
+        String exerciceType = "Dynamic";
+        //CSVFile creation
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE);
 
-        // Ajouter la variable au intent
-        intent.putExtra("listX", new ArrayList<>(listX));
-        intent.putExtra("listY", new ArrayList<>(listY));
-        intent.putExtra("exerciceType", "Dynamic");
-        intent.putExtra("listNbFrame", new ArrayList<>(listNbFrame));
-        intent.putExtra("exerciceTime", TIME);
-        intent.putExtra("intervalTime", INTERVAL);
-        intent.putExtra("distance", DISTANCE);
+        csvFile.sauvegarde();
 
-        // Démarrer l'ActivityB
-        startActivity(intent);
     }
 }
