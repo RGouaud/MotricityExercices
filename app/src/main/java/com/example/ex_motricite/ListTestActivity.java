@@ -1,6 +1,7 @@
 package com.example.ex_motricite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.os.Environment;
 import android.widget.ToggleButton;
+import android.content.SharedPreferences;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -28,6 +33,7 @@ public class ListTestActivity extends AppCompatActivity {
     private Button buttonSelectAll;
     private Button buttonFilters;
     private LinearLayout LayoutListTest;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class ListTestActivity extends AppCompatActivity {
         buttonSelectAll = findViewById(R.id.b_selectAll);
         buttonFilters = findViewById(R.id.b_filters);
         LayoutListTest = findViewById(R.id.l_listTest);
+        sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
         createCSVFile("test1");
         createCSVFile("test2");
@@ -87,7 +94,6 @@ public class ListTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // TODO : Exporter les données sélectionnées
                 exportSelectedFiles();
                 Toast.makeText(ListTestActivity.this, "Fichiers exportés", Toast.LENGTH_SHORT).show();
             }
@@ -201,19 +207,48 @@ public class ListTestActivity extends AppCompatActivity {
     }
 
     private void exportSelectedFiles() {
-        if (!selectedFiles.isEmpty()) {
-            for (File file : selectedFiles) {
-                // Créez une intention pour permettre à l'utilisateur de choisir l'emplacement de téléchargement
-                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("text/csv");
-                intent.putExtra(Intent.EXTRA_TITLE, file.getName());
 
-                // Lancez l'activité avec cette intention
-                startActivityForResult(intent, EXPORT_REQUEST_CODE);
+        String settingsJson = sharedPreferences.getString("settings_json", null);
+
+        if (settingsJson != null) {
+            try {
+                // Convertir le JSON en objet
+                JSONObject jsonObject = new JSONObject(settingsJson);
+
+                // Obtenir l'adresse e-mail du destinataire
+                String email = jsonObject.getString("email");
+
+                // Créer une intention pour envoyer plusieurs fichiers CSV
+                Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+                emailIntent.setType("text/csv");
+
+                // Ajouter les adresses e-mail, le sujet et le corps du message
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sujet de l'e-mail");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Corps du message de l'e-mail");
+
+                // Créer une liste d'Uri pour les fichiers à envoyer
+                ArrayList<Uri> fileUris = new ArrayList<>();
+                for (File file : selectedFiles) {
+                    // Convertir chaque fichier en Uri et l'ajouter à la liste
+                    Uri fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", file);
+                    fileUris.add(fileUri);
+                }
+
+                // Ajouter la liste d'Uri à l'intention
+                emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, fileUris);
+
+                // Vérifier si l'appareil a une connexion à Internet et une application de messagerie installée
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(emailIntent, "Envoyer l'e-mail via..."));
+                } else {
+                    // Gérer le cas où aucune application de messagerie n'est installée
+                    Toast.makeText(this, "Aucune application de messagerie n'est installée", Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } else {
-            Toast.makeText(this, "Aucun fichier sélectionné", Toast.LENGTH_SHORT).show();
         }
     }
     private void createCSVFile(String fileName) {
