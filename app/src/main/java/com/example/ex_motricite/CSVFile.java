@@ -1,13 +1,13 @@
 package com.example.ex_motricite;
 
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,28 +16,26 @@ public class CSVFile {
     static String DIRFILENAME = "LaZer";
     static File DIR = getPublicStorageDir(DIRFILENAME);
 
-    Intent myIntent = getIntent();
+    private final List<Double> listX;
+    private final List<Double> listY;
+    private final List<Integer> listNbFrame;
+    private final String exerciceType;
+    private final Integer exerciceTime;
+    private final Integer intervalTime;
+    private final int distance;
 
-    List<Integer> listX;
-    List<Integer> listY;
-    List<Integer> listNbFrame;
-    private String exerciceType;
-    private Integer exerciceTime;
-    private Integer intervalTime;
-    private int distance;
-
+    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance){
+        this.listX = listX;
+        this.listY = listY;
+        this.listNbFrame = listNbFrame;
+        this.exerciceType = exerciceType;
+        this.exerciceTime = exerciceTime;
+        this.intervalTime = intervalTime;
+        this.distance = distance;
+    }
 
     //Path: /sdcard/LaZer
-    static public boolean sauvegarde() {
-
-        //Variables
-        listX = myIntent.getIntegerArrayListExtra("listX");
-        listY = myIntent.getIntegerArrayListExtra("listX");
-        exerciceType = myIntent.getIntegerArrayListExtra("exerciceType");
-        listNbFrame = myIntent.getIntegerArrayListExtra("listNbFrame");
-        exerciceTime = myIntent.getIntegerArrayListExtra("exerciceTime");
-        intervalTime = myIntent.getIntegerArrayListExtra("intervalTime");
-        distance = myIntent.getIntegerArrayListExtra("distance");
+     public boolean sauvegarde() {
 
         if (!isExternalStorageWritable()) {
             Environment.getExternalStoragePublicDirectory("").setWritable(true);
@@ -52,11 +50,11 @@ public class CSVFile {
                 rightNow.get(Calendar.MINUTE);
 
         //nom du fichier suvegarder au format csv
-        String patientName = "PatientTeste";
-        String operatorName = "PatientTeste";
+        String patientName = "PatientTest";
+        String operatorName = "OperatorTest";
         String savefilename = patientName.replaceAll("\\s", "")
                 + operatorName.replaceAll("\\s", "")
-                + exerciceType.get_typeExercice()
+                + this.exerciceType
                 + date + ".csv";
 
 
@@ -69,17 +67,27 @@ public class CSVFile {
         //Recapitulation des parametre de l'exercice réalisé (',' juste pour la mise en forme
 
         String recapExercice = "Recap of the exercice \n"
-                + "Exercice = " + exerciceType + "\n"
+                + "Exercice = " + this.exerciceType + "\n"
                 + "Patient Name = " + patientName + "\n"
                 + "Operator Name = " + operatorName + "\n"
-                + "Mark Distance= " + distance + "\n"
-                + "Time(s) = " + exerciceTime + "\n"
+                + "Mark Distance= " + this.distance + "\n"
+                + "Time(s) = " + this.exerciceTime + "\n"
                 +"Comments : " + comment +"\n";
-        recapExercice += (intervalTime > 0) ? "#Bip Interval = ,"
-                + intervalTime + "\n\n" : "\n";
+        recapExercice += (this.intervalTime > 0) ? "#Bip Interval = ,"
+                + this.intervalTime + "\n\n" : "\n";
 
         //En-tête du tableau
         String entete = "time(s),x,y\n"; //Entete du fichier
+
+
+
+         Context context = null;
+         context = context.getApplicationContext();
+         // Obtention du répertoire de fichiers interne
+         File repertoireInterne = context.getFilesDir();
+
+         // Création du fichier dans le répertoire de fichiers interne
+         File fichier = new File(repertoireInterne, savefilename);
 
         FileOutputStream outputStream;
         try {
@@ -88,22 +96,32 @@ public class CSVFile {
                     Log.e("ErrFile", "File was not Created");
                 }
             }
-            outputStream = new FileOutputStream(file);
+
+
+
+            FileWriter writer = new FileWriter(fichier);
+            writer.write(recapExercice);
+            writer.write(entete);
+
+
+
+
+            /*outputStream = new FileOutputStream(file);
             outputStream.write(recapExercice.getBytes()); //ecris le recap de l'exo
-            outputStream.write(entete.getBytes()); // affiche l'entete du tableau
+            outputStream.write(entete.getBytes()); // affiche l'entete du tableau*/
 
             //enregistrement de la liste dans le fichier
             int nbFrame = listNbFrame.size();
             for (int i = 0; i < nbFrame; i++) {
                 int frame = listNbFrame.get(i); // Frame number in the list
-                time = transformFrameInTime(frame, exerciceTime, nbFrame);
-                int coordX = listX.get(i); // Coord X number in the list
-                int coordY = listY.get(i); // Coord Y number in the list
-                String line = courrant.get_seconde() + "," + courrant.get_x() + "," + courrant.get_y() + "\n";
+                double time = transformFrameInTime(frame, exerciceTime, nbFrame);
+                double coordX = listX.get(i); // Coord X number in the list
+                double coordY = listY.get(i); // Coord Y number in the list
+                String line = time + "," + coordX + "," + coordY + "\n";
                 //Ecrire Line
-                outputStream.write(line.getBytes());//ecris la ligne courrante
+                writer.write(line);
             }
-            outputStream.close(); //fermture du fichier
+            writer.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,7 +184,7 @@ public class CSVFile {
         double time;
         double timeByFrame;
 
-        timeByFrame = exerciceTime/nbFrame;
+        timeByFrame = (double) exerciceTime /nbFrame;
 
         time = timeByFrame*numFrame;
 
