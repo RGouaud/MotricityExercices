@@ -36,12 +36,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="10" />
 
-                <WebView
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4">
-
-                </WebView>
+                    android:layout_weight="4"
+                    />
 
                 <Space
                     android:layout_width="match_parent"
