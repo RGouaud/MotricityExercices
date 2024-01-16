@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:background="#000000"
+        android:background="#2D2D2D"
         android:orientation="vertical">
 
 
@@ -76,13 +76,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_selectAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:backgroundTint="#FAD552"
+                android:background="@drawable/gradient_orange_to_pink"
                 android:text="Select all"
+                android:textAllCaps="false"
                 android:textColor="#000000" />
 
             <Space
@@ -90,13 +91,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_deselectAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FAD552"
-                android:text="Deselect all"
+                android:background="@drawable/gradient_orange_to_pink"
+                android:text="Unselect all"
+                android:textAllCaps="false"
                 android:textColor="#000000" />
 
             <Space
@@ -104,19 +106,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_filters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FAD552"
                 android:text="Filters"
-                android:textColor="#000000"
-                app:icon="@android:drawable/ic_menu_edit"
-                app:iconGravity="end"
-                app:iconPadding="0dp"
-                app:iconSize="20dp"
-                app:iconTint="#000000" />
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:background="@drawable/gradient_orange_to_pink"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:drawableTint="@color/black"
+                android:paddingHorizontal="10dp"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -153,27 +154,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/gradient_black_to_see_through">
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_exportSelection"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FAD552"
+                android:background="@drawable/gradient_orange_to_pink"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:drawableTint="@color/black"
+                android:paddingHorizontal="10dp"
                 android:text="Export Selection"
                 android:textAlignment="center"
-                android:textColor="#000000"
-                app:icon="@android:drawable/ic_menu_set_as"
-                app:iconGravity="end"
-                app:iconPadding="0dp"
-                app:iconSize="30dp"
-                app:iconTint="#000000" />
+                android:textColor="#000000" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -181,10 +181,13 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <Space
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/black"
+            />
+
     </LinearLayout>
 
     </LinearLayout>

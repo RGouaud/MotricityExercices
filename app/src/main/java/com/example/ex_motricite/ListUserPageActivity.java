@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -181,6 +182,7 @@ public class ListUserPageActivity extends AppCompatActivity {
         toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
         operatorDAO = new OperatorDAO(this);
         patientDAO = new PatientDAO(this);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         try {
             operators = operatorDAO.getOperators();
