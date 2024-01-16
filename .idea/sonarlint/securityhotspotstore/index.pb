@@ -75,3 +75,9 @@ C
 settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
 p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e/f/ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
+g
+7app/src/main/java/com/example/ex_motricite/CSVFile.java,6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc
+w
+Gapp/src/main/java/com/example/ex_motricite/DynamicExerciceActivity.java,9/6/966904abab48e2823d2bb5bcf7cb7e2604c48676
+i
+9app/src/main/java/com/example/ex_motricite/CSVReader.java,a/a/aabc027dbaad1a4af6cb90a30721f575cace661b

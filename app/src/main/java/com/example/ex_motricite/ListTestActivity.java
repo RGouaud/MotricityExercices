@@ -134,35 +134,56 @@ public class ListTestActivity extends AppCompatActivity {
 
         // Ajoutez dynamiquement des éléments pour chaque fichier dans la liste
         for (File file : selectedFiles) {
-            ToggleButton fileToggleButton = createFileToggleButtonn(file);
-            LayoutListTest.addView(fileToggleButton);
+            Button fileButton = createFileButton(file);
+            LayoutListTest.addView(fileButton);
         }
     }
 
-    private ToggleButton createFileToggleButtonn(final File file) {
-        ToggleButton fileToggleButton = new ToggleButton(this);
-        fileToggleButton.setText(file.getName());
-        fileToggleButton.setTextOn(file.getName());
-        fileToggleButton.setTextOff(file.getName());
-        fileToggleButton.setBackgroundColor(0xFF615321);
-        // Définissez une action pour le clic sur le bouton du fichier
-        fileToggleButton.setOnClickListener(new View.OnClickListener() {
+    private Button createFileButton(final File file) {
+        Button fileButton = new Button(this);
+        fileButton.setText(file.getName());
+        fileButton.setBackgroundColor(0xFF615321);
+
+        // Clic court pour naviguer vers TestPageActivity
+        fileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fileToggleButton.isChecked()) {
-                    fileToggleButton.setBackgroundColor(0xFFFAD552);
-                    selectedFiles.add(file);
-                } else {
-                    fileToggleButton.setBackgroundColor(0xFF615321);
-                    selectedFiles.remove(file);
-                }
-                // Implémentez une action spécifique au clic sur le fichier si nécessaire
-                // Vous pouvez ouvrir le fichier, afficher des détails, etc.
+                navigateToTestPage(file);
             }
         });
 
-        return fileToggleButton;
+        // Clic long pour la sélection multiple
+        fileButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                handleLongClick(fileButton, file);
+                return true;  // Consume the long click
+            }
+        });
+
+        return fileButton;
     }
+
+    private void navigateToTestPage(File file) {
+        // Implémentez la logique de navigation vers TestPageActivity ici
+        // Vous pouvez utiliser une intention (Intent) pour cela.
+        Intent intent = new Intent(ListTestActivity.this, TestPageActivity.class);
+        // Ajoutez des données supplémentaires à l'intention si nécessaire
+        intent.putExtra("file_path", file.getAbsolutePath());
+        startActivity(intent);
+    }
+
+    private void handleLongClick(Button fileButton, File file) {
+        // Gérez la sélection multiple ici
+        if (selectedFiles.contains(file)) {
+            selectedFiles.remove(file);
+            fileButton.setBackgroundColor(0xFF615321);
+        } else {
+            selectedFiles.add(file);
+            fileButton.setBackgroundColor(0xFFFAD552);
+        }
+    }
+
 
     private void selectAllFiles() {
         // Obtenez le répertoire du stockage interne
@@ -183,27 +204,26 @@ public class ListTestActivity extends AppCompatActivity {
                 }
             }
         }
-        updateToggleButtonsState(true);
+        updateButtonsState(true);
     }
 
     private void deselectAllFiles() {
         // Videz la liste des fichiers sélectionnés
         selectedFiles.clear();
 
-        updateToggleButtonsState(false);
+        updateButtonsState(false);
     }
 
-    private void updateToggleButtonsState(boolean isChecked) {
+    private void updateButtonsState(boolean isChecked) {
         // Parcourez tous les ToggleButtons dans le layout et mettez à jour leur état
         for (int i = 0; i < LayoutListTest.getChildCount(); i++) {
             View view = LayoutListTest.getChildAt(i);
-            if (view instanceof ToggleButton) {
-                ToggleButton toggleButton = (ToggleButton) view;
-                toggleButton.setChecked(isChecked);
+            if (view instanceof Button) {
+                Button fileButton = (Button) view;
                 if (isChecked) {
-                    toggleButton.setBackgroundColor(0xFFFAD552);
+                    fileButton.setBackgroundColor(0xFFFAD552);
                 } else {
-                    toggleButton.setBackgroundColor(0xFF615321);
+                    fileButton.setBackgroundColor(0xFF615321);
                 }
             }
         }
