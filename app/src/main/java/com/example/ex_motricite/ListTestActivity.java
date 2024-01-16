@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +20,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +75,6 @@ public class ListTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectAllFiles();
-                Toast.makeText(ListTestActivity.this, "Tous les fichiers sélectionnés", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,7 +82,6 @@ public class ListTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deselectAllFiles();
-                Toast.makeText(ListTestActivity.this, "Fichiers désélectionnés", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,8 +97,9 @@ public class ListTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                exportSelectedFiles();
-                Toast.makeText(ListTestActivity.this, "Fichiers exportés", Toast.LENGTH_SHORT).show();
+                //exportSelectedFilesByMail();
+                exportSelectedFilesByMail();
+                Toast.makeText(ListTestActivity.this, "Exported file ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -154,7 +158,6 @@ public class ListTestActivity extends AppCompatActivity {
                 }
                 // Implémentez une action spécifique au clic sur le fichier si nécessaire
                 // Vous pouvez ouvrir le fichier, afficher des détails, etc.
-                Toast.makeText(ListTestActivity.this, "Clic sur le fichier : " + file.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -206,7 +209,7 @@ public class ListTestActivity extends AppCompatActivity {
         }
     }
 
-    private void exportSelectedFiles() {
+    private void exportSelectedFilesByMail() {
 
         String settingsJson = sharedPreferences.getString("settings_json", null);
 
@@ -224,8 +227,8 @@ public class ListTestActivity extends AppCompatActivity {
 
                 // Ajouter les adresses e-mail, le sujet et le corps du message
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sujet de l'e-mail");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Corps du message de l'e-mail");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "CSV files");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "CSV files attached.");
 
                 // Créer une liste d'Uri pour les fichiers à envoyer
                 ArrayList<Uri> fileUris = new ArrayList<>();
@@ -240,10 +243,10 @@ public class ListTestActivity extends AppCompatActivity {
 
                 // Vérifier si l'appareil a une connexion à Internet et une application de messagerie installée
                 if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(Intent.createChooser(emailIntent, "Envoyer l'e-mail via..."));
+                    startActivity(Intent.createChooser(emailIntent, "Send email with..."));
                 } else {
                     // Gérer le cas où aucune application de messagerie n'est installée
-                    Toast.makeText(this, "Aucune application de messagerie n'est installée", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No application installed.", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
@@ -251,6 +254,45 @@ public class ListTestActivity extends AppCompatActivity {
             }
         }
     }
+
+   /* private void exportSelectedFiles() {
+        // Vérifier si les fichiers sont sélectionnés
+        if (selectedFiles != null && selectedFiles.size() > 0) {
+            for (File file : selectedFiles) {
+                try {
+                    // Créer le répertoire de destination dans le dossier de téléchargement du téléphone
+                    File destDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), file.getName());
+
+                    // Copier le fichier dans le répertoire de destination
+                    copyFile(file, destDir);
+
+                    // Informer l'utilisateur que les fichiers ont été enregistrés
+                    Toast.makeText(this, "Fichiers enregistrés dans le dossier de téléchargement", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Gérer l'erreur de copie de fichier
+                }
+            }
+        }
+    }*/
+
+    private void copyFile(File source, File destination) throws IOException {
+        // Créer le répertoire de destination s'il n'existe pas
+        destination.getParentFile().mkdirs();
+
+        try (InputStream in = new FileInputStream(source);
+             OutputStream out = new FileOutputStream(destination)) {
+            // Copier le contenu du fichier d'origine vers le fichier de destination
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+        }
+    }
+
+
+
     private void createCSVFile(String fileName) {
         try {
             // Obtenez le répertoire du stockage interne
