@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="#000000"
+            android:background="#262626"
             android:orientation="vertical">
 
             <Space
@@ -34,7 +34,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000000"
                 android:orientation="horizontal">
 
                 <Space
@@ -85,7 +84,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/textViewPatient"
+                        android:id="@+id/textViewPatient_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -93,26 +92,33 @@
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 
-                    <EditText
-                        android:id="@+id/editTextPatient"
+                    <TextView
+                        android:id="@+id/textViewPatient"
+                        android:background="@drawable/background_textview_with_gradient_stroke"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="text"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"/>
 
                     <TextView
-                        android:id="@+id/textViewOperator"
+                        android:id="@+id/textViewOperator_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Operator :"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"
+                        />
 
-                    <EditText
-                        android:id="@+id/editTextOperator"
+                    <TextView
+                        android:id="@+id/textViewOperator"
+                        android:background="@drawable/background_textview_with_gradient_stroke"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -121,16 +127,21 @@
                         android:textColor="#FFFFFF" />
 
                     <TextView
-                        android:id="@+id/textViewTestType"
+                        android:id="@+id/textViewTestType_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Test type :"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"
+                        />
 
-                    <EditText
-                        android:id="@+id/editTextTestType"
+                    <TextView
+                        android:id="@+id/textViewTestType"
+                        android:background="@drawable/background_textview_with_gradient_stroke"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -139,16 +150,21 @@
                         android:textColor="#FFFFFF" />
 
                     <TextView
-                        android:id="@+id/textViewTestTime"
+                        android:id="@+id/textViewTestTime_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Test durations :"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"
+                        />
 
-                    <EditText
-                        android:id="@+id/editTextTestTime"
+                    <TextView
+                        android:id="@+id/textViewTestTime"
+                        android:background="@drawable/background_textview_with_gradient_stroke"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -178,7 +194,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000000"
                 android:orientation="horizontal">
 
                 <Space
@@ -192,18 +207,19 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/b_viewGraphics"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#FAD552"
+                        android:background="@drawable/gradient_orange_to_pink"
                         android:text="View Graphics"
+                        android:textStyle="bold"
                         android:textColor="#000000"
-                        app:icon="@android:drawable/ic_menu_view"
-                        app:iconGravity="end"
-                        app:iconPadding="0dp"
-                        app:iconSize="30dp"
-                        app:iconTint="#000000" />
+                        android:drawableRight="@android:drawable/ic_menu_view"
+                        android:paddingHorizontal="10dp"
+                        android:drawableTint="@color/black"
+                         />
+
 
                 </LinearLayout>
 
