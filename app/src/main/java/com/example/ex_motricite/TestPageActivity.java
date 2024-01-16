@@ -14,6 +14,8 @@ public class TestPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_page);
+        Intent myIntent = getIntent();
+        String filePath = myIntent.getStringExtra("file_path");
 
         buttonViewGraphs = findViewById(R.id.b_viewGraphics);
 
@@ -21,6 +23,7 @@ public class TestPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TestPageActivity.this, GraphicsTestPageActivity.class);
+                intent.putExtra("file_path", filePath);
                 startActivity(intent);
             }
         });
