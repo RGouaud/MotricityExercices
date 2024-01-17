@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import androidx.annotation.NonNull;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
@@ -40,8 +42,14 @@ public class StaticExerciceActivity extends CameraActivity {
     Button b_start;
     boolean isRunning;
     private long timerLeftInMilliseconds;
+    private int nbFrame;
     private int DISTANCE;
     private int TIME;
+
+    List<Double> listX = new ArrayList<Double>();
+    List<Double> listY = new ArrayList<Double>();
+    List<Integer> listNbFrame = new ArrayList<Integer>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +67,17 @@ public class StaticExerciceActivity extends CameraActivity {
         tv_y = findViewById(R.id.tv_y);
         countdown_text= findViewById (R.id.countdown_text);
         is_init= false;
+        nbFrame = 0;
 
         isRunning = false;
         timerLeftInMilliseconds = TIME *1000;
+
         updateTimer();
         getPermission();
 
         cameraBridgeViewBase = findViewById(R.id.java_camera_view);
 
+        b_start = findViewById(R.id.b_Start);
         cameraBridgeViewBase.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener2() {
             @Override
             public void onCameraViewStarted(int width, int height) {
@@ -159,12 +170,21 @@ public class StaticExerciceActivity extends CameraActivity {
                     Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(0,255,0), 4);
 
 
-                    /*for (MatOfPoint m: cnts){
-                        Rect r=Imgproc.boundingRect(m);
-                        Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
-                    }*/
+                    List<Rect> listOfRect = new ArrayList<Rect>();
 
-                    displayCoordinate(cnts);
+                    for (MatOfPoint m: cnts){
+                        Rect r=Imgproc.boundingRect(m);
+                        listOfRect.add(r);
+                        Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
+                    }
+
+
+                    if(nbFrame != 0){
+                        stockTime(nbFrame);
+                        stockCoordinate(listOfRect);
+                    }
+
+                    nbFrame += 1;
 
                     cnts.clear();
 
@@ -216,7 +236,6 @@ public class StaticExerciceActivity extends CameraActivity {
             stopTimer();
         }
         else {
-
             startTimer();
         }
     }
@@ -232,6 +251,7 @@ public class StaticExerciceActivity extends CameraActivity {
             public void onFinish() {
                 isRunning = false;
                 startActivity(new Intent(StaticExerciceActivity.this,Pop.class));
+                createCSV();
             }
         }.start();
 
@@ -279,6 +299,47 @@ public class StaticExerciceActivity extends CameraActivity {
 
     }
 
+
+    void stockCoordinate(List<Rect> listOfRect){
+        Rect biggestRect = new Rect();
+        double biggestArea = 0;
+        double area;
+
+        //Detection of the biggest Rectangle
+        for (Rect rect : listOfRect) {
+            area = rect.height*rect.width;
+
+            if (area > biggestArea){
+                biggestArea = area;
+                biggestRect = rect;
+            }
+        }
+
+        // Middle coord of the biggest Rectangle
+        double centerX = biggestRect.x + biggestRect.width / 2.0;
+        double centerY = biggestRect.y + biggestRect.height / 2.0;
+
+        // add middles coords in list
+        listX.add(centerX);
+        listY.add(centerY);
+    }
+
+
+    void stockTime(int nbFrame){
+        listNbFrame.add(nbFrame);
+    }
+
+
+    void createCSV(){
+        Log.d("debut", "debut");
+        String exerciceType = "Dynamic";
+        int INTERVAL = 0;
+        //CSVFile creation
+        Context context = getApplicationContext();
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context);
+        csvFile.sauvegarde();
+
+    }
 
 
     void displayCoordinate(List<MatOfPoint> listeMatOfPoints){

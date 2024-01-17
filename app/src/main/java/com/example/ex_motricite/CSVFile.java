@@ -5,9 +5,12 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -104,8 +107,8 @@ public class CSVFile {
 
 
              FileWriter writer = new FileWriter(file);
-             writer.write(recapExercice);
-             writer.write(entete);
+             writer.append(recapExercice);
+             writer.append(entete);
 
              Log.d("recap", recapExercice);
              Log.d("entete", entete);
@@ -126,10 +129,13 @@ public class CSVFile {
                  double coordY = listY.get(i); // Coord Y number in the list
                  String line = time + "," + coordX + "," + coordY + "\n";
                  //Ecrire Line
-                 writer.write(line);
+                 writer.append(line);
                  Log.d("ligne", line);
              }
+             writer.flush();
              writer.close();
+
+
              return true;
          } catch (Exception e) {
              e.printStackTrace();
