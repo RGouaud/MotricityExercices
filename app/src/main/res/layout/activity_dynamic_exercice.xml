@@ -56,6 +56,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/gradient_orange_to_pink"
                 android:text="Start"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="167dp"
                 tools:layout_editor_absoluteY="633dp" />
 
