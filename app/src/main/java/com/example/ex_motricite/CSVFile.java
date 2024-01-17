@@ -88,7 +88,7 @@ public class CSVFile {
                 + this.intervalTime + "\n\n" : "\n";
 
         //En-tête du tableau
-         String entete = "time(s),x,y\n"; //Entete du fichier
+         String entete = "time(ms),x,y\n"; //Entete du fichier
 
          Log.d("try", "try");
 
