@@ -25,13 +25,18 @@ public class CSVFile {
     private final String exerciceType;
     private final Integer exerciceTime;
     private final Integer intervalTime;
+    private String operatorName,patientName;
+
+
     private final int distance;
     private Context context;
 
-    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance, Context context){
+    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance, Context context, String patient, String operator){
         this.listX = listX;
         this.listY = listY;
         this.listNbFrame = listNbFrame;
+        this.operatorName = operator;
+        this.patientName = patient;
         this.exerciceType = exerciceType;
         this.exerciceTime = exerciceTime;
         this.intervalTime = intervalTime;
@@ -57,8 +62,6 @@ public class CSVFile {
                 rightNow.get(Calendar.MINUTE);
 
         //nom du fichier suvegarder au format csv
-        String patientName = "PatientTest";
-        String operatorName = "OperatorTest";
         String savefilename = patientName.replaceAll("\\s", "")
                 + operatorName.replaceAll("\\s", "")
                 + this.exerciceType

@@ -115,6 +115,8 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                         Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciceActivity.class);
                         intent.putExtra("Distance", et_distance.getText().toString());
                         intent.putExtra("Time", et_seconds.getText().toString());
+                        intent.putExtra("Patient", s_patient.getSelectedItem().toString());
+                        intent.putExtra("Operator", s_operator.getSelectedItem().toString());
                         startActivity(intent);
                     }
                 }
