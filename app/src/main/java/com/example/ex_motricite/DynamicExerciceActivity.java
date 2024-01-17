@@ -22,6 +22,7 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
@@ -42,15 +43,14 @@ public class DynamicExerciceActivity extends CameraActivity {
     boolean isRunning;
     private long timerLeftInMilliseconds;
 
-    private int DISTANCE;
     private int nbFrame;
+    private int DISTANCE;
     private int TIME;
     private int INTERVAL;
 
 
     List<Double> listX = new ArrayList<Double>();
     List<Double> listY = new ArrayList<Double>();
-
     List<Integer> listNbFrame = new ArrayList<Integer>();
 
     @Override
@@ -173,15 +173,21 @@ public class DynamicExerciceActivity extends CameraActivity {
 
                     Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(0,255,0), 4);
 
+                    List<Rect> listOfRect = new ArrayList<Rect>();
 
-                    /*for (MatOfPoint m: cnts){
+                    for (MatOfPoint m: cnts){
                         Rect r=Imgproc.boundingRect(m);
+                        listOfRect.add(r);
                         Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
-                    }*/
+                    }
+
+
+                    if(nbFrame != 0){
+                        stockTime(nbFrame);
+                        stockCoordinate(listOfRect);
+                    }
 
                     nbFrame += 1;
-                    stockCoordinate(cnts);
-                    stockTime(nbFrame);
 
                     cnts.clear();
 
@@ -215,6 +221,7 @@ public class DynamicExerciceActivity extends CameraActivity {
         if (OpenCVLoader.initDebug()) {
             cameraBridgeViewBase.enableView();
         }
+        b_start = findViewById(R.id.b_Start);
 
 
 
@@ -303,18 +310,28 @@ public class DynamicExerciceActivity extends CameraActivity {
 
 
 
-    void stockCoordinate(List<MatOfPoint> listeMatOfPoints){
-        for (MatOfPoint contour : listeMatOfPoints) {
-            // Accéder aux points du contour
-            Point[] pointsArray = contour.toArray();
+    void stockCoordinate(List<Rect> listOfRect){
+        Rect biggestRect = new Rect();
+        double biggestArea = 0;
+        double area;
 
-            // stocker les coordonnées des points dans les listes
-            for (Point point : pointsArray) {
-                listX.add(point.x);
-                listY.add(point.y);
-                //Log.d("ContourPoint", "X: " + point.x + ", Y: " + point.y);
+        //Detection of the biggest Rectangle
+        for (Rect rect : listOfRect) {
+            area = rect.height*rect.width;
+
+            if (area > biggestArea){
+                biggestArea = area;
+                biggestRect = rect;
             }
         }
+
+        // Middle coord of the biggest Rectangle
+        double centerX = biggestRect.x + biggestRect.width / 2.0;
+        double centerY = biggestRect.y + biggestRect.height / 2.0;
+
+        // add middles coords in list
+        listX.add(centerX);
+        listY.add(centerY);
     }
 
 
@@ -328,6 +345,8 @@ public class DynamicExerciceActivity extends CameraActivity {
         String exerciceType = "Dynamic";
         //CSVFile creation
         Context context = getApplicationContext();
+        Log.d("nbFrame", String.valueOf(listNbFrame.size()));
+        Log.d("nbCoords", String.valueOf(listX.size()));
         CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context);
         csvFile.sauvegarde();
 
