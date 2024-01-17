@@ -335,7 +335,7 @@ public class StaticExerciceActivity extends CameraActivity {
 
     void createCSV(){
         Log.d("debut", "debut");
-        String exerciceType = "Dynamic";
+        String exerciceType = "Static";
         int INTERVAL = 0;
         //CSVFile creation
         Context context = getApplicationContext();

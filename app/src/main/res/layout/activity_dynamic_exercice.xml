@@ -49,11 +49,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFFFFF" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_Start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/gradient_orange_to_pink"
                 android:text="Start"
                 tools:layout_editor_absoluteX="167dp"
                 tools:layout_editor_absoluteY="633dp" />
@@ -63,7 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:text="TextView"
                 android:textColor="#FFFFFF" />
 
             <TextView
@@ -71,7 +71,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:text="TextView"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>

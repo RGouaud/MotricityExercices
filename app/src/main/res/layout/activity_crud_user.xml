@@ -39,10 +39,12 @@
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#D3D3D3"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:padding="10dp"
+                android:textColor="@color/black"
                 android:hint="Name"
+                android:textColorHint="@color/black"
                 android:inputType="text" />
 
             <Space
@@ -53,10 +55,13 @@
             <EditText
                 android:id="@+id/et_firstname"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#D3D3D3"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:padding="10dp"
                 android:hint="First name"
+                android:textColorHint="@color/black"
+
+                android:textColor="@color/black"
                 android:inputType="text" />
 
             <Space
@@ -67,9 +72,11 @@
             <EditText
                 android:id="@+id/et_birthdate"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#D3D3D3"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                android:background="@drawable/edit_text_rounded"
+                android:padding="10dp"
+                android:textColor="@color/black"
                 android:hint="Birthday DD/MM/YYYY"
                 android:inputType="date" />
 
@@ -83,8 +90,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:layout_weight="1"
-                android:background="#D3D3D3"
+                android:background="@drawable/edit_text_rounded"
                 android:hint="Remarks"
                 android:inputType="textMultiLine"
                 android:maxHeight="150dp" />

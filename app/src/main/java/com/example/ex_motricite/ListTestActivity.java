@@ -54,8 +54,6 @@ public class ListTestActivity extends AppCompatActivity {
         LayoutListTest = findViewById(R.id.l_listTest);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
-        createCSVFile("test1");
-
         // Afficher tous les fichiers CSV au démarrage
         displayAllCSVFiles();
         selectedFiles.clear();
