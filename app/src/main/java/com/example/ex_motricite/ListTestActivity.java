@@ -55,20 +55,7 @@ public class ListTestActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
         createCSVFile("test1");
-        createCSVFile("test2");
-        createCSVFile("test3");
-        createCSVFile("test4");
-        createCSVFile("test5");
-        createCSVFile("test6");
-        createCSVFile("test7");
-        createCSVFile("test8");
-        createCSVFile("test9");
-        createCSVFile("test10");
-        createCSVFile("test11");
-        createCSVFile("test12");
-        createCSVFile("test13");
-        createCSVFile("test14");
-        createCSVFile("test15");
+
         // Afficher tous les fichiers CSV au démarrage
         displayAllCSVFiles();
         selectedFiles.clear();
