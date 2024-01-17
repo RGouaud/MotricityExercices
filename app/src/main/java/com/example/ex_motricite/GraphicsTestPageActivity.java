@@ -58,10 +58,13 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         ib_X_over_time= findViewById(R.id.ib_GraphXOverTime);;
         ib_Y_over_time= findViewById(R.id.ib_GraphYOverTime);;
 
+
         List<CoordsSample> datas = new ArrayList<>();
         datas = readCoordsData();
 
         List<CoordsSample> finalDatas = datas;
+
+        makeGraphic(finalDatas,theme.Y_X);
         ib_X_Y_over_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
