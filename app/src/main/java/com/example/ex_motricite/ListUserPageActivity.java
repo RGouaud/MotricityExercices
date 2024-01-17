@@ -68,7 +68,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "operator");
                             intent.putExtra("Crud", "read");
-                            intent.putExtra("idOperator", operator.getId());
+                            intent.putExtra("UserId", String.valueOf(operator.getId()));
                             startActivity(intent);
                         }
                     });
@@ -153,7 +153,7 @@ public class ListUserPageActivity extends AppCompatActivity {
                             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                             intent.putExtra("User", "patient");
                             intent.putExtra("Crud", "read");
-                            intent.putExtra("idPatient", patient.getId());
+                            intent.putExtra("UserId", String.valueOf(patient.getId()));
                             startActivity(intent);
                         }
                     });

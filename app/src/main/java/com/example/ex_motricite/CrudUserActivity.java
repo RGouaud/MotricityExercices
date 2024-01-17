@@ -112,7 +112,8 @@ public class CrudUserActivity extends AppCompatActivity {
                     }
                 });
 
-            } else if (crud.equals("update")) {
+            }
+            else if (crud.equals("update")) {
                 // setup display
                 tv_newuser.setText("Edit patient");
                 b_delete.setVisibility(View.VISIBLE);
@@ -162,6 +163,7 @@ public class CrudUserActivity extends AppCompatActivity {
                         // Check if patient is in an existing test
                         patientDAO.delPatient(patient);
                         Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                        startActivity(intent);
                     }
                 });
             }
@@ -221,7 +223,7 @@ public class CrudUserActivity extends AppCompatActivity {
                         Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
                         intent.putExtra("User", "patient");
                         intent.putExtra("Crud", "update");
-                        intent.putExtra("idPatient", patient.getId());
+                        intent.putExtra("UserId", String.valueOf(patient.getId()));
                         startActivity(intent);
                     }
                 });
@@ -298,8 +300,7 @@ public class CrudUserActivity extends AppCompatActivity {
                 });
 
             }
-
-            if (crud.equals("read")){
+            else if(crud.equals("read")){
                 Operator operator = operatorDAO.getOperator(Long.parseLong(userId));
                 tv_newuser.setText("Operator");
 
@@ -334,7 +335,7 @@ public class CrudUserActivity extends AppCompatActivity {
                         Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
                         intent.putExtra("User", "operator");
                         intent.putExtra("Crud", "update");
-                        intent.putExtra("idPatient", operator.getId());
+                        intent.putExtra("UserId", String.valueOf(operator.getId()));
                         startActivity(intent);
                     }
                 });
