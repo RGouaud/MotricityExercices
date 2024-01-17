@@ -48,6 +48,7 @@ public class DynamicExerciceActivity extends CameraActivity {
     private int TIME;
     private int INTERVAL;
 
+    private String PATIENT, OPERATOR;
 
     List<Double> listX = new ArrayList<Double>();
     List<Double> listY = new ArrayList<Double>();
@@ -66,7 +67,8 @@ public class DynamicExerciceActivity extends CameraActivity {
         DISTANCE = Integer.parseInt(myIntent.getStringExtra("Distance"));
         TIME = Integer.parseInt(myIntent.getStringExtra("Time"));
         INTERVAL = Integer.parseInt(myIntent.getStringExtra("Interval"));
-
+        PATIENT = myIntent.getStringExtra("Patient");
+        OPERATOR = myIntent.getStringExtra("Operator");
         tv_x = findViewById(R.id.tv_x);
         tv_y = findViewById(R.id.tv_y);
         countdown_text= findViewById (R.id.countdown_text);
@@ -347,7 +349,7 @@ public class DynamicExerciceActivity extends CameraActivity {
         Context context = getApplicationContext();
         Log.d("nbFrame", String.valueOf(listNbFrame.size()));
         Log.d("nbCoords", String.valueOf(listX.size()));
-        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context);
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context,PATIENT,OPERATOR);
         csvFile.sauvegarde();
 
     }

@@ -45,6 +45,7 @@ public class StaticExerciceActivity extends CameraActivity {
     private int nbFrame;
     private int DISTANCE;
     private int TIME;
+    private String PATIENT,OPERATOR;
 
     List<Double> listX = new ArrayList<Double>();
     List<Double> listY = new ArrayList<Double>();
@@ -62,6 +63,8 @@ public class StaticExerciceActivity extends CameraActivity {
         Intent myIntent = getIntent();
         DISTANCE = Integer.parseInt(myIntent.getStringExtra("Distance"));
         TIME = Integer.parseInt(myIntent.getStringExtra("Time"));
+        PATIENT = myIntent.getStringExtra("Patient");
+        OPERATOR = myIntent.getStringExtra("Operator");
 
         tv_x = findViewById(R.id.tv_x);
         tv_y = findViewById(R.id.tv_y);
@@ -336,7 +339,7 @@ public class StaticExerciceActivity extends CameraActivity {
         int INTERVAL = 0;
         //CSVFile creation
         Context context = getApplicationContext();
-        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context);
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context,PATIENT,OPERATOR);
         csvFile.sauvegarde();
 
     }

@@ -97,7 +97,7 @@ public class TestPageActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        //get
+
         ArrayList<String> newlist = new ArrayList<>();
         for (String ligne:listeLigne) {
             StringTokenizer tokenizer = new StringTokenizer(ligne, "=");

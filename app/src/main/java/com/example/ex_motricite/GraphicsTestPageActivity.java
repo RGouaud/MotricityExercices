@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -30,11 +32,15 @@ import java.util.List;
 
 public class GraphicsTestPageActivity extends AppCompatActivity {
 
+    private enum theme {
+        X, Y,Y_X
+    }
     private LineChart lineChart;
 
     private List<String> xValues;
 
     private Uri fileUri;
+    private ImageButton ib_X_Y_over_time,ib_X_over_time,ib_Y_over_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +49,44 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent myIntent = getIntent();
         String filePath = myIntent.getStringExtra("file_path");
+
+
         File monCsv = new File(filePath);
         fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);
         lineChart = findViewById(R.id.lineChart);
+        ib_X_Y_over_time= findViewById(R.id.ib_Graph);;
+        ib_X_over_time= findViewById(R.id.ib_GraphXOverTime);;
+        ib_Y_over_time= findViewById(R.id.ib_GraphYOverTime);;
+
         List<CoordsSample> datas = new ArrayList<>();
         datas = readCoordsData();
 
+        List<CoordsSample> finalDatas = datas;
+        ib_X_Y_over_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeGraphic(finalDatas,theme.Y_X);
+            }
+        });
+        ib_X_over_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeGraphic(finalDatas,theme.X);
+            }
+        });
+        ib_Y_over_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeGraphic(finalDatas,theme.Y);
+            }
+        });
+
+
+    }
+
+    private void makeGraphic(List<CoordsSample> datas,theme theme){
         Description description = new Description();
-        Log.d("MyActivity", "onCreate: "+datas.get(3).getTemps());
+
         description.setText("X(px) and Y(px) over Time(s)");
         description.setPosition(150f,15f);
         lineChart.setDescription(description);
@@ -74,30 +110,62 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         yAxix.setLabelCount(10);
 
         List<Entry> entries1 = new ArrayList<>();
-        List<Entry> entries2 = new ArrayList<>();
-        for (CoordsSample sample : datas){
-            Log.d("MyActivity", "onCreate: "+sample.getTemps());
-            entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_X())));
-            entries2.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_Y())));
+        LineDataSet dataSet1;
+        LineData lineData;
+
+        switch (theme){
+            case X:
+                for (CoordsSample sample : datas){
+                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_X())));
+                }
+                dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
+                dataSet1.setColor(Color.RED);
+
+                lineData = new LineData(dataSet1);
+
+                lineChart.setData(lineData);
+
+                lineChart.invalidate();
+                break;
+            case Y:
+
+                for (CoordsSample sample : datas){
+
+                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_Y())));
+                }
+                dataSet1 = new LineDataSet(entries1, "Y[t](pixels)");
+                dataSet1.setColor(Color.BLUE);
+
+                lineData = new LineData(dataSet1);
+
+                lineChart.setData(lineData);
+
+                lineChart.invalidate();
+                break;
+            case Y_X:
+
+                List<Entry> entries2 = new ArrayList<>();
+                for (CoordsSample sample : datas){
+
+                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_X())));
+                    entries2.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_Y())));
+                }
+
+                dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
+                dataSet1.setColor(Color.BLUE);
+
+                LineDataSet dataSet2 = new LineDataSet(entries2, "Y[t](pixels)");
+                dataSet1.setColor(Color.RED);
+
+                lineData = new LineData(dataSet1, dataSet2);
+
+                lineChart.setData(lineData);
+
+                lineChart.invalidate();
+                break;
         }
-
-
-
-        LineDataSet dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
-        dataSet1.setColor(Color.BLUE);
-
-        LineDataSet dataSet2 = new LineDataSet(entries2, "Y[t](pixels)");
-        dataSet1.setColor(Color.RED);
-
-        LineData lineData = new LineData(dataSet1, dataSet2);
-
-        lineChart.setData(lineData);
-
-        lineChart.invalidate();
-
-
-
     }
+
     private List<CoordsSample> readCoordsData(){
         List<CoordsSample> coordSamples = new ArrayList<>();
 
