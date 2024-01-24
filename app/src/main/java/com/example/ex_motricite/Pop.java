@@ -30,7 +30,7 @@ public class Pop extends Activity {
         b_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pop.this,homePageActivity.class));
+                startActivity(new Intent(Pop.this, HomePageActivity.class));
             }
         });
 

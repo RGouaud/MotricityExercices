@@ -4,7 +4,7 @@ D
 A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 p
-@app/src/main/java/com/example/ex_motricite/homePageActivity.java,a/e/ae2c2c660991a9f89d86d85b0f50b871c1f2d9ed
+@app/src/main/java/com/example/ex_motricite/homePageActivity.java,a\e\ae2c2c660991a9f89d86d85b0f50b871c1f2d9ed
 w
 G.idea/sonarlint/issuestore/d/2/d2a4383452aad84a18429a5844d31330a012a9e6,4/1/41d94d542eb07930019955e360e3288fdff2668b
 Å
@@ -85,3 +85,5 @@ e
 5app/src/main/java/com/example/ex_motricite/Actor.java,f\1\f15114a60504a92def479aa4f85a7d2ff853709a
 y
 Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
+p
+@app/src/main/java/com/example/ex_motricite/HomePageActivity.java,3\7\370b76a27498bbd12b5ade28b3b5c150ffd16c89

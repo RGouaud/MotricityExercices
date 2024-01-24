@@ -96,7 +96,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
 
 
         Intent myIntent = getIntent();
-        String exercice = myIntent.getStringExtra("Exercice");
+        String exercice = myIntent.getStringExtra("exercise");
 
         if (exercice.equals("static")){
             tv_settings_tittle.setText("Static test settings");
