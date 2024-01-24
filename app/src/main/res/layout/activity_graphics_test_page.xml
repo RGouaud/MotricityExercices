@@ -63,7 +63,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
-                    app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+                    app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+                    android:contentDescription="@string/graphic_for_x_over_time" />
 
                 <ImageButton
                     android:id="@+id/ib_Graph"
@@ -71,7 +72,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
-                    android:src="@android:drawable/btn_star" />
+                    android:src="@android:drawable/btn_star"
+                    android:contentDescription="@string/graphic_for_x_and_y_over_time" />
 
                 <ImageButton
                     android:id="@+id/ib_GraphYOverTime"
@@ -79,7 +81,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
-                    android:src="@android:drawable/ic_menu_sort_by_size" />
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    android:contentDescription="@string/graphic_for_y_over_time" />
             </LinearLayout>
 
         </LinearLayout>

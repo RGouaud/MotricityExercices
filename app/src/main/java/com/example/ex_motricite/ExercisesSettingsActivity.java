@@ -3,7 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -18,26 +18,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExercisesSettingsActivity extends AppCompatActivity {
 
-    private Spinner s_patient;
-    private Spinner s_operator;
-    private EditText et_distance;
-    private EditText et_interval;
-    private EditText et_seconds;
-    private TextView tv_settings_tittle;
-    private SeekBar sb_interval;
-    private Button b_start;
-    private PatientDAO patientDAO;
-    private Patient patient;
+    private Spinner sPatient;
+    private Spinner sOperator;
+    private EditText etInterval;
+    private SeekBar sbInterval;
     private ArrayList<Patient> lstPatient;
-    private OperatorDAO operatorDAO;
-    private Operator operator;
     private ArrayList<Operator> lstOperator;
 
-    public void DisplayActorsOnSpinners(ArrayList<? extends Actor> actors) {
-        ArrayAdapter<String> dataSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+    public void displayActorsOnSpinners(List<? extends Actor> actors) {
+        ArrayAdapter<String> dataSpinner = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         if (actors.get(0) instanceof Operator) {
            dataSpinner.add("Choose an operator");
         } else {
@@ -47,28 +40,36 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
             dataSpinner.add(actors.get(i).getName());
         }
         if (actors.get(0) instanceof Operator) {
-            s_operator.setAdapter(dataSpinner);
+            sOperator.setAdapter(dataSpinner);
         } else {
-            s_patient.setAdapter(dataSpinner);
+            sPatient.setAdapter(dataSpinner);
         }
 
     }
+    @SuppressLint({"SourceLockedOrientationActivity", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Todo : use fragments to reduce Cognitive Complexity
+        EditText etSeconds;
+        EditText etDistance;
+        OperatorDAO operatorDAO;
+        PatientDAO patientDAO;
+        Button bStart;
+        TextView tvSettingsTittle;
         super.onCreate(savedInstanceState);
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_exercises_settings);
-        s_operator = findViewById(R.id.s_manipulator);
-        s_patient = findViewById(R.id.s_patient);
-        et_distance = findViewById(R.id.et_distance);
-        et_interval = findViewById(R.id.et_interval);
-        et_seconds = findViewById(R.id.et_seconds);
-        sb_interval = findViewById(R.id.sb_interval);
-        tv_settings_tittle = findViewById(R.id.tv_settings_title);
-        sb_interval = findViewById(R.id.sb_interval);
-        b_start = findViewById(R.id.b_start);
+        sOperator = findViewById(R.id.s_manipulator);
+        sPatient = findViewById(R.id.s_patient);
+        etDistance = findViewById(R.id.et_distance);
+        etInterval = findViewById(R.id.et_interval);
+        etSeconds = findViewById(R.id.et_seconds);
+        sbInterval = findViewById(R.id.sb_interval);
+        tvSettingsTittle = findViewById(R.id.tv_settings_title);
+        sbInterval = findViewById(R.id.sb_interval);
+        bStart = findViewById(R.id.b_start);
 
         patientDAO = new PatientDAO(this);
         operatorDAO = new OperatorDAO(this);
@@ -89,113 +90,93 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
             Toast.makeText(this, "Error while getting patients", Toast.LENGTH_SHORT).show();
         }
 
-        et_interval.setFilters(new InputFilter[]{new MinMaxFilter(1, 15)});
+        etInterval.setFilters(new InputFilter[]{new MinMaxFilter(1, 15)});
 
-        sb_interval.setMax(15);
-        sb_interval.setProgress(0);
+        sbInterval.setMax(15);
+        sbInterval.setProgress(0);
 
 
         Intent myIntent = getIntent();
-        String exercice = myIntent.getStringExtra("Exercice");
+        String exercise = myIntent.getStringExtra("Exercice");
 
-        if (exercice.equals("static")){
-            tv_settings_tittle.setText("Static test settings");
-            et_interval.setVisibility(View.INVISIBLE);
-            sb_interval.setVisibility(View.INVISIBLE);
+        assert exercise != null;
+        if (exercise.equals("static")){
+            tvSettingsTittle.setText("Static test settings");
+            etInterval.setVisibility(View.INVISIBLE);
+            sbInterval.setVisibility(View.INVISIBLE);
 
-            b_start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (et_distance.getText().toString().matches("") || et_seconds.getText().toString().matches(""))
-                    {
-                        Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
+            bStart.setOnClickListener(v -> {
+                if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches(""))
+                {
+                    Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
 
-                    }
-                    else{
-                        Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciceActivity.class);
-                        intent.putExtra("Distance", et_distance.getText().toString());
-                        intent.putExtra("Time", et_seconds.getText().toString());
-                        intent.putExtra("Patient", s_patient.getSelectedItem().toString());
-                        intent.putExtra("Operator", s_operator.getSelectedItem().toString());
-                        startActivity(intent);
-                    }
+                }
+                else{
+                    Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciceActivity.class);
+                    intent.putExtra("Distance", etDistance.getText().toString());
+                    intent.putExtra("Time", etSeconds.getText().toString());
+                    intent.putExtra("Patient", sPatient.getSelectedItem().toString());
+                    intent.putExtra("Operator", sOperator.getSelectedItem().toString());
+                    startActivity(intent);
                 }
             });
-            DisplayActorsOnSpinners(lstPatient);
-            DisplayActorsOnSpinners(lstOperator);
         }
         else {
-            tv_settings_tittle.setText("Rythm test settings");
-            sb_interval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            tvSettingsTittle.setText("Rhythm test settings");
+            sbInterval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
                 // When Progress value changed.
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
-                    et_interval.setText(String.valueOf(sb_interval.getProgress()));
+                    etInterval.setText(String.valueOf(sbInterval.getProgress()));
                 }
 
                 // Notification that the user has started a touch gesture.
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
+                    // nothing to do when we start touching the bar
                 }
 
                 // Notification that the user has finished a touch gesture
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
+                    etInterval.setText(String.valueOf(sbInterval.getProgress()));
                 }
             });
-            et_interval.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(!hasFocus){
-                        sb_interval.setProgress(Integer.valueOf(et_interval.getText().toString()));
-                    }
+            etInterval.setOnFocusChangeListener((v, hasFocus) -> {
+                if(!hasFocus){
+                    sbInterval.setProgress(Integer.parseInt(etInterval.getText().toString()));
                 }
             });
-            b_start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (et_distance.getText().toString().matches("") || et_seconds.getText().toString().matches("")||et_interval.getText().toString().matches("") || s_patient.getSelectedItem().toString().matches("Choose a patient") || s_operator.getSelectedItem().toString().matches("Choose an operator"))
-                    {
-                        Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciceActivity.class);
-                        intent.putExtra("Distance", et_distance.getText().toString());
-                        intent.putExtra("Interval", et_interval.getText().toString());
-                        intent.putExtra("Time", et_seconds.getText().toString());
-                        intent.putExtra("Patient", s_patient.getSelectedItem().toString());
-                        intent.putExtra("Operator", s_operator.getSelectedItem().toString());
-                        startActivity(intent);
-                    }
+            bStart.setOnClickListener(v -> {
+                if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches("")|| etInterval.getText().toString().matches("") || sPatient.getSelectedItem().toString().matches("Choose a patient") || sOperator.getSelectedItem().toString().matches("Choose an operator"))
+                {
+                    Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciceActivity.class);
+                    intent.putExtra("Distance", etDistance.getText().toString());
+                    intent.putExtra("Interval", etInterval.getText().toString());
+                    intent.putExtra("Time", etSeconds.getText().toString());
+                    intent.putExtra("Patient", sPatient.getSelectedItem().toString());
+                    intent.putExtra("Operator", sOperator.getSelectedItem().toString());
+                    startActivity(intent);
                 }
             });
 
-            DisplayActorsOnSpinners(lstPatient);
-            DisplayActorsOnSpinners(lstOperator);
         }
+        displayActorsOnSpinners(lstPatient);
+        displayActorsOnSpinners(lstOperator);
 
     }
 
 
 
-    // logique
-    /*
-    passage d'un parametre a l'instanciation de la classe pour afficher ou non les parametres relatifs au test dynamiques
 
-    alimentation des spinners avec les données relatives
-
-    SI DYNAMIQUE
-    mise en place de la synchro entre les choix d'interval
-
-
-
-    BOUTON START : jsp
-
-    BOUTON RECOVER : grisé si pas de CSV trouvé  à l'emplacement
-    sinon : lire les méta données du dernier CSV et les écrire dans leurs emplacements
+/*TODO
+    BUTTON START : idk
+    RECOVER BUTTON: grayed out if no CSV found at the location
+    otherwise: read the meta data from the last CSV and write them to their editText
      */
 }
