@@ -9,5 +9,11 @@
     <string name="name_format">Name : %s</string>
     <string name="first_name_format">First name : %s</string>
     <string name="birthdate_format">Birthdate: %s</string>
+    <string name="development_motricity">DEVELOPMENT MOTRICITY</string>
+    <string name="button_to_go_back">button to go back</string>
+    <string name="static_exercice">Static Exercice</string>
+    <string name="consult_profiles">Consult Profiles</string>
+    <string name="rhythm_exercice">Rhythm Exercice</string>
+    <string name="settings">Settings</string>
 
 </resources>
