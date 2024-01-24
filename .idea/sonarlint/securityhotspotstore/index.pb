@@ -48,7 +48,7 @@ Q.idea/sonarlint/securityhotspotstore/7/4/749edfcc96398253e5b3416184e95c46621da8
 j
 :app/src/main/java/com/example/ex_motricite/PatientDAO.java,a/1/a1920da1f9dab993033108db9c17dd32bd28a7ff
 g
-7app/src/main/java/com/example/ex_motricite/Patient.java,8/c/8c5c9fcf02d14757e66630ffb739a837a05d989f
+7app/src/main/java/com/example/ex_motricite/Patient.java,8\c\8c5c9fcf02d14757e66630ffb739a837a05d989f
 p
 @app/src/main/java/com/example/ex_motricite/testPageActivity.java,4/d/4d819cdfc8c06ec950a0eef632c5f134f5521038
 t
