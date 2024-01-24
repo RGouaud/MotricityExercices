@@ -3,4 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="create_patient">Create a new patient</string>
+    <string name="create_operator">Create a new operator</string>
+    <string name="complete_fields">Complete all fields</string>
+
+    <string name="operator">Operator</string>
+    <string name="patient">Patient</string>
+
+    <string name="set_name">Name : </string>
+    <string name="set_first_name">First name : </string>
+    <string name="set_birth_date">Birth date : </string>
+    <string name="set_remarks">Remarks : </string>
+
+    <string name="button_edit">Edit</string>
+    <string name="edit_operator">Edit operator</string>
+    <string name="edit_patient">Edit patient</string>
 </resources>

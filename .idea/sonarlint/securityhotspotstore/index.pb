@@ -52,7 +52,7 @@ g
 p
 @app/src/main/java/com/example/ex_motricite/testPageActivity.java,4/d/4d819cdfc8c06ec950a0eef632c5f134f5521038
 t
-Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6/9/690a2f8c07cb1da82d961d2142b42b25081da824
+Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6\9\690a2f8c07cb1da82d961d2142b42b25081da824
 p
 @app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
 p
@@ -62,7 +62,7 @@ p
 r
 Bapp/src/main/java/com/example/ex_motricite/BdSQLiteOpenHelper.java,6\2\62e98436b84cb46ffc65af8d79f79da74881ecab
 p
-@app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3/2/3286bc2b9b890903a5c2e7d0454675e3ccd2a853
+@app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3\2\3286bc2b9b890903a5c2e7d0454675e3ccd2a853
 x
 Happ/src/main/java/com/example/ex_motricite/GraphicsTestPageActivity.java,4/d/4dc3597a5497f959f7da6d734726e0395b66bab0
 F
@@ -74,7 +74,7 @@ h
 C
 settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
 p
-@app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e/f/ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
+@app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 g
 7app/src/main/java/com/example/ex_motricite/CSVFile.java,6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc
 w
@@ -87,3 +87,5 @@ y
 Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
 p
 @app/src/main/java/com/example/ex_motricite/HomePageActivity.java,3\7\370b76a27498bbd12b5ade28b3b5c150ffd16c89
+v
+Fapp/src/main/java/com/example/ex_motricite/StaticExerciceActivity.java,7\0\7069c7d300df2541dd928441ac859770672d5deb
