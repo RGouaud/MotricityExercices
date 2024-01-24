@@ -1,5 +1,4 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -11,9 +10,8 @@
         android:id="@+id/ib_goback"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="10"
         android:backgroundTint="#00FFFFFF"
-        android:contentDescription="button to go back"
+        android:contentDescription="@string/button_to_go_back"
         android:onClick="@android:string/cancel"
         android:src="?attr/homeAsUpIndicator" />
 
@@ -22,9 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
         android:gravity="center"
-        android:text="DEVELOPMENT MOTRICITY"
+        android:text="@string/development_motricity"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"

@@ -2,6 +2,7 @@
     <string name="app_name">Ex_Motricite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="graphic_for_x_and_y_over_time">Graphic for X and Y over time</string>
     <string name="graphic_for_x_over_time">graphic_for_x_over_time</string>
     <string name="graphic_for_y_over_time">graphic_for_y_over_time</string>
@@ -19,5 +20,18 @@
     <string name="test_type">Test type :</string>
     <string name="test_durations">Test durations :</string>
     <string name="view_graphics">View Graphics</string>
+    <string name="operator">Operator</string>
+    <string name="patient">Patient</string>
+    <string name="add_a_patient">Add a patient</string>
+    <string name="add_a_operator">Add a operator</string>
+    <string name="name_format">Name : %s</string>
+    <string name="first_name_format">First name : %s</string>
+    <string name="birthdate_format">Birthdate: %s</string>
+    <string name="development_motricity">DEVELOPMENT MOTRICITY</string>
+    <string name="button_to_go_back">button to go back</string>
+    <string name="static_exercice">Static Exercice</string>
+    <string name="consult_profiles">Consult Profiles</string>
+    <string name="rhythm_exercice">Rhythm Exercice</string>
+    <string name="settings">Settings</string>
 
 </resources>
