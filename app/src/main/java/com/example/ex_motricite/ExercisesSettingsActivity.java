@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -45,8 +46,10 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
         }
 
     }
+    @SuppressLint({"SourceLockedOrientationActivity", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Todo : use fragments to reduce Cognitive Complexity
         EditText etSeconds;
         EditText etDistance;
         OperatorDAO operatorDAO;
@@ -96,6 +99,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         String exercise = myIntent.getStringExtra("Exercice");
 
+        assert exercise != null;
         if (exercise.equals("static")){
             tvSettingsTittle.setText("Static test settings");
             etInterval.setVisibility(View.INVISIBLE);
@@ -118,7 +122,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
             });
         }
         else {
-            tvSettingsTittle.setText("Rythm test settings");
+            tvSettingsTittle.setText("Rhythm test settings");
             sbInterval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
@@ -131,13 +135,13 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                 // Notification that the user has started a touch gesture.
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
+                    // nothing to do when we start touching the bar
                 }
 
                 // Notification that the user has finished a touch gesture
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
+                    etInterval.setText(String.valueOf(sbInterval.getProgress()));
                 }
             });
             etInterval.setOnFocusChangeListener((v, hasFocus) -> {
@@ -169,20 +173,10 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
 
 
 
-    // logique
-    /*
-    passage d'un parametre a l'instanciation de la classe pour afficher ou non les parametres relatifs au test dynamiques
 
-    alimentation des spinners avec les données relatives
-
-    SI DYNAMIQUE
-    mise en place de la synchro entre les choix d'interval
-
-
-
-    BOUTON START : jsp
-
-    BOUTON RECOVER : grisé si pas de CSV trouvé  à l'emplacement
-    sinon : lire les méta données du dernier CSV et les écrire dans leurs emplacements
+/*TODO
+    BUTTON START : idk
+    RECOVER BUTTON: grayed out if no CSV found at the location
+    otherwise: read the meta data from the last CSV and write them to their editText
      */
 }

@@ -3,24 +3,24 @@ package com.example.ex_motricite;
 import androidx.annotation.NonNull;
 
 public class CordsSample {
-    private String c_X;
-    private String c_Y;
+    private String cX;
+    private String cY;
     private String time;
 
-    public String getC_X() {
-        return c_X;
+    public String getCX() {
+        return cX;
     }
 
-    public void setC_X(String c_X) {
-        this.c_X = c_X;
+    public void setCX(String cX) {
+        this.cX = cX;
     }
 
-    public String getC_Y() {
-        return c_Y;
+    public String getCY() {
+        return cY;
     }
 
-    public void setC_Y(String c_Y) {
-        this.c_Y = c_Y;
+    public void setCY(String cY) {
+        this.cY = cY;
     }
 
     public String getTime() {
@@ -35,8 +35,8 @@ public class CordsSample {
     @Override
     public String toString() {
         return "CordsSample{" +
-                "c_X='" + c_X + '\'' +
-                ", c_Y='" + c_Y + '\'' +
+                "c_X='" + cX + '\'' +
+                ", c_Y='" + cY + '\'' +
                 ", temps='" + time + '\'' +
                 '}';
     }

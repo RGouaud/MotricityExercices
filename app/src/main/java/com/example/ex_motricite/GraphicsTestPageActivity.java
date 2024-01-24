@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -39,6 +40,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
     private Uri fileUri;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         String filePath = myIntent.getStringExtra("file_path");
 
         //Get the csv from the filepath
+        assert filePath != null;
         File myCsv = new File(filePath);
         fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", myCsv);
 
@@ -109,7 +112,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         switch (theme){
             case X:
                 for (CordsSample sample : data){
-                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_X())));
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getCX())));
                 }
                 dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
                 dataSet1.setColor(Color.RED);
@@ -124,7 +127,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
                 for (CordsSample sample : data){
 
-                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_Y())));
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getCY())));
                 }
                 dataSet1 = new LineDataSet(entries1, "Y[t](pixels)");
                 dataSet1.setColor(Color.BLUE);
@@ -140,8 +143,8 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
                 List<Entry> entries2 = new ArrayList<>();
                 for (CordsSample sample : data){
 
-                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_X())));
-                    entries2.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_Y())));
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getCX())));
+                    entries2.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getCY())));
                 }
 
                 dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
@@ -166,6 +169,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         try {
             is = getContentResolver().openInputStream(fileUri);
         } catch (FileNotFoundException e) {
+            //Todo : Define a dedicated exception
             throw new RuntimeException(e);
         }
         BufferedReader reader = new BufferedReader(
@@ -185,8 +189,8 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
                 CordsSample sample = new CordsSample();
                 sample.setTime(tokens[0]);
-                sample.setC_X(tokens[1]);
-                sample.setC_Y(tokens[2]);
+                sample.setCX(tokens[1]);
+                sample.setCY(tokens[2]);
 
                 cordSamples.add(sample);
 

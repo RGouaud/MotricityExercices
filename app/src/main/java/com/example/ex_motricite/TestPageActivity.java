@@ -62,11 +62,19 @@ public class TestPageActivity extends AppCompatActivity {
         try {
             is = getContentResolver().openInputStream(fileUri);
         } catch (FileNotFoundException e) {
+            //Todo : Define a dedicated exception
             throw new RuntimeException(e);
         }
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
+
+        // try closing the BufferedReader
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Get the information of the CSV
 
@@ -92,6 +100,7 @@ public class TestPageActivity extends AppCompatActivity {
 
 
         } catch (IOException e) {
+            //Todo : Define a dedicated exception
             throw new RuntimeException(e);
         }
 
@@ -110,6 +119,8 @@ public class TestPageActivity extends AppCompatActivity {
         tvType.setText(newList.get(0));
         tvPatient.setText(newList.get(1));
         tvOperator.setText(newList.get(2));
-        tvDuration.setText(newList.get(3)+"(s)");
+
+        String timeInSeconds = newList.get(3)+"(s)";
+        tvDuration.setText(timeInSeconds);
     }
 }

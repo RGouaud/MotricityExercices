@@ -2,5 +2,22 @@
     <string name="app_name">Ex_Motricite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="graphic_for_x_and_y_over_time">Graphic for X and Y over time</string>
+    <string name="graphic_for_x_over_time">graphic_for_x_over_time</string>
+    <string name="graphic_for_y_over_time">graphic_for_y_over_time</string>
+    <string name="set_your_text_here">Set your text here</string>
+    <string name="distance_between_points_cm">Distance between points (cm)</string>
+    <string name="exercise_duration_seconds">Exercise duration (seconds)</string>
+    <string name="beeps_interval_seconds">Beeps interval (seconds)</string>
+    <string name="start">Start</string>
+    <string name="recover_previous_test_s_settings">Recover previous test\'s settings</string>
+    <string name="test_successful">Test Successful</string>
+    <string name="go_back_home">Go Back Home</string>
+    <string name="test_of">Test of :</string>
+    <string name="patient">Patient :</string>
+    <string name="operator">Operator :</string>
+    <string name="test_type">Test type :</string>
+    <string name="test_durations">Test durations :</string>
+    <string name="view_graphics">View Graphics</string>
 
 </resources>
