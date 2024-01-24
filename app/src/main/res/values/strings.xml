@@ -15,8 +15,6 @@
     <string name="test_successful">Test Successful</string>
     <string name="go_back_home">Go Back Home</string>
     <string name="test_of">Test of :</string>
-    <string name="patient">Patient :</string>
-    <string name="operator">Operator :</string>
     <string name="test_type">Test type :</string>
     <string name="test_durations">Test durations :</string>
     <string name="view_graphics">View Graphics</string>

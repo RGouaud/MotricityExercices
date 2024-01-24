@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -69,23 +70,18 @@ public class TestPageActivity extends AppCompatActivity {
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
-        // try closing the BufferedReader
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         //Get the information of the CSV
 
         try {
-
             //step over the header
             reader.readLine();
 
             //Type of exercise
             lineList.add(reader.readLine());
 
+            Log.d("debug", "fillTextView: chef? " +lineList.toString());
             //Patient
             lineList.add(reader.readLine());
 
@@ -103,7 +99,12 @@ public class TestPageActivity extends AppCompatActivity {
             //Todo : Define a dedicated exception
             throw new RuntimeException(e);
         }
-
+// try closing the BufferedReader
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         ArrayList<String> newList = new ArrayList<>();
         for (String line:lineList) {
