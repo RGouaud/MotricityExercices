@@ -54,7 +54,7 @@ p
 t
 Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6/9/690a2f8c07cb1da82d961d2142b42b25081da824
 p
-@app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4/d/4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
+@app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
 p
 @app/src/main/java/com/example/ex_motricite/ListTestActivity.java,6/3/632bcdfe1764f54be38613ff44adea6a48a53391
 p
