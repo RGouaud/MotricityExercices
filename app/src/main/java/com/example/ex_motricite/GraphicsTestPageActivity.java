@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -26,7 +25,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +37,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
     }
     private LineChart lineChart;
 
-    private List<String> xValues;
-
     private Uri fileUri;
-    private ImageButton ib_X_Y_over_time,ib_X_over_time,ib_Y_over_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,44 +47,37 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         String filePath = myIntent.getStringExtra("file_path");
 
+        //Get the csv from the filepath
+        File myCsv = new File(filePath);
+        fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", myCsv);
 
-        File monCsv = new File(filePath);
-        fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);
         lineChart = findViewById(R.id.lineChart);
-        ib_X_Y_over_time= findViewById(R.id.ib_Graph);;
-        ib_X_over_time= findViewById(R.id.ib_GraphXOverTime);;
-        ib_Y_over_time= findViewById(R.id.ib_GraphYOverTime);;
+
+        //Setup the onClick
+        ImageButton ibXYOverTime = findViewById(R.id.ib_Graph);
+
+        ImageButton ibXOverTime = findViewById(R.id.ib_GraphXOverTime);
+
+        ImageButton ibYOverTime = findViewById(R.id.ib_GraphYOverTime);
 
 
-        List<CoordsSample> datas = new ArrayList<>();
-        datas = readCoordsData();
 
-        List<CoordsSample> finalDatas = datas;
+        List<CordsSample> data ;
+        data = readCordsData();
 
-        makeGraphic(finalDatas,theme.Y_X);
-        ib_X_Y_over_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeGraphic(finalDatas,theme.Y_X);
-            }
-        });
-        ib_X_over_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeGraphic(finalDatas,theme.X);
-            }
-        });
-        ib_Y_over_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeGraphic(finalDatas,theme.Y);
-            }
-        });
+        List<CordsSample> finalData = data;
+
+        makeGraphic(finalData,theme.Y_X);
+
+
+        ibXYOverTime.setOnClickListener(v -> makeGraphic(finalData,theme.Y_X));
+        ibXOverTime.setOnClickListener(v -> makeGraphic(finalData,theme.X));
+        ibYOverTime.setOnClickListener(v -> makeGraphic(finalData,theme.Y));
 
 
     }
 
-    private void makeGraphic(List<CoordsSample> datas,theme theme){
+    private void makeGraphic(List<CordsSample> data, theme theme){
         Description description = new Description();
 
         description.setText("X(px) and Y(px) over Time(s)");
@@ -96,21 +86,21 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         lineChart.getAxisRight().setDrawLabels(false);
 
 
-        XAxis xAxix = lineChart.getXAxis();
-        xAxix.setAxisMinimum(0f);
-        xAxix.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxix.setGranularity(10f);
-        xAxix.setAxisMaximum(Float.parseFloat(datas.get(datas.size()-1).getTemps())/1000);
-        xAxix.setAxisLineWidth(2f);
-        xAxix.setAxisLineColor(Color.BLACK);
-        xAxix.setLabelCount(10);
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setAxisMinimum(0f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(10f);
+        xAxis.setAxisMaximum(Float.parseFloat(data.get(data.size()-1).getTime())/1000);
+        xAxis.setAxisLineWidth(2f);
+        xAxis.setAxisLineColor(Color.BLACK);
+        xAxis.setLabelCount(10);
 
-        YAxis yAxix = lineChart.getAxisLeft();
-        yAxix.setAxisMinimum(70f);
-        yAxix.setAxisMaximum(1700f);
-        yAxix.setAxisLineWidth(2f);
-        yAxix.setAxisLineColor(Color.BLACK);
-        yAxix.setLabelCount(10);
+        YAxis yAxis = lineChart.getAxisLeft();
+        yAxis.setAxisMinimum(70f);
+        yAxis.setAxisMaximum(1700f);
+        yAxis.setAxisLineWidth(2f);
+        yAxis.setAxisLineColor(Color.BLACK);
+        yAxis.setLabelCount(10);
 
         List<Entry> entries1 = new ArrayList<>();
         LineDataSet dataSet1;
@@ -118,8 +108,8 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
         switch (theme){
             case X:
-                for (CoordsSample sample : datas){
-                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_X())));
+                for (CordsSample sample : data){
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_X())));
                 }
                 dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
                 dataSet1.setColor(Color.RED);
@@ -132,9 +122,9 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
                 break;
             case Y:
 
-                for (CoordsSample sample : datas){
+                for (CordsSample sample : data){
 
-                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_Y())));
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_Y())));
                 }
                 dataSet1 = new LineDataSet(entries1, "Y[t](pixels)");
                 dataSet1.setColor(Color.BLUE);
@@ -148,10 +138,10 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
             case Y_X:
 
                 List<Entry> entries2 = new ArrayList<>();
-                for (CoordsSample sample : datas){
+                for (CordsSample sample : data){
 
-                    entries1.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_X())));
-                    entries2.add(new Entry(Float.parseFloat(sample.getTemps())/1000,Float.parseFloat(sample.getC_Y())));
+                    entries1.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_X())));
+                    entries2.add(new Entry(Float.parseFloat(sample.getTime())/1000,Float.parseFloat(sample.getC_Y())));
                 }
 
                 dataSet1 = new LineDataSet(entries1, "X[t](pixels)");
@@ -169,17 +159,17 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         }
     }
 
-    private List<CoordsSample> readCoordsData(){
-        List<CoordsSample> coordSamples = new ArrayList<>();
+    private List<CordsSample> readCordsData(){
+        List<CordsSample> cordSamples = new ArrayList<>();
 
-        InputStream is = null;
+        InputStream is;
         try {
             is = getContentResolver().openInputStream(fileUri);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
+                new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
         String line = "";
@@ -189,19 +179,17 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
             for (int i=0; i<10 ;i++) reader.readLine();
 
             while (((line = reader.readLine()) != null)) {
-                Log.d("MyActivity", "Line :" + line);
                 //split by ";"
                 String[] tokens = line.split(",");
                 //read the data
 
-                CoordsSample sample = new CoordsSample();
-                sample.setTemps(tokens[0]);
+                CordsSample sample = new CordsSample();
+                sample.setTime(tokens[0]);
                 sample.setC_X(tokens[1]);
                 sample.setC_Y(tokens[2]);
 
-                coordSamples.add(sample);
+                cordSamples.add(sample);
 
-                Log.d("MyActivity", "Just created" + sample);
 
             }
         } catch (IOException e) {
@@ -209,7 +197,7 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return coordSamples;
+        return cordSamples;
     }
 
 

@@ -3,11 +3,11 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,16 +17,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class TestPageActivity extends AppCompatActivity {
-    private Uri fileUri;
-    private Button buttonViewGraphs;
 
-    private TextView tv_Duration,tv_Operator,tv_Patient,tv_Type;
+    private TextView tvDuration;
+    private TextView tvOperator;
+    private TextView tvPatient;
+    private TextView tvType;
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,38 +37,35 @@ public class TestPageActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         String filePath = myIntent.getStringExtra("file_path");
 
-        tv_Duration = findViewById(R.id.textViewTestTime);
-        tv_Operator = findViewById(R.id.textViewOperator);
-        tv_Patient = findViewById(R.id.textViewPatient);
-        tv_Type = findViewById(R.id.textViewTestType);
+        tvDuration = findViewById(R.id.textViewTestTime);
+        tvOperator = findViewById(R.id.textViewOperator);
+        tvPatient = findViewById(R.id.textViewPatient);
+        tvType = findViewById(R.id.textViewTestType);
 
-        buttonViewGraphs = findViewById(R.id.b_viewGraphics);
-        remplirTextView(filePath);
+        Button buttonViewGraphs = findViewById(R.id.b_viewGraphics);
+        fillTextView(filePath);
 
-        buttonViewGraphs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TestPageActivity.this, GraphicsTestPageActivity.class);
-                intent.putExtra("file_path", filePath);
-                startActivity(intent);
-            }
+        buttonViewGraphs.setOnClickListener(v -> {
+            Intent intent = new Intent(TestPageActivity.this, GraphicsTestPageActivity.class);
+            intent.putExtra("file_path", filePath);
+            startActivity(intent);
         });
 
     }
 
-    private void remplirTextView(String filePath){
+    private void fillTextView(String filePath){
         File monCsv = new File(filePath);
-        fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);
-        ArrayList<String> listeLigne = new ArrayList<>();
+        Uri fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);
+        ArrayList<String> lineList = new ArrayList<>();
 
-        InputStream is = null;
+        InputStream is;
         try {
             is = getContentResolver().openInputStream(fileUri);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
+                new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
         //Get the information of the CSV
@@ -77,20 +75,20 @@ public class TestPageActivity extends AppCompatActivity {
             //step over the header
             reader.readLine();
 
-            //Type of exercice
-            listeLigne.add(reader.readLine());
+            //Type of exercise
+            lineList.add(reader.readLine());
 
             //Patient
-            listeLigne.add(reader.readLine());
+            lineList.add(reader.readLine());
 
             //operator
-            listeLigne.add(reader.readLine());
+            lineList.add(reader.readLine());
 
             //Step over the Distance
             reader.readLine();
 
             //Duration
-            listeLigne.add(reader.readLine());
+            lineList.add(reader.readLine());
 
 
         } catch (IOException e) {
@@ -98,20 +96,20 @@ public class TestPageActivity extends AppCompatActivity {
         }
 
 
-        ArrayList<String> newlist = new ArrayList<>();
-        for (String ligne:listeLigne) {
-            StringTokenizer tokenizer = new StringTokenizer(ligne, "=");
+        ArrayList<String> newList = new ArrayList<>();
+        for (String line:lineList) {
+            StringTokenizer tokenizer = new StringTokenizer(line, "=");
             while (tokenizer.hasMoreElements()) {
                 //skip the first part
                 tokenizer.nextElement();
-                newlist.add(tokenizer.nextElement().toString());
+                newList.add(tokenizer.nextElement().toString());
             }
         }
 
         //Set the textView
-        tv_Type.setText(newlist.get(0));
-        tv_Patient.setText(newlist.get(1));
-        tv_Operator.setText(newlist.get(2));
-        tv_Duration.setText(newlist.get(3)+"(s)");
+        tvType.setText(newList.get(0));
+        tvPatient.setText(newList.get(1));
+        tvOperator.setText(newList.get(2));
+        tvDuration.setText(newList.get(3)+"(s)");
     }
 }

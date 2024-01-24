@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -27,12 +26,7 @@ public class Pop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        b_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Pop.this,homePageActivity.class));
-            }
-        });
+        b_home.setOnClickListener(v -> startActivity(new Intent(Pop.this,homePageActivity.class)));
 
         getWindow().setLayout((int) (width*.4),(int) (height*.4));
     }

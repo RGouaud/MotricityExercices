@@ -1,9 +1,11 @@
 package com.example.ex_motricite;
 
-public class CoordsSample {
+import androidx.annotation.NonNull;
+
+public class CordsSample {
     private String c_X;
     private String c_Y;
-    private String temps;
+    private String time;
 
     public String getC_X() {
         return c_X;
@@ -21,20 +23,21 @@ public class CoordsSample {
         this.c_Y = c_Y;
     }
 
-    public String getTemps() {
-        return temps;
+    public String getTime() {
+        return time;
     }
 
-    public void setTemps(String temps) {
-        this.temps = temps;
+    public void setTime(String time) {
+        this.time = time;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "CoordsSample{" +
+        return "CordsSample{" +
                 "c_X='" + c_X + '\'' +
                 ", c_Y='" + c_Y + '\'' +
-                ", temps='" + temps + '\'' +
+                ", temps='" + time + '\'' +
                 '}';
     }
 }
