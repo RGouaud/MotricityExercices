@@ -1,16 +1,15 @@
 package com.example.ex_motricite;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-import android.content.Context;
-import android.content.SharedPreferences;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,8 +22,6 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText etUrlServer;
     private EditText etIdServer;
     private EditText etPassword;
-    private Button bConfirm;
-    private Button bTestConnection;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -41,8 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
         etIdServer = findViewById(R.id.et_idServer);
         etPassword = findViewById(R.id.et_password);
 
-        bConfirm = findViewById(R.id.b_confirmSave);
-        bTestConnection = findViewById(R.id.b_testConnection);
+        Button bConfirm = findViewById(R.id.b_confirmSave);
+        Button bTestConnection = findViewById(R.id.b_testConnection);
 
         //get shared preferences
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -50,61 +47,45 @@ public class SettingsActivity extends AppCompatActivity {
         //load settings
         loadSettings();
 
-        rbEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onRadioButtonClicked(rbEmail);
-            }
+        rbEmail.setOnClickListener(v -> onRadioButtonClicked(rbEmail));
+
+        rbServer.setOnClickListener(v -> onRadioButtonClicked(rbServer));
+
+        bTestConnection.setOnClickListener(view -> {
+            // TODO: faire la requête HTTP pour tester la connexion
         });
 
-        rbServer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onRadioButtonClicked(rbServer);
-            }
-        });
+        bConfirm.setOnClickListener(view -> {
+            // Logique pour le bouton "Confirm"
+            // Récupérez les données des champs EditText et RadioButton
+            String email = etEmail.getText().toString();
+            String urlServer = etUrlServer.getText().toString();
+            String idServer = etIdServer.getText().toString();
+            String password = etPassword.getText().toString();
 
-        bTestConnection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: faire la requête HTTP pour tester la connexion
-            }
-        });
+            boolean isEmailSelected = rbEmail.isChecked();
+            boolean isServerSelected = rbServer.isChecked();
 
-        bConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Logique pour le bouton "Confirm"
-                // Récupérez les données des champs EditText et RadioButton
-                String email = etEmail.getText().toString();
-                String urlServer = etUrlServer.getText().toString();
-                String idServer = etIdServer.getText().toString();
-                String password = etPassword.getText().toString();
+            // Créez un objet JSON pour stocker les données
+            JSONObject jsonData = new JSONObject();
 
-                boolean isEmailSelected = rbEmail.isChecked();
-                boolean isServerSelected = rbServer.isChecked();
+            try {
+                jsonData.put("email", email);
+                jsonData.put("urlServer", urlServer);
+                jsonData.put("idServer", idServer);
+                jsonData.put("password", password);
+                jsonData.put("isEmailSelected", isEmailSelected);
+                jsonData.put("isServerSelected", isServerSelected);
 
-                // Créez un objet JSON pour stocker les données
-                JSONObject jsonData = new JSONObject();
+                saveSettings(jsonData);
 
-                try {
-                    jsonData.put("email", email);
-                    jsonData.put("urlServer", urlServer);
-                    jsonData.put("idServer", idServer);
-                    jsonData.put("password", password);
-                    jsonData.put("isEmailSelected", isEmailSelected);
-                    jsonData.put("isServerSelected", isServerSelected);
+                Toast.makeText(SettingsActivity.this, "Settings saved", Toast.LENGTH_SHORT).show();
 
-                    saveSettings(jsonData);
+                finish();
 
-                    Toast.makeText(SettingsActivity.this, "Settings saved", Toast.LENGTH_SHORT).show();
-
-                    finish();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(SettingsActivity.this, "Error saving settings", Toast.LENGTH_SHORT).show();
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(SettingsActivity.this, "Error saving settings", Toast.LENGTH_SHORT).show();
             }
         });
     }
