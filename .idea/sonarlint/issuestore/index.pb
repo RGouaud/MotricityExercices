@@ -60,7 +60,7 @@ p
 p
 @app/src/main/java/com/example/ex_motricite/TestPageActivity.java,2/8/2852c891388ba3ec2805af12d8862f67c4cad611
 r
-Bapp/src/main/java/com/example/ex_motricite/BdSQLiteOpenHelper.java,6/2/62e98436b84cb46ffc65af8d79f79da74881ecab
+Bapp/src/main/java/com/example/ex_motricite/BdSQLiteOpenHelper.java,6\2\62e98436b84cb46ffc65af8d79f79da74881ecab
 p
 @app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3/2/3286bc2b9b890903a5c2e7d0454675e3ccd2a853
 x
@@ -79,5 +79,9 @@ g
 7app/src/main/java/com/example/ex_motricite/CSVFile.java,6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc
 w
 Gapp/src/main/java/com/example/ex_motricite/DynamicExerciceActivity.java,9/6/966904abab48e2823d2bb5bcf7cb7e2604c48676
-i
-9app/src/main/java/com/example/ex_motricite/CSVReader.java,a/a/aabc027dbaad1a4af6cb90a30721f575cace661b
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+e
+5app/src/main/java/com/example/ex_motricite/Actor.java,f\1\f15114a60504a92def479aa4f85a7d2ff853709a
+y
+Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
