@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">Ex_Motricity</string>
+    <string name="app_name">Ex_Motricite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time_left">Time Left :</string>
+    <string name="_10_00">10:00</string>
+
+    <string name="unselect_all">Unselect all</string>
+    <string name="export_selection">Export Selection</string>
+    <string name="select_all">Select all</string>
+    <string name="list_of_test">List of Test:</string>
+    <string name="filters">Filters</string>
 
     <string name="create_patient">Create a new patient</string>
     <string name="create_operator">Create a new operator</string>

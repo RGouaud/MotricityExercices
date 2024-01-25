@@ -1,0 +1,10 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(ÖŞ¬Ÿ
+m
+java:S1104"RMake b_home a static final constant or non-public and provide accessors if needed.(ı¾üÿÿÿÿ
+k	java:S116"QRename this field "b_home" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı¾üÿÿÿÿ
+O
+java:S1874"9Remove this use of "getDefaultDisplay"; it is deprecated.(×¥ÁÒ
+H
+java:S1874"2Remove this use of "getMetrics"; it is deprecated.(×¥ÁÒ

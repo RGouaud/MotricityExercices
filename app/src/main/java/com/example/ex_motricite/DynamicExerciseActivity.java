@@ -1,7 +1,7 @@
 package com.example.ex_motricite;
 
-import androidx.annotation.NonNull;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,7 +11,6 @@ import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,30 +28,41 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-public class DynamicExerciceActivity extends CameraActivity {
+public class DynamicExerciseActivity extends CameraActivity {
 
-    TextView tv_x,tv_y,countdown_text;
+    TextView tvX;
+    TextView tvY;
+    TextView countdownText;
     CameraBridgeViewBase cameraBridgeViewBase;
-    Mat prev_gray,rgb,curr_gray, diff, result, output, image_rgb, rgb_affich;
+    Mat prevGray;
+    Mat rgb;
+    Mat currGray;
+    Mat diff;
+    Mat result;
+    Mat output;
+    Mat imageRgb;
+    Mat rgbDisplay;
     ToneGenerator toneGenerator;
-    boolean is_init;
-    List<MatOfPoint> cnts;
+    boolean isInit;
+    List<MatOfPoint> outlines; // list of outlines
     CountDownTimer countDownTimer;
-    Button b_start;
+    Button bStart;
     boolean isRunning;
     private long timerLeftInMilliseconds;
 
     private int nbFrame;
-    private int DISTANCE;
-    private int TIME;
-    private int INTERVAL;
+    private int distance;
+    private int time;
+    private int interval;
 
-    private String PATIENT, OPERATOR;
+    private String patient;
+    private String operator;
 
-    List<Double> listX = new ArrayList<Double>();
-    List<Double> listY = new ArrayList<Double>();
-    List<Integer> listNbFrame = new ArrayList<Integer>();
+    List<Double> listX = new ArrayList<>();
+    List<Double> listY = new ArrayList<>();
+    List<Integer> listNbFrame = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,126 +74,120 @@ public class DynamicExerciceActivity extends CameraActivity {
         //Get the settings value
 
         Intent myIntent = getIntent();
-        DISTANCE = Integer.parseInt(myIntent.getStringExtra("Distance"));
-        TIME = Integer.parseInt(myIntent.getStringExtra("Time"));
-        INTERVAL = Integer.parseInt(myIntent.getStringExtra("Interval"));
-        PATIENT = myIntent.getStringExtra("Patient");
-        OPERATOR = myIntent.getStringExtra("Operator");
-        tv_x = findViewById(R.id.tv_x);
-        tv_y = findViewById(R.id.tv_y);
-        countdown_text= findViewById (R.id.countdown_text);
-        is_init= false;
+        distance = Integer.parseInt(Objects.requireNonNull(myIntent.getStringExtra("Distance")));
+        time = Integer.parseInt(Objects.requireNonNull(myIntent.getStringExtra("Time")));
+        interval = Integer.parseInt(Objects.requireNonNull(myIntent.getStringExtra("Interval")));
+        patient = myIntent.getStringExtra("Patient");
+        operator = myIntent.getStringExtra("Operator");
+        tvX = findViewById(R.id.tv_x);
+        tvY = findViewById(R.id.tv_y);
+        countdownText = findViewById (R.id.countdown_text);
+        isInit = false;
         nbFrame = 0;
 
         isRunning = false;
-        timerLeftInMilliseconds = TIME *1000;
+        timerLeftInMilliseconds = time * 1000L;
 
         updateTimer();
         getPermission();
 
-        b_start = findViewById(R.id.b_Start);
+        bStart = findViewById(R.id.b_Start);
         cameraBridgeViewBase = findViewById(R.id.java_camera_view);
 
         cameraBridgeViewBase.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener2() {
             @Override
             public void onCameraViewStarted(int width, int height) {
-                curr_gray = new Mat();
+                currGray = new Mat();
                 rgb = new Mat();
                 result = new Mat();
-                prev_gray = new Mat();
+                prevGray = new Mat();
                 diff = new Mat();
                 output = new Mat();
-                rgb_affich = new Mat();
-                image_rgb = new Mat();
-                cnts = new ArrayList<>();
+                rgbDisplay = new Mat();
+                imageRgb = new Mat();
+                outlines = new ArrayList<>();
             }
 
             @Override
             public void onCameraViewStopped() {
-
+                // Empty for the moment
             }
 
             @Override
             public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-                if(!is_init){
-                    prev_gray = inputFrame.gray();
-                    is_init=true;
-                    return prev_gray;
+                if(!isInit){
+                    prevGray = inputFrame.gray();
+                    isInit =true;
+                    return prevGray;
                 }
 
-                //rgb = inputFrame.rgba();
-                rgb_affich = inputFrame.rgba();
+
+                rgbDisplay = inputFrame.rgba();
 
 
                 if (isRunning){
 
+                    imageRgb = inputFrame.rgba();
 
 
-                    //curr_gray = inputFrame.gray();
-                    image_rgb = inputFrame.rgba();
-
-
-
-                    //Convertir l'image en espace colorimetrique HSV
-                    Imgproc.cvtColor(image_rgb, rgb, Imgproc.COLOR_RGB2HSV);
+                    //Convert image in HSV
+                    Imgproc.cvtColor(imageRgb, rgb, Imgproc.COLOR_RGB2HSV);
 
 
 
                     // SATURATION MAX
-                    // Diviser les canaux H, S et V
+                    // Divide H, S and V
                     List<Mat> hsvChannels = new ArrayList<>();
                     Core.split(rgb, hsvChannels);
 
-                    // Ajuster la composante de saturation
+                    // increase saturation value
                     Mat s = hsvChannels.get(1);
                     Core.multiply(s, new Scalar(1, 1, 1), s);
                     Core.normalize(s, s, 0, 255, Core.NORM_MINMAX);
 
-                    // Fusionner les canaux H, S et V mis à jour
+                    // merge updated H, S et V channels
                     Core.merge(hsvChannels, rgb);
 
                     Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_HSV2RGB);
                     Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_RGB2HSV);
-                    //Imgproc.cvtColor(rgb, rgb, Imgproc.COLOR_HSV2BGR);
 
 
 
                     //RED FILTER
-                    // Définir la plage de teintes pour la composante
-                    Scalar lowerRed = new Scalar(160, 100, 20);  // Valeurs HSV pour le
+                    // Define Value of Red Filter (HSV)
+                    Scalar lowerRed = new Scalar(160, 100, 20);  // HSV values
                     Scalar upperRed = new Scalar(179, 255, 255);
 
-                    // Créer un masque pour la composante red
+                    // Create red mask
                     Mat mask = new Mat();
                     Core.inRange(rgb, lowerRed, upperRed, mask);
 
-                    // Appliquer le masque à l'image d'origine
+                    // merge red mask with initial image
                     Mat redImage = new Mat();
                     Core.bitwise_and(rgb, rgb, redImage, mask);
 
 
-                    Imgproc.cvtColor(redImage, curr_gray, Imgproc.COLOR_BGR2GRAY);
+                    Imgproc.cvtColor(redImage, currGray, Imgproc.COLOR_BGR2GRAY);
 
 
 
-
-                    Core.absdiff(curr_gray,prev_gray,diff);
+                    Core.absdiff(currGray, prevGray,diff);
                     Imgproc.threshold(diff,diff,40,255,Imgproc.THRESH_BINARY);
-                    Imgproc.findContours(diff,cnts,new Mat(),Imgproc.RETR_CCOMP,Imgproc.CHAIN_APPROX_SIMPLE);
+                    Imgproc.findContours(diff, outlines,new Mat(),Imgproc.RETR_CCOMP,Imgproc.CHAIN_APPROX_SIMPLE);
 
-                    //Imgproc.cvtColor(rgb, rgb_affich, Imgproc.COLOR_HSV2BGR);
+                    Imgproc.drawContours(rgbDisplay, outlines,-1,new Scalar(0,255,0), 4);
 
-                    Imgproc.drawContours(rgb_affich,cnts,-1,new Scalar(0,255,0), 4);
+                    List<Rect> listOfRect = new ArrayList<>();
 
-                    List<Rect> listOfRect = new ArrayList<Rect>();
-
-                    for (MatOfPoint m: cnts){
+                    // Display outlines
+                    for (MatOfPoint m: outlines){
                         Rect r=Imgproc.boundingRect(m);
                         listOfRect.add(r);
-                        Imgproc.rectangle(rgb_affich,r,new Scalar(0,255,0),3);
+                        Imgproc.rectangle(rgbDisplay,r,new Scalar(0,255,0),3);
                     }
 
 
+                    // Save laser's coordinates
                     if(nbFrame != 0){
                         stockTime(nbFrame);
                         stockCoordinate(listOfRect);
@@ -191,68 +195,50 @@ public class DynamicExerciceActivity extends CameraActivity {
 
                     nbFrame += 1;
 
-                    cnts.clear();
+                    outlines.clear();
 
 
-                    prev_gray = curr_gray.clone();
-
-
-
+                    prevGray = currGray.clone();
                 }
 
-                int largeur = rgb_affich.cols();
-                int hauteur = rgb_affich.rows();
-                Log.d("Largeur", String.valueOf(largeur));
-                //Log.d("Hauteur", String.valueOf(hauteur));
-
-                Imgproc.circle(rgb_affich, new Point(400, 360), 17, new Scalar(0, 0, 0), 10);
-                Imgproc.circle(rgb_affich, new Point(1040, 360), 17, new Scalar(0, 0, 0), 10);
+                //Display circles
+                Imgproc.circle(rgbDisplay, new Point(400, 360), 17, new Scalar(0, 0, 0), 10);
+                Imgproc.circle(rgbDisplay, new Point(1040, 360), 17, new Scalar(0, 0, 0), 10);
 
 
-
-
-
-
-
-                // Afficher le résultat ou le transmettre à d'autres opérations
-
-                return rgb_affich;
+                return rgbDisplay;
             }
         });
 
         if (OpenCVLoader.initDebug()) {
             cameraBridgeViewBase.enableView();
         }
-        b_start = findViewById(R.id.b_Start);
+        bStart = findViewById(R.id.b_Start);
 
 
 
-        b_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startstop();
-            }
-        });
+        bStart.setOnClickListener(v -> startStop());
 
 
     }
-    public void startstop(){
+    public void startStop(){
         if (isRunning){
             stopTimer();
         }
         else {
-            startTimer(INTERVAL);
+            startTimer(interval);
         }
     }
-    public void startTimer(int intervalleBeep){
+    @SuppressLint("SetTextI18n")
+    public void startTimer(int intervalBeep){
         toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 8000); // Volume 100
         countDownTimer = new CountDownTimer(timerLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerLeftInMilliseconds = millisUntilFinished;
-                int secondes = Math.round(millisUntilFinished/1000);
-                Log.d("milli", String.valueOf(secondes));
-                if(secondes%intervalleBeep == 0){
+                int seconds = Math.round((float) millisUntilFinished /1000);
+                Log.d("milli", String.valueOf(seconds));
+                if(seconds%intervalBeep == 0){
                     toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 200);
                 }
                 updateTimer();
@@ -261,35 +247,37 @@ public class DynamicExerciceActivity extends CameraActivity {
             @Override
             public void onFinish() {
                 isRunning = false;
-                startActivity(new Intent(DynamicExerciceActivity.this, PopActivity.class));
+
+                startActivity(new Intent(DynamicExerciseActivity.this, PopActivity.class));
                 createCSV();
             }
         }.start();
 
-        b_start.setText("CANCEL");
+        bStart.setText("CANCEL");
         isRunning= true;
     }
 
+    @SuppressLint("SetTextI18n")
     public void stopTimer(){
         countDownTimer.cancel();
-        timerLeftInMilliseconds=TIME*1000;
+        timerLeftInMilliseconds= time * 1000L;
         updateTimer();
         isRunning= false;
-        b_start.setText("START");
+        bStart.setText("START");
     }
 
     private void updateTimer(){
         int minutes = (int) timerLeftInMilliseconds / 60000;
         int seconds = (int) timerLeftInMilliseconds % 60000 / 1000;
 
-        String TimeLeftText;
+        String timeLeftText;
 
-        TimeLeftText = ""+ minutes;
-        TimeLeftText += ":";
-        if (seconds <10) TimeLeftText += "0";
-        TimeLeftText+=seconds;
+        timeLeftText = String.valueOf(minutes);
+        timeLeftText += ":";
+        if (seconds <10) timeLeftText += "0";
+        timeLeftText+=seconds;
 
-        countdown_text.setText(TimeLeftText);
+        countdownText.setText(timeLeftText);
     }
     @Override
     protected List<?extends CameraBridgeViewBase> getCameraViewList(){
@@ -302,15 +290,6 @@ public class DynamicExerciceActivity extends CameraActivity {
         }
     }
 
-    void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantresults){
-        super.onRequestPermissionsResult(requestCode,permissions,grantresults);
-        if(grantresults.length>0 && grantresults[0]!=PackageManager.PERMISSION_GRANTED){
-            getPermission();
-        }
-
-    }
-
-
 
     void stockCoordinate(List<Rect> listOfRect){
         Rect biggestRect = new Rect();
@@ -319,7 +298,7 @@ public class DynamicExerciceActivity extends CameraActivity {
 
         //Detection of the biggest Rectangle
         for (Rect rect : listOfRect) {
-            area = rect.height*rect.width;
+            area = (double)rect.height*rect.width;
 
             if (area > biggestArea){
                 biggestArea = area;
@@ -327,11 +306,11 @@ public class DynamicExerciceActivity extends CameraActivity {
             }
         }
 
-        // Middle coord of the biggest Rectangle
+        // Middle coordinate of the biggest Rectangle
         double centerX = biggestRect.x + biggestRect.width / 2.0;
         double centerY = biggestRect.y + biggestRect.height / 2.0;
 
-        // add middles coords in list
+        // add middles coordinates in list
         listX.add(centerX);
         listY.add(centerY);
     }
@@ -343,14 +322,10 @@ public class DynamicExerciceActivity extends CameraActivity {
 
 
     void createCSV(){
-        Log.d("debut", "debut");
-        String exerciceType = "Dynamic";
+        String exerciseType = "Dynamic";
         //CSVFile creation
         Context context = getApplicationContext();
-        Log.d("nbFrame", String.valueOf(listNbFrame.size()));
-        Log.d("nbCoords", String.valueOf(listX.size()));
-        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciceType, TIME, INTERVAL, DISTANCE, context,PATIENT,OPERATOR);
-        csvFile.sauvegarde();
-
+        CSVFile csvFile = new CSVFile(listX, listY, listNbFrame, exerciseType, time, interval, distance, context, patient, operator);
+        csvFile.save();
     }
 }

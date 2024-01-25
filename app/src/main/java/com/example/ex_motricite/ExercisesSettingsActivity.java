@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -110,9 +111,10 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                 {
                     Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
 
+
                 }
                 else{
-                    Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciceActivity.class);
+                    Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciseActivity.class);
                     intent.putExtra("Distance", etDistance.getText().toString());
                     intent.putExtra("Time", etSeconds.getText().toString());
                     intent.putExtra("Patient", sPatient.getSelectedItem().toString());
@@ -149,19 +151,21 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                     sbInterval.setProgress(Integer.parseInt(etInterval.getText().toString()));
                 }
             });
+
             bStart.setOnClickListener(v -> {
                 if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches("")|| etInterval.getText().toString().matches("") || sPatient.getSelectedItem().toString().matches("Choose a patient") || sOperator.getSelectedItem().toString().matches("Choose an operator"))
                 {
                     Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciceActivity.class);
+                    Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciseActivity.class);
                     intent.putExtra("Distance", etDistance.getText().toString());
                     intent.putExtra("Interval", etInterval.getText().toString());
                     intent.putExtra("Time", etSeconds.getText().toString());
                     intent.putExtra("Patient", sPatient.getSelectedItem().toString());
                     intent.putExtra("Operator", sOperator.getSelectedItem().toString());
                     startActivity(intent);
+
                 }
             });
 

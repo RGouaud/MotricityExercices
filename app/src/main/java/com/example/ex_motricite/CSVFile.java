@@ -2,206 +2,129 @@ package com.example.ex_motricite;
 
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
 public class CSVFile {
 
-    static String DIRFILENAME = "LaZer";
-    static File DIR = getPublicStorageDir(DIRFILENAME);
-
     private final List<Double> listX;
     private final List<Double> listY;
     private final List<Integer> listNbFrame;
-    private final String exerciceType;
-    private final Integer exerciceTime;
+    private final String exerciseType;
+    private final Integer exerciseTime;
     private final Integer intervalTime;
-    private String operatorName,patientName;
+    private final String operatorName;
+    private final String patientName;
 
 
     private final int distance;
-    private Context context;
+    private final Context context;
 
-    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciceType, int exerciceTime, int intervalTime, int distance, Context context, String patient, String operator){
+    CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciseType, int exerciseTime, int intervalTime, int distance, Context context, String patient, String operator){
         this.listX = listX;
         this.listY = listY;
         this.listNbFrame = listNbFrame;
         this.operatorName = operator;
         this.patientName = patient;
-        this.exerciceType = exerciceType;
-        this.exerciceTime = exerciceTime;
+        this.exerciseType = exerciseType;
+        this.exerciseTime = exerciseTime;
         this.intervalTime = intervalTime;
         this.distance = distance;
         this.context = context;
     }
 
     //Path: /sdcard/LaZer
-     public boolean sauvegarde() {
+     public void save() {
 
-        Log.d("lancement", "lancement");
 
-        if (!isExternalStorageWritable()) {
-            Environment.getExternalStoragePublicDirectory("").setWritable(true);
-        }
 
-        //Reccup de la date au format YYYY_MM_DD_HH_MM
+        //retrieving the date as YYYY_MM_DD_HH_MM
         Calendar rightNow = Calendar.getInstance();
         String date = rightNow.get(Calendar.YEAR) + "_"
                 + (rightNow.get(Calendar.MONTH) + 1) + "_"
                 + rightNow.get(Calendar.DAY_OF_MONTH) + "_"
-                + rightNow.get(Calendar.HOUR) + "_" +
-                rightNow.get(Calendar.MINUTE);
+                + rightNow.get(Calendar.HOUR) + "_"
+                + rightNow.get(Calendar.MINUTE) + "_"
+                + rightNow.get(Calendar.SECOND);
 
-        //nom du fichier suvegarder au format csv
-        String savefilename = patientName.replaceAll("\\s", "")
+        // name of the file save as csv
+        String saveFileName = patientName.replaceAll("\\s", "")
                 + operatorName.replaceAll("\\s", "")
-                + this.exerciceType
+                + this.exerciseType
                 + date + ".csv";
 
 
 
-        //recupération du dossier de sauvegarde
-
-
-        //file represente le fichier de sauvegarde
-        /*File file = new File(DIR.getAbsolutePath() + File.separator + savefilename);*/
+        //Comment Test
         String comment = "TestComment";
-        //Recapitulation des parametre de l'exercice réalisé (',' juste pour la mise en forme
 
-        String recapExercice = "Recap of the exercice \n"
-                + "Exercice = " + this.exerciceType + "\n"
+        //Parameter of the exercise put on the top of the file
+
+        String recapExercise = "Recap of the exercise \n"
+                + "Exercise = " + this.exerciseType + "\n"
                 + "Patient Name = " + patientName + "\n"
                 + "Operator Name = " + operatorName + "\n"
                 + "Mark Distance= " + this.distance + "\n"
-                + "Time(s) = " + this.exerciceTime + "\n"
+                + "Time(s) = " + this.exerciseTime + "\n"
                 +"Comments : " + comment +"\n";
-        recapExercice += (this.intervalTime > 0) ? "#Bip Interval = "
+        recapExercise += (this.intervalTime > 0) ? "#Bip Interval = "
                 + this.intervalTime + "\n\n" : "\n";
 
-        //En-tête du tableau
-         String entete = "time(ms),x,y\n"; //Entete du fichier
-
-         Log.d("try", "try");
+        //table header
+         String header = "time(ms),x,y\n";
 
 
-         // Obtention du répertoire de fichiers interne
-         File repertoireInterne = context.getFilesDir();
 
-         // Création du fichier dans le répertoire de fichiers interne
-         File file = new File(repertoireInterne, savefilename);
+         // Obtaining the internal file directory
+         File repertoireIntern = context.getFilesDir();
 
-         FileOutputStream outputStream;
+         // Creating the file in the internal file directory
+         File file = new File(repertoireIntern, saveFileName);
+
 
          try {
-             if (!file.exists()) { //retourne si le fichier existe
-                 if (!file.createNewFile()) { //cree le fichier si il n'existe pas
+             if (!file.exists() && (!file.createNewFile())) { //create the file if it does not exist
                      Log.e("ErrFile", "File was not Created");
-                 }
+
              }
 
 
              FileWriter writer = new FileWriter(file);
-             writer.append(recapExercice);
-             writer.append(entete);
-
-             Log.d("recap", recapExercice);
-             Log.d("entete", entete);
+             writer.append(recapExercise);
+             writer.append(header);
 
 
 
-
-            /*outputStream = new FileOutputStream(file);
-            outputStream.write(recapExercice.getBytes()); //ecris le recap de l'exo
-            outputStream.write(entete.getBytes()); // affiche l'entete du tableau*/
-
-            //enregistrement de la liste dans le fichier
+            //save coordinates and time in csv file
              int nbFrame = listNbFrame.size();
              for (int i = 0; i < nbFrame; i++) {
                  int frame = listNbFrame.get(i); // Frame number in the list
-                 double time = transformFrameInTime(frame, exerciceTime, nbFrame);
-                 double coordX = listX.get(i); // Coord X number in the list
-                 double coordY = listY.get(i); // Coord Y number in the list
-                 String line = time + "," + coordX + "," + coordY + "\n";
-                 //Ecrire Line
+                 double time = transformFrameInTime(frame, exerciseTime, nbFrame);
+                 double coordinateX = listX.get(i); // coordinate X number in the list
+                 double coordinateY = listY.get(i); // coordinate Y number in the list
+                 String line = time + "," + coordinateX + "," + coordinateY + "\n";
+                 //Write Line
                  writer.append(line);
-                 Log.d("ligne", line);
              }
              writer.flush();
              writer.close();
 
 
-             return true;
          } catch (Exception e) {
              e.printStackTrace();
-             return false;
          }
     }
 
 
-    /* Checks if external storage is available for read and write */
-    public static boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public static File getPublicStorageDir(String fileName) {
-        // Get the directory for the user's public pictures directory.
-        File file = new File(Environment.getExternalStoragePublicDirectory(""), fileName);
-        if (!file.exists()) {
-            if (!file.mkdirs()) {
-                Log.e("ErrDir", "Directory not created");
-            }
-        }
-        return file;
-    }
-
-    /* Checks if external storage is available to at least read */
-    public static boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-    static public File[] liste() {
-        //RENVOIS un tableau contenant tout les fichiers du repertoire DIR
-
-        return DIR.listFiles();
-    }
-
-
-
-    //Supprime les fichier contenue dans la liste
-    static public boolean supprimerFichier(List<File> fichiersASupprimer) {
-        for (File courrant : fichiersASupprimer) {
-            Log.e("deleting", courrant.getName());
-            if (!courrant.delete()) {
-                return false; //stop si erreur dans la suppression
-            }
-        }
-        return true;
-    }
-
-    static public double transformFrameInTime(int numFrame, int nbFrame, int exerciceTime){
+    public static double transformFrameInTime(int numFrame, int nbFrame, int exerciseTime){
         double time;
         double timeByFrame;
 
-        timeByFrame = (double) exerciceTime /nbFrame;
+        timeByFrame = (double) exerciseTime /nbFrame;
 
         time = timeByFrame*numFrame;
 
