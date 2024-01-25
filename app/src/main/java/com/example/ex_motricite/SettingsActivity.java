@@ -52,12 +52,12 @@ public class SettingsActivity extends AppCompatActivity {
         rbServer.setOnClickListener(v -> onRadioButtonClicked(rbServer));
 
         bTestConnection.setOnClickListener(view -> {
-            // TODO: faire la requête HTTP pour tester la connexion
+            // TODO: HTTP request to test the connection
         });
 
         bConfirm.setOnClickListener(view -> {
-            // Logique pour le bouton "Confirm"
-            // Récupérez les données des champs EditText et RadioButton
+            // Logic for the "Confirm" button
+            // Get data from EditText and RadioButton fields
             String email = etEmail.getText().toString();
             String urlServer = etUrlServer.getText().toString();
             String idServer = etIdServer.getText().toString();
@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
             boolean isEmailSelected = rbEmail.isChecked();
             boolean isServerSelected = rbServer.isChecked();
 
-            // Créez un objet JSON pour stocker les données
+            // Create a JSON object to store the data
             JSONObject jsonData = new JSONObject();
 
             try {
@@ -99,12 +99,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadSettings() {
-        // Charger les paramètres depuis SharedPreferences
+        // Load settings from SharedPreferences
         String settingsJson = sharedPreferences.getString("settings_json", null);
 
         if (settingsJson != null) {
             try {
-                // Convertir le JSON en objet et mettre à jour les champs EditText et RadioButton
+                // Convert JSON to object and update EditText and RadioButton fields
                 JSONObject jsonObject = new JSONObject(settingsJson);
                 etEmail.setText(jsonObject.getString("email"));
                 etUrlServer.setText(jsonObject.getString("urlServer"));
@@ -120,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void saveSettings(JSONObject jsonData) {
-        // Enregistrez les données dans SharedPreferences
+        // Save data in SharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("settings_json", jsonData.toString());
         editor.apply();

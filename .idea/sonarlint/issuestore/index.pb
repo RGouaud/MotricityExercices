@@ -13,3 +13,11 @@ x
 Happ/src/main/java/com/example/ex_motricite/GraphicsTestPageActivity.java,4\d\4dc3597a5497f959f7da6d734726e0395b66bab0
 v
 Fapp/src/main/java/com/example/ex_motricite/StaticExerciseActivity.java,b\e\be7c2a51117079f4c83049b341e615e12161fadb
+k
+;app/src/main/java/com/example/ex_motricite/CordsSample.java,f\c\fc1b164e452c40d1d7512faa1cf96710a49c23c8
+r
+Bapp/src/main/java/com/example/ex_motricite/BdSQLiteOpenHelper.java,6\2\62e98436b84cb46ffc65af8d79f79da74881ecab
+p
+@app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
+k
+;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
