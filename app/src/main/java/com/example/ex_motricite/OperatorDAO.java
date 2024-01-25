@@ -1,18 +1,20 @@
 package com.example.ex_motricite;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 
 public class OperatorDAO {
-    private static String base = "BDMotricity";
-    private static int version = 1;
-    private BdSQLiteOpenHelper accesBD;
+    private static final String BASE = "BDMotricity";
+    private static final int VERSION = 1;
+    private final BdSQLiteOpenHelper accesBD;
     public OperatorDAO(Context ct) {
-        accesBD = new BdSQLiteOpenHelper(ct, base, null, version);
+        accesBD = new BdSQLiteOpenHelper(ct, BASE, null, VERSION);
     }
 
+    @SuppressLint("Recycle")
     public Operator getOperator(long idOperator){
         Operator anOperator = null;
         Cursor curseur;
@@ -50,7 +52,7 @@ public class OperatorDAO {
     }
 
     private ArrayList<Operator> cursorToOperatorArrayList(Cursor curseur){
-        ArrayList<Operator> listOperators = new ArrayList<Operator>();
+        ArrayList<Operator> listOperators = new ArrayList<>();
         long idOperator;
         String name;
         String firstName;

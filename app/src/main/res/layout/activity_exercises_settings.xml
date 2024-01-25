@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:textSize="48dp" />
+                android:textSize="48sp" />
 
             <Spinner
                 android:id="@+id/s_patient"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_rounded"
-                android:hint="Entrez votre texte ici" />
+                android:hint="@string/set_your_text_here" />
 
             <Space
                 android:layout_width="match_parent"
@@ -71,7 +71,8 @@
                 android:ems="10"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="Distance between points (cm)"
+                android:autofillHints="Distance(cm)"
+                android:hint="@string/distance_between_points_cm"
                 android:inputType="numberSigned"
                 android:paddingHorizontal="20dp"/>
 
@@ -89,7 +90,8 @@
                 android:ems="10"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="Exercise duration (seconds)"
+                android:autofillHints="Time(s)"
+                android:hint="@string/exercise_duration_seconds"
                 android:inputType="numberSigned"
                 android:paddingHorizontal="20dp"/>
 
@@ -121,7 +123,9 @@
                 android:ems="10"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="Bips interval (seconds)"
+                android:autofillHints="Time(s)"
+
+                android:hint="@string/beeps_interval_seconds"
                 android:inputType="numberSigned"
                 android:paddingHorizontal="20dp"/>
 
@@ -135,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
-                android:text="Start"
+                android:text="@string/start"
                 android:textColor="@color/black" />
 
             <Button
@@ -143,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
-                android:text="Recover previous test's settings"
+                android:text="@string/recover_previous_test_s_settings"
                 android:textColor="@color/black" />
 
         </LinearLayout>

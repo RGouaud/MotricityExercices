@@ -29,7 +29,7 @@
             android:name=".StaticExerciseActivity"
             android:exported="false" />
         <activity
-            android:name=".Pop"
+            android:name=".PopActivity"
             android:theme="@style/Base.Theme.AppCompat.CustomTheme" />
         <activity
             android:name=".GraphicsTestPageActivity"
@@ -50,7 +50,7 @@
             android:name=".ExercisesSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".homePageActivity"
+            android:name=".HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -235,7 +235,8 @@ public class StaticExerciseActivity extends CameraActivity {
             @Override
             public void onFinish() {
                 isRunning = false;
-                startActivity(new Intent(StaticExerciseActivity.this,Pop.class));
+
+                startActivity(new Intent(StaticExerciseActivity.this, PopActivity.class));
                 createCSV();
             }
         }.start();

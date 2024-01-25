@@ -1,5 +1,7 @@
 package com.example.ex_motricite;
 
+import androidx.annotation.NonNull;
+
 public class Patient extends Actor {
     private String birthDate;
     private String remarks;
@@ -32,6 +34,7 @@ public class Patient extends Actor {
         this.remarks = remarks;
     }
 
+    @NonNull
     public String toString(){
         return "Id of Patient : " + this.getId() + ", name of patient : " + this.getName() + ", firstname of patient : " + this.getFirstName() + ", birthdate of patient : " + this.getBirthDate() + ", remarks : " + this.getRemarks();
     }

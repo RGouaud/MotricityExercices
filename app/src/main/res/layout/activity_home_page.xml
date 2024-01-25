@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homePageActivity">
+    tools:context=".HomePageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,14 +23,16 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@drawable/background_home_page"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="20dp"
+                tools:ignore="NestedWeights">
 
                 <LinearLayout
                     android:id="@+id/layout_static"
@@ -49,7 +51,7 @@
                         android:fontFamily="sans-serif-condensed-medium"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Static Exercice"
+                        android:text="@string/static_exercice"
                         android:textColor="#ffffff"
                         android:textSize="24sp" />
 
@@ -64,14 +66,15 @@
                         android:id="@+id/iv_static"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/test" />
+                        android:src="@drawable/test"
+                        android:contentDescription="@string/static_exercice" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <LinearLayout
@@ -91,7 +94,7 @@
                         android:padding="10dp"
                         android:fontFamily="sans-serif-condensed-medium"
                         android:gravity="center"
-                        android:text="Consult Profiles"
+                        android:text="@string/consult_profiles"
                         android:textColor="#ffffff"
                         android:textSize="24sp" />
                     <LinearLayout
@@ -106,7 +109,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/icone" />
+                        android:src="@drawable/icone"
+                        android:contentDescription="@string/consult_profiles" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -124,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:backgroundTint="#FF9800"
-                    android:src="@android:drawable/btn_star" />
+                    android:src="@android:drawable/btn_star"
+                    android:contentDescription="@string/settings" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -148,7 +153,7 @@
                         android:padding="10dp"
                         android:fontFamily="sans-serif-condensed-medium"
                         android:gravity="center"
-                        android:text="Rythm Exercice"
+                        android:text="@string/rhythm_exercice"
                         android:textColor="#ffffff"
                         android:textSize="24sp" />
 
@@ -166,8 +171,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:src="@drawable/test"
-
-                            />
+                            android:contentDescription="@string/rhythm_exercice" />
 
                     </LinearLayout>
                 </LinearLayout>

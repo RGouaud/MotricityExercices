@@ -247,7 +247,8 @@ public class DynamicExerciseActivity extends CameraActivity {
             @Override
             public void onFinish() {
                 isRunning = false;
-                startActivity(new Intent(DynamicExerciseActivity.this,Pop.class));
+
+                startActivity(new Intent(DynamicExerciseActivity.this, PopActivity.class));
                 createCSV();
             }
         }.start();
