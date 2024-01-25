@@ -56,7 +56,7 @@ Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6\9\690a2
 p
 @app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
 p
-@app/src/main/java/com/example/ex_motricite/ListTestActivity.java,6/3/632bcdfe1764f54be38613ff44adea6a48a53391
+@app/src/main/java/com/example/ex_motricite/ListTestActivity.java,6\3\632bcdfe1764f54be38613ff44adea6a48a53391
 p
 @app/src/main/java/com/example/ex_motricite/TestPageActivity.java,2/8/2852c891388ba3ec2805af12d8862f67c4cad611
 r
@@ -76,9 +76,9 @@ C
 p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 g
-7app/src/main/java/com/example/ex_motricite/CSVFile.java,6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc
+7app/src/main/java/com/example/ex_motricite/CSVFile.java,6\6\66c15db5e42da2cc1d42da0c40460ff215119bdc
 w
-Gapp/src/main/java/com/example/ex_motricite/DynamicExerciceActivity.java,9/6/966904abab48e2823d2bb5bcf7cb7e2604c48676
+Gapp/src/main/java/com/example/ex_motricite/DynamicExerciceActivity.java,9\6\966904abab48e2823d2bb5bcf7cb7e2604c48676
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 e
