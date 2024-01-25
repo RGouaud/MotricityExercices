@@ -1,5 +1,6 @@
 package com.example.ex_motricite;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -24,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText etPassword;
     private SharedPreferences sharedPreferences;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
