@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -253,7 +252,7 @@ public class StaticExerciceActivity extends CameraActivity {
             @Override
             public void onFinish() {
                 isRunning = false;
-                startActivity(new Intent(StaticExerciceActivity.this,Pop.class));
+                startActivity(new Intent(StaticExerciceActivity.this, PopActivity.class));
                 createCSV();
             }
         }.start();

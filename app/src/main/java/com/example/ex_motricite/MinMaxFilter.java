@@ -4,12 +4,11 @@ import android.text.InputFilter;
 import android.text.Spanned;
 // Custom class to define min and max for the edit text
 public class MinMaxFilter implements InputFilter {
-    private int intMin = 0;
-    private int intMax = 0;
+    private final int intMin;
+    private final int intMax;
 
     // Initialized
-    public MinMaxFilter() {
-    }
+
 
     public MinMaxFilter(int minValue, int maxValue) {
         this.intMin = minValue;

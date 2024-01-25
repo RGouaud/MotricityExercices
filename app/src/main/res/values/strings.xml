@@ -5,9 +5,6 @@
     <string name="create_operator">Create a new operator</string>
     <string name="complete_fields">Complete all fields</string>
 
-    <string name="operator">Operator</string>
-    <string name="patient">Patient</string>
-
     <string name="set_name">Name : </string>
     <string name="set_first_name">First name : </string>
     <string name="set_birth_date">Birth date : </string>
@@ -27,4 +24,37 @@
     <string name="hint_name">Name</string>
     <string name="hint_birth_date">Birthday DD/MM/YYYY</string>
     <string name="hint_remarks">Remarks</string>
+
+    <string name="graphic_for_x_and_y_over_time">Graphic for X and Y over time</string>
+    <string name="graphic_for_x_over_time">graphic_for_x_over_time</string>
+    <string name="graphic_for_y_over_time">graphic_for_y_over_time</string>
+
+    <string name="set_your_text_here">Set your text here</string>
+    <string name="distance_between_points_cm">Distance between points (cm)</string>
+    <string name="exercise_duration_seconds">Exercise duration (seconds)</string>
+    <string name="beeps_interval_seconds">Beeps interval (seconds)</string>
+    <string name="start">Start</string>
+    <string name="recover_previous_test_s_settings">Recover previous test\'s settings</string>
+    <string name="test_successful">Test Successful</string>
+    <string name="go_back_home">Go Back Home</string>
+    <string name="test_of">Test of :</string>
+    <string name="test_type">Test type :</string>
+    <string name="test_durations">Test durations :</string>
+    <string name="view_graphics">View Graphics</string>
+
+    <string name="operator">Operator</string>
+    <string name="patient">Patient</string>
+
+    <string name="add_a_patient">Add a patient</string>
+    <string name="add_a_operator">Add a operator</string>
+    <string name="name_format">Name : %s</string>
+    <string name="first_name_format">First name : %s</string>
+    <string name="birthdate_format">Birthdate: %s</string>
+    <string name="development_motricity">DEVELOPMENT MOTRICITY</string>
+    <string name="button_to_go_back">button to go back</string>
+    <string name="static_exercice">Static Exercice</string>
+    <string name="consult_profiles">Consult Profiles</string>
+    <string name="rhythm_exercice">Rhythm Exercice</string>
+    <string name="settings">Settings</string>
+
 </resources>
