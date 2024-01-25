@@ -83,3 +83,5 @@ i
 9app/src/main/java/com/example/ex_motricite/CSVReader.java,a/a/aabc027dbaad1a4af6cb90a30721f575cace661b
 y
 Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
+w
+Gapp/src/main/java/com/example/ex_motricite/DynamicExerciseActivity.java,e\b\ebc50c6f9fe65b5db6ab0e4c9f7bca4816cd8483
