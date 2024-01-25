@@ -50,7 +50,7 @@
             android:name=".ExercisesSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".homePageActivity"
+            android:name=".HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

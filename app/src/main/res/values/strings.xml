@@ -1,11 +1,34 @@
 <resources>
-    <string name="app_name">Ex_Motricite</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Ex_Motricity</string>
+
+    <string name="create_patient">Create a new patient</string>
+    <string name="create_operator">Create a new operator</string>
+    <string name="complete_fields">Complete all fields</string>
+
+    <string name="set_name">Name : </string>
+    <string name="set_first_name">First name : </string>
+    <string name="set_birth_date">Birth date : </string>
+    <string name="set_birthday">Birthday : </string>
+    <string name="set_remarks">Remarks : </string>
+    <string name="set_observation">Observation : </string>
+
+    <string name="button_edit">Edit</string>
+    <string name="button_confirm">Confirm</string>
+    <string name="button_delete">Delete</string>
+
+    <string name="edit_operator">Edit operator</string>
+    <string name="edit_patient">Edit patient</string>
+    <string name="check_tests">Check tests</string>
+
+    <string name="hint_first_name">First name</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_birth_date">Birthday DD/MM/YYYY</string>
+    <string name="hint_remarks">Remarks</string>
 
     <string name="graphic_for_x_and_y_over_time">Graphic for X and Y over time</string>
     <string name="graphic_for_x_over_time">graphic_for_x_over_time</string>
     <string name="graphic_for_y_over_time">graphic_for_y_over_time</string>
+
     <string name="set_your_text_here">Set your text here</string>
     <string name="distance_between_points_cm">Distance between points (cm)</string>
     <string name="exercise_duration_seconds">Exercise duration (seconds)</string>
@@ -18,8 +41,10 @@
     <string name="test_type">Test type :</string>
     <string name="test_durations">Test durations :</string>
     <string name="view_graphics">View Graphics</string>
+
     <string name="operator">Operator</string>
     <string name="patient">Patient</string>
+
     <string name="add_a_patient">Add a patient</string>
     <string name="add_a_operator">Add a operator</string>
     <string name="name_format">Name : %s</string>

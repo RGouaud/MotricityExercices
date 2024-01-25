@@ -97,7 +97,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
 
 
         Intent myIntent = getIntent();
-        String exercise = myIntent.getStringExtra("Exercice");
+        String exercise = myIntent.getStringExtra("exercise");
 
         assert exercise != null;
         if (exercise.equals("static")){

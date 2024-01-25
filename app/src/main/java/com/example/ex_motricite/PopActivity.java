@@ -28,7 +28,8 @@ public class PopActivity extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        bHome.setOnClickListener(v -> startActivity(new Intent(PopActivity.this,homePageActivity.class)));
+
+        bHome.setOnClickListener(v -> startActivity(new Intent(PopActivity.this,HomePageActivity.class)));
 
         getWindow().setLayout((int) (width*.4),(int) (height*.4));
     }

@@ -7,35 +7,34 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
 
-    private String table_patient="create table patient ("
-            + "idPatient INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"name TEXT NOT NULL,"
-            +"firstName TEXT NOT NULL,"
-            +"birthDate TEXT NOT NULL,"
-            +"remarks TEXT NOT NULL);";
-
-    private String table_operator="create table operator ("
-            + "idOperator INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"Name TEXT NOT NULL,"
-            +"firstName TEXT NOT NULL);";
-
 
     public BdSQLiteOpenHelper(Context context, String name, CursorFactory factory, int version) {
         super(context, name, factory, version);
-        // TODO Auto-generated constructor stub
     }
 
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(table_patient);
-        db.execSQL(table_operator);
+        String tablePatient = "create table patient ("
+                + "idPatient INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "name TEXT NOT NULL,"
+                + "firstName TEXT NOT NULL,"
+                + "birthDate TEXT NOT NULL,"
+                + "remarks TEXT NOT NULL);";
+        db.execSQL(tablePatient);
+
+        String tableOperator = "create table operator ("
+                + "idOperator INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "Name TEXT NOT NULL,"
+                + "firstName TEXT NOT NULL);";
+        db.execSQL(tableOperator);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // This method is left empty as currently no database updates are planned.
+        // If updates are required in the future, they should be implemented here.
     }
 
 
