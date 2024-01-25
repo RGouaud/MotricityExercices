@@ -3,7 +3,6 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -112,7 +111,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
 
                     }
                     else{
-                        Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciceActivity.class);
+                        Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciseActivity.class);
                         intent.putExtra("Distance", et_distance.getText().toString());
                         intent.putExtra("Time", et_seconds.getText().toString());
                         intent.putExtra("Patient", s_patient.getSelectedItem().toString());
@@ -163,7 +162,7 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                         Toast.makeText(ExercisesSettingsActivity.this, "You must complete each fields !", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciceActivity.class);
+                        Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciseActivity.class);
                         intent.putExtra("Distance", et_distance.getText().toString());
                         intent.putExtra("Interval", et_interval.getText().toString());
                         intent.putExtra("Time", et_seconds.getText().toString());
