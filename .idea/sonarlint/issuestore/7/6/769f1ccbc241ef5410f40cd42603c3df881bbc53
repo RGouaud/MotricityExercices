@@ -1,0 +1,38 @@
+
+{
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(ôå™Œúÿÿÿÿ8ÿÉ¬ıÓ1
+ƒ
+java:S1319&"fThe type of "actors" should be an interface such as "List" rather than the implementation "ArrayList".(ñÀ§ñ8€Ê¬ıÓ1
+E
+java:S1604i"(Make this anonymous inner class a lambda(Ò×“ì8€Ê¬ıÓ1
+K
+java:S1604•"(Make this anonymous inner class a lambda(¯“Òîıÿÿÿÿ8Ê¬ıÓ1
+F
+java:S1604"(Make this anonymous inner class a lambda(Ò×“ì8Ê¬ıÓ1
+p	java:S116"TRename this field "s_patient" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñÑÆÜ8¯Ê¬ıÓ1
+v	java:S116"URename this field "s_operator" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Ø‘„üÿÿÿÿ8¯Ê¬ıÓ1
+w	java:S116"VRename this field "et_distance" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×†¥úÿÿÿÿ8¯Ê¬ıÓ1
+w	java:S116"VRename this field "et_interval" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İñ±Ÿúÿÿÿÿ8¯Ê¬ıÓ1
+v	java:S116"URename this field "et_seconds" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á­à°úÿÿÿÿ8¯Ê¬ıÓ1
+~	java:S116"]Rename this field "tv_settings_tittle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Ì¿Éúÿÿÿÿ8¯Ê¬ıÓ1
+r	java:S116"VRename this field "sb_interval" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûš“¼8¯Ê¬ıÓ1
+s	java:S116"RRename this field "b_start" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óç¡šúÿÿÿÿ8¯Ê¬ıÓ1
+x
+java:S1450"VRemove the "b_start" field and declare it as a local variable in the relevant methods.(óç¡šúÿÿÿÿ8²Ê¬ıÓ1
+w
+java:S1450""ZRemove the "operatorDAO" field and declare it as a local variable in the relevant methods.(÷ò‚î8³Ê¬ıÓ1
+{
+java:S1450"YRemove the "patientDAO" field and declare it as a local variable in the relevant methods.(…ÔÑìşÿÿÿÿ8³Ê¬ıÓ1
+ƒ
+java:S1450"aRemove the "tv_settings_tittle" field and declare it as a local variable in the relevant methods.(­Ì¿Éúÿÿÿÿ8´Ê¬ıÓ1
+j	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñÀ§ñ8·Ê¬ıÓ1
+t
+java:S37768"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨Œşÿÿÿÿ8½Ê¬ıÓ1
+¤
+java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ®çâùÿÿÿÿ8ÇÊ¬ıÓ1
+Ÿ
+java:S1186‘"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‰ÁÕ–8ÈÊ¬ıÓ1
+M
+java:S1068 "+Remove this unused "patient" private field.(â¦•çıÿÿÿÿ8ĞÊ¬ıÓ1
+I
+java:S1068#",Remove this unused "operator" private field.(ÿ Áƒ8ĞÊ¬ıÓ1

@@ -1,0 +1,55 @@
+
+j
+java:S1192n"TDefine a constant instead of duplicating this literal "Complete all fields" 4 times.(ô¼ÅÓ
+]
+java:S1192t"GDefine a constant instead of duplicating this literal "update" 4 times.(Üø¬£
+e
+java:S1192¯"IDefine a constant instead of duplicating this literal "#FFFFFF" 12 times.(Õ£Úœùÿÿÿÿ
+]
+java:S1192R"GDefine a constant instead of duplicating this literal "UserId" 3 times.(·êÌÊ
+>
+java:S16047"(Make this anonymous inner class a lambda(²™æê
+=
+java:S1604Z"(Make this anonymous inner class a lambda(Ê”ƒ1
+>
+java:S1604ƒ"(Make this anonymous inner class a lambda(Ê”ƒ1
+D
+java:S1604 "(Make this anonymous inner class a lambda(ùà©žùÿÿÿÿ
+>
+java:S1604Ü"(Make this anonymous inner class a lambda(Ê”ƒ1
+>
+java:S1604ï"(Make this anonymous inner class a lambda(Ê”ƒ1
+>
+java:S1604Ž"(Make this anonymous inner class a lambda(Ê”ƒ1
+D
+java:S1604¤"(Make this anonymous inner class a lambda(ùà©žùÿÿÿÿ
+>
+java:S1604Ì"(Make this anonymous inner class a lambda(Ê”ƒ1
+g	java:S116"RRename this field "ll_crud" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«½ñ‰
+i	java:S116"TRename this field "b_confirm" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕñÀµ
+h	java:S116"SRename this field "b_delete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ð»»ì
+j	java:S116"URename this field "tv_newuser" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥»–œ
+l	java:S116"RRename this field "et_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°¯¬¤ùÿÿÿÿ
+l	java:S116"WRename this field "et_firstName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äÚ—û
+l	java:S116 "WRename this field "et_birthdate" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“¬Û”
+o	java:S116!"URename this field "et_remarks" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™ÊÙÄûÿÿÿÿ
+n
+java:S1450"XRemove the "b_confirm" field and declare it as a local variable in the relevant methods.(ÕñÀµ
+m
+java:S1450"WRemove the "b_delete" field and declare it as a local variable in the relevant methods.(ð»»ì
+l
+java:S1450"VRemove the "ll_crud" field and declare it as a local variable in the relevant methods.(«½ñ‰
+o
+java:S1450"YRemove the "tv_newuser" field and declare it as a local variable in the relevant methods.(¥»–œ
+W
+java:S6353*"<Use concise character class syntax '\\d' instead of '[0-9]'.(ŠÔ¢úÿÿÿÿ
+m
+java:S3776A"RRefactor this method to reduce its Cognitive Complexity from 46 to the 15 allowed.(ž¨Œþÿÿÿÿ
+Q
+java:S1117z";Rename "patient" which hides the field declared at line 35.(¼«–
+R
+java:S1117«";Rename "patient" which hides the field declared at line 35.(¼«–
+S
+java:S1117‡"<Rename "operator" which hides the field declared at line 38.(ñ“¼š
+S
+java:S1117°"<Rename "operator" which hides the field declared at line 38.(ñ“¼š
