@@ -89,3 +89,5 @@ p
 @app/src/main/java/com/example/ex_motricite/HomePageActivity.java,3\7\370b76a27498bbd12b5ade28b3b5c150ffd16c89
 v
 Fapp/src/main/java/com/example/ex_motricite/StaticExerciceActivity.java,7\0\7069c7d300df2541dd928441ac859770672d5deb
+l
+<app/src/main/java/com/example/ex_motricite/CoordsSample.java,8\4\842d35a3a9a001873f8857dfd4a96caa2b9c3ca3
