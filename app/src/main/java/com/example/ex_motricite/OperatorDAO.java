@@ -37,7 +37,7 @@ public class OperatorDAO {
      * Returns an operator based on its ID.
      *
      * @param idOperator ID of the operator.
-     * @return Operator with the specified ID.
+     * @return A {@code Operator} object representing the operator; {@code null} if not found.
      */
     @SuppressLint("Recycle")
     public Operator getOperator(long idOperator){
@@ -100,7 +100,7 @@ public class OperatorDAO {
      * Returns a list of operators based on a cursor.
      *
      * @param curseur Cursor containing operator data.
-     * @return List of operators based on the cursor.
+     * @return An {@code ArrayList<Operator>} containing operators based on the cursor.
      */
     private ArrayList<Operator> cursorToOperatorArrayList(Cursor curseur){
         ArrayList<Operator> listOperators = new ArrayList<>();
