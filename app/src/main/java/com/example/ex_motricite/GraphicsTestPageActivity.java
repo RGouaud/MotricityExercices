@@ -31,8 +31,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for displaying graphics based on CSV data.
+ */
 public class GraphicsTestPageActivity extends AppCompatActivity {
 
+    /**
+     * Enumeration for different themes in the LineChart.
+     */
     private enum theme {
         X, Y,Y_X
     }
@@ -80,6 +86,12 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Generate a LineChart graphic based on the provided data and theme.
+     *
+     * @param data  List of CordsSample data.
+     * @param theme Theme for the LineChart (X, Y, Y_X).
+     */
     private void makeGraphic(List<CordsSample> data, theme theme){
         Description description = new Description();
 
@@ -162,6 +174,11 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Read CordsSample data from a CSV file.
+     *
+     * @return List of CordsSample objects.
+     */
     private List<CordsSample> readCordsData(){
         List<CordsSample> cordSamples = new ArrayList<>();
 

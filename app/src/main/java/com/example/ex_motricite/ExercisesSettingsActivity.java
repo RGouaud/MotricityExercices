@@ -21,6 +21,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for configuring exercise settings.
+ */
 public class ExercisesSettingsActivity extends AppCompatActivity {
 
     private Spinner sPatient;
@@ -30,6 +33,11 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
     private ArrayList<Patient> lstPatient;
     private ArrayList<Operator> lstOperator;
 
+    /**
+     * Display actors (patients or operators) on spinners.
+     *
+     * @param actors List of actors to be displayed.
+     */
     public void displayActorsOnSpinners(List<? extends Actor> actors) {
         ArrayAdapter<String> dataSpinner = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         if (actors.get(0) instanceof Operator) {

@@ -1,37 +1,96 @@
 package com.example.ex_motricite;
 
+/**
+ * The {@code Actor} class represents a generic actor with basic information such as
+ * ID, name, and first name.
+ * <p>
+ * This class serves as an abstract base class for specific types of actors in the system.
+ * </p>
+ *
+ * @author Rgouaud
+ * @version 1.0
+ */
 public abstract class Actor {
+
+    /**
+     * The unique identifier for the actor.
+     */
     protected long id;
+
+    /**
+     * The last name of the actor.
+     */
     protected String name;
+
+    /**
+     * The first name of the actor.
+     */
     protected String firstName;
 
-    protected Actor(long id, String name, String firstName){
+    /**
+     * Constructs a new {@code Actor} with the specified ID, name, and first name.
+     *
+     * @param id         The unique identifier for the actor.
+     * @param name       The last name of the actor.
+     * @param firstName  The first name of the actor.
+     */
+    protected Actor(long id, String name, String firstName) {
         this.id = id;
         this.name = name;
         this.firstName = firstName;
     }
 
-    public String getName(){
+    /**
+     * Gets the last name of the actor.
+     *
+     * @return The last name of the actor.
+     */
+    public String getName() {
         return this.name;
     }
 
-    public String getFirstName(){
+    /**
+     * Gets the first name of the actor.
+     *
+     * @return The first name of the actor.
+     */
+    public String getFirstName() {
         return this.firstName;
     }
 
-    public long getId(){
+    /**
+     * Gets the unique identifier for the actor.
+     *
+     * @return The unique identifier for the actor.
+     */
+    public long getId() {
         return this.id;
     }
 
-    public void setName(String name){
+    /**
+     * Sets the last name of the actor.
+     *
+     * @param name The new last name of the actor.
+     */
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setFirstName(String firstName){
+    /**
+     * Sets the first name of the actor.
+     *
+     * @param firstName The new first name of the actor.
+     */
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setId(long id){
+    /**
+     * Sets the unique identifier for the actor.
+     *
+     * @param id The new unique identifier for the actor.
+     */
+    public void setId(long id) {
         this.id = id;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.ex_motricite;
 
-
 import android.content.Context;
 import android.util.Log;
 
@@ -9,6 +8,9 @@ import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * This class represents a CSV file handler for saving exercise data.
+ */
 public class CSVFile {
 
     private final List<Double> listX;
@@ -20,10 +22,23 @@ public class CSVFile {
     private final String operatorName;
     private final String patientName;
 
-
     private final int distance;
     private final Context context;
 
+    /**
+     * Constructor for CSVFile class.
+     *
+     * @param listX         List of X coordinates.
+     * @param listY         List of Y coordinates.
+     * @param listNbFrame   List of frame numbers.
+     * @param exerciseType  Type of exercise.
+     * @param exerciseTime  Total exercise time in seconds.
+     * @param intervalTime  Bip interval time in seconds.
+     * @param distance      Mark distance.
+     * @param context       Android application context.
+     * @param patient       Patient's name.
+     * @param operator      Operator's name.
+     */
     CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciseType, int exerciseTime, int intervalTime, int distance, Context context, String patient, String operator){
         this.listX = listX;
         this.listY = listY;
@@ -37,11 +52,11 @@ public class CSVFile {
         this.context = context;
     }
 
+    /**
+     * Save the exercise data to a CSV file.
+     */
     //Path: /sdcard/LaZer
      public void save() {
-
-
-
         //retrieving the date as YYYY_MM_DD_HH_MM
         Calendar rightNow = Calendar.getInstance();
         String date = rightNow.get(Calendar.YEAR) + "_"
@@ -56,7 +71,6 @@ public class CSVFile {
                 + operatorName.replaceAll("\\s", "")
                 + this.exerciseType
                 + date + ".csv";
-
 
 
         //Comment Test
@@ -78,7 +92,6 @@ public class CSVFile {
          String header = "time(ms),x,y\n";
 
 
-
          // Obtaining the internal file directory
          File repertoireIntern = context.getFilesDir();
 
@@ -92,11 +105,9 @@ public class CSVFile {
 
              }
 
-
              FileWriter writer = new FileWriter(file);
              writer.append(recapExercise);
              writer.append(header);
-
 
 
             //save coordinates and time in csv file
@@ -119,7 +130,14 @@ public class CSVFile {
          }
     }
 
-
+    /**
+     * Transform frame number into corresponding time.
+     *
+     * @param numFrame      Frame number.
+     * @param nbFrame       Total number of frames.
+     * @param exerciseTime  Total exercise time in seconds.
+     * @return Time in seconds corresponding to the given frame.
+     */
     public static double transformFrameInTime(int numFrame, int nbFrame, int exerciseTime){
         double time;
         double timeByFrame;

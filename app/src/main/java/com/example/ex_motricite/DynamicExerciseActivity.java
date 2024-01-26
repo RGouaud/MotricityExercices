@@ -30,6 +30,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Activity class for dynamic exercise using camera.
+ */
 public class DynamicExerciseActivity extends CameraActivity {
 
     TextView tvX;
@@ -215,12 +218,13 @@ public class DynamicExerciseActivity extends CameraActivity {
         }
         bStart = findViewById(R.id.b_Start);
 
-
-
         bStart.setOnClickListener(v -> startStop());
 
-
     }
+
+    /**
+     * Start or stop the exercise timer.
+     */
     public void startStop(){
         if (isRunning){
             stopTimer();
@@ -229,6 +233,12 @@ public class DynamicExerciseActivity extends CameraActivity {
             startTimer(interval);
         }
     }
+
+    /**
+     * Starts the exercise timer with interval beeping.
+     *
+     * @param intervalBeep Interval in seconds for beeping.
+     */
     @SuppressLint("SetTextI18n")
     public void startTimer(int intervalBeep){
         toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 8000); // Volume 100
@@ -257,6 +267,9 @@ public class DynamicExerciseActivity extends CameraActivity {
         isRunning= true;
     }
 
+    /**
+     * Stops the exercise timer.
+     */
     @SuppressLint("SetTextI18n")
     public void stopTimer(){
         countDownTimer.cancel();
@@ -266,6 +279,9 @@ public class DynamicExerciseActivity extends CameraActivity {
         bStart.setText("START");
     }
 
+    /**
+     * Updates the countdown timer display.
+     */
     private void updateTimer(){
         int minutes = (int) timerLeftInMilliseconds / 60000;
         int seconds = (int) timerLeftInMilliseconds % 60000 / 1000;
@@ -284,13 +300,20 @@ public class DynamicExerciseActivity extends CameraActivity {
         return Collections.singletonList(cameraBridgeViewBase);
     }
 
+    /**
+     * Retrieves camera permissions.
+     */
     void getPermission() {
         if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 101);
         }
     }
 
-
+    /**
+     * Stores laser coordinates in lists.
+     *
+     * @param listOfRect List of rectangles representing laser points.
+     */
     void stockCoordinate(List<Rect> listOfRect){
         Rect biggestRect = new Rect();
         double biggestArea = 0;
@@ -315,12 +338,18 @@ public class DynamicExerciseActivity extends CameraActivity {
         listY.add(centerY);
     }
 
-
+    /**
+     * Stores the frame number in the list.
+     *
+     * @param nbFrame Frame number.
+     */
     void stockTime(int nbFrame){
         listNbFrame.add(nbFrame);
     }
 
-
+    /**
+     * Creates and saves a CSV file with exercise data.
+     */
     void createCSV(){
         String exerciseType = "Dynamic";
         //CSVFile creation

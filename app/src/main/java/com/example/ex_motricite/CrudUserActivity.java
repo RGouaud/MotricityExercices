@@ -19,18 +19,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * The {@code CrudUserActivity} class handles the Create, Read, Update, and Delete (CRUD)
+ * operations for both patients and operators. It extends {@link AppCompatActivity}.
+ *
+ * <p>
+ * This activity is responsible for displaying forms for creating, updating, and reading
+ * information about patients and operators.
+ * </p>
+ *
+ * <p>
+ * It uses a {@link PatientDAO} and {@link OperatorDAO} for database operations.
+ * </p>
+ *
+ * @author Rgouaud, Ferreira
+ * @version 1.0
+ */
 public class CrudUserActivity extends AppCompatActivity {
+    // Instance variables for patient and operator objects
     private Patient patient;
     private Operator operator;
 
+    // Constants for intent extras and color codes
     private static final String USER_ID_FIELD = "UserId";
     private static final String WHITE = "#FFFFFF";
     private static final String COMPLETE_FIELDS_ERROR = "Complete all fields";
     private static final String UPDATE = "update";
 
+    // DAO instances for database operations
     OperatorDAO operatorDAO;
     PatientDAO patientDAO;
+
+    // UI elements
     EditText etRemarks;
     EditText etBirthdate;
     EditText etFirstName;
@@ -40,16 +60,29 @@ public class CrudUserActivity extends AppCompatActivity {
     Button bConfirm;
     LinearLayout llCrud;
 
-    private static boolean isValidDate(String dateStr){
-        // date regex "dd/MM/yyyy"
-        String regex = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(\\d{4})$";
+    /**
+     * Regular expression pattern for validating date format "dd/MM/yyyy".
+     */
+    private static final String DATE_REGEX = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(\\d{4})$";
 
-        Pattern pattern = Pattern.compile(regex);
+    /**
+     * Validates if the provided date string matches the expected format.
+     *
+     * @param dateStr The date string to validate.
+     * @return True if the date is in the correct format, false otherwise.
+     */
+    private static boolean isValidDate(String dateStr) {
+        Pattern pattern = Pattern.compile(DATE_REGEX);
         Matcher matcher = pattern.matcher(dateStr);
-
         return matcher.matches();
     }
 
+    /**
+     * Displays a popup dialog with an error message.
+     *
+     * @param context The context in which the dialog should be displayed.
+     * @param message The error message to be shown.
+     */
     private static void showPopup(Context context, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -58,6 +91,7 @@ public class CrudUserActivity extends AppCompatActivity {
                 .setPositiveButton("OK", (dialog, which) -> {
                     dialog.dismiss(); // Close popup
                 });
+
         // Show popup
         builder.show();
     }
@@ -69,6 +103,7 @@ public class CrudUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crud_user);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        // Initialize UI elements
         llCrud = findViewById(R.id.ll_crud);
         bConfirm = findViewById(R.id.b_confirm);
         bDelete = findViewById(R.id.b_delete);
@@ -78,15 +113,19 @@ public class CrudUserActivity extends AppCompatActivity {
         etBirthdate = findViewById(R.id.et_birthdate);
         etRemarks = findViewById(R.id.et_remarks);
 
+        // Get intent extras
         Intent myIntent = getIntent();
         String user = myIntent.getStringExtra("User");
         String crud = myIntent.getStringExtra("Crud");
         String userId = myIntent.getStringExtra(USER_ID_FIELD);
 
-        if(crud == null || user == null){
+        // Check if intent extras are present
+        if (crud == null || user == null) {
             return;
         }
-        switch (user){
+
+        // Process the CRUD operations based on the user type (patient or operator)
+        switch (user) {
             case "patient":
                 patientDAO = new PatientDAO(this);
                 patient(crud, userId, patientDAO);
@@ -100,6 +139,13 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles CRUD operations for patients based on the specified operation.
+     *
+     * @param crud       The CRUD operation (create, update, or read).
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void patient(String crud, String userId, PatientDAO patientDAO){
         switch (crud){
             case "create":
@@ -120,6 +166,11 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the creation of a new patient.
+     *
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void createPatient(PatientDAO patientDAO){
         tvNewUser.setText(R.string.create_patient);
 
@@ -146,6 +197,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the update of an existing patient.
+     *
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void updatePatient(String userId, PatientDAO patientDAO){
         // setup display
         tvNewUser.setText(R.string.edit_patient);
@@ -195,6 +252,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the display of patient information for reading purposes.
+     *
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void readPatient(String userId, PatientDAO patientDAO){
         patient = patientDAO.getPatient(Long.parseLong(userId));
         tvNewUser.setText(R.string.patient);
@@ -254,6 +317,13 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles CRUD operations for operators based on the specified operation.
+     *
+     * @param crud         The CRUD operation (create, update, or read).
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void operator(String crud, String userId, OperatorDAO operatorDAO){
         switch (crud){
             case "create":
@@ -270,6 +340,11 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the creation of a new operator.
+     *
+     * @param operatorDAO The OperatorDAO instance for database operations.
+     */
     private void createOperator(OperatorDAO operatorDAO){
         tvNewUser.setText(R.string.create_operator);
         bConfirm.setOnClickListener(v -> {
@@ -288,6 +363,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the update of an existing operator.
+     *
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void updateOperator(String userId, OperatorDAO operatorDAO){
         // setup display
         tvNewUser.setText(R.string.edit_operator);
@@ -328,6 +409,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the display of operator information for reading purposes.
+     *
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void readOperator(String userId, OperatorDAO operatorDAO){
         operator = operatorDAO.getOperator(Long.parseLong(userId));
         tvNewUser.setText(R.string.operator);
