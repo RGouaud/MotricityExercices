@@ -22,6 +22,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+/**
+ * The {@code TestPageActivity} class represents an Android activity for displaying test details.
+ *
+ * <p>
+ * This activity includes functionalities to display test details and navigate to the graphics page.
+ * </p>
+ *
+ * <p>
+ *     Author: EduardoXav
+ *     Version: 1.0
+ * </p>
+ */
 public class TestPageActivity extends AppCompatActivity {
 
     private TextView tvDuration;
@@ -54,6 +66,10 @@ public class TestPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Reads the CSV file, extracts information, and fills the corresponding TextViews.
+     * @param filePath The path to the CSV file.
+     */
     private void fillTextView(String filePath){
         File monCsv = new File(filePath);
         Uri fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);

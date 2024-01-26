@@ -27,6 +27,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The {@code StaticExerciseActivity} class represents an Android activity for performing static exercises.
+ *
+ * <p>
+ * This activity includes functionalities to display a camera view, handle user input, and navigate to
+ * a pop-up window and the home page. It utilizes OpenCV to process camera frames and detect laser coordinates.
+ * </p>
+ *
+ * <p>
+ * The class supports static exercises, with dynamic adjustments based on the selected exercise type.
+ * It ensures proper input validation and provides a user-friendly interface for performing static exercises.
+ * </p>
+ *
+ * <p>
+ *     Author: Arricastres, Segot
+ *     Version: 1.0
+ * </p>
+ */
 public class StaticExerciseActivity extends CameraActivity {
 
     TextView tvX;
@@ -215,6 +233,10 @@ public class StaticExerciseActivity extends CameraActivity {
 
 
     }
+
+    /**
+     * Starts or stops the exercise based on the current state.
+     */
     public void startStop(){
         if (isRunning){
             stopTimer();
@@ -223,6 +245,10 @@ public class StaticExerciseActivity extends CameraActivity {
             startTimer();
         }
     }
+
+    /**
+     * Starts the countdown timer for the exercise.
+     */
     @SuppressLint("SetTextI18n")
     public void startTimer(){
         countDownTimer = new CountDownTimer(timerLeftInMilliseconds, 1000) {
@@ -245,6 +271,9 @@ public class StaticExerciseActivity extends CameraActivity {
         isRunning= true;
     }
 
+    /**
+     * Stops the countdown timer for the exercise.
+     */
     @SuppressLint("SetTextI18n")
     public void stopTimer(){
         countDownTimer.cancel();
@@ -254,6 +283,9 @@ public class StaticExerciseActivity extends CameraActivity {
         bStart.setText("START");
     }
 
+    /**
+     * Updates the countdown timer display.
+     */
     private void updateTimer(){
         int minutes = (int) timerLeftInMilliseconds / 60000;
         int seconds = (int) timerLeftInMilliseconds % 60000 / 1000;
@@ -267,18 +299,31 @@ public class StaticExerciseActivity extends CameraActivity {
 
         countdownText.setText(timeLeftText);
     }
+
+    /**
+     * Returns the list of camera views.
+     *
+     * @return The list of camera views.
+     */
     @Override
     protected List<?extends CameraBridgeViewBase> getCameraViewList(){
         return Collections.singletonList(cameraBridgeViewBase);
     }
 
+    /**
+     * Requests camera permission if not granted.
+     */
     void getPermission() {
         if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 101);
         }
     }
 
-
+    /**
+     * Processes and stores the coordinates of the laser points detected in the current frame.
+     *
+     * @param listOfRect List of rectangles representing detected laser points.
+     */
     void stockCoordinate(List<Rect> listOfRect){
         Rect biggestRect = new Rect();
         double biggestArea = 0;
@@ -303,12 +348,18 @@ public class StaticExerciseActivity extends CameraActivity {
         listY.add(centerY);
     }
 
-
+    /**
+     * Stores the current frame number in the list.
+     *
+     * @param nbFrame The current frame number.
+     */
     void stockTime(int nbFrame){
         listNbFrame.add(nbFrame);
     }
 
-
+    /**
+     * Creates a CSV file with the stored data.
+     */
     void createCSV(){
         Log.d("debut", "debut");
         String exerciseType = "Static";
