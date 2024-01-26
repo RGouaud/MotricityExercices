@@ -9,7 +9,27 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * This class represents a CSV file handler for saving exercise data.
+ * The {@code CSVFile} class represents a CSV file handler for saving exercise data.
+ * It facilitates the creation and storage of CSV files containing exercise-related coordinates,
+ * timestamps, and other parameters.
+ *
+ * <p>
+ * The class receives various exercise-related data, including lists of X and Y coordinates, frame numbers,
+ * exercise type, duration, interval time, distance, and relevant context information. It provides a method,
+ * {@link #save()}, to save this exercise data to a CSV file. Additionally, a utility method,
+ * {@link #transformFrameInTime(int, int, int)}, transforms frame numbers into corresponding timestamps.
+ * </p>
+ *
+ * <p>
+ * The generated CSV file includes a recap of exercise details at the beginning, such as exercise type,
+ * patient and operator names, mark distance, exercise time, and comments. The actual data is then appended
+ * to the file in a time-coordinate format.
+ * </p>
+ *
+ * <p>
+ * Author: Arricastres
+ * Version: 1.0
+ * </p>
  */
 public class CSVFile {
 

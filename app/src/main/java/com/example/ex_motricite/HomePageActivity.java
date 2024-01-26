@@ -9,7 +9,24 @@
     import android.widget.LinearLayout;
 
     /**
-     * Activity for the home page displaying options for different exercises and lists.
+     * The {@code HomePageActivity} class represents an Android activity for the home page,
+     * displaying options for different exercises and lists.
+     *
+     * <p>
+     * This activity provides a user interface with clickable elements that lead to specific
+     * exercises and lists. It includes options for static exercises, rhythm exercises, patient
+     * lists, and a direct link to the list of CSV test files.
+     * </p>
+     *
+     * <p>
+     * Each option is implemented with an {@code ImageButton} or {@code LinearLayout} element,
+     * and clicking on these elements navigates the user to the corresponding activity.
+     * </p>
+     *
+     * <p>
+     * Author: Ferreira, EduardoXav
+     * Version: 1.0
+     * </p>
      */
     public class HomePageActivity extends AppCompatActivity {
 

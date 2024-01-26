@@ -31,7 +31,25 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Activity class for dynamic exercise using camera.
+ * The {@code DynamicExerciseActivity} class represents an Android activity for performing dynamic exercises using the device's camera.
+ * It captures and analyzes motion through the camera feed, detecting laser points and recording relevant exercise data.
+ *
+ * <p>
+ * This activity allows users to set parameters such as distance, time, and interval for the exercise.
+ * It displays real-time coordinates of laser points and provides feedback through beeping at specified intervals.
+ * The exercise can be started, stopped, and canceled, and upon completion, the recorded data is saved in a CSV file.
+ * </p>
+ *
+ * <p>
+ * The class extends {@link CameraActivity} from the OpenCV library and leverages camera functionality to process video frames.
+ * Laser points are detected through color filtering, and their coordinates are stored for further analysis.
+ * The exercise timer is implemented with audible cues at specified intervals.
+ * </p>
+ *
+ * <p>
+ * Author: Segot, Arricastres
+ * Version: 1.0
+ * </p>
  */
 public class DynamicExerciseActivity extends CameraActivity {
 

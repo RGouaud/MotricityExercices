@@ -32,7 +32,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Activity for displaying graphics based on CSV data.
+ * The {@code GraphicsTestPageActivity} class represents an Android activity for displaying graphics based on CSV data.
+ * It utilizes the MPAndroidChart library to create LineChart graphics representing X, Y, or Y_X themes.
+ *
+ * <p>
+ * This activity reads CordsSample data from a CSV file, allowing users to visualize the X and Y coordinates over time.
+ * The LineChart graphics support different themes (X, Y, Y_X) and provide interactive navigation options.
+ * </p>
+ *
+ * <p>
+ * The class dynamically generates LineChart graphics based on the provided data and theme, offering a visual representation
+ * of pixel coordinates over time. Users can switch between X, Y, and combined X-Y themes using interactive buttons.
+ * </p>
+ *
+ * <p>
+ * Author: Segot
+ * Version: 1.0
+ * </p>
  */
 public class GraphicsTestPageActivity extends AppCompatActivity {
 

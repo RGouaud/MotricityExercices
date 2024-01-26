@@ -22,7 +22,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Activity for configuring exercise settings.
+ * The {@code ExercisesSettingsActivity} class represents an Android activity for configuring exercise settings.
+ * It allows users to set parameters such as patient, operator, distance, time, and interval for static and rhythm tests.
+ *
+ * <p>
+ * This activity includes functionalities to display a list of patients and operators, handle user input,
+ * and navigate to specific exercise activities based on user selections. It utilizes DAOs (Data Access Objects)
+ * to retrieve patient and operator data from a database.
+ * </p>
+ *
+ * <p>
+ * The class supports both static and rhythm tests, with dynamic adjustments based on the selected exercise type.
+ * It ensures proper input validation and provides a user-friendly interface for configuring exercise settings.
+ * </p>
+ *
+ * <p>
+ * Author: Segot, Arricastres
+ * Version: 1.0
+ * </p>
  */
 public class ExercisesSettingsActivity extends AppCompatActivity {
 
