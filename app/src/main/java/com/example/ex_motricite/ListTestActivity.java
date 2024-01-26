@@ -119,7 +119,7 @@ public class ListTestActivity extends AppCompatActivity {
         // You can use an Intent for this.
         Intent intent = new Intent(ListTestActivity.this, TestPageActivity.class);
         // Add additional data to the intent if necessary
-        intent.putExtra("file_path", file.getAbsolutePath());
+        intent.putExtra(ConstIntent.FILE_PATH, file.getAbsolutePath());
         startActivity(intent);
     }
 

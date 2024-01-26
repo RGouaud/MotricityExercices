@@ -115,10 +115,10 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                 }
                 else{
                     Intent intent = new Intent(ExercisesSettingsActivity.this, StaticExerciseActivity.class);
-                    intent.putExtra("Distance", etDistance.getText().toString());
-                    intent.putExtra("Time", etSeconds.getText().toString());
-                    intent.putExtra("Patient", sPatient.getSelectedItem().toString());
-                    intent.putExtra("Operator", sOperator.getSelectedItem().toString());
+                    intent.putExtra(ConstIntent.DISTANCE_BETWEEN_POINTS, etDistance.getText().toString());
+                    intent.putExtra(ConstIntent.TIME, etSeconds.getText().toString());
+                    intent.putExtra(ConstIntent.PATIENT, sPatient.getSelectedItem().toString());
+                    intent.putExtra(ConstIntent.OPERATOR, sOperator.getSelectedItem().toString());
                     startActivity(intent);
                 }
             });
@@ -159,11 +159,11 @@ public class ExercisesSettingsActivity extends AppCompatActivity {
                 }
                 else {
                     Intent intent = new Intent(ExercisesSettingsActivity.this, DynamicExerciseActivity.class);
-                    intent.putExtra("Distance", etDistance.getText().toString());
-                    intent.putExtra("Interval", etInterval.getText().toString());
-                    intent.putExtra("Time", etSeconds.getText().toString());
-                    intent.putExtra("Patient", sPatient.getSelectedItem().toString());
-                    intent.putExtra("Operator", sOperator.getSelectedItem().toString());
+                    intent.putExtra(ConstIntent.DISTANCE_BETWEEN_POINTS, etDistance.getText().toString());
+                    intent.putExtra(ConstIntent.INTERVAL, etInterval.getText().toString());
+                    intent.putExtra(ConstIntent.TIME, etSeconds.getText().toString());
+                    intent.putExtra(ConstIntent.PATIENT, sPatient.getSelectedItem().toString());
+                    intent.putExtra(ConstIntent.OPERATOR, sOperator.getSelectedItem().toString());
                     startActivity(intent);
 
                 }

@@ -48,7 +48,7 @@ public class TestPageActivity extends AppCompatActivity {
 
         buttonViewGraphs.setOnClickListener(v -> {
             Intent intent = new Intent(TestPageActivity.this, GraphicsTestPageActivity.class);
-            intent.putExtra("file_path", filePath);
+            intent.putExtra(ConstIntent.FILE_PATH, filePath);
             startActivity(intent);
         });
 

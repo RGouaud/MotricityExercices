@@ -2,6 +2,7 @@ package com.example.ex_motricite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ImageButton imageButtonListTest;
@@ -27,13 +29,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         layoutStatic.setOnClickListener(v -> {
             Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
-            intent.putExtra("exercise", "static");
+            intent.putExtra(ConstIntent.EXERCISE, ConstIntent.EXERCISE_STATIC);
             startActivity(intent);
         });
 
         layoutRhythm.setOnClickListener(v -> {
             Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
-            intent.putExtra("exercise", "rhythm");
+            intent.putExtra(ConstIntent.EXERCISE, ConstIntent.EXERCISE_RHYTHM);
             startActivity(intent);
         });
 

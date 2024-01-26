@@ -24,10 +24,8 @@ public class CrudUserActivity extends AppCompatActivity {
     private Patient patient;
     private Operator operator;
 
-    private static final String USER_ID_FIELD = "UserId";
     private static final String WHITE = "#FFFFFF";
     private static final String COMPLETE_FIELDS_ERROR = "Complete all fields";
-    private static final String UPDATE = "update";
 
     OperatorDAO operatorDAO;
     PatientDAO patientDAO;
@@ -79,19 +77,19 @@ public class CrudUserActivity extends AppCompatActivity {
         etRemarks = findViewById(R.id.et_remarks);
 
         Intent myIntent = getIntent();
-        String user = myIntent.getStringExtra("User");
-        String crud = myIntent.getStringExtra("Crud");
-        String userId = myIntent.getStringExtra(USER_ID_FIELD);
+        String user = myIntent.getStringExtra(ConstIntent.USER_TYPE);
+        String crud = myIntent.getStringExtra(ConstIntent.CRUD_TYPE);
+        String userId = myIntent.getStringExtra(ConstIntent.USER_ID);
 
         if(crud == null || user == null){
             return;
         }
         switch (user){
-            case "patient":
+            case ConstIntent.USER_TYPE_PATIENT:
                 patientDAO = new PatientDAO(this);
                 patient(crud, userId, patientDAO);
                 break;
-            case "operator":
+            case ConstIntent.USER_TYPE_OPERATOR:
                 operatorDAO = new OperatorDAO(this);
                 operator(crud, userId, operatorDAO);
                 break;
@@ -102,15 +100,15 @@ public class CrudUserActivity extends AppCompatActivity {
 
     private void patient(String crud, String userId, PatientDAO patientDAO){
         switch (crud){
-            case "create":
+            case ConstIntent.CRUD_TYPE_CREATE:
                 createPatient(patientDAO);
                 break;
-            case UPDATE:
+            case ConstIntent.CRUD_TYPE_UPDATE:
                 if(userId != null){
                     updatePatient(userId, patientDAO);
                 }
                 break;
-            case "read":
+            case ConstIntent.CRUD_TYPE_READ:
                 if(userId != null) {
                     readPatient(userId, patientDAO);
                 }
@@ -247,22 +245,22 @@ public class CrudUserActivity extends AppCompatActivity {
         bConfirm.setText(R.string.button_edit);
         bConfirm.setOnClickListener(v -> {
             Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
-            intent.putExtra("User", "patient");
-            intent.putExtra("Crud", UPDATE);
-            intent.putExtra(USER_ID_FIELD, String.valueOf(patient.getId()));
+            intent.putExtra(ConstIntent.USER_TYPE, ConstIntent.PATIENT);
+            intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_UPDATE);
+            intent.putExtra(ConstIntent.USER_ID, String.valueOf(patient.getId()));
             startActivity(intent);
         });
     }
 
     private void operator(String crud, String userId, OperatorDAO operatorDAO){
         switch (crud){
-            case "create":
+            case ConstIntent.CRUD_TYPE_CREATE:
                 createOperator(operatorDAO);
                 break;
-            case UPDATE:
+            case ConstIntent.CRUD_TYPE_UPDATE:
                 updateOperator(userId, operatorDAO);
                 break;
-            case "read":
+            case ConstIntent.CRUD_TYPE_READ:
                 readOperator(userId, operatorDAO);
                 break;
             default:
@@ -359,9 +357,9 @@ public class CrudUserActivity extends AppCompatActivity {
         bConfirm.setText(R.string.button_edit);
         bConfirm.setOnClickListener(v -> {
             Intent intent = new Intent(CrudUserActivity.this, CrudUserActivity.class);
-            intent.putExtra("User", "operator");
-            intent.putExtra("Crud", UPDATE);
-            intent.putExtra(USER_ID_FIELD, String.valueOf(operator.getId()));
+            intent.putExtra(ConstIntent.USER_TYPE, ConstIntent.OPERATOR);
+            intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_UPDATE);
+            intent.putExtra(ConstIntent.USER_ID, String.valueOf(operator.getId()));
             startActivity(intent);
         });
     }

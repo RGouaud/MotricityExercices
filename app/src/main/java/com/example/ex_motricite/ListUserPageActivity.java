@@ -1,5 +1,6 @@
 package com.example.ex_motricite;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -29,7 +30,6 @@ public class ListUserPageActivity extends AppCompatActivity {
 
     private static final String USER_TYPE_OPERATOR = "operator";
     private static final String USER_TYPE_PATIENT = "patient";
-    private static final String USER_ID_EXTRA = "UserId";
     private static final String WHITE_COLOR_HEX = "#FFFFFF";
 
 
@@ -50,9 +50,9 @@ public class ListUserPageActivity extends AppCompatActivity {
             Operator operator = (Operator) actor;
             aLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                intent.putExtra("User", USER_TYPE_OPERATOR);
-                intent.putExtra("Crud", "read");
-                intent.putExtra(USER_ID_EXTRA, String.valueOf(operator.getId()));
+                intent.putExtra(ConstIntent.USER_TYPE, ConstIntent.USER_TYPE_OPERATOR);
+                intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_READ);
+                intent.putExtra(ConstIntent.USER_ID, String.valueOf(operator.getId()));
                 startActivity(intent);
             });
         }
@@ -79,18 +79,18 @@ public class ListUserPageActivity extends AppCompatActivity {
                 2f)); // weight
 
         // Create and configure ImageButtons
-        ImageButton boutonModify = new ImageButton(this);
-        boutonModify.setImageResource(android.R.drawable.ic_menu_set_as);
-        boutonModify.setBackgroundColor(Color.parseColor("#00000000"));
+        ImageButton buttonModify = new ImageButton(this);
+        buttonModify.setImageResource(android.R.drawable.ic_menu_set_as);
+        buttonModify.setBackgroundColor(Color.parseColor("#00000000"));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
-        boutonModify.setLayoutParams(params);
+        buttonModify.setLayoutParams(params);
 
         long actorId = actor.getId();
-        boutonModify.setOnClickListener(v -> {
+        buttonModify.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            intent.putExtra("User", getActorTypeString(actor));
-            intent.putExtra("Crud", "update");
-            intent.putExtra(USER_ID_EXTRA, String.valueOf(actorId));
+            intent.putExtra(ConstIntent.USER_TYPE, getActorTypeString(actor));
+            intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_UPDATE);
+            intent.putExtra(ConstIntent.USER_ID, String.valueOf(actorId));
             startActivity(intent);
         });
 
@@ -103,7 +103,7 @@ public class ListUserPageActivity extends AppCompatActivity {
         // Add TextView to LinearLayout
         aLayout.addView(name);
         aLayout.addView(firstName);
-        aLayout.addView(boutonModify);
+        aLayout.addView(buttonModify);
 
         //Creation of birthdate for patient
         if (actor instanceof Patient) {
@@ -126,9 +126,9 @@ public class ListUserPageActivity extends AppCompatActivity {
 
             parentLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                intent.putExtra("User", USER_TYPE_PATIENT);
-                intent.putExtra("Crud", "read");
-                intent.putExtra(USER_ID_EXTRA, String.valueOf(patient.getId()));
+                intent.putExtra(ConstIntent.USER_TYPE, ConstIntent.USER_TYPE_PATIENT);
+                intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_READ);
+                intent.putExtra(ConstIntent.USER_ID, String.valueOf(patient.getId())); // TODO : verifier que c'est bon
                 startActivity(intent);
             });
 
@@ -143,7 +143,7 @@ public class ListUserPageActivity extends AppCompatActivity {
     }
 
     private String getActorTypeString(Actor actor) {
-        return actor.getClass().equals(Patient.class) ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
+        return actor.getClass().equals(Patient.class) ? ConstIntent.USER_TYPE_PATIENT : ConstIntent.USER_TYPE_OPERATOR;
     }
 
     private void displayActors(ArrayList<? extends Actor> actors) {
@@ -168,14 +168,14 @@ public class ListUserPageActivity extends AppCompatActivity {
         try {
             operators = operatorDAO.getOperators();
         } catch (Exception e) {
-            handleDataRetrievalError("Erreur lors de la récupération des opérateurs", e);
+            handleDataRetrievalError("Error retrieving operators", e);
         }
 
 
         try {
             patients = patientDAO.getPatients();
         } catch (Exception e) {
-            handleDataRetrievalError("Erreur lors de la récupération des patients", e);
+            handleDataRetrievalError("Error retrieving patients", e);
         }
 
 
@@ -192,6 +192,7 @@ public class ListUserPageActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     private void setOrientationLock() {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -204,10 +205,10 @@ public class ListUserPageActivity extends AppCompatActivity {
     private void setButtonClickListeners() {
         buttonAdd.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            String userType = toggleButtonPatient.isChecked() ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
-            intent.putExtra("User", userType);
-            intent.putExtra("Crud", "create");
-            intent.putExtra(USER_ID_EXTRA, "");
+            String userType = toggleButtonPatient.isChecked() ? ConstIntent.USER_TYPE_PATIENT : ConstIntent.USER_TYPE_OPERATOR;
+            intent.putExtra(ConstIntent.USER_TYPE, userType);
+            intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_CREATE);
+            intent.putExtra(ConstIntent.USER_ID, "");
             startActivity(intent);
         });
 
@@ -223,9 +224,9 @@ public class ListUserPageActivity extends AppCompatActivity {
             displayActors(actors);
             buttonAdd.setOnClickListener(v1 -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                String userType = clickedButton == toggleButtonPatient ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
-                intent.putExtra("User", userType);
-                intent.putExtra("Crud", "create");
+                String userType = clickedButton == toggleButtonPatient ? ConstIntent.USER_TYPE_PATIENT : ConstIntent.USER_TYPE_OPERATOR;
+                intent.putExtra(ConstIntent.USER_TYPE, userType);
+                intent.putExtra(ConstIntent.CRUD_TYPE, ConstIntent.CRUD_TYPE_CREATE);
                 startActivity(intent);
             });
         } else {
