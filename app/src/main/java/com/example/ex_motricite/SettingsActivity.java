@@ -15,6 +15,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * The {@code SettingsActivity} class represents an Android activity for configuring settings.
+ *
+ * <p>
+ * This activity includes functionalities to display a list of patients and operators, handle user input,
+ * and navigate to specific exercise activities based on user selections. It utilizes DAOs (Data Access Objects)
+ * to retrieve patient and operator data from a database.
+ * </p>
+ *
+ * <p>
+ * The class supports both static and rhythm tests, with dynamic adjustments based on the selected exercise type.
+ * It ensures proper input validation and provides a user-friendly interface for configuring exercise settings.
+ * </p>
+ *
+ * <p>
+ *     Author: EduardoXav
+ *     Version: 1.0
+ * </p>
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     private RadioButton rbEmail;
@@ -92,6 +111,11 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles radio button clicks.
+     *
+     * @param clickedRadioButton The radio button that was clicked.
+     */
     private void onRadioButtonClicked(RadioButton clickedRadioButton) {
         if (clickedRadioButton == rbEmail) {
             rbServer.setChecked(false);
@@ -100,6 +124,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads the saved settings from SharedPreferences and updates the UI.
+     */
     private void loadSettings() {
         // Load settings from SharedPreferences
         String settingsJson = sharedPreferences.getString("settings_json", null);
@@ -121,6 +148,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the settings to SharedPreferences.
+     *
+     * @param jsonData The JSON object containing the settings data.
+     */
     private void saveSettings(JSONObject jsonData) {
         // Save data in SharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();

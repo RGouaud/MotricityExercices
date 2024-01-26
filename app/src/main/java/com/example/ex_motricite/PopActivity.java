@@ -9,6 +9,18 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
+/**
+ * The {@code PopActivity} class represents an Android activity for displaying a pop-up window.
+ *
+ * <p>
+ * This activity includes functionalities to display a pop-up window and navigate to the home page.
+ * </p>
+ *
+ * <p>
+ *     Author: Segot
+ *     Version: 1.0
+ *</p>
+ */
 public class PopActivity extends Activity {
 
     @Override
@@ -28,9 +40,10 @@ public class PopActivity extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-
+        // Set a click listener on the Home button to navigate to the home page
         bHome.setOnClickListener(v -> startActivity(new Intent(PopActivity.this,HomePageActivity.class)));
 
+        // Set the layout dimensions of the pop-up window
         getWindow().setLayout((int) (width*.4),(int) (height*.4));
     }
 }
