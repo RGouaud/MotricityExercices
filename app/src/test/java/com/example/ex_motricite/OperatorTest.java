@@ -32,4 +32,37 @@ public class OperatorTest {
         assertEquals(operator.name, name);
         assertEquals(operator.firstName, firstName);
     }
+
+    // TO STRING
+    @Test
+    public void testToStringWhenAllParamsGiven(){
+        //GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(id, name, firstName);
+        //THEN
+        assertEquals("Id of Patient : " + id + ", name of patient : " + name + ", firstname of patient : " + firstName, operator.toString());
+    }
+
+    @Test
+    public void testToStringWhenNoIdGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals("Id of Patient : " + -1 + ", name of patient : " + name + ", firstname of patient : " + firstName, operator.toString());
+    }
+
+    @Test
+    public void testToStringWhenNothingGiven(){
+        //GIVEN
+        //WHEN
+        Operator operator = new Operator("","");
+        //THEN
+        assertEquals("Id of Patient : " + -1 + ", name of patient : " + "" + ", firstname of patient : " + "", operator.toString());
+    }
 }
