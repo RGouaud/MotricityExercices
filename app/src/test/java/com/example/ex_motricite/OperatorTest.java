@@ -163,4 +163,31 @@ public class OperatorTest {
         //THEN
         assertEquals(newName, operator.getName());
     }
+
+    // SET FIRST NAME
+    @Test
+    public void testSetFirstNameWhenFirstNameGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        String newFirstName = "John2";
+        operator.setFirstName(newFirstName);
+        //THEN
+        assertEquals(newFirstName, operator.getFirstName());
+    }
+
+    @Test
+    public void testSetFirstNameWhenNoFirstNameGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        String newFirstName = "";
+        operator.setFirstName(newFirstName);
+        //THEN
+        assertEquals(newFirstName, operator.getFirstName());
+    }
 }
