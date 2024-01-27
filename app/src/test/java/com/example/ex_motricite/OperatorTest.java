@@ -89,4 +89,29 @@ public class OperatorTest {
         //THEN
         assertEquals(name, operator.getName());
     }
+
+    // GET FIRST NAME
+    @Test
+    public void testGetFirstNameWhenFirstNameGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals(firstName, operator.getFirstName());
+    }
+
+    @Test
+    public void testGetFirstNameWhenNoFirstNameGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals(firstName, operator.getFirstName());
+    }
+
+
 }
