@@ -65,4 +65,28 @@ public class OperatorTest {
         //THEN
         assertEquals("Id of Patient : " + -1 + ", name of patient : " + "" + ", firstname of patient : " + "", operator.toString());
     }
+
+    // GET NAME
+
+    @Test
+    public void testGetNameWhenNameGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals(name, operator.getName());
+    }
+
+    @Test
+    public void testGetNameWhenNoNameGiven(){
+        //GIVEN
+        String name = "";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals(name, operator.getName());
+    }
 }
