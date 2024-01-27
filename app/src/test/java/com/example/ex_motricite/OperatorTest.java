@@ -113,5 +113,27 @@ public class OperatorTest {
         assertEquals(firstName, operator.getFirstName());
     }
 
+    // GET ID
+    @Test
+    public void testGetIdWhenIdGiven(){
+        //GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(id, name, firstName);
+        //THEN
+        assertEquals(id, operator.getId());
+    }
 
+    @Test
+    public void testGetIdWhenNoIdGiven(){
+        //GIVEN
+        String name = "Doe";
+        String firstName = "John";
+        //WHEN
+        Operator operator = new Operator(name, firstName);
+        //THEN
+        assertEquals(-1, operator.getId());
+    }
 }
