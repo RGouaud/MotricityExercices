@@ -21,3 +21,7 @@ p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 k
 ;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
+g
+7app/src/main/java/com/example/ex_motricite/Patient.java,8\c\8c5c9fcf02d14757e66630ffb739a837a05d989f
+k
+;app/src/test/java/com/example/ex_motricite/PatientTest.java,0\d\0d49bca6b737c2bfa9b85348654d1661527894ef
