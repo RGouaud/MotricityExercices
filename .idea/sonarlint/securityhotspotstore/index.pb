@@ -25,3 +25,11 @@ g
 7app/src/main/java/com/example/ex_motricite/Patient.java,8\c\8c5c9fcf02d14757e66630ffb739a837a05d989f
 k
 ;app/src/test/java/com/example/ex_motricite/PatientTest.java,0\d\0d49bca6b737c2bfa9b85348654d1661527894ef
+k
+;app/src/main/java/com/example/ex_motricite/OperatorDAO.java,f\6\f60d57ac8f6ff52de641f67dd218efacf7aa1e5c
+p
+@app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3\2\3286bc2b9b890903a5c2e7d0454675e3ccd2a853
+T
+$app/src/main/java/DateValidator.java,5\0\503df4550c8471fa3795d860f16f02a043e42920
+m
+=app/src/main/java/com/example/ex_motricite/DateValidator.java,9\2\92f80f9e50cf2e0b66ab6d4a97d5db08f3783aeb
