@@ -85,4 +85,19 @@ public class PatientTest {
         // THEN
         assertEquals(birthDate, birthDatePatient);
     }
+
+    @Test
+    public void testGetRemarks(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String remarks = "No remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        String remarksPatient = patient.getRemarks();
+        // THEN
+        assertEquals(remarks, remarksPatient);
+    }
 }
