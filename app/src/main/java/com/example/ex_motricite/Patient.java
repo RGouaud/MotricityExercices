@@ -6,10 +6,12 @@ public class Patient extends Actor {
     private String birthDate;
     private String remarks;
 
+    private static final String BIRTH_DATE_ERROR = "Birthdate is not valid";
+
     public Patient(long id, String name, String firstName, String birthDate, String remarks){
         super(id, name, firstName);
         if(!DateValidator.isValid(birthDate)){
-            throw new IllegalArgumentException("Birthdate is not valid");
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
         }
         this.birthDate = birthDate;
         this.remarks = remarks;
@@ -18,7 +20,7 @@ public class Patient extends Actor {
     public Patient( String name, String firstName, String birthDate, String remarks){
         super(-1, name, firstName);
         if(!DateValidator.isValid(birthDate)){
-            throw new IllegalArgumentException("Birthdate is not valid");
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
         }
         this.birthDate = birthDate;
         this.remarks = remarks;
@@ -34,7 +36,7 @@ public class Patient extends Actor {
 
     public void setBirthDate(String birthDate){
         if(!DateValidator.isValid(birthDate)){
-            throw new IllegalArgumentException("Birthdate is not valid");
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
         }
         this.birthDate = birthDate;
     }
