@@ -35,3 +35,5 @@ o
 ?app/src/test/java/com/example/ex_motricite/ExampleUnitTest.java,4\2\4258132a003151aa02e2e61b274cbcf8e1e6b733
 h
 8app/src/main/java/com/example/ex_motricite/Operator.java,b\0\b0665aa222fd0c12a8a1ef8d8c7c3fcb18ed6217
+e
+5app/src/main/java/com/example/ex_motricite/Actor.java,f\1\f15114a60504a92def479aa4f85a7d2ff853709a

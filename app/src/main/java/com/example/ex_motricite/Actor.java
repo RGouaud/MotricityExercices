@@ -31,7 +31,4 @@ public abstract class Actor {
         this.firstName = firstName;
     }
 
-    public void setId(long id){
-        this.id = id;
-    }
 }
