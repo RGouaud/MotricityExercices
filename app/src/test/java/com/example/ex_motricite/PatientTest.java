@@ -115,4 +115,34 @@ public class PatientTest {
         // THEN
         assertEquals(remarks, remarksPatient);
     }
+
+    @Test
+    public void testGetName(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String remarks = "No remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        String namePatient = patient.getName();
+        // THEN
+        assertEquals(name, namePatient);
+    }
+
+    @Test
+    public void testGetFirstName(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String remarks = "No remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        String firstNamePatient = patient.getFirstName();
+        // THEN
+        assertEquals(firstName, firstNamePatient);
+    }
 }
