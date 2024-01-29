@@ -183,4 +183,34 @@ public class PatientTest {
             assertEquals("Birthdate is not valid", e.getMessage());
         }
     }
+
+    @Test
+    public void testSetRemarks(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String remarks = "No remarks";
+        String remarks2 = "Remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        patient.setRemarks(remarks2);
+        // THEN
+        assertEquals(remarks2, patient.getRemarks());
+    }
+
+    @Test
+    public void testSetEmptyRemarks(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        Patient patient = new Patient(id, name, firstName, birthDate, "");
+        // WHEN
+        String remarksPatient = patient.getRemarks();
+        // THEN
+        assertEquals("", remarksPatient);
+    }
 }
