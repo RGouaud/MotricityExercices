@@ -43,7 +43,7 @@ public class PatientTest {
         String remarks = "No remarks";
         // WHEN
         try{
-            Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+            new Patient(id, name, firstName, birthDate, remarks);
             fail("Should throw IllegalArgumentException");
         } catch (IllegalArgumentException e){
 
@@ -61,7 +61,7 @@ public class PatientTest {
         String remarks = "No remarks";
         // WHEN
         try{
-            Patient patient = new Patient(name, firstName, birthDate, remarks);
+            new Patient(name, firstName, birthDate, remarks);
             fail("Should throw IllegalArgumentException");
         } catch (IllegalArgumentException e){
 
