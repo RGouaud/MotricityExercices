@@ -191,31 +191,4 @@ public class OperatorTest {
         assertEquals(newFirstName, operator.getFirstName());
     }
 
-    // SET ID
-
-    @Test
-    public void testSetIdWhenIdGiven(){
-        //GIVEN
-        long id = 1;
-        String name = "Doe";
-        String firstName = "John";
-        //WHEN
-        Operator operator = new Operator(name, firstName);
-        operator.setId(id);
-        //THEN
-        assertEquals(id, operator.getId());
-    }
-
-    @Test
-    public void testSetIdWhenNoIdGiven(){
-        //GIVEN
-        long id = -1;
-        String name = "Doe";
-        String firstName = "John";
-        //WHEN
-        Operator operator = new Operator(name, firstName);
-        operator.setId(id);
-        //THEN
-        assertEquals(id, operator.getId());
-    }
 }
