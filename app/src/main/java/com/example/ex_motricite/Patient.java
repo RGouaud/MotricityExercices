@@ -8,12 +8,18 @@ public class Patient extends Actor {
 
     public Patient(long id, String name, String firstName, String birthDate, String remarks){
         super(id, name, firstName);
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException("Birthdate is not valid");
+        }
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
 
     public Patient( String name, String firstName, String birthDate, String remarks){
         super(-1, name, firstName);
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException("Birthdate is not valid");
+        }
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
@@ -27,6 +33,9 @@ public class Patient extends Actor {
 
 
     public void setBirthDate(String birthDate){
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException("Birthdate is not valid");
+        }
         this.birthDate = birthDate;
     }
 
