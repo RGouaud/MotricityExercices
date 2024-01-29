@@ -100,4 +100,19 @@ public class PatientTest {
         // THEN
         assertEquals(remarks, remarksPatient);
     }
+
+    @Test
+    public void testGetRemarksWhenEmpty(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String remarks = "";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        String remarksPatient = patient.getRemarks();
+        // THEN
+        assertEquals(remarks, remarksPatient);
+    }
 }
