@@ -145,4 +145,42 @@ public class PatientTest {
         // THEN
         assertEquals(firstName, firstNamePatient);
     }
+
+    // SETTERS
+    @Test
+    public void testSetBirthDate(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String birthDate2 = "02/02/2002";
+        String remarks = "No remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        patient.setBirthDate(birthDate2);
+        // THEN
+        assertEquals(birthDate2, patient.getBirthDate());
+    }
+
+    @Test
+    public void testSetWrongBirthDate(){
+        // GIVEN
+        long id = 1;
+        String name = "Doe";
+        String firstName = "John";
+        String birthDate = "01/01/2000";
+        String birthDate2 = "02/02/200";
+        String remarks = "No remarks";
+        Patient patient = new Patient(id, name, firstName, birthDate, remarks);
+        // WHEN
+        try{
+            patient.setBirthDate(birthDate2);
+            fail("Should throw IllegalArgumentException");
+        } catch (IllegalArgumentException e){
+
+            // THEN
+            assertEquals("Birthdate is not valid", e.getMessage());
+        }
+    }
 }
