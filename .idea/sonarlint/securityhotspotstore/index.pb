@@ -21,3 +21,7 @@ p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 k
 ;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
+v
+Fapp/src/test/java/com/example/ex_motricite/BdSQLiteOpenHelperTest.java,a\a\aad81c51736848a5afa0f4549322171e13f45dfb
