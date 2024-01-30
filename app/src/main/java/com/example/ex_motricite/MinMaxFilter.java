@@ -18,7 +18,13 @@ import android.text.Spanned;
  * </p>
  */
 public class MinMaxFilter implements InputFilter {
+    /**
+     * The minimum value for the edit text field.
+     */
     private final int intMin;
+    /**
+     * The maximum value for the edit text field.
+     */
     private final int intMax;
 
     // Initialized

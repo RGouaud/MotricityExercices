@@ -43,16 +43,46 @@ import java.util.ArrayList;
  */
 public class ListUserPageActivity extends AppCompatActivity {
 
+    /**
+     * The LinearLayout for the list of users.
+     */
     private LinearLayout svList;
+    /**
+     * The Button for adding a user.
+     */
     private Button buttonAdd;
+    /**
+     * The ToggleButton for selecting patients.
+     */
     private ToggleButton toggleButtonPatient;
+    /**
+     * The ToggleButton for selecting operators.
+     */
     private ToggleButton toggleButtonOperator;
+    /**
+     * The list of patients.
+     */
     private ArrayList<Patient> patients;
+    /**
+     * The list of operators.
+     */
     private ArrayList<Operator> operators;
 
+    /**
+     * The string representation of the operator user type.
+     */
     private static final String USER_TYPE_OPERATOR = "operator";
+    /**
+     * The string representation of the patient user type.
+     */
     private static final String USER_TYPE_PATIENT = "patient";
+    /**
+     * The string representation of the user ID extra.
+     */
     private static final String USER_ID_EXTRA = "UserId";
+    /**
+     * The string representation of the white color hex.
+     */
     private static final String WHITE_COLOR_HEX = "#FFFFFF";
 
     /**

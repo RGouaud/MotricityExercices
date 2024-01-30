@@ -15,7 +15,13 @@ import androidx.annotation.NonNull;
  * </p>
  */
 public class Patient extends Actor {
+    /**
+     * The birth date of the patient.
+     */
     private String birthDate;
+    /**
+     * The remarks of the patient.
+     */
     private String remarks;
 
     /**
