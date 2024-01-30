@@ -56,8 +56,17 @@ public class CrudUserActivity extends AppCompatActivity {
     EditText etFirstName;
     EditText etName;
     TextView tvNewUser;
+    /**
+     * The {@code bDelete} button is used to delete a patient or operator.
+     */
     Button bDelete;
+    /**
+     * The {@code bConfirm} button is used to confirm CRUD operations.
+     */
     Button bConfirm;
+    /**
+     * The {@code llCrud} linear layout is used to display CRUD forms.
+     */
     LinearLayout llCrud;
 
     /**

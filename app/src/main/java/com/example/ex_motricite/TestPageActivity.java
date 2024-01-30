@@ -36,9 +36,21 @@ import java.util.StringTokenizer;
  */
 public class TestPageActivity extends AppCompatActivity {
 
+    /**
+     * The TextView for the duration of the test.
+     */
     private TextView tvDuration;
+    /**
+     * The TextView for the operator of the test.
+     */
     private TextView tvOperator;
+    /**
+     * The TextView for the patient of the test.
+     */
     private TextView tvPatient;
+    /**
+     * The TextView for the type of the test.
+     */
     private TextView tvType;
     @SuppressLint("SourceLockedOrientationActivity")
     @Override

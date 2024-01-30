@@ -19,8 +19,17 @@ import java.util.ArrayList;
  * </p>
  */
 public class PatientDAO {
+    /**
+     * The name of the database.
+     */
     private static final String BASE = "BDMotricity";
+    /**
+     * The version of the database.
+     */
     private static final int VERSION = 1;
+    /**
+     * The database access object.
+     */
     private final BdSQLiteOpenHelper bdAccess;
 
     /**

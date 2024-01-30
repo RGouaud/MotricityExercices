@@ -55,30 +55,97 @@ public class DynamicExerciseActivity extends CameraActivity {
 
     TextView tvX;
     TextView tvY;
+    /**
+     * The countdown timer display.
+     */
     TextView countdownText;
+    /**
+     * The camera view.
+     */
     CameraBridgeViewBase cameraBridgeViewBase;
+    /**
+     * The previous frame.
+     */
     Mat prevGray;
+    /**
+     * The current frame in RGB.
+     */
     Mat rgb;
+    /**
+     * The current frame in gray.
+     */
     Mat currGray;
+    /**
+     * The difference between the current and previous frames.
+     */
     Mat diff;
+    /**
+     * The result of the difference between the current frame and the previous frame.
+     */
     Mat result;
+    /**
+     * The output of the difference between the current frame and the previous frame.
+     */
     Mat output;
+    /**
+     * The current frame in RGB.
+     */
     Mat imageRgb;
+    /**
+     * The state of the initialization.
+     */
     Mat rgbDisplay;
+    /**
+     * The tone generator.
+     */
     ToneGenerator toneGenerator;
+    /**
+     * The state of the initialization.
+     */
     boolean isInit;
+    /**
+     * The list of outlines.
+     */
     List<MatOfPoint> outlines; // list of outlines
+    /**
+     * The countdown timer.
+     */
     CountDownTimer countDownTimer;
+    /**
+     * The start button.
+     */
     Button bStart;
+    /**
+     * The state of the timer.
+     */
     boolean isRunning;
+    /**
+     * The timer left in milliseconds.
+     */
     private long timerLeftInMilliseconds;
-
+    /**
+     * The number of frames.
+     */
     private int nbFrame;
+    /**
+     * The distance of the exercise.
+     */
     private int distance;
+    /**
+     * The duration of the exercise.
+     */
     private int time;
+    /**
+     * The interval of the exercise.
+     */
     private int interval;
-
+    /**
+     * The name of the patient.
+     */
     private String patient;
+    /**
+     * The name of the operator.
+     */
     private String operator;
 
     List<Double> listX = new ArrayList<>();

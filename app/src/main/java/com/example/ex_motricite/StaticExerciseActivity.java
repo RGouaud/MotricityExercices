@@ -49,26 +49,89 @@ public class StaticExerciseActivity extends CameraActivity {
 
     TextView tvX;
     TextView tvY;
+    /**
+     * The countdown timer display.
+     */
     TextView countdownText;
+    /**
+     * The camera view.
+     */
     CameraBridgeViewBase cameraBridgeViewBase;
+    /**
+     * The previous frame.
+     */
     Mat prevGray;
+    /**
+     * The current frame in RGB.
+     */
     Mat rgb;
+    /**
+     * The current frame in gray.
+     */
     Mat currGray;
+    /**
+     * The difference between the current frame and the previous frame.
+     */
     Mat diff;
+    /**
+     * The result of the difference between the current frame and the previous frame.
+     */
     Mat result;
+    /**
+     * The output of the difference between the current frame and the previous frame.
+     */
     Mat output;
+    /**
+     * The current frame in RGB.
+     */
     Mat imageRgb;
+    /**
+     * The current frame in RGB.
+     */
     Mat rgbDisplay;
+    /**
+     * The state of the initialization.
+     */
     boolean isInit;
+    /**
+     * The list of laser outlines.
+     */
     List<MatOfPoint> outlines;
+    /**
+     * The countdown timer.
+     */
     CountDownTimer countDownTimer;
+    /**
+     * The start button.
+     */
     Button bStart;
+    /**
+     * The state of the countdown timer.
+     */
     boolean isRunning;
+    /**
+     * The time left in milliseconds.
+     */
     private long timerLeftInMilliseconds;
+    /**
+     * The number of frames.
+     */
     private int nbFrame;
+    /**
+     * The distance of the exercise.
+     */
     private int distance;
+    /**
+     * The duration of the exercise.
+     */
     private int time;
+    /**
+     * The name of the patient.
+     */
     private String patient;
+    /**
+     * The name of the operator.
+     */
     private String operator;
 
     List<Double> listX = new ArrayList<>();
