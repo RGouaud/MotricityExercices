@@ -37,35 +37,74 @@ import java.util.regex.Pattern;
  */
 public class CrudUserActivity extends AppCompatActivity {
     // Instance variables for patient and operator objects
+    /**
+     * The patient object.
+     */
     private Patient patient;
+    /**
+     * The operator object.
+     */
     private Operator operator;
 
     // Constants for intent extras and color codes
+    /**
+     * The name of the user ID field.
+     */
     private static final String USER_ID_FIELD = "UserId";
+    /**
+     * The color code for white.
+     */
     private static final String WHITE = "#FFFFFF";
+    /**
+     * The error message for incomplete fields.
+     */
     private static final String COMPLETE_FIELDS_ERROR = "Complete all fields";
+    /**
+     * The update operation.
+     */
     private static final String UPDATE = "update";
 
     // DAO instances for database operations
+    /**
+     * The PatientDAO instance for database operations.
+     */
     OperatorDAO operatorDAO;
+    /**
+     * The OperatorDAO instance for database operations.
+     */
     PatientDAO patientDAO;
 
     // UI elements
+    /**
+     * The EditText for remarks.
+     */
     EditText etRemarks;
+    /**
+     * The EditText for birthdate.
+     */
     EditText etBirthdate;
+    /**
+     * The EditText for first name.
+     */
     EditText etFirstName;
+    /**
+     * The EditText for name.
+     */
     EditText etName;
+    /**
+     * The TextView for new user.
+     */
     TextView tvNewUser;
     /**
-     * The {@code bDelete} button is used to delete a patient or operator.
+     * The delete button.
      */
     Button bDelete;
     /**
-     * The {@code bConfirm} button is used to confirm CRUD operations.
+     * The confirm button.
      */
     Button bConfirm;
     /**
-     * The {@code llCrud} linear layout is used to display CRUD forms.
+     * The LinearLayout for CRUD operations.
      */
     LinearLayout llCrud;
 
