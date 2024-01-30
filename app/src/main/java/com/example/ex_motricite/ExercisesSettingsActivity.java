@@ -43,11 +43,29 @@ import java.util.List;
  */
 public class ExercisesSettingsActivity extends AppCompatActivity {
 
+    /**
+     * The spinner for patients.
+     */
     private Spinner sPatient;
+    /**
+     * The spinner for operators.
+     */
     private Spinner sOperator;
+    /**
+     * The EditText for the interval.
+     */
     private EditText etInterval;
+    /**
+     * The SeekBar for the interval.
+     */
     private SeekBar sbInterval;
+    /**
+     * The list of patients.
+     */
     private ArrayList<Patient> lstPatient;
+    /**
+     * The list of operators.
+     */
     private ArrayList<Operator> lstOperator;
 
     /**

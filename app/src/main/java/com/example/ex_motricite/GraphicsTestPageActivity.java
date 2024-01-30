@@ -58,8 +58,14 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
     private enum theme {
         X, Y,Y_X
     }
+    /**
+     * The LineChart object.
+     */
     private LineChart lineChart;
 
+    /**
+     * The URI for the CSV file.
+     */
     private Uri fileUri;
 
     @SuppressLint("SourceLockedOrientationActivity")

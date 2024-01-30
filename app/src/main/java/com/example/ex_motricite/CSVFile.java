@@ -33,16 +33,45 @@ import java.util.List;
  */
 public class CSVFile {
 
+    /**
+     * The list of X coordinates.
+     */
     private final List<Double> listX;
+    /**
+     * The list of Y coordinates.
+     */
     private final List<Double> listY;
+    /**
+     * The list of frame numbers.
+     */
     private final List<Integer> listNbFrame;
+    /**
+     * The type of exercise.
+     */
     private final String exerciseType;
+    /**
+     * The total exercise time in seconds.
+     */
     private final Integer exerciseTime;
+    /**
+     * The interval time in seconds.
+     */
     private final Integer intervalTime;
+    /**
+     * The operator's name.
+     */
     private final String operatorName;
+    /**
+     * The patient's name.
+     */
     private final String patientName;
-
+    /**
+     * The mark distance.
+     */
     private final int distance;
+    /**
+     * The Android application context.
+     */
     private final Context context;
 
     /**

@@ -148,8 +148,17 @@ public class DynamicExerciseActivity extends CameraActivity {
      */
     private String operator;
 
+    /**
+     * The list of X coordinates.
+     */
     List<Double> listX = new ArrayList<>();
+    /**
+     * The list of Y coordinates.
+     */
     List<Double> listY = new ArrayList<>();
+    /**
+     * The list of frame numbers.
+     */
     List<Integer> listNbFrame = new ArrayList<>();
 
     @Override

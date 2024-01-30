@@ -50,8 +50,17 @@ import java.util.List;
 public class ListTestActivity extends AppCompatActivity {
 
     // You can choose any number code here
+    /**
+     * The List of selected files.
+     */
     private final List<File> selectedFiles = new ArrayList<>();
+    /**
+     * The layout for the list of test files.
+     */
     private LinearLayout layoutListTest;
+    /**
+     * The shared preferences object.
+     */
     private SharedPreferences sharedPreferences;
 
     @Override

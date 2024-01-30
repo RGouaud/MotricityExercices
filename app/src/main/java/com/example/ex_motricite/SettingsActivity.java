@@ -36,12 +36,33 @@ import org.json.JSONObject;
  */
 public class SettingsActivity extends AppCompatActivity {
 
+    /**
+     * The radio button for email settings.
+     */
     private RadioButton rbEmail;
+    /**
+     * The radio button for server settings.
+     */
     private RadioButton rbServer;
+    /**
+     * The EditText for the email address.
+     */
     private EditText etEmail;
+    /**
+     * The EditText for the server URL.
+     */
     private EditText etUrlServer;
+    /**
+     * The EditText for the server ID.
+     */
     private EditText etIdServer;
+    /**
+     * The EditText for the server password.
+     */
     private EditText etPassword;
+    /**
+     * The SharedPreferences object for storing settings.
+     */
     private SharedPreferences sharedPreferences;
 
     @SuppressLint("SourceLockedOrientationActivity")
