@@ -1,30 +1,8 @@
 package com.example.ex_motricite;
 
-/**
- * The {@code Actor} class represents a generic actor with basic information such as
- * ID, name, and first name.
- * <p>
- * This class serves as an abstract base class for specific types of actors in the system.
- * </p>
- *
- * @author Rgouaud
- * @version 1.0
- */
 public abstract class Actor {
-
-    /**
-     * The unique identifier for the actor.
-     */
     protected long id;
-
-    /**
-     * The last name of the actor.
-     */
     protected String name;
-
-    /**
-     * The first name of the actor.
-     */
     protected String firstName;
 
     /**
@@ -85,12 +63,4 @@ public abstract class Actor {
         this.firstName = firstName;
     }
 
-    /**
-     * Sets the unique identifier for the actor.
-     *
-     * @param id The new unique identifier for the actor.
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
 }

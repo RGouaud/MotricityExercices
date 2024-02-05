@@ -24,6 +24,8 @@ public class Patient extends Actor {
      */
     private String remarks;
 
+    private static final String BIRTH_DATE_ERROR = "Birthdate is not valid";
+
     /**
      * Constructor for Patient class.
      *
@@ -35,6 +37,9 @@ public class Patient extends Actor {
      */
     public Patient(long id, String name, String firstName, String birthDate, String remarks){
         super(id, name, firstName);
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
+        }
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
@@ -49,6 +54,9 @@ public class Patient extends Actor {
      */
     public Patient( String name, String firstName, String birthDate, String remarks){
         super(-1, name, firstName);
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
+        }
         this.birthDate = birthDate;
         this.remarks = remarks;
     }
@@ -77,6 +85,9 @@ public class Patient extends Actor {
      * @param birthDate The birth date of the patient.
      */
     public void setBirthDate(String birthDate){
+        if(!DateValidator.isValid(birthDate)){
+            throw new IllegalArgumentException(BIRTH_DATE_ERROR);
+        }
         this.birthDate = birthDate;
     }
 

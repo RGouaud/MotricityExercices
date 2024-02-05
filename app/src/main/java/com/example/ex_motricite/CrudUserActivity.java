@@ -109,23 +109,6 @@ public class CrudUserActivity extends AppCompatActivity {
     LinearLayout llCrud;
 
     /**
-     * Regular expression pattern for validating date format "dd/MM/yyyy".
-     */
-    private static final String DATE_REGEX = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(\\d{4})$";
-
-    /**
-     * Validates if the provided date string matches the expected format.
-     *
-     * @param dateStr The date string to validate.
-     * @return True if the date is in the correct format, false otherwise.
-     */
-    private static boolean isValidDate(String dateStr) {
-        Pattern pattern = Pattern.compile(DATE_REGEX);
-        Matcher matcher = pattern.matcher(dateStr);
-        return matcher.matches();
-    }
-
-    /**
      * Displays a popup dialog with an error message.
      *
      * @param context The context in which the dialog should be displayed.
@@ -139,7 +122,6 @@ public class CrudUserActivity extends AppCompatActivity {
                 .setPositiveButton("OK", (dialog, which) -> {
                     dialog.dismiss(); // Close popup
                 });
-
         // Show popup
         builder.show();
     }
@@ -151,7 +133,6 @@ public class CrudUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crud_user);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // Initialize UI elements
         llCrud = findViewById(R.id.ll_crud);
         bConfirm = findViewById(R.id.b_confirm);
         bDelete = findViewById(R.id.b_delete);
@@ -161,19 +142,15 @@ public class CrudUserActivity extends AppCompatActivity {
         etBirthdate = findViewById(R.id.et_birthdate);
         etRemarks = findViewById(R.id.et_remarks);
 
-        // Get intent extras
         Intent myIntent = getIntent();
         String user = myIntent.getStringExtra("User");
         String crud = myIntent.getStringExtra("Crud");
         String userId = myIntent.getStringExtra(USER_ID_FIELD);
 
-        // Check if intent extras are present
-        if (crud == null || user == null) {
+        if(crud == null || user == null){
             return;
         }
-
-        // Process the CRUD operations based on the user type (patient or operator)
-        switch (user) {
+        switch (user){
             case "patient":
                 patientDAO = new PatientDAO(this);
                 patient(crud, userId, patientDAO);
@@ -229,7 +206,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
-                if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if(DateValidator.isValid(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
                     patient = new Patient(name, firstName, birthDate, remarks);
                     patientDAO.addPatient(patient);
                     Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
@@ -273,7 +250,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if (!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())) { // check if all obligatory fields are completed
-                if (isValidDate(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if (DateValidator.isValid(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
 
                     //update of information for current patient object instance
                     patient.setName(name);
