@@ -6,6 +6,10 @@ import static org.junit.Assert.*;
 public class OperatorTest {
 
     // CONSTRUCTORS
+
+    /**
+     * Test the constructor with name and firstName only
+     */
     @Test
     public void testConstructor2Params(){
         //GIVEN
@@ -19,6 +23,9 @@ public class OperatorTest {
         assertEquals(-1, operator.id);
     }
 
+    /**
+     * Test the constructor with id, name and firstName
+     */
     @Test
     public void testConstructor3Params(){
         //GIVEN
@@ -34,6 +41,10 @@ public class OperatorTest {
     }
 
     // TO STRING
+
+    /**
+     * Test the toString method when all parameters are given
+     */
     @Test
     public void testToStringWhenAllParamsGiven(){
         //GIVEN
@@ -46,6 +57,9 @@ public class OperatorTest {
         assertEquals("Id of Patient : " + id + ", name of patient : " + name + ", firstname of patient : " + firstName, operator.toString());
     }
 
+    /**
+     * Test the toString method when no id is given
+     */
     @Test
     public void testToStringWhenNoIdGiven(){
         //GIVEN
@@ -57,6 +71,9 @@ public class OperatorTest {
         assertEquals("Id of Patient : " + -1 + ", name of patient : " + name + ", firstname of patient : " + firstName, operator.toString());
     }
 
+    /**
+     * Test the toString method when nothing is given
+     */
     @Test
     public void testToStringWhenNothingGiven(){
         //GIVEN
@@ -67,7 +84,9 @@ public class OperatorTest {
     }
 
     // GET NAME
-
+    /**
+     * Test the getName method when name is given
+     */
     @Test
     public void testGetNameWhenNameGiven(){
         //GIVEN
@@ -79,6 +98,9 @@ public class OperatorTest {
         assertEquals(name, operator.getName());
     }
 
+    /**
+     * Test the getName method when no name is given
+     */
     @Test
     public void testGetNameWhenNoNameGiven(){
         //GIVEN
@@ -91,6 +113,9 @@ public class OperatorTest {
     }
 
     // GET FIRST NAME
+    /**
+     * Test the getFirstName method when firstName is given
+     */
     @Test
     public void testGetFirstNameWhenFirstNameGiven(){
         //GIVEN
@@ -102,6 +127,9 @@ public class OperatorTest {
         assertEquals(firstName, operator.getFirstName());
     }
 
+    /**
+     * Test the getFirstName method when no firstName is given
+     */
     @Test
     public void testGetFirstNameWhenNoFirstNameGiven(){
         //GIVEN
@@ -114,6 +142,9 @@ public class OperatorTest {
     }
 
     // GET ID
+    /**
+     * Test the getId method when id is given
+     */
     @Test
     public void testGetIdWhenIdGiven(){
         //GIVEN
@@ -126,6 +157,9 @@ public class OperatorTest {
         assertEquals(id, operator.getId());
     }
 
+    /**
+     * Test the getId method when no id is given
+     */
     @Test
     public void testGetIdWhenNoIdGiven(){
         //GIVEN
@@ -138,6 +172,9 @@ public class OperatorTest {
     }
 
     // SET NAME
+    /**
+     * Test the setName method when name is given
+     */
     @Test
     public void testSetNameWhenNameGiven(){
         //GIVEN
@@ -151,6 +188,9 @@ public class OperatorTest {
         assertEquals(newName, operator.getName());
     }
 
+    /**
+     * Test the setName method when no name is given
+     */
     @Test
     public void testSetNameWhenNoNameGiven(){
         //GIVEN
@@ -165,6 +205,9 @@ public class OperatorTest {
     }
 
     // SET FIRST NAME
+    /**
+     * Test the setFirstName method when firstName is given
+     */
     @Test
     public void testSetFirstNameWhenFirstNameGiven(){
         //GIVEN
@@ -178,6 +221,9 @@ public class OperatorTest {
         assertEquals(newFirstName, operator.getFirstName());
     }
 
+    /**
+     * Test the setFirstName method when no firstName is given
+     */
     @Test
     public void testSetFirstNameWhenNoFirstNameGiven(){
         //GIVEN

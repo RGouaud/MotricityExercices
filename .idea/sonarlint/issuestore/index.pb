@@ -51,3 +51,7 @@ o
 ?app/src/test/java/com/example/ex_motricite/OperatorDAOTest.java,d\2\d27e6f65eb175573c33533b31ffae3e2ea2f5d9a
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+}
+Mapp/src/androidTest/java/com/example/ex_motricite/BdSQLiteOpenHelperTest.java,2\0\20d0aba6742db67805a7b3d36c49e86c6191eadb
+m
+=app/src/main/java/com/example/ex_motricite/DateValidator.java,9\2\92f80f9e50cf2e0b66ab6d4a97d5db08f3783aeb
