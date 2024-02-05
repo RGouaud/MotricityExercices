@@ -84,4 +84,45 @@ public class BdSQLiteOpenHelperTest {
 
         db.close();
     }
+
+    /**
+     * Test to check if the table operator is created
+     * Check if the table exists and if the columns are correct
+     */
+    @Test
+    public void testTableOperatorIsCreated() {
+        // GIVEN
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String baseName = "accesBd";
+        int version = 1;
+
+        String tableName = "operator";
+        String[] expectedColumns = {"idOperator", "Name", "firstName"};
+
+        // WHEN
+        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
+        SQLiteDatabase db = bd.getWritableDatabase();
+
+        // THEN
+        // Check if the table exists
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name=?", new String[]{tableName});
+        assertTrue("Table " + tableName + " does not exist", cursor.moveToFirst());
+
+        // Check if the columns exist in the table
+        cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
+        ArrayList<String> columns = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                String columnName = cursor.getString(cursor.getColumnIndex("name"));
+                columns.add(columnName);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        for (String expectedColumn : expectedColumns) {
+            assertTrue("Column " + expectedColumn + " does not exist in the table", columns.contains(expectedColumn));
+        }
+
+        db.close();
+    }
 }
