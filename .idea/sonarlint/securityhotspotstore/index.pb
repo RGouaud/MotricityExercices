@@ -21,7 +21,6 @@ p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 k
 ;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
-
 p
 @app/src/main/java/com/example/ex_motricite/TestPageActivity.java,2\8\2852c891388ba3ec2805af12d8862f67c4cad611
 t
