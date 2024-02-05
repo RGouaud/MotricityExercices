@@ -40,16 +40,6 @@ public class CrudUserActivity extends AppCompatActivity {
     Button bConfirm;
     LinearLayout llCrud;
 
-    private static boolean isValidDate(String dateStr){
-        // date regex "dd/MM/yyyy"
-        String regex = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(\\d{4})$";
-
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(dateStr);
-
-        return matcher.matches();
-    }
-
     private static void showPopup(Context context, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -130,7 +120,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
-                if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if(DateValidator.isValid(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
                     patient = new Patient(name, firstName, birthDate, remarks);
                     patientDAO.addPatient(patient);
                     Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
@@ -168,7 +158,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if (!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())) { // check if all obligatory fields are completed
-                if (isValidDate(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if (DateValidator.isValid(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
 
                     //update of information for current patient object instance
                     patient.setName(name);
