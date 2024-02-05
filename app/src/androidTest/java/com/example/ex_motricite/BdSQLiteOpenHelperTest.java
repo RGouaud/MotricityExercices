@@ -23,4 +23,24 @@ public class BdSQLiteOpenHelperTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.ex_motricite", appContext.getPackageName());
     }
+
+    /**
+     * Test to check if the database is created
+     */
+    @Test
+    public void testDatabaseIsCreated(){
+        //GIVEN
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String baseName = "accesBd";
+        int version = 1;
+
+        //WHEN
+        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
+        SQLiteDatabase db = bd.getWritableDatabase();
+
+        //THEN
+        assertTrue(db.isOpen());
+
+        db.close();
+    }
 }
