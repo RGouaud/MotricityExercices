@@ -17,22 +17,79 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-
+/**
+ * The {@code ListUserPageActivity} class represents an Android activity for listing and managing users.
+ * It allows users to create, read, update, and delete patients and operators.
+ *
+ * <p>
+ * This activity displays a list of patients and operators stored in the database, providing options
+ * for creating, reading, updating, and deleting users. It supports both patient and operator CRUD operations.
+ * </p>
+ *
+ * <p>
+ * Additionally, it supports both single-click and long-click interactions for user navigation and
+ * multiple user selection, respectively.
+ * </p>
+ *
+ * <p>
+ * The class utilizes DAOs (Data Access Objects) for retrieving user data from a database and dynamically
+ * updates the layout to reflect the selected users and their visual states.
+ * </p>
+ *
+ * <p>
+ *     Author: EduardoXav, Ferreira
+ *     Version: 1.0
+ *     </p>
+ */
 public class ListUserPageActivity extends AppCompatActivity {
 
+    /**
+     * The LinearLayout for the list of users.
+     */
     private LinearLayout svList;
+    /**
+     * The Button for adding a user.
+     */
     private Button buttonAdd;
+    /**
+     * The ToggleButton for selecting patients.
+     */
     private ToggleButton toggleButtonPatient;
+    /**
+     * The ToggleButton for selecting operators.
+     */
     private ToggleButton toggleButtonOperator;
+    /**
+     * The list of patients.
+     */
     private ArrayList<Patient> patients;
+    /**
+     * The list of operators.
+     */
     private ArrayList<Operator> operators;
 
+    /**
+     * The string representation of the operator user type.
+     */
     private static final String USER_TYPE_OPERATOR = "operator";
+    /**
+     * The string representation of the patient user type.
+     */
     private static final String USER_TYPE_PATIENT = "patient";
+    /**
+     * The string representation of the user ID extra.
+     */
     private static final String USER_ID_EXTRA = "UserId";
+    /**
+     * The string representation of the white color hex.
+     */
     private static final String WHITE_COLOR_HEX = "#FFFFFF";
 
-
+    /**
+     * Create a layout for the given actor and add it to the list.
+     *
+     * @param actor The user (operator or patient) to be displayed.
+     */
     private void createActorLayout(Actor actor) {
         // Create a new LinearLayout for each actor to display
         LinearLayout aLayout = new LinearLayout(this);
@@ -142,10 +199,21 @@ public class ListUserPageActivity extends AppCompatActivity {
         svList.addView(space);
     }
 
+    /**
+     * Get the string representation of the user type (patient or operator).
+     *
+     * @param actor The user for which to determine the type.
+     * @return The string representation of the user type.
+     */
     private String getActorTypeString(Actor actor) {
         return actor.getClass().equals(Patient.class) ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
     }
 
+    /**
+     * Display a list of actors (users) in the layout.
+     *
+     * @param actors The list of actors to display.
+     */
     private void displayActors(ArrayList<? extends Actor> actors) {
         svList.removeAllViews();
         if (actors != null && !actors.isEmpty()) {
@@ -184,6 +252,9 @@ public class ListUserPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Initialize the views and components.
+     */
     private void initializeViews() {
         svList = findViewById(R.id.sv_list);
         buttonAdd = findViewById(R.id.b_Add);
@@ -192,15 +263,27 @@ public class ListUserPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Set the screen orientation to portrait mode.
+     */
     private void setOrientationLock() {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
+    /**
+     * Handle an error that occurred while retrieving data from the database.
+     *
+     * @param errorMessage The error message to display.
+     * @param e            The exception that occurred.
+     */
     private void handleDataRetrievalError(String errorMessage, Exception e) {
         e.printStackTrace();
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Set the click listeners for the buttons.
+     */
     private void setButtonClickListeners() {
         buttonAdd.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
@@ -215,6 +298,14 @@ public class ListUserPageActivity extends AppCompatActivity {
         toggleButtonOperator.setOnClickListener(v -> handleToggleButtonClick(toggleButtonOperator, toggleButtonPatient, R.string.add_a_operator, operators));
     }
 
+    /**
+     * Handle the click on a toggle button.
+     *
+     * @param clickedButton     The button that was clicked.
+     * @param otherButton       The other button.
+     * @param buttonTextResource The text resource to display on the button.
+     * @param actors            The list of actors to display.
+     */
     private void handleToggleButtonClick(ToggleButton clickedButton, ToggleButton otherButton, int buttonTextResource, ArrayList<? extends Actor> actors) {
         if (clickedButton.isChecked()) {
             otherButton.setChecked(false);

@@ -31,13 +31,41 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code GraphicsTestPageActivity} class represents an Android activity for displaying graphics based on CSV data.
+ * It utilizes the MPAndroidChart library to create LineChart graphics representing X, Y, or Y_X themes.
+ *
+ * <p>
+ * This activity reads CordsSample data from a CSV file, allowing users to visualize the X and Y coordinates over time.
+ * The LineChart graphics support different themes (X, Y, Y_X) and provide interactive navigation options.
+ * </p>
+ *
+ * <p>
+ * The class dynamically generates LineChart graphics based on the provided data and theme, offering a visual representation
+ * of pixel coordinates over time. Users can switch between X, Y, and combined X-Y themes using interactive buttons.
+ * </p>
+ *
+ * <p>
+ * Author: Segot
+ * Version: 1.0
+ * </p>
+ */
 public class GraphicsTestPageActivity extends AppCompatActivity {
 
+    /**
+     * Enumeration for different themes in the LineChart.
+     */
     private enum theme {
         X, Y,Y_X
     }
+    /**
+     * The LineChart object.
+     */
     private LineChart lineChart;
 
+    /**
+     * The URI for the CSV file.
+     */
     private Uri fileUri;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -80,6 +108,12 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Generate a LineChart graphic based on the provided data and theme.
+     *
+     * @param data  List of CordsSample data.
+     * @param theme Theme for the LineChart (X, Y, Y_X).
+     */
     private void makeGraphic(List<CordsSample> data, theme theme){
         Description description = new Description();
 
@@ -162,6 +196,11 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Read CordsSample data from a CSV file.
+     *
+     * @return List of CordsSample objects.
+     */
     private List<CordsSample> readCordsData(){
         List<CordsSample> cordSamples = new ArrayList<>();
 
