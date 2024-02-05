@@ -25,3 +25,13 @@ D
 app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
 v
 Fapp/src/test/java/com/example/ex_motricite/BdSQLiteOpenHelperTest.java,a\a\aad81c51736848a5afa0f4549322171e13f45dfb
+g
+7app/src/main/java/com/example/ex_motricite/Patient.java,8\c\8c5c9fcf02d14757e66630ffb739a837a05d989f
+e
+5app/src/main/java/com/example/ex_motricite/Actor.java,f\1\f15114a60504a92def479aa4f85a7d2ff853709a
+v
+Fapp/src/androidTest/java/com/example/ex_motricite/ExampleUnitTest.java,4\b\4bf85575cc0accdde3bdb73cbc6d58d61cd8313e
+}
+Mapp/src/androidTest/java/com/example/ex_motricite/BdSQLiteOpenHelperTest.java,2\0\20d0aba6742db67805a7b3d36c49e86c6191eadb
+p
+@app/src/main/java/com/example/ex_motricite/CrudUserActivity.java,3\2\3286bc2b9b890903a5c2e7d0454675e3ccd2a853
