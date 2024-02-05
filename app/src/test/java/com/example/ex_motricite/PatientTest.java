@@ -6,6 +6,9 @@ import org.junit.Test;
 public class PatientTest {
 
     // CONSTRUCTORS
+    /**
+     * Test the constructor with all parameters
+     */
     @Test
     public void testPatientWhenAllParamsGiven() {
         //GIVEN
@@ -20,6 +23,9 @@ public class PatientTest {
         assertEquals("Id of Patient : " + id + ", name of patient : " + name + ", firstname of patient : " + firstName + ", birthdate of patient : " + birthDate + ", remarks : " + remarks, patient.toString());
     }
 
+    /**
+     * Test the constructor with name, firstName and birthDate only
+     */
     @Test
     public void testPatientWhenNoIdGiven() {
         //GIVEN
@@ -33,6 +39,10 @@ public class PatientTest {
         assertEquals("Id of Patient : -1, name of patient : " + name + ", firstname of patient : " + firstName + ", birthdate of patient : " + birthDate + ", remarks : " + remarks, patient.toString());
     }
 
+    /**
+     * Test the constructor with all parameters
+     * Incorrect birthdate should throw an IllegalArgumentException
+     */
     @Test
     public void testPatientWhenDateIsNotCorrectWithID(){
         // GIVEN
@@ -52,6 +62,10 @@ public class PatientTest {
         }
     }
 
+    /**
+     * Test the constructor with name, firstName and birthDate only
+     * Incorrect birthdate should throw an IllegalArgumentException
+     */
     @Test
     public void testPatientWhenDateIsNotCorrectWithoutID(){
         // GIVEN
@@ -71,6 +85,9 @@ public class PatientTest {
     }
 
     // GETTERS
+    /**
+     * Test the getBirthDate method
+     */
     @Test
     public void testGetBirthDate(){
         // GIVEN
@@ -86,6 +103,9 @@ public class PatientTest {
         assertEquals(birthDate, birthDatePatient);
     }
 
+    /**
+     * Test the getRemarks method
+     */
     @Test
     public void testGetRemarks(){
         // GIVEN
@@ -101,6 +121,9 @@ public class PatientTest {
         assertEquals(remarks, remarksPatient);
     }
 
+    /**
+     * Test the getRemarks method when id is empty
+     */
     @Test
     public void testGetRemarksWhenEmpty(){
         // GIVEN
@@ -116,6 +139,9 @@ public class PatientTest {
         assertEquals(remarks, remarksPatient);
     }
 
+    /**
+     * Test the getName method
+     */
     @Test
     public void testGetName(){
         // GIVEN
@@ -131,6 +157,9 @@ public class PatientTest {
         assertEquals(name, namePatient);
     }
 
+    /**
+     * Test the getFirstName method
+     */
     @Test
     public void testGetFirstName(){
         // GIVEN
@@ -147,6 +176,9 @@ public class PatientTest {
     }
 
     // SETTERS
+    /**
+     * Test the setBirthDate method
+     */
     @Test
     public void testSetBirthDate(){
         // GIVEN
@@ -163,6 +195,10 @@ public class PatientTest {
         assertEquals(birthDate2, patient.getBirthDate());
     }
 
+    /**
+     * Test the setBirthdate method
+     * Incorrect birthdate should throw an IllegalArgumentException
+     */
     @Test
     public void testSetWrongBirthDate(){
         // GIVEN
@@ -184,6 +220,9 @@ public class PatientTest {
         }
     }
 
+    /**
+     * Test the setRemarks method
+     */
     @Test
     public void testSetRemarks(){
         // GIVEN
@@ -200,6 +239,9 @@ public class PatientTest {
         assertEquals(remarks2, patient.getRemarks());
     }
 
+    /**
+     * Test the setRemarks method with blank remarks
+     */
     @Test
     public void testSetEmptyRemarks(){
         // GIVEN
@@ -214,6 +256,9 @@ public class PatientTest {
         assertEquals("", remarksPatient);
     }
 
+    /**
+     * Test the setName method
+     */
     @Test
     public void testSetName(){
         // GIVEN
@@ -230,6 +275,9 @@ public class PatientTest {
         assertEquals(name2, patient.getName());
     }
 
+    /**
+     * Test the setFirstName method
+     */
     @Test
     public void testSetFirstName(){
         // GIVEN
