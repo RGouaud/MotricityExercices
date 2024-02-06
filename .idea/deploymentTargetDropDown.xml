@@ -2,16 +2,13 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="BdSQLiteOpenHelperTest">
-        <State />
-      </entry>
-      <entry key="Tests in 'com.example.ex_motricite'">
+      <entry key="ExampleInstrumentedTest">
         <State />
       </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="testDatabaseIsCreated()">
+      <entry key="useAppContext()">
         <State />
       </entry>
     </value>
