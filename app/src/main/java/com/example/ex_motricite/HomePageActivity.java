@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Space;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class HomePageActivity extends AppCompatActivity {
         LinearLayout layoutPatient;
         LinearLayout layoutRhythm;
         LinearLayout layoutStatic;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -24,6 +26,12 @@ public class HomePageActivity extends AppCompatActivity {
         layoutRhythm = findViewById(R.id.layout_rythm);
         layoutPatient = findViewById(R.id.layout_patient);
         imageButtonListTest = findViewById(R.id.ib_ListTest);
+        Space spaceTemp;
+        spaceTemp = findViewById(R.id.SpacerTemp);
+        spaceTemp.setClickable(true);
+        spaceTemp.setOnClickListener(v -> {
+            startActivity(new Intent(HomePageActivity.this, BinActivity.class));
+        });
 
         layoutStatic.setOnClickListener(v -> {
             Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);

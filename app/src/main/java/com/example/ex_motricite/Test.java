@@ -11,6 +11,11 @@ public class Test {
         this.suppressionDate = suppressionDate;
     }
 
+    public Test(String path, String suppressionDate){
+        this.path = path;
+        this.suppressionDate = suppressionDate;
+    }
+
     public int getId() {
         return id;
     }

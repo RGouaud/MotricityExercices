@@ -19,7 +19,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ListTestActivity extends AppCompatActivity {
@@ -39,8 +44,11 @@ public class ListTestActivity extends AppCompatActivity {
         Button buttonDeselectAll = findViewById(R.id.b_deselectAll);
         Button buttonSelectAll = findViewById(R.id.b_selectAll);
         Button buttonFilters = findViewById(R.id.b_filters);
+        Button buttonDelete = findViewById(R.id.b_deletetests);
         layoutListTest = findViewById(R.id.l_listTest);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+
+
 
         // Show all CSV files on startup
         displayAllCSVFiles();
@@ -49,6 +57,8 @@ public class ListTestActivity extends AppCompatActivity {
         buttonSelectAll.setOnClickListener(v -> selectAllFiles());
 
         buttonDeselectAll.setOnClickListener(v -> deselectAllFiles());
+
+        buttonDelete.setOnClickListener(v -> deleteSelection());
 
         buttonFilters.setOnClickListener(v -> {
             Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
@@ -60,6 +70,24 @@ public class ListTestActivity extends AppCompatActivity {
             exportSelectedFilesByMail();
             Toast.makeText(ListTestActivity.this, "Exported file ", Toast.LENGTH_SHORT).show();
         });
+
+    }
+
+    private void deleteSelection(){
+        TestDAO testDAO = new TestDAO(this);
+        File binDirectory = new File(getFilesDir(), "bin_directory");
+        if (!binDirectory.exists())
+        {
+            binDirectory.mkdir();
+        }
+
+        for (File file : selectedFiles){
+            File destFile = moveFile(file,binDirectory);
+            SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            Test testBd = new Test(destFile.getAbsolutePath(),s.format(date));
+            testDAO.addTest(testBd);
+        }
 
     }
 
@@ -225,4 +253,38 @@ public class ListTestActivity extends AppCompatActivity {
             }
         }
     }
+
+    final File moveFile(File sourceFile , File destDirectory) {
+
+        // Create the destination repository if it doesn't exist
+        if (!destDirectory.exists()) {
+            destDirectory.mkdirs();
+        }
+
+        // Get the path of the destination file
+        File destFile = new File(destDirectory, sourceFile.getName());
+        try {
+
+            //Making a copy of the file to the correct directory
+            FileInputStream inputStream = new FileInputStream(sourceFile);
+            FileOutputStream outputStream = new FileOutputStream(destFile);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            inputStream.close();
+            outputStream.close();
+
+            //Delete de source file
+            if (destFile.exists() && destFile.length() == sourceFile.length()) {
+                sourceFile.delete();
+            }
+            return destFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destFile;
+    }
+
 }
