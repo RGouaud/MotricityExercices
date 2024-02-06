@@ -1,7 +1,7 @@
 package com.example.ex_motricite;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -66,7 +66,7 @@ public class BdSQLiteOpenHelperTest {
         // THEN
         // Check if the table exists
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name=?", new String[]{tableName});
-        assertTrue(cursor.moveToFirst(), "Table " + tableName + " does not exist");
+        assertTrue("Table " + tableName + " does not exist", cursor.moveToFirst());
 
         // Check if the columns exist in the table
         cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
@@ -80,7 +80,7 @@ public class BdSQLiteOpenHelperTest {
         cursor.close();
 
         for (String expectedColumn : expectedColumns) {
-            assertTrue(columns.contains(expectedColumn), "Column " + expectedColumn + " does not exist in the table");
+            assertTrue("Column " + expectedColumn + " does not exist in the table", columns.contains(expectedColumn));
         }
 
         db.close();
@@ -107,7 +107,7 @@ public class BdSQLiteOpenHelperTest {
         // THEN
         // Check if the table exists
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name=?", new String[]{tableName});
-        assertTrue(cursor.moveToFirst(), "Table " + tableName + " does not exist");
+        assertTrue("Table " + tableName + " does not exist", cursor.moveToFirst());
 
         // Check if the columns exist in the table
         cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
@@ -121,7 +121,7 @@ public class BdSQLiteOpenHelperTest {
         cursor.close();
 
         for (String expectedColumn : expectedColumns) {
-            assertTrue(columns.contains(expectedColumn), "Column " + expectedColumn + " does not exist in the table");
+            assertTrue("Column " + expectedColumn + " does not exist in the table", columns.contains(expectedColumn));
         }
 
         db.close();
