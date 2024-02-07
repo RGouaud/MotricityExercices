@@ -32,6 +32,11 @@ android {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+    packagingOptions {
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/LICENSE.md")
+    }
 }
 
 dependencies {
@@ -49,6 +54,7 @@ dependencies {
     implementation("androidx.test:core:1.5.0")
     implementation("androidx.test.ext:junit:1.1.5")
 
+    androidTestImplementation("androidx.test:runner:1.5.2")
     // junit 5 dependencies
     testImplementation ("org.junit.jupiter:junit-jupiter-params:5.10.0");
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.10.0")
