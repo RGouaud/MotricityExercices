@@ -54,6 +54,12 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
                 + "Name TEXT NOT NULL,"
                 + "firstName TEXT NOT NULL);";
         db.execSQL(tableOperator);
+
+        String tableTest = "create table test ("
+                + "idTest INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "path TEXT NOT NULL,"
+                + "suppressionDate TEXT NOT NULL);";
+        db.execSQL(tableTest);
     }
 
     /**

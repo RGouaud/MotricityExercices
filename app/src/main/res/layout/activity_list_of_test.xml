@@ -175,6 +175,19 @@
                 android:textAlignment="center"
                 android:textColor="#000000" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_deletetests"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_orange_to_pink"
+                android:drawableEnd="@android:drawable/ic_menu_set_as"
+                android:drawableTint="@color/black"
+                android:paddingHorizontal="10dp"
+                android:text="DELETE"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

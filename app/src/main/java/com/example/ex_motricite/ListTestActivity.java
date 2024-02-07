@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.content.Context;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
@@ -19,7 +23,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,16 +82,23 @@ public class ListTestActivity extends AppCompatActivity {
         Button buttonDeselectAll = findViewById(R.id.b_deselectAll);
         Button buttonSelectAll = findViewById(R.id.b_selectAll);
         Button buttonFilters = findViewById(R.id.b_filters);
+        Button buttonDelete = findViewById(R.id.b_deletetests);
+        TextView textView = findViewById(R.id.tv_ListOfTest);
         layoutListTest = findViewById(R.id.l_listTest);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+
+
 
         // Show all CSV files on startup
         displayAllCSVFiles();
         selectedFiles.clear();
 
+        textView.setOnClickListener(v -> startActivity(new Intent(ListTestActivity.this, BinActivity.class)));
         buttonSelectAll.setOnClickListener(v -> selectAllFiles());
 
         buttonDeselectAll.setOnClickListener(v -> deselectAllFiles());
+
+        buttonDelete.setOnClickListener(v -> deleteConfirmation());
 
         buttonFilters.setOnClickListener(v -> {
             Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
@@ -97,6 +113,24 @@ public class ListTestActivity extends AppCompatActivity {
 
     }
 
+    private void deleteSelection(){
+        TestDAO testDAO = new TestDAO(this);
+        File binDirectory = new File(getFilesDir(), "bin_directory");
+        if (!binDirectory.exists())
+        {
+            Log.d("Directory", "deleteSelection: bin_directory doesn't exist");
+            binDirectory.mkdir();
+        }
+
+        for (File file : selectedFiles){
+            File destFile = moveFile(file,binDirectory);
+            SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            Test testBd = new Test(destFile.getAbsolutePath(),s.format(date));
+            testDAO.addTest(testBd);
+        }
+        displayAllCSVFiles();
+    }
     /**
      * Display all CSV files in the internal storage directory.
      */
@@ -295,4 +329,58 @@ public class ListTestActivity extends AppCompatActivity {
             }
         }
     }
+
+    final File moveFile(File sourceFile , File destDirectory) {
+
+        // Create the destination repository if it doesn't exist
+        if (!destDirectory.exists()) {
+            destDirectory.mkdirs();
+        }
+
+        // Get the path of the destination file
+        File destFile = new File(destDirectory, sourceFile.getName());
+        try {
+
+            //Making a copy of the file to the correct directory
+            FileInputStream inputStream = new FileInputStream(sourceFile);
+            FileOutputStream outputStream = new FileOutputStream(destFile);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            inputStream.close();
+            outputStream.close();
+
+            //Delete de source file
+            if (destFile.exists() && destFile.length() == sourceFile.length() && (!sourceFile.delete())){
+                    Toast.makeText(this, "An error has occurred while deleting the file.", Toast.LENGTH_SHORT).show();
+
+            }
+            return destFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destFile;
+    }
+    void deleteConfirmation() {
+        // Create a dialog
+        Dialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are you sure that you want to delete these files ?");
+        builder.setCancelable(false);
+        builder.setTitle("Confirmation");
+
+        builder.setPositiveButton("SURE",
+                (dialog1, id) -> deleteSelection());
+
+        builder.setNegativeButton("CANCEL",
+                (dialog12, id) -> dialog12.cancel());
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+
 }

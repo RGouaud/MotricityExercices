@@ -1,7 +1,6 @@
     package com.example.ex_motricite;
 
     import androidx.appcompat.app.AppCompatActivity;
-
     import android.content.Intent;
     import android.content.pm.ActivityInfo;
     import android.os.Bundle;
