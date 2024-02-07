@@ -30,8 +30,8 @@ import org.json.JSONObject;
  * </p>
  *
  * <p>
- *     Author: EduardoXav
- *     Version: 1.0
+ * Author: EduardoXav
+ * Version: 1.0
  * </p>
  */
 public class SettingsActivity extends AppCompatActivity {
@@ -40,10 +40,12 @@ public class SettingsActivity extends AppCompatActivity {
      * The radio button for email settings.
      */
     private RadioButton rbEmail;
+
     /**
      * The radio button for server settings.
      */
     private RadioButton rbServer;
+    
     /**
      * The EditText for the email address.
      */

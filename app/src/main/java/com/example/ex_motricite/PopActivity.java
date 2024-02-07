@@ -17,9 +17,9 @@ import androidx.annotation.Nullable;
  * </p>
  *
  * <p>
- *     Author: Segot
- *     Version: 1.0
- *</p>
+ * Author: Segot
+ * Version: 1.0
+ * </p>
  */
 public class PopActivity extends Activity {
 

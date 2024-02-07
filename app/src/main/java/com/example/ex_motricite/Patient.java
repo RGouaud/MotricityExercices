@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
  * </p>
  *
  * <p>
- *     Author: Ferreria
- *     Version: 1.0
+ * Author: Ferreria
+ * Version: 1.0
  * </p>
  */
 public class Patient extends Actor {
@@ -29,11 +29,11 @@ public class Patient extends Actor {
     /**
      * Constructor for Patient class.
      *
-     * @param id Unique ID of the patient.
-     * @param name Name of the patient.
+     * @param id        Unique ID of the patient.
+     * @param name      Name of the patient.
      * @param firstName First name of the patient.
      * @param birthDate Birth date of the patient.
-     * @param remarks Remarks of the patient.
+     * @param remarks   Remarks of the patient.
      */
     public Patient(long id, String name, String firstName, String birthDate, String remarks){
         super(id, name, firstName);
@@ -47,10 +47,10 @@ public class Patient extends Actor {
     /**
      * Constructor for Patient class.
      *
-     * @param name Name of the patient.
+     * @param name      Name of the patient.
      * @param firstName First name of the patient.
      * @param birthDate Birth date of the patient.
-     * @param remarks Remarks of the patient.
+     * @param remarks   Remarks of the patient.
      */
     public Patient( String name, String firstName, String birthDate, String remarks){
         super(-1, name, firstName);

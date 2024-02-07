@@ -13,8 +13,8 @@ import android.text.Spanned;
  * </p>
  *
  * <p>
- *     Author: Segot
- *     Version: 1.0
+ * Author: Segot
+ * Version: 1.0
  * </p>
  */
 public class MinMaxFilter implements InputFilter {

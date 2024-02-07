@@ -30,8 +30,8 @@ import java.util.StringTokenizer;
  * </p>
  *
  * <p>
- *     Author: EduardoXav
- *     Version: 1.0
+ * Author: EduardoXav
+ * Version: 1.0
  * </p>
  */
 public class TestPageActivity extends AppCompatActivity {

@@ -77,16 +77,16 @@ public class CSVFile {
     /**
      * Constructor for CSVFile class.
      *
-     * @param listX         List of X coordinates.
-     * @param listY         List of Y coordinates.
-     * @param listNbFrame   List of frame numbers.
-     * @param exerciseType  Type of exercise.
-     * @param exerciseTime  Total exercise time in seconds.
-     * @param intervalTime  Bip interval time in seconds.
-     * @param distance      Mark distance.
-     * @param context       Android application context.
-     * @param patient       Patient's name.
-     * @param operator      Operator's name.
+     * @param listX        List of X coordinates.
+     * @param listY        List of Y coordinates.
+     * @param listNbFrame  List of frame numbers.
+     * @param exerciseType Type of exercise.
+     * @param exerciseTime Total exercise time in seconds.
+     * @param intervalTime Bip interval time in seconds.
+     * @param distance     Mark distance.
+     * @param context      Android application context.
+     * @param patient      Patient's name.
+     * @param operator     Operator's name.
      */
     CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciseType, int exerciseTime, int intervalTime, int distance, Context context, String patient, String operator){
         this.listX = listX;
@@ -104,7 +104,7 @@ public class CSVFile {
     /**
      * Save the exercise data to a CSV file.
      */
-    //Path: /sdcard/LaZer
+//Path: /sdcard/LaZer
      public void save() {
         //retrieving the date as YYYY_MM_DD_HH_MM
         Calendar rightNow = Calendar.getInstance();
@@ -182,9 +182,9 @@ public class CSVFile {
     /**
      * Transform frame number into corresponding time.
      *
-     * @param numFrame      Frame number.
-     * @param nbFrame       Total number of frames.
-     * @param exerciseTime  Total exercise time in seconds.
+     * @param numFrame     Frame number.
+     * @param nbFrame      Total number of frames.
+     * @param exerciseTime Total exercise time in seconds.
      * @return Time in seconds corresponding to the given frame.
      */
     public static double transformFrameInTime(int numFrame, int nbFrame, int exerciseTime){

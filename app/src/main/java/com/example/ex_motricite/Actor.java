@@ -1,16 +1,28 @@
 package com.example.ex_motricite;
 
+/**
+ * The type Actor.
+ */
 public abstract class Actor {
+    /**
+     * The Id.
+     */
     protected long id;
+    /**
+     * The Name.
+     */
     protected String name;
+    /**
+     * The First name.
+     */
     protected String firstName;
 
     /**
      * Constructs a new {@code Actor} with the specified ID, name, and first name.
      *
-     * @param id         The unique identifier for the actor.
-     * @param name       The last name of the actor.
-     * @param firstName  The first name of the actor.
+     * @param id        The unique identifier for the actor.
+     * @param name      The last name of the actor.
+     * @param firstName The first name of the actor.
      */
     protected Actor(long id, String name, String firstName) {
         this.id = id;

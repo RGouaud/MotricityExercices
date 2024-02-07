@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+
 /**
  * The {@code BdSQLiteOpenHelper} class provides a helper for managing the SQLite database.
  * It extends {@link SQLiteOpenHelper} and is responsible for creating and upgrading the database.
@@ -21,10 +22,10 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
      * Constructs a new {@code BdSQLiteOpenHelper} with the specified context, database name, cursor factory,
      * and version.
      *
-     * @param context   The application context.
-     * @param name      The name of the database.
-     * @param factory   The cursor factory (set to null by default).
-     * @param version   The version of the database.
+     * @param context The application context.
+     * @param name    The name of the database.
+     * @param factory The cursor factory (set to null by default).
+     * @param version The version of the database.
      */
     public BdSQLiteOpenHelper(Context context, String name, CursorFactory factory, int version) {
         super(context, name, factory, version);

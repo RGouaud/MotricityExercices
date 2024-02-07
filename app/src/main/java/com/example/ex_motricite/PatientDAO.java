@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * </p>
  *
  * <p>
- *     Author: Ferreria, Rgouaud
- *     Version: 1.0
+ * Author: Ferreria, Rgouaud
+ * Version: 1.0
  * </p>
  */
 public class PatientDAO {
@@ -61,8 +61,8 @@ public class PatientDAO {
 
     /**
      * Adds a new patient to the database.
-            *
-            * @param patient The {@code Patient} object representing the patient to be added.
+     *
+     * @param patient The {@code Patient} object representing the patient to be added.
      */
     public void addPatient(Patient patient){
         bdAccess.getWritableDatabase().execSQL("INSERT INTO patient (name, firstName, birthDate, remarks) VALUES ('" + patient.getName() + "','" + patient.getFirstName() + "','" + patient.getBirthDate() + "','" + patient.getRemarks() + "');");

@@ -56,7 +56,18 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
      * Enumeration for different themes in the LineChart.
      */
     private enum theme {
-        X, Y,Y_X
+        /**
+         * X theme.
+         */
+        X,
+        /**
+         * Y theme.
+         */
+        Y,
+        /**
+         * Y x theme.
+         */
+        Y_X
     }
     /**
      * The LineChart object.

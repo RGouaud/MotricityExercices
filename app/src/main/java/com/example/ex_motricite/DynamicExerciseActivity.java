@@ -53,7 +53,13 @@ import java.util.Objects;
  */
 public class DynamicExerciseActivity extends CameraActivity {
 
+    /**
+     * The Tv x.
+     */
     TextView tvX;
+    /**
+     * The Tv y.
+     */
     TextView tvY;
     /**
      * The countdown timer display.

@@ -37,9 +37,9 @@ import java.util.ArrayList;
  * </p>
  *
  * <p>
- *     Author: EduardoXav, Ferreira
- *     Version: 1.0
- *     </p>
+ * Author: EduardoXav, Ferreira
+ * Version: 1.0
+ * </p>
  */
 public class ListUserPageActivity extends AppCompatActivity {
 

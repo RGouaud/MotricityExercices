@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
  * </p>
  *
  * <p>
- *     Author: Rgouaud
- *     Version: 1.0
- *     </p>
+ * Author: Rgouaud
+ * Version: 1.0
+ * </p>
  */
 public class DateValidator {
 
@@ -75,8 +75,9 @@ public class DateValidator {
 
     /**
      * Checks if a given month has 30 days.
+     *
      * @param month The month to be checked.
-     * @return boolean
+     * @return boolean boolean
      */
     public static boolean is30daysMonth(int month) {
         return month == 4 || month == 6 || month == 9 || month == 11;
@@ -84,10 +85,11 @@ public class DateValidator {
 
     /**
      * Validates the day of February.
-     * @param day The day to be validated.
+     *
+     * @param day   The day to be validated.
      * @param month The month to be validated.
-     * @param year The year to be validated.
-     * @return boolean
+     * @param year  The year to be validated.
+     * @return boolean boolean
      */
     public static boolean februaryValidator(int day, int month, int year) {
         return (day <= 29 && month == 2 && isLeapYear(year))

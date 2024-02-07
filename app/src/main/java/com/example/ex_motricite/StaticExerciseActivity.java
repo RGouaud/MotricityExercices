@@ -41,13 +41,19 @@ import java.util.Objects;
  * </p>
  *
  * <p>
- *     Author: Arricastres, Segot
- *     Version: 1.0
+ * Author: Arricastres, Segot
+ * Version: 1.0
  * </p>
  */
 public class StaticExerciseActivity extends CameraActivity {
 
+    /**
+     * The Tv x.
+     */
     TextView tvX;
+    /**
+     * The Tv y.
+     */
     TextView tvY;
     /**
      * The countdown timer display.

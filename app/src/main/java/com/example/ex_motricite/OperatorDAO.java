@@ -15,8 +15,8 @@ import java.util.ArrayList;
  * </p>
  *
  * <p>
- *     Author: Ferreria
- *     Version: 1.0
+ * Author: Ferreria
+ * Version: 1.0
  * </p>
  */
 public class OperatorDAO {

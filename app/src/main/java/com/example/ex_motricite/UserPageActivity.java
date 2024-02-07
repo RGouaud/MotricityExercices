@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
  * </p>
  *
  * <p>
- *     Author: EduardoXav
- *     Version: 1.0
+ * Author: EduardoXav
+ * Version: 1.0
  * </p>
  */
 public class UserPageActivity extends AppCompatActivity {

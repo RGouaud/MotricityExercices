@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
  * </p>
  *
  * <p>
- *     Author: Ferreria
- *     Version: 1.0
+ * Author: Ferreria
+ * Version: 1.0
  * </p>
  */
 public class Operator extends Actor {
@@ -19,8 +19,8 @@ public class Operator extends Actor {
     /**
      * Constructor for Operator class.
      *
-     * @param id Unique ID of the operator.
-     * @param name Name of the operator.
+     * @param id        Unique ID of the operator.
+     * @param name      Name of the operator.
      * @param firstName First name of the operator.
      */
     public Operator(long id, String name, String firstName){
@@ -30,7 +30,7 @@ public class Operator extends Actor {
     /**
      * Constructor for Operator class.
      *
-     * @param name Name of the operator.
+     * @param name      Name of the operator.
      * @param firstName First name of the operator.
      */
     public Operator( String name, String firstName){
