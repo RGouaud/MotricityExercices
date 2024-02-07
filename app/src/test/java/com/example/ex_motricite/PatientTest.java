@@ -1,16 +1,18 @@
 package com.example.ex_motricite;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PatientTest {
+import org.junit.jupiter.api.Test;
+
+class PatientTest {
 
     // CONSTRUCTORS
     /**
      * Test the constructor with all parameters
      */
     @Test
-    public void testPatientWhenAllParamsGiven() {
+    void testPatientWhenAllParamsGiven() {
         //GIVEN
         long id = 1;
         String name = "Doe";
@@ -27,7 +29,7 @@ public class PatientTest {
      * Test the constructor with name, firstName and birthDate only
      */
     @Test
-    public void testPatientWhenNoIdGiven() {
+    void testPatientWhenNoIdGiven() {
         //GIVEN
         String name = "Doe";
         String firstName = "John";
@@ -44,22 +46,21 @@ public class PatientTest {
      * Incorrect birthdate should throw an IllegalArgumentException
      */
     @Test
-    public void testPatientWhenDateIsNotCorrectWithID(){
+    void testPatientWhenDateIsNotCorrectWithID() {
         // GIVEN
         long id = 1;
         String name = "Doe";
         String firstName = "John";
         String birthDate = "01/011/200";
         String remarks = "No remarks";
-        // WHEN
-        try{
-            new Patient(id, name, firstName, birthDate, remarks);
-            fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e){
 
-        // THEN
-            assertEquals("Birthdate is not valid", e.getMessage());
-        }
+        // WHEN & THEN
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Patient(id, name, firstName, birthDate, remarks);
+        });
+
+        // Check the exception message
+        assertEquals("Birthdate is not valid", exception.getMessage());
     }
 
     /**
@@ -67,21 +68,20 @@ public class PatientTest {
      * Incorrect birthdate should throw an IllegalArgumentException
      */
     @Test
-    public void testPatientWhenDateIsNotCorrectWithoutID(){
+    void testPatientWhenDateIsNotCorrectWithoutID() {
         // GIVEN
         String name = "Doe";
         String firstName = "John";
         String birthDate = "01/011/200";
         String remarks = "No remarks";
-        // WHEN
-        try{
-            new Patient(name, firstName, birthDate, remarks);
-            fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e){
 
-            // THEN
-            assertEquals("Birthdate is not valid", e.getMessage());
-        }
+        // WHEN & THEN
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Patient(name, firstName, birthDate, remarks);
+        });
+
+        // Check the exception message
+        assertEquals("Birthdate is not valid", exception.getMessage());
     }
 
     // GETTERS
@@ -89,7 +89,7 @@ public class PatientTest {
      * Test the getBirthDate method
      */
     @Test
-    public void testGetBirthDate(){
+    void testGetBirthDate(){
         // GIVEN
         long id = 1;
         String name = "Doe";
@@ -200,7 +200,7 @@ public class PatientTest {
      * Incorrect birthdate should throw an IllegalArgumentException
      */
     @Test
-    public void testSetWrongBirthDate(){
+    public void testSetWrongBirthDate() {
         // GIVEN
         long id = 1;
         String name = "Doe";
@@ -209,15 +209,14 @@ public class PatientTest {
         String birthDate2 = "02/02/200";
         String remarks = "No remarks";
         Patient patient = new Patient(id, name, firstName, birthDate, remarks);
-        // WHEN
-        try{
-            patient.setBirthDate(birthDate2);
-            fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e){
 
-            // THEN
-            assertEquals("Birthdate is not valid", e.getMessage());
-        }
+        // WHEN & THEN
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            patient.setBirthDate(birthDate2);
+        });
+
+        // Check the exception message
+        assertEquals("Birthdate is not valid", exception.getMessage());
     }
 
     /**
