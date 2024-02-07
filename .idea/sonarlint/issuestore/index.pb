@@ -57,3 +57,9 @@ m
 =app/src/main/java/com/example/ex_motricite/DateValidator.java,9\2\92f80f9e50cf2e0b66ab6d4a97d5db08f3783aeb
 k
 ;app/src/test/java/com/example/ex_motricite/PatientTest.java,0\d\0d49bca6b737c2bfa9b85348654d1661527894ef
+q
+Aapp/src/test/java/com/example/ex_motricite/DateValidatorTest.java,b\5\b54d0ddb52a67d32350594b8f40413cbf78d068d
+F
+app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
