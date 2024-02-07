@@ -7,7 +7,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class DateValidatorTest {
 
-    // tests paramétrés
+    /**
+     * Test if the date is valid
+     * @param date to test
+     * @param expected result
+     */
     @ParameterizedTest
     @CsvSource
             ({
@@ -18,13 +22,13 @@ class DateValidatorTest {
                     "29/02/2020, true", // february has 29 days in 2020
                     "28/02/2021, true", // february has 28 days in 2021
 
-
                     "30/02/2020, false", // february has 29 days in 2020
                     "29/02/2021, false", // february has 28 days in 2021
                     "01/01/20, false", // year < 4 digits
                     "01/13/2020, false", // month > 12
                     "32/01/2020, false", // day > 31
                     "01/01/20200, false", // year > 4 digits
+                    "31/04/2020, false", // april has 30 days
             })
     void isDateValid(String date, boolean expected) {
             assertEquals(expected, DateValidator.isValid(date));
