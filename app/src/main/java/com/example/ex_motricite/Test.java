@@ -1,8 +1,10 @@
 package com.example.ex_motricite;
 
+import androidx.annotation.NonNull;
+
 public class Test {
     private int id;
-    private String path;
+    private final String path;
     private String suppressionDate;
 
     public Test(int id, String path, String suppressionDate) {
@@ -28,9 +30,7 @@ public class Test {
         return path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+
 
     public String getSuppressionDate() {
         return suppressionDate;
@@ -40,6 +40,7 @@ public class Test {
         this.suppressionDate = suppressionDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Test{" +

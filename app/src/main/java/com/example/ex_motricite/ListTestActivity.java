@@ -284,8 +284,9 @@ public class ListTestActivity extends AppCompatActivity {
             outputStream.close();
 
             //Delete de source file
-            if (destFile.exists() && destFile.length() == sourceFile.length()) {
-                sourceFile.delete();
+            if (destFile.exists() && destFile.length() == sourceFile.length() && (!sourceFile.delete())){
+                    Toast.makeText(this, "An error has occurred while deleting the file.", Toast.LENGTH_SHORT).show();
+
             }
             return destFile;
         } catch (IOException e) {
@@ -293,7 +294,7 @@ public class ListTestActivity extends AppCompatActivity {
         }
         return destFile;
     }
-    Dialog deleteConfirmation() {
+    void deleteConfirmation() {
         // Create a dialog
         Dialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -310,7 +311,6 @@ public class ListTestActivity extends AppCompatActivity {
 
         dialog = builder.create();
         dialog.show();
-        return dialog;
     }
 
 

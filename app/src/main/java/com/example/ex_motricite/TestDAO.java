@@ -20,6 +20,7 @@ public class TestDAO {
             cursor.moveToFirst();
             test = new Test(idTest, cursor.getString(1), cursor.getString(2));
         }
+        cursor.close();
         return test;
     }
 

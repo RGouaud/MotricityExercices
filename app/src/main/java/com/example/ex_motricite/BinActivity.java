@@ -1,19 +1,16 @@
 package com.example.ex_motricite;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +25,6 @@ public class BinActivity extends AppCompatActivity {
 
     private final List<Test> selectedTests = new ArrayList<>();
     private LinearLayout layoutListTest;
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -38,7 +34,7 @@ public class BinActivity extends AppCompatActivity {
 
 
     Button buttonRestore = findViewById(R.id.b_restore);
-    Button buttonDelete = findViewById(R.id.b_deletetest);
+    Button buttonDelete = findViewById(R.id.b_deleteTest);
     Button buttonDeselectAll = findViewById(R.id.b_deselectAll);
     Button buttonSelectAll = findViewById(R.id.b_selectAll);
     Button buttonFilters = findViewById(R.id.b_filters);
@@ -48,7 +44,7 @@ public class BinActivity extends AppCompatActivity {
     try {
         tests = testDAO.getAllTests();
     } catch (Exception e) {
-        handleDataRetrievalError("Erreur lors de la récupération des opérateurs", e);
+        handleDataRetrievalError(e);
     }
 
     // Show all CSV files on startup
@@ -64,20 +60,18 @@ public class BinActivity extends AppCompatActivity {
         startActivity(intent);
     });
 
-    buttonDelete.setOnClickListener(v -> {
-        deleteConfirmation();
-    });
+    buttonDelete.setOnClickListener(v -> deleteConfirmation());
 
-    buttonRestore.setOnClickListener(v -> {
-        restoreSelectedTest();
-    });
+    buttonRestore.setOnClickListener(v -> restoreSelectedTest());
 }
 
     private void deleteSelectedTest(){
         TestDAO testDAO = new TestDAO(this);
         for (Test test : selectedTests){
             File fileToDelete = new File(test.getPath());
-            fileToDelete.delete();
+            if(!fileToDelete.delete()){
+                Toast.makeText(this, "An error has occurred while deleting the file.", Toast.LENGTH_SHORT).show();
+            }
             testDAO.delTest(test);
             tests.remove(test);
         }
@@ -96,9 +90,7 @@ public class BinActivity extends AppCompatActivity {
         selectedTests.clear();
 
         if (tests != null) {
-            for (Test test : tests) {
-                selectedTests.add(test);
-            }
+            selectedTests.addAll(tests);
         }
         // Show files in layout
         displayFilesInLayout();
@@ -147,9 +139,7 @@ public class BinActivity extends AppCompatActivity {
     private void selectAllTests () {
         selectedTests.clear();
         if (tests != null) {
-            for (Test test : tests) {
-                selectedTests.add(test);
-            }
+            selectedTests.addAll(tests);
         }
         // Update button
         updateButtonsState(true);
@@ -175,16 +165,13 @@ private void deselectAllTests() {
             }
         }
     }
-}private void handleDataRetrievalError(String errorMessage, Exception e) {
+}private void handleDataRetrievalError(Exception e) {
         e.printStackTrace();
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "An error has occurred while retrieving the tests", Toast.LENGTH_SHORT).show();
     }
 
 
-    @SuppressLint("QueryPermissionsNeeded")
-    private void exportSelectedFilesByMail () {
-}
-    final File moveFile(File sourceFile , File destDirectory) {
+    final void moveFile(File sourceFile , File destDirectory) {
 
         // Create the destination repository if it doesn't exist
         if (!destDirectory.exists()) {
@@ -207,17 +194,16 @@ private void deselectAllTests() {
             outputStream.close();
 
             //Delete de source file
-            if (destFile.exists() && destFile.length() == sourceFile.length()) {
-                sourceFile.delete();
+            if (destFile.exists() && destFile.length() == sourceFile.length() && (!sourceFile.delete())){
+                    Toast.makeText(this, "An error has occurred while deleting the file.", Toast.LENGTH_SHORT).show();
+
             }
-            return destFile;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return destFile;
     }
 
-    Dialog deleteConfirmation() {
+    void deleteConfirmation() {
         // Create a dialog
         Dialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -234,6 +220,5 @@ private void deselectAllTests() {
 
         dialog = builder.create();
         dialog.show();
-        return dialog;
     }
 }
