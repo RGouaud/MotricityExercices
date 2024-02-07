@@ -19,37 +19,101 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * The {@code CrudUserActivity} class handles the Create, Read, Update, and Delete (CRUD)
+ * operations for both patients and operators. It extends {@link AppCompatActivity}.
+ *
+ * <p>
+ * This activity is responsible for displaying forms for creating, updating, and reading
+ * information about patients and operators.
+ * </p>
+ *
+ * <p>
+ * It uses a {@link PatientDAO} and {@link OperatorDAO} for database operations.
+ * </p>
+ *
+ * @author Rgouaud, Ferreira
+ * @version 1.0
+ */
 public class CrudUserActivity extends AppCompatActivity {
+    // Instance variables for patient and operator objects
+    /**
+     * The patient object.
+     */
     private Patient patient;
+    /**
+     * The operator object.
+     */
     private Operator operator;
 
+    // Constants for intent extras and color codes
+    /**
+     * The name of the user ID field.
+     */
     private static final String USER_ID_FIELD = "UserId";
+    /**
+     * The color code for white.
+     */
     private static final String WHITE = "#FFFFFF";
+    /**
+     * The error message for incomplete fields.
+     */
     private static final String COMPLETE_FIELDS_ERROR = "Complete all fields";
+    /**
+     * The update operation.
+     */
     private static final String UPDATE = "update";
 
+    // DAO instances for database operations
+    /**
+     * The PatientDAO instance for database operations.
+     */
     OperatorDAO operatorDAO;
+    /**
+     * The OperatorDAO instance for database operations.
+     */
     PatientDAO patientDAO;
+
+    // UI elements
+    /**
+     * The EditText for remarks.
+     */
     EditText etRemarks;
+    /**
+     * The EditText for birthdate.
+     */
     EditText etBirthdate;
+    /**
+     * The EditText for first name.
+     */
     EditText etFirstName;
+    /**
+     * The EditText for name.
+     */
     EditText etName;
+    /**
+     * The TextView for new user.
+     */
     TextView tvNewUser;
+    /**
+     * The delete button.
+     */
     Button bDelete;
+    /**
+     * The confirm button.
+     */
     Button bConfirm;
+    /**
+     * The LinearLayout for CRUD operations.
+     */
     LinearLayout llCrud;
 
-    private static boolean isValidDate(String dateStr){
-        // date regex "dd/MM/yyyy"
-        String regex = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(\\d{4})$";
-
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(dateStr);
-
-        return matcher.matches();
-    }
-
+    /**
+     * Displays a popup dialog with an error message.
+     *
+     * @param context The context in which the dialog should be displayed.
+     * @param message The error message to be shown.
+     */
     private static void showPopup(Context context, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -100,6 +164,13 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles CRUD operations for patients based on the specified operation.
+     *
+     * @param crud       The CRUD operation (create, update, or read).
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void patient(String crud, String userId, PatientDAO patientDAO){
         switch (crud){
             case "create":
@@ -120,6 +191,11 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the creation of a new patient.
+     *
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void createPatient(PatientDAO patientDAO){
         tvNewUser.setText(R.string.create_patient);
 
@@ -130,7 +206,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if(!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())){ // check if all obligatory fields are completed
-                if(isValidDate(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if(DateValidator.isValid(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
                     patient = new Patient(name, firstName, birthDate, remarks);
                     patientDAO.addPatient(patient);
                     Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
@@ -146,6 +222,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the update of an existing patient.
+     *
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void updatePatient(String userId, PatientDAO patientDAO){
         // setup display
         tvNewUser.setText(R.string.edit_patient);
@@ -168,7 +250,7 @@ public class CrudUserActivity extends AppCompatActivity {
             String remarks = etRemarks.getText().toString();
 
             if (!(name.isEmpty()) && !(firstName.isEmpty()) && !(birthDate.isEmpty())) { // check if all obligatory fields are completed
-                if (isValidDate(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
+                if (DateValidator.isValid(birthDate)) {//check if birthdate seems to be on the waited format DD/MM/YYYY
 
                     //update of information for current patient object instance
                     patient.setName(name);
@@ -195,6 +277,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the display of patient information for reading purposes.
+     *
+     * @param userId     The ID of the user (patient).
+     * @param patientDAO The PatientDAO instance for database operations.
+     */
     private void readPatient(String userId, PatientDAO patientDAO){
         patient = patientDAO.getPatient(Long.parseLong(userId));
         tvNewUser.setText(R.string.patient);
@@ -254,6 +342,13 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles CRUD operations for operators based on the specified operation.
+     *
+     * @param crud         The CRUD operation (create, update, or read).
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void operator(String crud, String userId, OperatorDAO operatorDAO){
         switch (crud){
             case "create":
@@ -270,6 +365,11 @@ public class CrudUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the creation of a new operator.
+     *
+     * @param operatorDAO The OperatorDAO instance for database operations.
+     */
     private void createOperator(OperatorDAO operatorDAO){
         tvNewUser.setText(R.string.create_operator);
         bConfirm.setOnClickListener(v -> {
@@ -288,6 +388,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the update of an existing operator.
+     *
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void updateOperator(String userId, OperatorDAO operatorDAO){
         // setup display
         tvNewUser.setText(R.string.edit_operator);
@@ -328,6 +434,12 @@ public class CrudUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the display of operator information for reading purposes.
+     *
+     * @param userId       The ID of the user (operator).
+     * @param operatorDAO  The OperatorDAO instance for database operations.
+     */
     private void readOperator(String userId, OperatorDAO operatorDAO){
         operator = operatorDAO.getOperator(Long.parseLong(userId));
         tvNewUser.setText(R.string.operator);

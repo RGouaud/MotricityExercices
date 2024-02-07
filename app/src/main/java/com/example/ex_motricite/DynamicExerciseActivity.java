@@ -30,38 +30,141 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The {@code DynamicExerciseActivity} class represents an Android activity for performing dynamic exercises using the device's camera.
+ * It captures and analyzes motion through the camera feed, detecting laser points and recording relevant exercise data.
+ *
+ * <p>
+ * This activity allows users to set parameters such as distance, time, and interval for the exercise.
+ * It displays real-time coordinates of laser points and provides feedback through beeping at specified intervals.
+ * The exercise can be started, stopped, and canceled, and upon completion, the recorded data is saved in a CSV file.
+ * </p>
+ *
+ * <p>
+ * The class extends {@link CameraActivity} from the OpenCV library and leverages camera functionality to process video frames.
+ * Laser points are detected through color filtering, and their coordinates are stored for further analysis.
+ * The exercise timer is implemented with audible cues at specified intervals.
+ * </p>
+ *
+ * <p>
+ * Author: Segot, Arricastres
+ * Version: 1.0
+ * </p>
+ */
 public class DynamicExerciseActivity extends CameraActivity {
 
+    /**
+     * The Tv x.
+     */
     TextView tvX;
+    /**
+     * The Tv y.
+     */
     TextView tvY;
+    /**
+     * The countdown timer display.
+     */
     TextView countdownText;
+    /**
+     * The camera view.
+     */
     CameraBridgeViewBase cameraBridgeViewBase;
+    /**
+     * The previous frame.
+     */
     Mat prevGray;
+    /**
+     * The current frame in RGB.
+     */
     Mat rgb;
+    /**
+     * The current frame in gray.
+     */
     Mat currGray;
+    /**
+     * The difference between the current and previous frames.
+     */
     Mat diff;
+    /**
+     * The result of the difference between the current frame and the previous frame.
+     */
     Mat result;
+    /**
+     * The output of the difference between the current frame and the previous frame.
+     */
     Mat output;
+    /**
+     * The current frame in RGB.
+     */
     Mat imageRgb;
+    /**
+     * The state of the initialization.
+     */
     Mat rgbDisplay;
+    /**
+     * The tone generator.
+     */
     ToneGenerator toneGenerator;
+    /**
+     * The state of the initialization.
+     */
     boolean isInit;
+    /**
+     * The list of outlines.
+     */
     List<MatOfPoint> outlines; // list of outlines
+    /**
+     * The countdown timer.
+     */
     CountDownTimer countDownTimer;
+    /**
+     * The start button.
+     */
     Button bStart;
+    /**
+     * The state of the timer.
+     */
     boolean isRunning;
+    /**
+     * The timer left in milliseconds.
+     */
     private long timerLeftInMilliseconds;
-
+    /**
+     * The number of frames.
+     */
     private int nbFrame;
+    /**
+     * The distance of the exercise.
+     */
     private int distance;
+    /**
+     * The duration of the exercise.
+     */
     private int time;
+    /**
+     * The interval of the exercise.
+     */
     private int interval;
-
+    /**
+     * The name of the patient.
+     */
     private String patient;
+    /**
+     * The name of the operator.
+     */
     private String operator;
 
+    /**
+     * The list of X coordinates.
+     */
     List<Double> listX = new ArrayList<>();
+    /**
+     * The list of Y coordinates.
+     */
     List<Double> listY = new ArrayList<>();
+    /**
+     * The list of frame numbers.
+     */
     List<Integer> listNbFrame = new ArrayList<>();
 
     @Override
@@ -215,12 +318,13 @@ public class DynamicExerciseActivity extends CameraActivity {
         }
         bStart = findViewById(R.id.b_Start);
 
-
-
         bStart.setOnClickListener(v -> startStop());
 
-
     }
+
+    /**
+     * Start or stop the exercise timer.
+     */
     public void startStop(){
         if (isRunning){
             stopTimer();
@@ -229,6 +333,12 @@ public class DynamicExerciseActivity extends CameraActivity {
             startTimer(interval);
         }
     }
+
+    /**
+     * Starts the exercise timer with interval beeping.
+     *
+     * @param intervalBeep Interval in seconds for beeping.
+     */
     @SuppressLint("SetTextI18n")
     public void startTimer(int intervalBeep){
         toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 8000); // Volume 100
@@ -257,6 +367,9 @@ public class DynamicExerciseActivity extends CameraActivity {
         isRunning= true;
     }
 
+    /**
+     * Stops the exercise timer.
+     */
     @SuppressLint("SetTextI18n")
     public void stopTimer(){
         countDownTimer.cancel();
@@ -266,6 +379,9 @@ public class DynamicExerciseActivity extends CameraActivity {
         bStart.setText("START");
     }
 
+    /**
+     * Updates the countdown timer display.
+     */
     private void updateTimer(){
         int minutes = (int) timerLeftInMilliseconds / 60000;
         int seconds = (int) timerLeftInMilliseconds % 60000 / 1000;
@@ -284,13 +400,20 @@ public class DynamicExerciseActivity extends CameraActivity {
         return Collections.singletonList(cameraBridgeViewBase);
     }
 
+    /**
+     * Retrieves camera permissions.
+     */
     void getPermission() {
         if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 101);
         }
     }
 
-
+    /**
+     * Stores laser coordinates in lists.
+     *
+     * @param listOfRect List of rectangles representing laser points.
+     */
     void stockCoordinate(List<Rect> listOfRect){
         Rect biggestRect = new Rect();
         double biggestArea = 0;
@@ -315,12 +438,18 @@ public class DynamicExerciseActivity extends CameraActivity {
         listY.add(centerY);
     }
 
-
+    /**
+     * Stores the frame number in the list.
+     *
+     * @param nbFrame Frame number.
+     */
     void stockTime(int nbFrame){
         listNbFrame.add(nbFrame);
     }
 
-
+    /**
+     * Creates and saves a CSV file with exercise data.
+     */
     void createCSV(){
         String exerciseType = "Dynamic";
         //CSVFile creation
