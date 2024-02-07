@@ -21,3 +21,5 @@ p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
 k
 ;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
+k
+;app/src/main/java/com/example/ex_motricite/OperatorDAO.java,f\6\f60d57ac8f6ff52de641f67dd218efacf7aa1e5c
