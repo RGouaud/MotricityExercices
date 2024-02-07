@@ -7,11 +7,13 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.content.Context;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
@@ -45,6 +47,7 @@ public class ListTestActivity extends AppCompatActivity {
         Button buttonSelectAll = findViewById(R.id.b_selectAll);
         Button buttonFilters = findViewById(R.id.b_filters);
         Button buttonDelete = findViewById(R.id.b_deletetests);
+        TextView textView = findViewById(R.id.tv_ListOfTest);
         layoutListTest = findViewById(R.id.l_listTest);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
@@ -54,6 +57,7 @@ public class ListTestActivity extends AppCompatActivity {
         displayAllCSVFiles();
         selectedFiles.clear();
 
+        textView.setOnClickListener(v -> startActivity(new Intent(ListTestActivity.this, BinActivity.class)));
         buttonSelectAll.setOnClickListener(v -> selectAllFiles());
 
         buttonDeselectAll.setOnClickListener(v -> deselectAllFiles());
@@ -61,7 +65,7 @@ public class ListTestActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(v -> deleteSelection());
 
         buttonFilters.setOnClickListener(v -> {
-            Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(ListTestActivity.this, HomePageActivity.class);
             startActivity(intent);
         });
 
@@ -78,6 +82,7 @@ public class ListTestActivity extends AppCompatActivity {
         File binDirectory = new File(getFilesDir(), "bin_directory");
         if (!binDirectory.exists())
         {
+            Log.d("Directory", "deleteSelection: bin_directory doesn't exist");
             binDirectory.mkdir();
         }
 
@@ -88,7 +93,7 @@ public class ListTestActivity extends AppCompatActivity {
             Test testBd = new Test(destFile.getAbsolutePath(),s.format(date));
             testDAO.addTest(testBd);
         }
-
+        displayAllCSVFiles();
     }
 
     private void displayAllCSVFiles() {

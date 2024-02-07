@@ -30,7 +30,7 @@ public class BinActivity extends AppCompatActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_list_of_test);
+    setContentView(R.layout.activity_bin);
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
 
@@ -77,7 +77,7 @@ public class BinActivity extends AppCompatActivity {
             fileToDelete.delete();
             testDAO.delTest(test);
         }
-        startActivity(new Intent(BinActivity.this, BinActivity.class));
+        displayAllTests();
     }
     private void restoreSelectedTest(){
         TestDAO testDAO = new TestDAO(this);
@@ -85,7 +85,7 @@ public class BinActivity extends AppCompatActivity {
             moveFile(new File(test.getPath()) , getFilesDir() );
             testDAO.delTest(test);
         }
-        startActivity(new Intent(BinActivity.this, BinActivity.class));
+        displayAllTests();
     }
     private void displayAllTests () {
         selectedTests.clear();

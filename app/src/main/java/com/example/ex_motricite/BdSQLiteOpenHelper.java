@@ -31,7 +31,7 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(tableOperator);
 
         String tableTest = "create table test ("
-                + "idPatient INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "idTest INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "path TEXT NOT NULL,"
                 + "suppressionDate TEXT NOT NULL);";
         db.execSQL(tableTest);
