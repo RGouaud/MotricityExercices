@@ -3,6 +3,9 @@ package com.example.ex_motricite;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -62,7 +65,7 @@ public class BinActivity extends AppCompatActivity {
     });
 
     buttonDelete.setOnClickListener(v -> {
-        deleteSelectedTest();
+        deleteConfirmation();
     });
 
     buttonRestore.setOnClickListener(v -> {
@@ -76,6 +79,7 @@ public class BinActivity extends AppCompatActivity {
             File fileToDelete = new File(test.getPath());
             fileToDelete.delete();
             testDAO.delTest(test);
+            tests.remove(test);
         }
         displayAllTests();
     }
@@ -84,6 +88,7 @@ public class BinActivity extends AppCompatActivity {
         for (Test test : selectedTests){
             moveFile(new File(test.getPath()) , getFilesDir() );
             testDAO.delTest(test);
+            tests.remove(test);
         }
         displayAllTests();
     }
@@ -210,5 +215,25 @@ private void deselectAllTests() {
             e.printStackTrace();
         }
         return destFile;
+    }
+
+    Dialog deleteConfirmation() {
+        // Create a dialog
+        Dialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are you sure that you want to delete these files ?");
+        builder.setCancelable(false);
+        builder.setTitle("Confirmation");
+
+        builder.setPositiveButton("SURE",
+                (dialog1, id) -> deleteSelectedTest());
+
+        builder.setNegativeButton("CANCEL",
+                (dialog12, id) -> dialog12.cancel());
+
+        dialog = builder.create();
+        dialog.show();
+        return dialog;
     }
 }

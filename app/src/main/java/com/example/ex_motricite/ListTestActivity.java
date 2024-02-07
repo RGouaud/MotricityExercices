@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,10 +64,10 @@ public class ListTestActivity extends AppCompatActivity {
 
         buttonDeselectAll.setOnClickListener(v -> deselectAllFiles());
 
-        buttonDelete.setOnClickListener(v -> deleteSelection());
+        buttonDelete.setOnClickListener(v -> deleteConfirmation());
 
         buttonFilters.setOnClickListener(v -> {
-            Intent intent = new Intent(ListTestActivity.this, HomePageActivity.class);
+            Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
 
@@ -291,5 +293,25 @@ public class ListTestActivity extends AppCompatActivity {
         }
         return destFile;
     }
+    Dialog deleteConfirmation() {
+        // Create a dialog
+        Dialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are you sure that you want to delete these files ?");
+        builder.setCancelable(false);
+        builder.setTitle("Confirmation");
+
+        builder.setPositiveButton("SURE",
+                (dialog1, id) -> deleteSelection());
+
+        builder.setNegativeButton("CANCEL",
+                (dialog12, id) -> dialog12.cancel());
+
+        dialog = builder.create();
+        dialog.show();
+        return dialog;
+    }
+
 
 }
