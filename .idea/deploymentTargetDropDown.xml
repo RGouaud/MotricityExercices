@@ -5,7 +5,16 @@
       <entry key="OperatorDAOTest">
         <State />
       </entry>
+      <entry key="BdSQLiteOpenHelperTest">
+        <State />
+      </entry>
+      <entry key="ExampleInstrumentedTest">
+        <State />
+      </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="useAppContext() (1)">
         <State />
       </entry>
     </value>

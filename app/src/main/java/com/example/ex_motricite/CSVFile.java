@@ -1,6 +1,5 @@
 package com.example.ex_motricite;
 
-
 import android.content.Context;
 import android.util.Log;
 
@@ -9,21 +8,86 @@ import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * The {@code CSVFile} class represents a CSV file handler for saving exercise data.
+ * It facilitates the creation and storage of CSV files containing exercise-related coordinates,
+ * timestamps, and other parameters.
+ *
+ * <p>
+ * The class receives various exercise-related data, including lists of X and Y coordinates, frame numbers,
+ * exercise type, duration, interval time, distance, and relevant context information. It provides a method,
+ * {@link #save()}, to save this exercise data to a CSV file. Additionally, a utility method,
+ * {@link #transformFrameInTime(int, int, int)}, transforms frame numbers into corresponding timestamps.
+ * </p>
+ *
+ * <p>
+ * The generated CSV file includes a recap of exercise details at the beginning, such as exercise type,
+ * patient and operator names, mark distance, exercise time, and comments. The actual data is then appended
+ * to the file in a time-coordinate format.
+ * </p>
+ *
+ * <p>
+ * Author: Arricastres
+ * Version: 1.0
+ * </p>
+ */
 public class CSVFile {
 
+    /**
+     * The list of X coordinates.
+     */
     private final List<Double> listX;
+    /**
+     * The list of Y coordinates.
+     */
     private final List<Double> listY;
+    /**
+     * The list of frame numbers.
+     */
     private final List<Integer> listNbFrame;
+    /**
+     * The type of exercise.
+     */
     private final String exerciseType;
+    /**
+     * The total exercise time in seconds.
+     */
     private final Integer exerciseTime;
+    /**
+     * The interval time in seconds.
+     */
     private final Integer intervalTime;
+    /**
+     * The operator's name.
+     */
     private final String operatorName;
+    /**
+     * The patient's name.
+     */
     private final String patientName;
-
-
+    /**
+     * The mark distance.
+     */
     private final int distance;
+    /**
+     * The Android application context.
+     */
     private final Context context;
 
+    /**
+     * Constructor for CSVFile class.
+     *
+     * @param listX        List of X coordinates.
+     * @param listY        List of Y coordinates.
+     * @param listNbFrame  List of frame numbers.
+     * @param exerciseType Type of exercise.
+     * @param exerciseTime Total exercise time in seconds.
+     * @param intervalTime Bip interval time in seconds.
+     * @param distance     Mark distance.
+     * @param context      Android application context.
+     * @param patient      Patient's name.
+     * @param operator     Operator's name.
+     */
     CSVFile(List<Double> listX, List<Double> listY, List<Integer> listNbFrame, String exerciseType, int exerciseTime, int intervalTime, int distance, Context context, String patient, String operator){
         this.listX = listX;
         this.listY = listY;
@@ -37,11 +101,11 @@ public class CSVFile {
         this.context = context;
     }
 
-    //Path: /sdcard/LaZer
+    /**
+     * Save the exercise data to a CSV file.
+     */
+//Path: /sdcard/LaZer
      public void save() {
-
-
-
         //retrieving the date as YYYY_MM_DD_HH_MM
         Calendar rightNow = Calendar.getInstance();
         String date = rightNow.get(Calendar.YEAR) + "_"
@@ -56,7 +120,6 @@ public class CSVFile {
                 + operatorName.replaceAll("\\s", "")
                 + this.exerciseType
                 + date + ".csv";
-
 
 
         //Comment Test
@@ -78,7 +141,6 @@ public class CSVFile {
          String header = "time(ms),x,y\n";
 
 
-
          // Obtaining the internal file directory
          File repertoireIntern = context.getFilesDir();
 
@@ -92,11 +154,9 @@ public class CSVFile {
 
              }
 
-
              FileWriter writer = new FileWriter(file);
              writer.append(recapExercise);
              writer.append(header);
-
 
 
             //save coordinates and time in csv file
@@ -119,7 +179,14 @@ public class CSVFile {
          }
     }
 
-
+    /**
+     * Transform frame number into corresponding time.
+     *
+     * @param numFrame     Frame number.
+     * @param nbFrame      Total number of frames.
+     * @param exerciseTime Total exercise time in seconds.
+     * @return Time in seconds corresponding to the given frame.
+     */
     public static double transformFrameInTime(int numFrame, int nbFrame, int exerciseTime){
         double time;
         double timeByFrame;
