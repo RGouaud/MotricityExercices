@@ -1,5 +1,6 @@
 package com.example.ex_motricite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -64,9 +65,16 @@ public class PatientDAO {
      *
      * @param patient The {@code Patient} object representing the patient to be added.
      */
-    public void addPatient(Patient patient){
-        bdAccess.getWritableDatabase().execSQL("INSERT INTO patient (name, firstName, birthDate, remarks) VALUES ('" + patient.getName() + "','" + patient.getFirstName() + "','" + patient.getBirthDate() + "','" + patient.getRemarks() + "');");
+    public long addPatient(Patient patient){
+        long idPatient;
+        ContentValues values = new ContentValues();
+        values.put("name", patient.getName());
+        values.put("firstName", patient.getFirstName());
+        values.put("birthDate", patient.getBirthDate());
+        values.put("remarks", patient.getRemarks());
+        idPatient = bdAccess.getWritableDatabase().insert("patient", null, values);
         bdAccess.close();
+        return idPatient;
     }
 
     /**

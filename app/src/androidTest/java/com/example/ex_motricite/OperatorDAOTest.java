@@ -104,7 +104,7 @@ public class OperatorDAOTest {
         // THEN
         assertEquals("Operator name does not match", operator.getName(), retrievedOperator.getName());
         assertEquals("Operator first name does not match", operator.getFirstName(), retrievedOperator.getFirstName());
-        operatorDAO.delOperator(retrievedOperator);
+        accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
     }
 
     /**
@@ -141,7 +141,7 @@ public class OperatorDAOTest {
         }
         assertEquals("Operator name does not match", operator.getName(), retrievedOperator.getName());
         assertEquals("Operator first name does not match", operator.getFirstName(), retrievedOperator.getFirstName());
-        operatorDAO.delOperator(retrievedOperator);
+        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
     }
 
     /**
@@ -169,6 +169,11 @@ public class OperatorDAOTest {
         try {
             assertNotNull(curseur);
             assertEquals("Operator not deleted", 0, curseur.getCount());
+
+            //if the operator is not deleted, we delete it
+            if (curseur.getCount() > 0) {
+                accesBD.getReadableDatabase().execSQL("delete from operator where idOperator=" + idOperator + ";");
+            }
         }finally {
             curseur.close();
         }
@@ -220,7 +225,7 @@ public class OperatorDAOTest {
         }
         assertEquals("Operator name does not match", "newName", retrievedOperator.getName());
         assertEquals("Operator first name does not match", "newFirstName", retrievedOperator.getFirstName());
-        operatorDAO.delOperator(retrievedOperator);
+        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
 
     }
 
