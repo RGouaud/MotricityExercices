@@ -1,6 +1,7 @@
 package com.example.ex_motricite;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -65,9 +66,14 @@ public class OperatorDAO {
      *
      * @param operator Operator to be added.
      */
-    public void addOperator(Operator operator){
-        accesBD.getWritableDatabase().execSQL("INSERT INTO operator (name, firstName) VALUES ('" + operator.getName() + "','" + operator.getFirstName() + "');");
+    public long addOperator(Operator operator){
+        long idOperator;
+        ContentValues values = new ContentValues();
+        values.put("name", operator.getName());
+        values.put("firstName", operator.getFirstName());
+        idOperator = accesBD.getWritableDatabase().insert("operator", null, values);
         accesBD.close();
+        return idOperator;
     }
 
     /**
