@@ -121,7 +121,7 @@ public class PatientDAOTest {
         retrievedPatient = patientDAO.getPatient(idPatient);
 
         // THEN
-        assertNull("Operator is not null", retrievedPatient);
+        assertNull("Patient is not null", retrievedPatient);
     }
 
 
@@ -195,13 +195,9 @@ public class PatientDAOTest {
         listPatients = patientDAO.getPatients();
 
         //THEN
-        // select all operators in SQL query
         curseur = accesBD.getReadableDatabase().rawQuery("select * from patient;",null);
-        // Using getOperators method to get all operators
         listPatients = patientDAO.getPatients();
-        // compare the size of the sql query and the size of the list, they must be equal, then we consider that it is good
         assertEquals("List size does not match", curseur.getCount(), listPatients.size());
-        // close the cursor
         curseur.close();
     }
 
