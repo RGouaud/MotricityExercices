@@ -1,22 +1,18 @@
 package com.example.ex_motricite;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.widget.Button;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.espresso.intent.matcher.IntentMatchers.*;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -31,17 +27,46 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class HomePageActivityTest {
+
+    /**
+     * The instance of the database
+     */
     private BdSQLiteOpenHelper accesBD;
+
+    /**
+     * The context of the application
+     */
     private Context ct;
+
+    /**
+     * The id of the patient retrieved from the database
+     */
     private long idPatient;
+
+    /**
+     * The id of the operator retrieved from the database
+     */
     private long idOperator;
+
+    /**
+     * The patient
+     */
     private Patient patient;
 
+    /**
+     * The operator
+     */
     private Operator operator;
 
+    /**
+     * The rule for the activity
+     */
     @Rule
     public IntentsTestRule<HomePageActivity> mActivityRule = new IntentsTestRule<>(HomePageActivity.class);
 
+    /**
+     * Set up all the variables needed for the tests
+     */
     @Before
     public void setUp(){
         ct = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -52,6 +77,9 @@ public class HomePageActivityTest {
 
     }
 
+    /**
+     * Clean up all the variables needed for the tests
+     */
     @After
     public void tearDown(){
         accesBD.close();
@@ -62,6 +90,9 @@ public class HomePageActivityTest {
     }
 
 
+    /**
+     * Test when the user click on the static exercise button
+     */
     @Test
     public void test_navigation_to_ExercisesSettingsActivity_when_static_exercice() {
         //GIVEN
@@ -95,6 +126,9 @@ public class HomePageActivityTest {
     }
 
 
+    /**
+     * Test when the user click on the rhythm exercise button
+     */
     @Test
     public void test_Navigation_To_ExercisesSettingsActivity_When_Rhythm_Exerice() {
         //GIVEN
@@ -117,18 +151,32 @@ public class HomePageActivityTest {
         intended(allOf(
                 hasComponent(ExercisesSettingsActivity.class.getName()),
                 toPackage("com.example.ex_motricite")
-
-
         ));
+
+        // Vérification de la visibilité de l'élément
+        onView(withId(R.id.et_interval)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
+        // Suppression des données de test
         accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
         accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
     }
 
+    /**
+     * Test when the user click on the consult profiles button
+     */
     @Test
     public void test_Navigation_To_ListUserPageActivity_When_Consult_Profiles() {
         //GIVEN
+
         //WHEN
+        onView(withId(R.id.layout_patient)).perform(click());
+
         //THEN
+        intended(allOf(
+                hasComponent(ListUserPageActivity.class.getName()),
+                toPackage("com.example.ex_motricite")
+        ));
+
     }
 
 }
