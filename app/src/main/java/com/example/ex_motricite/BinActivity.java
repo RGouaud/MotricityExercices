@@ -19,11 +19,38 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinActivity extends AppCompatActivity {
-    // You can choose any number code here
-    private ArrayList<Test>tests;
+/**
+ * The {@code BinActivity} class represents an Android activity for managing deleted tests.
+ *
+ * <p>
+ * This activity includes functionalities to display a list of deleted tests, handle user input,
+ * and navigate to specific exercise activities based on user selections. It utilizes DAOs (Data Access Objects)
+ * to retrieve deleted test data from our database.
+ * </p>
+ *
+ * <p>
+ * The class supports multiple selection of deleted tests, with options to restore or permanently delete them.
+ * It ensures proper input validation and provides a user-friendly interface for managing deleted tests.
+ * </p>
+ *
+ * <p>
+ *     Author: Maxime Segot
+ *     Version: 1.0
+ *     </p>
+ */
 
+public class BinActivity extends AppCompatActivity {
+    /**
+     * The list of deleted tests.
+     */
+    private ArrayList<Test>tests;
+    /**
+     * The list of selected tests.
+     */
     private final List<Test> selectedTests = new ArrayList<>();
+    /**
+     * The layout for the list of deleted tests.
+     */
     private LinearLayout layoutListTest;
 
     @Override
@@ -64,7 +91,9 @@ public class BinActivity extends AppCompatActivity {
 
     buttonRestore.setOnClickListener(v -> restoreSelectedTest());
 }
-
+    /**
+     * Deletes permanently the selected tests.
+     */
     private void deleteSelectedTest(){
         TestDAO testDAO = new TestDAO(this);
         for (Test test : selectedTests){
@@ -77,6 +106,9 @@ public class BinActivity extends AppCompatActivity {
         }
         displayAllTests();
     }
+    /**
+     * Restores the selected tests.
+     */
     private void restoreSelectedTest(){
         TestDAO testDAO = new TestDAO(this);
         for (Test test : selectedTests){
@@ -86,6 +118,9 @@ public class BinActivity extends AppCompatActivity {
         }
         displayAllTests();
     }
+    /**
+     * Displays all the tests.
+     */
     private void displayAllTests () {
         selectedTests.clear();
 
@@ -95,7 +130,9 @@ public class BinActivity extends AppCompatActivity {
         // Show files in layout
         displayFilesInLayout();
     }
-
+    /**
+     * Displays the tests in the layout.
+     */
     private void displayFilesInLayout() {
     // Clear the previous elements in the LinearLayout
     layoutListTest.removeAllViews();
@@ -106,7 +143,12 @@ public class BinActivity extends AppCompatActivity {
         layoutListTest.addView(testButton);
     }
 }
-
+    /**
+     * Creates a button for each test.
+     *
+     * @param test The test to create a button for.
+     * @return The button for the test.
+     */
     private Button createTestButton(final Test test){
     Button fileButton = new Button(this);
     fileButton.setText(test.getSuppressionDate());
@@ -115,16 +157,21 @@ public class BinActivity extends AppCompatActivity {
     // Short click to navigate to TestPageActivity
 
     // Long click for multiple selection
-    fileButton.setOnLongClickListener(v -> {
-        handleLongClick(fileButton, test);
-        return true;  // Consume the long click
+    fileButton.setOnClickListener(v -> {
+        handleClick(fileButton, test);
     });
 
     return fileButton;
 }
 
+    /**
+     * Handles the click on a test button (add the test to the selected tests list.
+     *
+     * @param fileButton The button representing the test.
+     * @param test       The test associated with the button.
+     */
 
-    private void handleLongClick (Button fileButton, Test test){
+    private void handleClick(Button fileButton, Test test){
     // Manage multiple selection here
     if (selectedTests.contains(test)) {
         selectedTests.remove(test);
@@ -135,7 +182,9 @@ public class BinActivity extends AppCompatActivity {
     }
 }
 
-
+    /**
+     * Selects all the tests.
+     */
     private void selectAllTests () {
         selectedTests.clear();
         if (tests != null) {
@@ -143,34 +192,52 @@ public class BinActivity extends AppCompatActivity {
         }
         // Update button
         updateButtonsState(true);
-}
+    }
 
+    /**
+     * Deselects all the tests.
+     */
+    private void deselectAllTests() {
+        // Empty the list of selected files
+        selectedTests.clear();
+        updateButtonsState(false);
+    }
 
-private void deselectAllTests() {
-    // Empty the list of selected files
-    selectedTests.clear();
-    updateButtonsState(false);
-}
-
+    /**
+     * Updates the state of the buttons.
+     *
+     * @param isChecked The state of the buttons.
+     */
     private void updateButtonsState ( boolean isChecked){
     // Go through all the ToggleButtons in the layout and update their state
     for (int i = 0; i < layoutListTest.getChildCount(); i++) {
         View view = layoutListTest.getChildAt(i);
         if (view instanceof Button) {
             Button fileButton = (Button) view;
-            if (isChecked) {
-                fileButton.setBackgroundColor(0xFFFAD552);
-            } else {
-                fileButton.setBackgroundColor(0xFF615321);
+                if (isChecked) {
+                    fileButton.setBackgroundColor(0xFFFAD552);
+                } else {
+                    fileButton.setBackgroundColor(0xFF615321);
+                }
             }
         }
     }
-}private void handleDataRetrievalError(Exception e) {
+    /**
+     * Handles an error that occurred while retrieving the tests.
+     *
+     * @param e The exception that occurred.
+     */
+    private void handleDataRetrievalError(Exception e) {
         e.printStackTrace();
         Toast.makeText(this, "An error has occurred while retrieving the tests", Toast.LENGTH_SHORT).show();
     }
 
-
+    /**
+     * Moves a file to a specific directory.
+     *
+     * @param sourceFile     The file to move.
+     * @param destDirectory The destination directory.
+     */
     final void moveFile(File sourceFile , File destDirectory) {
 
         // Create the destination repository if it doesn't exist
@@ -203,6 +270,9 @@ private void deselectAllTests() {
         }
     }
 
+    /**
+     * Displays a confirmation pop up dialog page that confirm the deletion of the selected tests.
+     */
     void deleteConfirmation() {
         // Create a dialog
         Dialog dialog;
