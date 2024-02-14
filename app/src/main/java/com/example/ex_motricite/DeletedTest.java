@@ -2,18 +2,18 @@ package com.example.ex_motricite;
 
 import androidx.annotation.NonNull;
 
-public class Test {
+public class DeletedTest {
     private int id;
     private final String path;
     private String suppressionDate;
 
-    public Test(int id, String path, String suppressionDate) {
+    public DeletedTest(int id, String path, String suppressionDate) {
         this.id = id;
         this.path = path;
         this.suppressionDate = suppressionDate;
     }
 
-    public Test(String path, String suppressionDate){
+    public DeletedTest(String path, String suppressionDate){
         this.path = path;
         this.suppressionDate = suppressionDate;
     }

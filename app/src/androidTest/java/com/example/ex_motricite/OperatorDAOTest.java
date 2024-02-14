@@ -1,11 +1,12 @@
 package com.example.ex_motricite;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -96,7 +97,7 @@ public class OperatorDAOTest {
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
         values.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, values);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, values);
 
         // WHEN
         retrievedOperator = operatorDAO.getOperator(idOperator);
@@ -153,7 +154,7 @@ public class OperatorDAOTest {
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
         values.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, values);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, values);
 
         curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
         if (curseur.getCount() > 0) {
@@ -209,7 +210,7 @@ public class OperatorDAOTest {
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
         values.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, values);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, values);
 
         //WHEN
         retrievedOperator = operatorDAO.getOperator(idOperator);

@@ -5,42 +5,42 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-public class TestDAO {
+public class DeletedTestDAO {
     private static final String BASE = "BDMotricity";
     private static final int VERSION = 1;
     private final BdSQLiteOpenHelper acesBD;
-    public TestDAO(Context ct) {
+    public DeletedTestDAO(Context ct) {
         acesBD = new BdSQLiteOpenHelper(ct, BASE, null, VERSION);
     }
 
-    public Test getTest(int idTest){
-        Test test = null;
-        Cursor cursor = acesBD.getReadableDatabase().rawQuery("select * from test where idTest="+idTest+";",null);
+    public DeletedTest getTest(int idTest){
+        DeletedTest test = null;
+        Cursor cursor = acesBD.getReadableDatabase().rawQuery("select * from DeletedTest where idTest="+idTest+";",null);
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            test = new Test(idTest, cursor.getString(1), cursor.getString(2));
+            test = new DeletedTest(idTest, cursor.getString(1), cursor.getString(2));
         }
         cursor.close();
         return test;
     }
 
-    public void addTest(Test test){
-        acesBD.getWritableDatabase().execSQL("INSERT INTO test (path, suppressionDate) VALUES ('" + test.getPath() + "','" + test.getSuppressionDate() + "');");
+    public void addTest(DeletedTest test){
+        acesBD.getWritableDatabase().execSQL("INSERT INTO DeletedTest (path, suppressionDate) VALUES ('" + test.getPath() + "','" + test.getSuppressionDate() + "');");
         acesBD.close();
     }
-    public void delTest(Test test){
-        acesBD.getWritableDatabase().execSQL("delete from test where idTest="+test.getId()+";");
+    public void delTest(DeletedTest test){
+        acesBD.getWritableDatabase().execSQL("delete from DeletedTest where idTest="+test.getId()+";");
         acesBD.close();
     }
 
-    public ArrayList<Test> getAllTests(){
+    public ArrayList<DeletedTest> getAllTests(){
         Cursor cursor;
-        String req = "select * from test;";
+        String req = "select * from DeletedTest;";
         cursor = acesBD.getReadableDatabase().rawQuery(req,null);
         return cursorToTestArrayList(cursor);
     }
-    private ArrayList<Test> cursorToTestArrayList(Cursor cursor){
-        ArrayList<Test> listTests = new ArrayList<>();
+    private ArrayList<DeletedTest> cursorToTestArrayList(Cursor cursor){
+        ArrayList<DeletedTest> listTests = new ArrayList<>();
         int idTest;
         String path;
         String dateSuppression;
@@ -50,7 +50,7 @@ public class TestDAO {
             idTest = cursor.getInt(0);
             path = cursor.getString(1);
             dateSuppression = cursor.getString(2);
-            listTests.add(new Test(idTest, path, dateSuppression));
+            listTests.add(new DeletedTest(idTest, path, dateSuppression));
             cursor.moveToNext();
         }
 

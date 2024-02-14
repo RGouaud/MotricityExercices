@@ -39,8 +39,8 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create the 'patient' table
-        String tablePatient = "create table patient ("
+        // Create the 'Patient' table
+        String tablePatient = "create table Patient ("
                 + "idPatient INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "name TEXT NOT NULL,"
                 + "firstName TEXT NOT NULL,"
@@ -48,14 +48,15 @@ public class BdSQLiteOpenHelper extends SQLiteOpenHelper {
                 + "remarks TEXT NOT NULL);";
         db.execSQL(tablePatient);
 
-        // Create the 'operator' table
-        String tableOperator = "create table operator ("
+        // Create the 'Operator' table
+        String tableOperator = "create table Operator ("
                 + "idOperator INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "Name TEXT NOT NULL,"
+                + "name TEXT NOT NULL,"
                 + "firstName TEXT NOT NULL);";
         db.execSQL(tableOperator);
 
-        String tableTest = "create table test ("
+        // Create the 'DeletedTest' table
+        String tableTest = "create table DeletedTest ("
                 + "idTest INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "path TEXT NOT NULL,"
                 + "suppressionDate TEXT NOT NULL);";

@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 public class BdSQLiteOpenHelperTest {
-
+    static final String DB_NAME = "BDMotricity";
     /**
      * Default test to check if next tests should works or if there already are problems
      */
@@ -32,7 +32,7 @@ public class BdSQLiteOpenHelperTest {
     public void testDatabaseIsCreated(){
         //GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = "accesBd";
+        String baseName = DB_NAME;
         int version = 1;
 
         //WHEN
@@ -53,10 +53,10 @@ public class BdSQLiteOpenHelperTest {
     public void testTablePatientIsCreated() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = "accesBd";
+        String baseName = DB_NAME;
         int version = 1;
 
-        String tableName = "patient";
+        String tableName = "Patient";
         String[] expectedColumns = {"idPatient", "name", "firstName", "birthDate", "remarks"};
 
         // WHEN
@@ -97,8 +97,8 @@ public class BdSQLiteOpenHelperTest {
         String baseName = "accesBd";
         int version = 1;
 
-        String tableName = "operator";
-        String[] expectedColumns = {"idOperator", "Name", "firstName"};
+        String tableName = "Operator";
+        String[] expectedColumns = {"idOperator", "name", "firstName"};
 
         // WHEN
         BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
@@ -128,13 +128,13 @@ public class BdSQLiteOpenHelperTest {
     }
 
     @Test
-    public void testTableTestIsCreated() {
+    public void testTableDeletedTestIsCreated() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = "accesBd";
+        String baseName = DB_NAME;
         int version = 1;
 
-        String tableName = "test";
+        String tableName = "DeletedTest";
         String[] expectedColumns = {"idTest", "path", "suppressionDate"};
 
         // WHEN

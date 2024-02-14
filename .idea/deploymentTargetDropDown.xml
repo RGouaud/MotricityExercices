@@ -2,19 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="OperatorDAOTest">
-        <State />
-      </entry>
-      <entry key="BdSQLiteOpenHelperTest">
-        <State />
-      </entry>
-      <entry key="ExampleInstrumentedTest">
+      <entry key="Tests in 'com.example.ex_motricite'">
         <State />
       </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="useAppContext() (1)">
+      <entry key="test_Navigation_To_ListUserPageActivity_When_Consult_Profiles()">
+        <State />
+      </entry>
+      <entry key="test_navigation_to_ExercisesSettingsActivity_when_static_exercice()">
         <State />
       </entry>
     </value>
