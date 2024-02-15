@@ -96,6 +96,7 @@ public class ListUserPageActivity extends AppCompatActivity {
 
         // Setup the layout
         aLayout.setOrientation(LinearLayout.HORIZONTAL);
+        aLayout.setContentDescription("navigate to details user");
         aLayout.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -139,6 +140,7 @@ public class ListUserPageActivity extends AppCompatActivity {
         ImageButton boutonModify = new ImageButton(this);
         boutonModify.setImageResource(android.R.drawable.ic_menu_set_as);
         boutonModify.setBackgroundColor(Color.parseColor("#00000000"));
+        boutonModify.setContentDescription("navigate to modify user");
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
         boutonModify.setLayoutParams(params);
 
