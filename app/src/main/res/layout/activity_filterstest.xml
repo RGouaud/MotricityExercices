@@ -34,128 +34,232 @@
                 android:layout_weight="2"
                 android:background="@drawable/rounded_gray_box"
                 android:orientation="vertical"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                    android:orientation="horizontal"
+                    android:paddingBottom="20dp">
+                    <!-- image de filtre -->
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+
+                        />
                     <TextView
-                        android:id="@+id/tv_ListOfTest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center|center_vertical"
-                        android:text="@string/list_of_test"
-                        android:textColor="#FFFFFF"
-                        android:textSize="48sp" />
+                        android:gravity="left|center_vertical"
+                        android:text="Test's filters"
+                        android:textColor="@color/black"
+                        android:textSize="36sp"
+                        android:textStyle="bold"/>
+                    <!-- image de croix pour sortir -->
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
                         />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@drawable/background_textview_with_gradient_stroke"
+
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text="Date :"
+                        android:textSize="22sp"
+                        android:textColor="@color/white"
                     />
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="10">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="date min :"/>
+                                android:text="Date min :"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:layout_weight="10"
+                                />
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:layout_weight="10"
+                                android:layout_gravity="center">
                                 <EditText
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="date"/>
+                                    android:id="@+id/et_dateMin"
+                                    android:inputType="date"
+                                    android:hint="xx/xx/xxxx"
+                                    android:textSize="20sp"
+                                    android:paddingLeft="12dp"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:gravity="center_vertical"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                                    android:layout_weight="2"
+                                    />
+                                <!-- image calendar-->
                                 <ImageView
-                                    android:layout_width="wrap_content"
+                                    android:layout_weight="10"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
 
                             </LinearLayout>
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_weight="10">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="date max :"/>
+                                    android:text="Date max :"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/white"
+                                    />
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:layout_weight="10"
+                                    android:layout_gravity="center">
                                     <EditText
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="date"/>
+                                        android:id="@+id/et_dateMax"
+                                        android:inputType="date"
+                                        android:hint="xx/xx/xxxx"
+                                        android:textSize="20sp"
+                                        android:paddingLeft="12dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:gravity="center_vertical"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                                        android:layout_weight="2"
+                                        />
+                                    <!-- image calendar-->
                                     <ImageView
-                                        android:layout_width="wrap_content"
+                                        android:layout_weight="10"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"/>
 
                                 </LinearLayout>
-
+                            </LinearLayout>
                             </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/background_textview_with_gradient_stroke">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     android:text="Test type :"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <CheckBox
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Static"/>
+                        android:layout_weight="10"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:text="Static"
+                        />
                     <CheckBox
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
                         android:text="Dynamic"/>
                 </LinearLayout>
             </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/background_textview_with_gradient_stroke"
+                android:padding="10dp"
                 >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Operator :"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:padding="10dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/et_researchOperator"
+                        android:inputType="date"
+                        android:hint="research"
+                        android:textSize="20sp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                        android:layout_weight="2"
+                        />
+
+
+                </LinearLayout>
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -163,7 +267,7 @@
                     android:fillViewport="true">
 
                     <LinearLayout
-                        android:id="@+id/l_listTest"
+                        android:id="@+id/l_listOperator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -171,8 +275,69 @@
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_textview_with_gradient_stroke"
+                    android:padding="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Patient :"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:padding="10dp"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/et_researchPatient"
+                            android:inputType="date"
+                            android:hint="research"
+                            android:textSize="20sp"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                            android:layout_weight="2"
+                            />
+
+
+                    </LinearLayout>
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="30"
+                        android:fillViewport="true">
+
+                        <LinearLayout
+                            android:id="@+id/l_listPatient"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- Add your buttons dynamically to this LinearLayout -->
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </LinearLayout>
+            </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
