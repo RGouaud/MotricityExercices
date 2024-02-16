@@ -57,3 +57,5 @@ d
 4app/src/main/java/com/example/ex_motricite/Test.java,d\7\d78485e32a19f3ebe895240b25c42aa49e99a655
 n
 >app/src/main/java/com/example/ex_motricite/DeletedTestDAO.java,9\a\9a32196b18fec37ad86aac571bddb19f00e072cc
+o
+?app/src/test/java/com/example/ex_motricite/DeletedTestTest.java,1\6\16496035764ad87894407b6b458f027ceb43a8c3
