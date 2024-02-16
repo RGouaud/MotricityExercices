@@ -2,10 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DeletedTestDAOTest">
+      <entry key="BdSQLiteOpenHelperTest">
         <State />
       </entry>
-      <entry key="TestDelOperator()">
+      <entry key="DeletedTestDAOTest">
         <State />
       </entry>
       <entry key="TestGetOperators()">

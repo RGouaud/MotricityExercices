@@ -35,11 +35,10 @@ public class BdSQLiteOpenHelperTest {
     public void testDatabaseIsCreated(){
         //GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = DB_NAME;
         int version = 1;
 
         //WHEN
-        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
+        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, DB_NAME, null, version);
         SQLiteDatabase db = bd.getWritableDatabase();
 
         //THEN
@@ -56,14 +55,13 @@ public class BdSQLiteOpenHelperTest {
     public void testTablePatientIsCreated() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = DB_NAME;
         int version = 1;
 
         String tableName = "Patient";
         String[] expectedColumns = {"idPatient", "name", "firstName", "birthDate", "remarks"};
 
         // WHEN
-        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
+        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, DB_NAME, null, version);
         SQLiteDatabase db = bd.getWritableDatabase();
 
         // THEN
@@ -138,14 +136,13 @@ public class BdSQLiteOpenHelperTest {
     public void testTableDeletedTestIsCreated() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String baseName = DB_NAME;
         int version = 1;
 
         String tableName = "DeletedTest";
         String[] expectedColumns = {"idTest", "path", "suppressionDate"};
 
         // WHEN
-        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, baseName, null, version);
+        BdSQLiteOpenHelper bd = new BdSQLiteOpenHelper(appContext, DB_NAME, null, version);
         SQLiteDatabase db = bd.getWritableDatabase();
 
         // THEN
