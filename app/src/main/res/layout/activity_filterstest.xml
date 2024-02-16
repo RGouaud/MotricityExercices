@@ -28,6 +28,11 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:fillViewport="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -42,27 +47,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingBottom="20dp">
-                    <!-- image de filtre -->
+                    <!-- image de croix pour sortir -->
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/x_leave_the_current_window"
 
                         />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="left|center_vertical"
-                        android:text="Test's filters"
-                        android:textColor="@color/black"
-                        android:textSize="36sp"
-                        android:textStyle="bold"/>
-                    <!-- image de croix pour sortir -->
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:paddingRight="35dp"
+                        android:gravity="center|center_vertical"
+                        android:text="Filters"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"/>
 
-                        />
 
                 </LinearLayout>
 
@@ -115,19 +116,21 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:layout_weight="2"
-                                    android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
                                     android:gravity="center_vertical"
+                                    android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/white"
                                     android:hint="xx/xx/xxxx"
                                     android:inputType="date"
                                     android:paddingLeft="12dp"
                                     android:paddingTop="4dp"
                                     android:paddingBottom="4dp"
                                     android:textSize="20sp" />
-                                <!-- image calendar-->
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="10" />
+                                    android:layout_weight="10"
+                                    android:src="@drawable/calendar_days"/>
 
                             </LinearLayout>
 
@@ -164,7 +167,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:layout_weight="2"
-                                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                                        android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                                        android:textColor="@color/white"
+                                        android:textColorHint="@color/white"
                                         android:gravity="center_vertical"
                                         android:hint="xx/xx/xxxx"
                                         android:inputType="date"
@@ -172,11 +177,11 @@
                                         android:paddingTop="4dp"
                                         android:paddingBottom="4dp"
                                         android:textSize="20sp" />
-                                    <!-- image calendar-->
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="10" />
+                                        android:layout_weight="10"
+                                        android:src="@drawable/calendar_days"/>
 
                                 </LinearLayout>
                             </LinearLayout>
@@ -211,6 +216,8 @@
                         android:textSize="20sp"
                         android:textColor="@color/white"
                         android:text="Static"
+                        android:button="@null"
+                        android:drawableRight="@android:drawable/btn_radio"
                         />
                     <CheckBox
                         android:layout_width="match_parent"
@@ -218,7 +225,9 @@
                         android:layout_weight="10"
                         android:textSize="20sp"
                         android:textColor="@color/white"
-                        android:text="Dynamic"/>
+                        android:text="Dynamic"
+                        android:button="@null"
+                        android:drawableRight="@android:drawable/btn_radio"/>
                 </LinearLayout>
             </LinearLayout>
                 <Space
@@ -248,15 +257,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/et_researchOperator"
-                        android:inputType="date"
-                        android:hint="research"
-                        android:textSize="20sp"
+                        android:inputType="text"
+                        android:hint="Research"
+                        android:textSize="16sp"
                         android:paddingLeft="12dp"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:gravity="center_vertical"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                        android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         android:layout_weight="2"
                         />
 
@@ -305,14 +316,16 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/et_researchPatient"
                             android:inputType="date"
-                            android:hint="research"
-                            android:textSize="20sp"
+                            android:hint="Research"
+                            android:textSize="16sp"
                             android:paddingLeft="12dp"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
                             android:gravity="center_vertical"
                             android:layout_gravity="center_vertical"
-                            android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                            android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:layout_weight="2"
                             />
 
@@ -334,7 +347,26 @@
                     </ScrollView>
                 </LinearLayout>
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/b_confirm"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm"
+                    android:background="@drawable/yellow_rounded_button"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textSize="26sp"
+                    android:layout_gravity="center"/>
             </LinearLayout>
+            </ScrollView>
             </LinearLayout>
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

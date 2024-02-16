@@ -2,7 +2,11 @@ package com.example.ex_motricite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +19,32 @@ import java.util.ArrayList;
 
 public class FiltersTestActivity extends AppCompatActivity {
 
-    private ArrayList<File> csvList;
 
-    private ArrayList<File> currentCsvList;
-    private LinearLayout layoutListCsvOperator;
-    private LinearLayout layoutListCsvPatient;
+    /**
+     * The PatientDAO instance for database operations.
+     */
+    private OperatorDAO operatorDAO;
+    /**
+     * The OperatorDAO instance for database operations.
+     */
+    private PatientDAO patientDAO;
+
+    private final int NB_COLUMNS = 3;
+    private ArrayList<Patient> patientList;
+    private ArrayList<Patient> currentPatientList;
+    private ArrayList<Operator> operatorList;
+    private ArrayList<Operator> currentOperatorList;
+    private ArrayList<File> csvList = new ArrayList<>();
+    private ArrayList<File> filteredCsvList = new ArrayList<>();
+    private ArrayList<String> selectedOperatorNameList = new ArrayList<>();
+    private LinearLayout layoutListOperator;
+    private LinearLayout layoutListPatient;
 
     private EditText etDateMax;
     private EditText etDateMin;
     private EditText etResearchOperator;
     private EditText etResearchPatient;
+    private Button bConfirm;
 
 
 
@@ -36,39 +56,205 @@ public class FiltersTestActivity extends AppCompatActivity {
 
         this.etDateMax = findViewById(R.id.et_dateMax);
         this.etDateMin = findViewById(R.id.et_dateMin);
+
         this.etResearchOperator = findViewById(R.id.et_researchOperator);
         this.etResearchPatient = findViewById(R.id.et_researchPatient);
 
-        this.layoutListCsvOperator = findViewById(R.id.l_listOperator);
-        this.layoutListCsvPatient = findViewById(R.id.l_listPatient);
+        this.layoutListOperator = findViewById(R.id.l_listOperator);
+        this.layoutListPatient = findViewById(R.id.l_listPatient);
+
+        this.bConfirm = findViewById(R.id.b_confirm);
+
+        bConfirm.setOnClickListener(v -> {
+
+            Intent intent = new Intent(this, ListTestActivity.class);
+            intent.putExtra("csvList", filteredCsvList);
+        });
+
+        operatorDAO = new OperatorDAO(this);
+        patientDAO = new PatientDAO(this);
 
         getAllCSV();
 
-        currentCsvList = csvList;
+        operatorList = operatorDAO.getOperators();
+        patientList = patientDAO.getPatients();
 
+        currentOperatorList = operatorDAO.getOperators();
+        currentPatientList = patientDAO.getPatients();
+        filterOperator("");
+        filterPatient("");
 
+        etResearchOperator.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                layoutListOperator.removeAllViews();
+                filterOperator(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etResearchOperator.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                layoutListPatient.removeAllViews();
+                filterPatient(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etDateMin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                filteredCsvList.clear();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                /*if(DateValidator.isValid(s.toString())){//check if birthdate seems to be on the waited format DD/MM/YYYY
+
+                }
+                else{ // error on date
+                    showPopup(CrudUserActivity.this, "Type a valid date");
+                }*/
+            }
+        });
     }
 
 
-    private void displayAllCSVFiles(ArrayList<File> selectedFiles, LinearLayout layoutListTest) {
+    private void filterOperator(String text) {
+        currentOperatorList.clear();
+        for (Operator user : operatorList) {
+            if (user.getName().toLowerCase().contains(text.toLowerCase())) {
+                currentOperatorList.add(user);
+            }
+        }
+        displayAllOperators();
+    }
+    private void displayAllOperators() {
         // Clear the previous elements in the LinearLayout
-        layoutListTest.removeAllViews();
-
+        layoutListOperator.removeAllViews();
+        int indexElement = 0;
+        int nbOperators = currentOperatorList.size();
         // Dynamically add items for each file in the list
-        for (File file : selectedFiles) {
-            Button fileButton = createFileButton(file);
-            layoutListTest.addView(fileButton);
+        for (Operator user : currentOperatorList) {
+            createOperatorButton(user, indexElement);
+            indexElement++;
         }
     }
 
-    private Button createFileButton(final File file) {
-        layoutListCsvOperator.getChildCount(); //pour me souvenir de la fonction pour compter les enfants)
+    private void createOperatorButton(final Operator user, int indexElement) {
+        if (indexElement % NB_COLUMNS == 0 )
+        {
+            // Create a new LinearLayout for the row
+            LinearLayout layoutRow = new LinearLayout(this);
+            layoutRow.setOrientation(LinearLayout.HORIZONTAL);
+            layoutRow.setPadding(10,5,5,10);
+            layoutRow.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            layoutRow.setWeightSum(10);
 
-        //3buttons layout
-        LinearLayout layout3buttons = new LinearLayout(this);
-        layout3buttons.setOrientation(LinearLayout.HORIZONTAL);
-        layout3buttons.setPadding(10,5,5,10);
-        layout3buttons.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layoutListOperator.addView(layoutRow);
+        }
+
+        //1button layout
+        LinearLayout layoutButton = new LinearLayout(this);
+        layoutButton.setOrientation(LinearLayout.VERTICAL);
+        layoutButton.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f
+        ));
+        layoutButton.setPadding(5,5,5,5);
+        layoutButton.setBackground(getDrawable(R.drawable.black_rounded_rectangle));
+
+
+
+        //TextView containing the name of the patient and the operator
+        TextView tvName = new TextView(this);
+        tvName.setText(user.getName());
+        tvName.setTextColor(getColor(R.color.white));
+        TextView tvFirstName = new TextView(this);
+        tvFirstName.setText(user.getFirstName());
+        tvFirstName.setTextColor(getColor(R.color.white));
+        layoutButton.setOnClickListener(v->{
+            if (tvName.getCurrentTextColor() == getColor(R.color.white)){
+                layoutButton.setBackground(getDrawable(R.drawable.yellow_rounded_rectangle));
+                tvName.setTextColor(getColor(R.color.black));
+                tvFirstName.setTextColor(getColor(R.color.black));
+                selectedOperatorNameList.add(user.getName());
+            }
+            else {
+                layoutButton.setBackground(getDrawable(R.drawable.black_rounded_rectangle));
+                tvName.setTextColor(getColor(R.color.white));
+                tvFirstName.setTextColor(getColor(R.color.white));
+                selectedOperatorNameList.remove(user.getName());
+            }
+
+        });
+        layoutButton.addView(tvName);
+        layoutButton.addView(tvFirstName);
+
+
+
+        LinearLayout rowLayout = (LinearLayout) layoutListOperator.getChildAt(layoutListOperator.getChildCount() - 1);
+        rowLayout.addView(layoutButton);
+
+    }
+    private void filterPatient(String text) {
+        currentPatientList.clear();
+        for (Patient user : patientList) {
+            if (user.getName().toLowerCase().contains(text.toLowerCase())) {
+                currentPatientList.add(user);
+            }
+        }
+        displayAllPatients();
+    }
+    private void displayAllPatients() {
+        // Clear the previous elements in the LinearLayout
+        layoutListPatient.removeAllViews();
+        int indexElement = 0;
+        int nbOperators = currentPatientList.size();
+        // Dynamically add items for each file in the list
+        for (Patient user : currentPatientList) {
+            createPatientButton(user, indexElement);
+            indexElement++;
+        }
+    }
+
+    private void createPatientButton(final Patient user, int indexElement) {
+        if (indexElement % NB_COLUMNS == 0 )
+        {
+            // Create a new LinearLayout for the row
+            LinearLayout layoutRow = new LinearLayout(this);
+            layoutRow.setOrientation(LinearLayout.HORIZONTAL);
+            layoutRow.setPadding(10,5,5,10);
+            layoutRow.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layoutListPatient.addView(layoutRow);
+        }
 
         //1button layout
         LinearLayout layoutButton = new LinearLayout(this);
@@ -76,45 +262,22 @@ public class FiltersTestActivity extends AppCompatActivity {
         layoutButton.setPadding(5,5,5,5);
         layoutButton.setWeightSum(10);
 
+
+
         //TextView containing the name of the patient and the operator
         TextView tvName = new TextView(this);
+        tvName.setText(user.getName());
         TextView tvFirstName = new TextView(this);
-        TextView tvBirthday = new TextView(this);
+        tvFirstName.setText(user.getFirstName());
 
+        layoutButton.addView(tvName);
+        layoutButton.addView(tvFirstName);
 
-
-
-        Button fileButton = new Button(this);
-        fileButton.setText(file.getName());
-        fileButton.setBackgroundColor(0xFF615321);
-
-        // Short click to navigate to TestPageActivity
-        fileButton.setOnClickListener(v -> navigateToTestPage(file));
-
-        // Long click for multiple selection
-        fileButton.setOnLongClickListener(v -> {
-            handleLongClick(fileButton, file);
-            return true;  // Consume the long click
-        });
-
-        return fileButton;
-    }
-
-    void getCSVByOperatorsName(){
+        LinearLayout rowLayout = (LinearLayout) layoutListPatient.getChildAt(layoutListPatient.getChildCount() - 1);
+        rowLayout.addView(layoutButton);
 
     }
-    void getCSVByPatientName(){
 
-    }
-    void getCSVByDateMax(){
-
-    }
-    void getCSVByDateMin(){
-
-    }
-    void getCSVByType(){
-
-    }
     void getAllCSV(){
         // Get directory from internal storage
         File internalStorageDir = getFilesDir();

@@ -101,7 +101,7 @@ public class ListTestActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(v -> deleteConfirmation());
 
         buttonFilters.setOnClickListener(v -> {
-            Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(ListTestActivity.this, FiltersTestActivity.class);
             startActivity(intent);
         });
 
