@@ -81,3 +81,9 @@ n
 >app/src/main/java/com/example/ex_motricite/DeletedTestDAO.java,9\a\9a32196b18fec37ad86aac571bddb19f00e072cc
 o
 ?app/src/test/java/com/example/ex_motricite/DeletedTestTest.java,1\6\16496035764ad87894407b6b458f027ceb43a8c3
+r
+Bapp/src/test/java/com/example/ex_motricite/DeletedTestDAOTest.java,8\6\861fc74b8ed56421b6fb78fd0c8c4924c50595b2
+y
+Iapp/src/androidTest/java/com/example/ex_motricite/DeletedTestDAOTest.java,f\7\f7f06fb0de30c12ef304145bf633001d32368929
+k
+;app/src/main/java/com/example/ex_motricite/DeletedTest.java,0\6\0608d94f69c95e17dd576ca16fc2811c4ff85569

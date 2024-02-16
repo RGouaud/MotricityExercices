@@ -2,13 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="DeletedTestDAOTest">
+        <State />
+      </entry>
+      <entry key="TestDelOperator()">
+        <State />
+      </entry>
+      <entry key="TestGetOperators()">
+        <State />
+      </entry>
+      <entry key="TestGetTests()">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="test_Navigation_To_ListUserPageActivity_When_Consult_Profiles()">
-        <State />
-      </entry>
-      <entry key="test_navigation_to_ExercisesSettingsActivity_when_static_exercice()">
+      <entry key="testGetDeletedTestWhereIdIsRegistered()">
         <State />
       </entry>
     </value>
