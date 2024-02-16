@@ -56,9 +56,6 @@ public class DeletedTestDAOTest {
      */
     @Before
     public void setUp() {
-        /**
-         * The context of the application.
-         */
         Context ct = InstrumentationRegistry.getInstrumentation().getTargetContext();
         deletedTestDAO = new DeletedTestDAO(ct);
         deletedTest = new DeletedTest( "/directory/path/", "29/11/2003");
