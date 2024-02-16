@@ -22,7 +22,7 @@ public class BdSQLiteOpenHelperTest {
      * Default test to check if next tests should works or if there already are problems
      */
     @Test
-    public void useAppContext() {
+    public void use_app_context() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.ex_motricite", appContext.getPackageName());
@@ -32,7 +32,7 @@ public class BdSQLiteOpenHelperTest {
      * Test to check if the database is created
      */
     @Test
-    public void testDatabaseIsCreated(){
+    public void test_database_is_created(){
         //GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         int version = 1;
@@ -52,7 +52,7 @@ public class BdSQLiteOpenHelperTest {
      * Check if the table exists and if the columns are correct
      */
     @Test
-    public void testTablePatientIsCreated() {
+    public void test_table_patient_is_created() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         int version = 1;
@@ -92,7 +92,7 @@ public class BdSQLiteOpenHelperTest {
      * Check if the table exists and if the columns are correct
      */
     @Test
-    public void testTableOperatorIsCreated() {
+    public void test_table_operator_is_created() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String baseName = "accesBd";
@@ -133,7 +133,7 @@ public class BdSQLiteOpenHelperTest {
      * Check if the table exists and if the columns are correct
      */
     @Test
-    public void testTableDeletedTestIsCreated() {
+    public void test_table_deleted_test_is_created() {
         // GIVEN
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         int version = 1;
