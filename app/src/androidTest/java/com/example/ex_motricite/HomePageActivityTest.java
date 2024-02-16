@@ -1,20 +1,20 @@
 package com.example.ex_motricite;
 
 
-
-import android.content.ContentValues;
-import android.content.Context;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static org.hamcrest.Matchers.allOf;
 
+import android.content.ContentValues;
+import android.content.Context;
+
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -89,12 +89,11 @@ public class HomePageActivityTest {
         operator = null;
     }
 
-
     /**
      * Test when the user click on the static exercise button
      */
     @Test
-    public void test_navigation_to_ExercisesSettingsActivity_when_static_exercice() {
+    public void test_navigation_to_ExercisesSettingsActivity_when_static_exercise() {
         //GIVEN
         ContentValues patientValues = new ContentValues();
         patientValues.put("name",patient.getName() );
@@ -117,10 +116,10 @@ public class HomePageActivityTest {
                 toPackage("com.example.ex_motricite")
         ));
 
-        // Vérification de la visibilité de l'élément
+        // check if the interval is not visible
         onView(withId(R.id.et_interval)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
-        // Suppression des données de test
+        // deletion of the test data
         accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
         accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
     }
@@ -130,7 +129,7 @@ public class HomePageActivityTest {
      * Test when the user click on the rhythm exercise button
      */
     @Test
-    public void test_Navigation_To_ExercisesSettingsActivity_When_Rhythm_Exerice() {
+    public void test_navigation_to_exercisesSettingsActivity_when_rhythm_exerise() {
         //GIVEN
         ContentValues patientValues = new ContentValues();
         patientValues.put("name",patient.getName() );
@@ -153,10 +152,10 @@ public class HomePageActivityTest {
                 toPackage("com.example.ex_motricite")
         ));
 
-        // Vérification de la visibilité de l'élément
+        // check if the interval is visible
         onView(withId(R.id.et_interval)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        // Suppression des données de test
+        // deletion of the test data
         accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
         accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
     }
@@ -165,7 +164,7 @@ public class HomePageActivityTest {
      * Test when the user click on the consult profiles button
      */
     @Test
-    public void test_Navigation_To_ListUserPageActivity_When_Consult_Profiles() {
+    public void test_navigation_to_ListUserPageActivity_when_consult_profiles() {
         //GIVEN
 
         //WHEN
