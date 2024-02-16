@@ -90,7 +90,7 @@ public class PatientDAOTest {
      * Test getPatient where id is registered.
      */
     @Test
-    public void testGetPatientWhereIdIsRegistered() {
+    public void test_get_patient_where_id_is_registered() {
         // GIVEN
         ContentValues values = new ContentValues();
         values.put("name", patient.getName());
@@ -113,7 +113,7 @@ public class PatientDAOTest {
      * Test getPatient where id is not registered.
      */
     @Test
-    public void testGetPatientWhereIdIsNotRegistered() {
+    public void test_get_patient_where_id_is_not_registered() {
         // GIVEN
         idPatient = 0;
 
@@ -129,7 +129,7 @@ public class PatientDAOTest {
      * Test add patient.
      */
     @Test
-    public void TestAddPatient() {
+    public void test_add_patient() {
         //GIVEN
 
         //WHEN
@@ -151,7 +151,7 @@ public class PatientDAOTest {
      * Test delete patient.
      */
     @Test
-    public void TestDelPatient() {
+    public void test_del_patient() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", patient.getName());
@@ -188,7 +188,7 @@ public class PatientDAOTest {
      * Test get patients.
      */
     @Test
-    public void TestGetPatients() {
+    public void test_getPatients() {
         //GIVEN
 
         //WHEN
@@ -205,7 +205,7 @@ public class PatientDAOTest {
      * Test update patient.
      */
     @Test
-    public void TestUpdatePatient() {
+    public void test_update_patient() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", patient.getName());

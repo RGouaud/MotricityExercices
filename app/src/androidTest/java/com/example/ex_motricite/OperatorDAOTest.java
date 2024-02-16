@@ -92,7 +92,7 @@ public class OperatorDAOTest {
      * Test get operator where id is registered.
      */
     @Test
-    public void testGetOperatorWhereIdIsRegistered() {
+    public void test_get_operator_where_id_is_registered() {
         // GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
@@ -112,7 +112,7 @@ public class OperatorDAOTest {
      * Test get operator where id is not registered.
      */
     @Test
-    public void testGetOperatorWhereIdIsNotRegistered() {
+    public void test_getOperator_where_id_is_not_registered() {
         // GIVEN
         idOperator = 0;
 
@@ -128,7 +128,7 @@ public class OperatorDAOTest {
      * Test add operator.
      */
     @Test
-    public void TestAddOperator() {
+    public void test_add_operator() {
         //GIVEN
 
         //WHEN
@@ -149,7 +149,7 @@ public class OperatorDAOTest {
      * Test delete operator.
      */
     @Test
-    public void TestDelOperator() {
+    public void test_del_operator() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
@@ -184,7 +184,7 @@ public class OperatorDAOTest {
      * Test get operators.
      */
     @Test
-    public void TestGetOperators() {
+    public void test_get_operators() {
         //GIVEN
 
         //WHEN
@@ -205,7 +205,7 @@ public class OperatorDAOTest {
      * Test update operator.
      */
     @Test
-    public void TestUpdateOperator() {
+    public void test_update_operator() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());

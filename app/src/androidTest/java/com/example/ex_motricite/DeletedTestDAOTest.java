@@ -82,7 +82,7 @@ public class DeletedTestDAOTest {
      * Test get deletedTest where id is registered.
      */
     @Test
-    public void testGetDeletedTestWhereIdIsRegistered(){
+    public void test_getTest_where_id_is_registered(){
         // GIVEN
         ContentValues values = new ContentValues();
         values.put("path", deletedTest.getPath());
@@ -102,7 +102,7 @@ public class DeletedTestDAOTest {
      * Test getDeletedTest where id is not registered.
      */
     @Test
-    public void testGetOperatorWhereIdIsNotRegistered() {
+    public void test_getTest_where_id_is_not_registered() {
         // GIVEN
         idDeletedTest = 0;
 
@@ -114,24 +114,10 @@ public class DeletedTestDAOTest {
     }
 
     /**
-     * Test getDeletedTest where id is not registered.
-     */
-    @Test
-    public void testGetTestWhereIdIsNotRegistered() {
-        // GIVEN
-
-        // WHEN
-        DeletedTest retrievedTest = deletedTestDAO.getTest(100);
-
-        // THEN
-        assertNull("Retrieved test is not null", retrievedTest);
-    }
-
-    /**
      * Test add deletedTest.
      */
     @Test
-    public void testAddDeletedTest() {
+    public void test_addTest() {
         //GIVEN
 
         //WHEN
@@ -152,7 +138,7 @@ public class DeletedTestDAOTest {
      * Test delete deletedTest.
      */
     @Test
-    public void testDeleteTest() {
+    public void test_delTest() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("path", deletedTest.getPath());
@@ -187,7 +173,7 @@ public class DeletedTestDAOTest {
      * Test getAllTests.
      */
     @Test
-    public void testGetAllTests() {
+    public void test_getTests() {
         //GIVEN
 
         //WHEN
