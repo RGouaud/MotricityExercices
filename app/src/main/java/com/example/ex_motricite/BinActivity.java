@@ -21,9 +21,9 @@ import java.util.List;
 
 public class BinActivity extends AppCompatActivity {
     // You can choose any number code here
-    private ArrayList<Test>tests;
+    private ArrayList<DeletedTest>tests;
 
-    private final List<Test> selectedTests = new ArrayList<>();
+    private final List<DeletedTest> selectedTests = new ArrayList<>();
     private LinearLayout layoutListTest;
 
     @Override
@@ -39,10 +39,10 @@ public class BinActivity extends AppCompatActivity {
     Button buttonSelectAll = findViewById(R.id.b_selectAll);
     Button buttonFilters = findViewById(R.id.b_filters);
     layoutListTest = findViewById(R.id.l_listTest);
-    TestDAO testDAO = new TestDAO(this);
+    DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
 
     try {
-        tests = testDAO.getAllTests();
+        tests = deletedTestDAO.getAllTests();
     } catch (Exception e) {
         handleDataRetrievalError(e);
     }
@@ -66,22 +66,22 @@ public class BinActivity extends AppCompatActivity {
 }
 
     private void deleteSelectedTest(){
-        TestDAO testDAO = new TestDAO(this);
-        for (Test test : selectedTests){
+        DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
+        for (DeletedTest test : selectedTests){
             File fileToDelete = new File(test.getPath());
             if(!fileToDelete.delete()){
                 Toast.makeText(this, "An error has occurred while deleting the file.", Toast.LENGTH_SHORT).show();
             }
-            testDAO.delTest(test);
+            deletedTestDAO.delTest(test);
             tests.remove(test);
         }
         displayAllTests();
     }
     private void restoreSelectedTest(){
-        TestDAO testDAO = new TestDAO(this);
-        for (Test test : selectedTests){
+        DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
+        for (DeletedTest test : selectedTests){
             moveFile(new File(test.getPath()) , getFilesDir() );
-            testDAO.delTest(test);
+            deletedTestDAO.delTest(test);
             tests.remove(test);
         }
         displayAllTests();
@@ -101,13 +101,13 @@ public class BinActivity extends AppCompatActivity {
     layoutListTest.removeAllViews();
 
     // Dynamically add items for each file in the list
-    for (Test test : selectedTests) {
+    for (DeletedTest test : selectedTests) {
         Button testButton = createTestButton(test);
         layoutListTest.addView(testButton);
     }
 }
 
-    private Button createTestButton(final Test test){
+    private Button createTestButton(final DeletedTest test){
     Button fileButton = new Button(this);
     fileButton.setText(test.getSuppressionDate());
     fileButton.setBackgroundColor(0xFF615321);
@@ -124,7 +124,7 @@ public class BinActivity extends AppCompatActivity {
 }
 
 
-    private void handleLongClick (Button fileButton, Test test){
+    private void handleLongClick (Button fileButton, DeletedTest test){
     // Manage multiple selection here
     if (selectedTests.contains(test)) {
         selectedTests.remove(test);

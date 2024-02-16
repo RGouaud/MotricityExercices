@@ -2,27 +2,27 @@ package com.example.ex_motricite;
 
 import androidx.annotation.NonNull;
 
-public class Test {
-    private int id;
+public class DeletedTest {
+    private long id;
     private final String path;
     private String suppressionDate;
 
-    public Test(int id, String path, String suppressionDate) {
+    public DeletedTest(long id, String path, String suppressionDate) {
         this.id = id;
         this.path = path;
         this.suppressionDate = suppressionDate;
     }
 
-    public Test(String path, String suppressionDate){
+    public DeletedTest(String path, String suppressionDate){
         this.path = path;
         this.suppressionDate = suppressionDate;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

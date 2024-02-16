@@ -114,7 +114,7 @@ public class ListTestActivity extends AppCompatActivity {
     }
 
     private void deleteSelection(){
-        TestDAO testDAO = new TestDAO(this);
+        DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
         File binDirectory = new File(getFilesDir(), "bin_directory");
         if (!binDirectory.exists())
         {
@@ -126,8 +126,8 @@ public class ListTestActivity extends AppCompatActivity {
             File destFile = moveFile(file,binDirectory);
             SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
-            Test testBd = new Test(destFile.getAbsolutePath(),s.format(date));
-            testDAO.addTest(testBd);
+            DeletedTest testBd = new DeletedTest(destFile.getAbsolutePath(),s.format(date));
+            deletedTestDAO.addTest(testBd);
         }
         displayAllCSVFiles();
     }
