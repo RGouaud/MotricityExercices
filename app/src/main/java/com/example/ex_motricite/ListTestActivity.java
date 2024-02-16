@@ -330,6 +330,12 @@ public class ListTestActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Moves a file to a specific directory.
+     * @param sourceFile
+     * @param destDirectory
+     * @return The destination file.
+     */
     final File moveFile(File sourceFile , File destDirectory) {
 
         // Create the destination repository if it doesn't exist

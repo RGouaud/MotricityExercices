@@ -117,8 +117,11 @@ public class CSVFile {
 
         // name of the file save as csv
         String saveFileName = patientName.replaceAll("\\s", "")
+                + "_"
                 + operatorName.replaceAll("\\s", "")
+                + "_"
                 + this.exerciseType
+                + "_"
                 + date + ".csv";
 
 

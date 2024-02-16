@@ -94,7 +94,7 @@ public class TestDAOTest {
         ContentValues values = new ContentValues();
         values.put("suppressionDate", test.getSuppressionDate());
         values.put("path", test.getPath());
-        idTest = parseInt(accesBD.getWritableDatabase().insert("test", null, values));
+        idTest = accesBD.getWritableDatabase().insert("test", null, values);
 
         // WHEN
         retrievedTest = theTestDAO.getTest(idTest);

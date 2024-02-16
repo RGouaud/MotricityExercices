@@ -69,18 +69,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
                     android:orientation="vertical"
                     android:padding="10dp"
-                    android:background="@drawable/background_textview_with_gradient_stroke"
 
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Date :"
-                        android:textSize="22sp"
                         android:textColor="@color/white"
-                    />
+                        android:textSize="22sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -90,43 +91,43 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:layout_weight="10">
+                            android:layout_weight="10"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Date min :"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"
                                 android:layout_weight="10"
-                                />
+                                android:text="Date min :"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
+                                android:layout_gravity="center"
                                 android:layout_weight="10"
-                                android:layout_gravity="center">
+                                android:orientation="horizontal">
+
                                 <EditText
+                                    android:id="@+id/et_dateMin"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/et_dateMin"
-                                    android:inputType="date"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="2"
+                                    android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                                    android:gravity="center_vertical"
                                     android:hint="xx/xx/xxxx"
-                                    android:textSize="20sp"
+                                    android:inputType="date"
                                     android:paddingLeft="12dp"
                                     android:paddingTop="4dp"
                                     android:paddingBottom="4dp"
-                                    android:gravity="center_vertical"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
-                                    android:layout_weight="2"
-                                    />
+                                    android:textSize="20sp" />
                                 <!-- image calendar-->
                                 <ImageView
-                                    android:layout_weight="10"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="10" />
 
                             </LinearLayout>
 
@@ -135,8 +136,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_weight="10">
+                            android:layout_weight="10"
+                            android:orientation="horizontal">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -147,41 +148,42 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Date max :"
-                                    android:textSize="20sp"
                                     android:textColor="@color/white"
-                                    />
+                                    android:textSize="20sp" />
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
                                     android:layout_weight="10"
-                                    android:layout_gravity="center">
+                                    android:orientation="horizontal">
+
                                     <EditText
+                                        android:id="@+id/et_dateMax"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/et_dateMax"
-                                        android:inputType="date"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
+                                        android:gravity="center_vertical"
                                         android:hint="xx/xx/xxxx"
-                                        android:textSize="20sp"
+                                        android:inputType="date"
                                         android:paddingLeft="12dp"
                                         android:paddingTop="4dp"
                                         android:paddingBottom="4dp"
-                                        android:gravity="center_vertical"
-                                        android:layout_gravity="center_vertical"
-                                        android:background="@drawable/rounded_gray_with_gradient_outline_edit_text"
-                                        android:layout_weight="2"
-                                        />
+                                        android:textSize="20sp" />
                                     <!-- image calendar-->
                                     <ImageView
-                                        android:layout_weight="10"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"/>
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="10" />
 
                                 </LinearLayout>
                             </LinearLayout>
-                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
@@ -191,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:background="@drawable/background_textview_with_gradient_stroke">
+                android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -227,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/background_textview_with_gradient_stroke"
+                android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
                 android:padding="10dp"
                 >
                 <LinearLayout
@@ -283,7 +285,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/background_textview_with_gradient_stroke"
+                    android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
                     android:padding="10dp"
                     >
                     <LinearLayout
@@ -331,12 +333,7 @@
                         </LinearLayout>
                     </ScrollView>
                 </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
 
-                    </LinearLayout>
             </LinearLayout>
             </LinearLayout>
         </LinearLayout>
