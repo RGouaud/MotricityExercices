@@ -6,30 +6,43 @@ import org.junit.jupiter.api.Test;
 
 class DeletedTestTest {
     @Test
-    void id_are_correctly_inserted_in_DeletedTest() {
-        // GIVEN
+    //constructor
+    void testDeletedTestWhenAllParamsGiven() {
+        //GIVEN
         int id = 1;
         String path = "/directory/file";
         String suppressionDate = "01/01/2000";
+        //WHEN
         com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
-        // WHEN
-        int id1 = test.getId();
         // THEN
-        assertEquals(id1, id);
+        assertEquals("Test{id=" + id + ", path='" + path + '\'' + ", dateSuppression='" + suppressionDate + '\'' + '}', test.toString());
     }
 
     @Test
-    void test_set_id_correctly_apply() {
+    void id_are_correctly_set() {
         // GIVEN
         int id = 1;
         String path = "/directory/file";
         String suppressionDate = "01/01/2000";
         com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
         // WHEN
-        int id1 = 2;
-        test.setId(id1);
+        int retrievedId = test.getId();
         // THEN
-        assertEquals(id1, test.getId());
+        assertEquals(retrievedId, id);
+    }
+
+    @Test
+    void test_set_id_correctly_set() {
+        // GIVEN
+        int id = 1;
+        String path = "/directory/file";
+        String suppressionDate = "01/01/2000";
+        com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
+        int newId = 2;
+        // WHEN
+        test.setId(newId);
+        // THEN
+        assertEquals(newId, test.getId());
     }
 
     @Test
@@ -46,16 +59,16 @@ class DeletedTestTest {
     }
 
     @Test
-    void suppression_date_are_correctly_inserted_in_the_test() {
+    void suppression_date_are_correctly_retrieved() {
         // GIVEN
         int id = 1;
         String path = "/directory/file";
         String suppressionDate = "01/01/2000";
         com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
         // WHEN
-        String suppressionDate1 = test.getSuppressionDate();
+        String retrievedDate = test.getSuppressionDate();
         // THEN
-        assertEquals(suppressionDate1, suppressionDate);
+        assertEquals(retrievedDate, suppressionDate);
     }
 
     @Test
@@ -65,28 +78,11 @@ class DeletedTestTest {
         String path = "/directory/file";
         String suppressionDate = "01/01/2000";
         com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
-        // WHEN
-        String suppressionDate1 = "02/01/2000";
-        test.setSuppressionDate(suppressionDate1);
-        // THEN
-        assertEquals(suppressionDate1, test.getSuppressionDate());
-    }
+        String newSuppressionDate = "02/01/2000";
 
-    @Test
-    void test_to_string_is_correct() {
-        // GIVEN
-        int id = 1;
-        String path = "/directory/file";
-        String suppressionDate = "01/01/2000";
-        com.example.ex_motricite.DeletedTest test = new DeletedTest(id, path, suppressionDate);
         // WHEN
-        String expected = "Test{" +
-                "id=" + id +
-                ", path='" + path + '\'' +
-                ", dateSuppression='" + suppressionDate + '\'' +
-                '}';
+        test.setSuppressionDate(newSuppressionDate);
         // THEN
-        assertEquals(expected, test.toString());
+        assertEquals(newSuppressionDate, test.getSuppressionDate());
     }
-
 }
