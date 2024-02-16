@@ -14,6 +14,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 public class BdSQLiteOpenHelperTest {
+    /**
+     * Name of the database
+     */
     static final String DB_NAME = "BDMotricity";
     /**
      * Default test to check if next tests should works or if there already are problems
@@ -127,6 +130,10 @@ public class BdSQLiteOpenHelperTest {
         db.close();
     }
 
+    /**
+     * Test to check if the table test is created
+     * Check if the table exists and if the columns are correct
+     */
     @Test
     public void testTableDeletedTestIsCreated() {
         // GIVEN
