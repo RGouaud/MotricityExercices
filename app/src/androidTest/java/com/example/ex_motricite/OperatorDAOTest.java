@@ -56,9 +56,9 @@ public class OperatorDAOTest {
     private ArrayList<Operator> listOperators;
 
     /**
-     * The Curseur to store the result of a query
+     * The cursor to store the result of a query
      */
-    private Cursor curseur;
+    private Cursor cursor;
 
     /**
      * Set up all the variables needed for the tests
@@ -92,7 +92,7 @@ public class OperatorDAOTest {
      * Test get operator where id is registered.
      */
     @Test
-    public void testGetOperatorWhereIdIsRegistered() {
+    public void test_get_operator_where_id_is_registered() {
         // GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
@@ -112,7 +112,7 @@ public class OperatorDAOTest {
      * Test get operator where id is not registered.
      */
     @Test
-    public void testGetOperatorWhereIdIsNotRegistered() {
+    public void test_getOperator_where_id_is_not_registered() {
         // GIVEN
         idOperator = 0;
 
@@ -128,17 +128,17 @@ public class OperatorDAOTest {
      * Test add operator.
      */
     @Test
-    public void TestAddOperator() {
+    public void test_add_operator() {
         //GIVEN
 
         //WHEN
         idOperator = operatorDAO.addOperator(operator);
 
         //THEN
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
-        if (curseur.getCount() > 0) {
-            curseur.moveToFirst();
-            retrievedOperator = new Operator(idOperator, curseur.getString(1),curseur.getString(2));
+        cursor = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            retrievedOperator = new Operator(idOperator, cursor.getString(1), cursor.getString(2));
         }
         assertEquals("Operator name does not match", operator.getName(), retrievedOperator.getName());
         assertEquals("Operator first name does not match", operator.getFirstName(), retrievedOperator.getFirstName());
@@ -149,34 +149,34 @@ public class OperatorDAOTest {
      * Test delete operator.
      */
     @Test
-    public void TestDelOperator() {
+    public void test_del_operator() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
         values.put("firstName", operator.getFirstName());
         idOperator = accesBD.getWritableDatabase().insert("Operator", null, values);
 
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
-        if (curseur.getCount() > 0) {
-            curseur.moveToFirst();
-            retrievedOperator = new Operator(idOperator, curseur.getString(1),curseur.getString(2));
+        cursor = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            retrievedOperator = new Operator(idOperator, cursor.getString(1), cursor.getString(2));
         }
 
         //WHEN
         operatorDAO.delOperator(retrievedOperator);
 
         //THEN
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
+        cursor = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
         try {
-            assertNotNull(curseur);
-            assertEquals("Operator not deleted", 0, curseur.getCount());
+            assertNotNull(cursor);
+            assertEquals("Operator not deleted", 0, cursor.getCount());
 
             //if the operator is not deleted, we delete it
-            if (curseur.getCount() > 0) {
+            if (cursor.getCount() > 0) {
                 accesBD.getReadableDatabase().execSQL("delete from operator where idOperator=" + idOperator + ";");
             }
         }finally {
-            curseur.close();
+            cursor.close();
         }
     }
 
@@ -184,7 +184,7 @@ public class OperatorDAOTest {
      * Test get operators.
      */
     @Test
-    public void TestGetOperators() {
+    public void test_get_operators() {
         //GIVEN
 
         //WHEN
@@ -192,20 +192,20 @@ public class OperatorDAOTest {
 
         //THEN
         // select all operators in SQL query
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator;",null);
+        cursor = accesBD.getReadableDatabase().rawQuery("select * from operator;",null);
         // Using getOperators method to get all operators
         listOperators = operatorDAO.getOperators();
         // compare the size of the sql query and the size of the list, they must be equal, then we consider that it is good
-        assertEquals("List size does not match", curseur.getCount(), listOperators.size());
+        assertEquals("List size does not match", cursor.getCount(), listOperators.size());
         // close the cursor
-        curseur.close();
+        cursor.close();
     }
 
     /**
      * Test update operator.
      */
     @Test
-    public void TestUpdateOperator() {
+    public void test_update_operator() {
         //GIVEN
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
@@ -219,10 +219,10 @@ public class OperatorDAOTest {
         operatorDAO.updateOperator(retrievedOperator);
 
         //THEN
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
-        if (curseur.getCount() > 0) {
-            curseur.moveToFirst();
-            retrievedOperator = new Operator(idOperator, curseur.getString(1),curseur.getString(2));
+        cursor = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            retrievedOperator = new Operator(idOperator, cursor.getString(1), cursor.getString(2));
         }
         assertEquals("Operator name does not match", "newName", retrievedOperator.getName());
         assertEquals("Operator first name does not match", "newFirstName", retrievedOperator.getFirstName());
