@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -74,6 +75,13 @@ public class FiltersTestActivity extends AppCompatActivity {
         layoutButton.setOrientation(LinearLayout.VERTICAL);
         layoutButton.setPadding(5,5,5,5);
         layoutButton.setWeightSum(10);
+
+        //TextView containing the name of the patient and the operator
+        TextView tvName = new TextView(this);
+        TextView tvFirstName = new TextView(this);
+        TextView tvBirthday = new TextView(this);
+
+
 
 
         Button fileButton = new Button(this);
