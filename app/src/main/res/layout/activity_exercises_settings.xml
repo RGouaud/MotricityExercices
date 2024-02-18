@@ -13,49 +13,130 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            layout="@layout/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#282424"
+            android:layout_weight="1"
+            android:background="#000000"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="20dp">
 
+
             <TextView
                 android:id="@+id/tv_settings_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="Exercices"
                 android:textColor="#ffffff"
-                android:textSize="48sp" />
+                android:textSize="28sp" />
 
-            <Spinner
-                android:id="@+id/s_patient"
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_rounded"
-                android:hint="@string/set_your_text_here" />
+                android:layout_height="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_static_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Static"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_dynamic_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Dynamic"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#595653"
+                    android:layout_weight="10"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FAD552"
+                    android:layout_weight="10"/>
+
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5" />
 
-            <Spinner
-                android:id="@+id/s_manipulator"
+            <TextView
+                android:id="@+id/tv_dynamic_title"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="left|center"
+                android:text="Dynamic"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/b_recover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#000000"
+                android:gravity="left|center"
+                android:text="@string/recover_previous_test_s_settings"
+                android:textColor="#A0A0A0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#595653" />
+
+            <TextView
+                android:id="@+id/tv_dynamic_title"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
                 android:layout_weight="1"
-                android:background="@drawable/edit_text_rounded" />
+                android:paddingLeft="10dp"
+                android:gravity="left|center"
+                android:text="Dynamic"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/b_recover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000000"
+                android:gravity="left|center"
+                android:text="@string/recover_previous_test_s_settings"
+                android:textColor="#A0A0A0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#595653" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
 
             <Space
                 android:layout_width="match_parent"
