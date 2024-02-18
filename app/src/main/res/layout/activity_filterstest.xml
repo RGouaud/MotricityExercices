@@ -47,7 +47,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingBottom="20dp">
-                    <!-- image de croix pour sortir -->
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -93,7 +92,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="10"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -122,10 +122,10 @@
                                     android:textColorHint="@color/white"
                                     android:hint="xx/xx/xxxx"
                                     android:inputType="date"
-                                    android:paddingLeft="12dp"
+                                    android:paddingStart="12dp"
                                     android:paddingTop="4dp"
                                     android:paddingBottom="4dp"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp" />
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -145,7 +145,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:paddingHorizontal="10dp">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -176,7 +177,7 @@
                                         android:paddingLeft="12dp"
                                         android:paddingTop="4dp"
                                         android:paddingBottom="4dp"
-                                        android:textSize="20sp" />
+                                        android:textSize="16sp" />
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -210,24 +211,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <CheckBox
+                        android:id="@+id/cb_static"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
                         android:textSize="20sp"
                         android:textColor="@color/white"
                         android:text="Static"
-                        android:button="@null"
-                        android:drawableRight="@android:drawable/btn_radio"
                         />
                     <CheckBox
+                        android:id="@+id/cb_dynamic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
                         android:textSize="20sp"
                         android:textColor="@color/white"
-                        android:text="Dynamic"
-                        android:button="@null"
-                        android:drawableRight="@android:drawable/btn_radio"/>
+                        android:text="Dynamic"/>
                 </LinearLayout>
             </LinearLayout>
                 <Space
@@ -283,7 +282,8 @@
                         android:id="@+id/l_listOperator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="10dp">
                         <!-- Add your buttons dynamically to this LinearLayout -->
                     </LinearLayout>
                 </ScrollView>
@@ -341,7 +341,9 @@
                             android:id="@+id/l_listPatient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:weightSum="9">
                             <!-- Add your buttons dynamically to this LinearLayout -->
                         </LinearLayout>
                     </ScrollView>
