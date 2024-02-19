@@ -89,3 +89,5 @@ k
 ;app/src/main/java/com/example/ex_motricite/DeletedTest.java,0\6\0608d94f69c95e17dd576ca16fc2811c4ff85569
 p
 @app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
+s
+Capp/src/main/java/com/example/ex_motricite/FiltersTestActivity.java,7\6\7629751cf06851a8d82e8f8600017d49d21f1075

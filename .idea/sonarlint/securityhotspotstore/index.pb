@@ -75,3 +75,15 @@ y
 Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
 w
 Gapp/src/main/java/com/example/ex_motricite/DynamicExerciseActivity.java,e\b\ebc50c6f9fe65b5db6ab0e4c9f7bca4816cd8483
+k
+;app/src/main/java/com/example/ex_motricite/PopActivity.java,1\2\122249412bd91ac1b4f11d7704861876fa736118
+s
+Capp/src/main/java/com/example/ex_motricite/FiltersTestActivity.java,7\6\7629751cf06851a8d82e8f8600017d49d21f1075
+x
+Happ/src/main/java/com/example/ex_motricite/GraphicsTestPageActivity.java,4\d\4dc3597a5497f959f7da6d734726e0395b66bab0
+l
+<app/src/main/java/com/example/ex_motricite/MinMaxFilter.java,e\8\e866c982cef8c23fc9c174f96d5c4746d6c8c4f7
+v
+Fapp/src/main/java/com/example/ex_motricite/StaticExerciseActivity.java,b\e\be7c2a51117079f4c83049b341e615e12161fadb
+p
+@app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1

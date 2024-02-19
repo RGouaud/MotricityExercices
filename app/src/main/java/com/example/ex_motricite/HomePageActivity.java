@@ -5,6 +5,7 @@
     import android.os.Bundle;
     import android.widget.ImageButton;
     import android.widget.LinearLayout;
+    import android.widget.Toast;
 
     import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,12 +47,22 @@
             ibListTest = findViewById(R.id.ib_ListTest);
 
             llStatic.setOnClickListener(v -> {
+
+                if (isOperatorAndPatientExistings()) {
+                    Toast.makeText(this, "First, you need to create a patient and an operator.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
                 intent.putExtra("exercise", "static");
                 startActivity(intent);
             });
 
             llRhythm.setOnClickListener(v -> {
+                if (isOperatorAndPatientExistings()) {
+                    Toast.makeText(this, "First, you need to create a patient and an operator.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
                 intent.putExtra("exercise", "rhythm");
                 startActivity(intent);
@@ -67,5 +78,11 @@
                 startActivity(intent);
             });
 
+        }
+
+        private boolean isOperatorAndPatientExistings() {
+            OperatorDAO operatorDAO = new OperatorDAO(this);
+            PatientDAO patientDAO = new PatientDAO(this);
+            return patientDAO.getPatients().isEmpty() || operatorDAO.getOperators().isEmpty();
         }
     }
