@@ -1,11 +1,12 @@
     package com.example.ex_motricite;
 
-    import androidx.appcompat.app.AppCompatActivity;
     import android.content.Intent;
     import android.content.pm.ActivityInfo;
     import android.os.Bundle;
     import android.widget.ImageButton;
     import android.widget.LinearLayout;
+
+    import androidx.appcompat.app.AppCompatActivity;
 
     /**
      * The {@code HomePageActivity} class represents an Android activity for the home page,
@@ -31,37 +32,37 @@
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
-            ImageButton imageButtonListTest;
-            LinearLayout layoutPatient;
-            LinearLayout layoutRhythm;
-            LinearLayout layoutStatic;
+            ImageButton ibListTest;
+            LinearLayout llPatient;
+            LinearLayout llRhythm;
+            LinearLayout llStatic;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home_page);
             this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-            layoutStatic = findViewById(R.id.layout_static);
-            layoutRhythm = findViewById(R.id.layout_rythm);
-            layoutPatient = findViewById(R.id.layout_patient);
-            imageButtonListTest = findViewById(R.id.ib_ListTest);
+            llStatic = findViewById(R.id.layout_static);
+            llRhythm = findViewById(R.id.layout_rythm);
+            llPatient = findViewById(R.id.layout_patient);
+            ibListTest = findViewById(R.id.ib_ListTest);
 
-            layoutStatic.setOnClickListener(v -> {
+            llStatic.setOnClickListener(v -> {
                 Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
                 intent.putExtra("exercise", "static");
                 startActivity(intent);
             });
 
-            layoutRhythm.setOnClickListener(v -> {
+            llRhythm.setOnClickListener(v -> {
                 Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
                 intent.putExtra("exercise", "rhythm");
                 startActivity(intent);
             });
 
-            layoutPatient.setOnClickListener(v -> {
+            llPatient.setOnClickListener(v -> {
                 Intent intent = new Intent(HomePageActivity.this, ListUserPageActivity.class);
                 startActivity(intent);
             });
 
-            imageButtonListTest.setOnClickListener(v -> {
+            ibListTest.setOnClickListener(v -> {
                 Intent intent = new Intent(HomePageActivity.this, ListTestActivity.class);
                 startActivity(intent);
             });

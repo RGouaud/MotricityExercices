@@ -67,3 +67,5 @@ k
 ;app/src/main/java/com/example/ex_motricite/DeletedTest.java,0\6\0608d94f69c95e17dd576ca16fc2811c4ff85569
 t
 Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6\9\690a2f8c07cb1da82d961d2142b42b25081da824
+p
+@app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
