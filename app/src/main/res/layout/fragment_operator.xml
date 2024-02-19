@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PatientFragment"
+    tools:context=".OperatorFragment"
     android:background="@color/black">
 
     <LinearLayout
@@ -30,6 +30,7 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
                 <LinearLayout
+                    android:id="@+id/ll_patient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -45,10 +46,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:background="#FAD552"/>
+                        android:background="#575653"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/ll_operator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -64,7 +64,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:background="#575653"/>
+                        android:background="#FAD552"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -78,7 +78,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add a patient"
+                android:text="Add an operator"
                 android:textColor="@color/black"
                 android:textAllCaps="false"
                 android:textSize="18sp"

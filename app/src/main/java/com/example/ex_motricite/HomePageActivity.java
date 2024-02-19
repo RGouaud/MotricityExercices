@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -34,7 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
                     replaceFragment(new ExercisesFragment());
                     break;
                 case R.id.profiles:
-                    replaceFragment(new ProfilesFragment());
+                    replaceFragment(new PatientFragment());
                     break;
                 case R.id.tests:
                     replaceFragment(new TestsFragment());

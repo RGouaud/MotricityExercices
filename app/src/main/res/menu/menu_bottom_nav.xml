@@ -7,13 +7,13 @@
     <item
         android:title="Profiles"
         android:id="@+id/profiles"
-        android:icon="@drawable/stylo_laser"/>
+        android:icon="@drawable/user"/>
     <item
         android:title="Tests"
         android:id="@+id/tests"
-        android:icon="@drawable/stylo_laser"/>
+        android:icon="@drawable/exam"/>
     <item
         android:title="Settings"
         android:id="@+id/settings"
-        android:icon="@drawable/stylo_laser"/>
+        android:icon="@drawable/config"/>
 </menu>

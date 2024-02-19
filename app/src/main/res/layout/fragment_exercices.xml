@@ -48,6 +48,7 @@
                             android:background="#FAD552"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ll_dynamic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -218,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp"
-                    android:text="Time of the exercise (seconds)"
+                    android:text="Exercise duration (seconds)"
                     android:textColor="@color/white"
                     android:textSize="19sp" />
 
