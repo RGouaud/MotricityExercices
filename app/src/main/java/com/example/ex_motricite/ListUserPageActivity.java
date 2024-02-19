@@ -1,5 +1,6 @@
 package com.example.ex_motricite;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -266,6 +267,7 @@ public class ListUserPageActivity extends AppCompatActivity {
     /**
      * Set the screen orientation to portrait mode.
      */
+    @SuppressLint("SourceLockedOrientationActivity")
     private void setOrientationLock() {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
