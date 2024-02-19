@@ -67,6 +67,16 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,40 +166,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <!--First Part -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="25dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Distance between points (cm)"
-                    android:textSize="19sp"
-                    android:textColor="@color/white"
-                    android:paddingVertical="5dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Choose"
-                            android:textSize="15sp"
-                            android:textColor="#A0A0A0"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#575653"/>
-                </LinearLayout>
-            </LinearLayout>
             <!--Second Part -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -197,35 +173,82 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="25dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Time of the exercise (seconds)"
-                    android:textSize="19sp"
+                    android:paddingVertical="5dp"
+                    android:text="Distance between points (cm)"
                     android:textColor="@color/white"
-                    android:paddingVertical="5dp" />
+                    android:textSize="19sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Choose"
-                            android:textSize="15sp"
-                            android:textColor="#A0A0A0"/>
+                            android:textColor="#A0A0A0"
+                            android:textSize="15sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="#575653"/>
+                        android:background="#575653" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp"
+                    android:text="Time of the exercise (seconds)"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Choose"
+                            android:textColor="#A0A0A0"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#575653" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -235,12 +258,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Recover settings of previous test"
+                android:textAllCaps="false"
+                android:background="@drawable/light_gray_roundable_button"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
                 />
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Start"
-                android:background="yellow"/>
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:background="@drawable/yellow_roundable_button"/>
 
         </LinearLayout>
 

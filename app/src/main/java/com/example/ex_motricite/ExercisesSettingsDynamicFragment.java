@@ -55,10 +55,10 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fr, container, false);
-    }
+        //return inflater.inflate(R.layout.fr, container, false);
+    }*/
 }
