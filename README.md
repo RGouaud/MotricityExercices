@@ -3,10 +3,9 @@
 
 Student project as part of our 3rd-year Computer Science Bachelor's degree program 2023/2024, aiming to develop an Android application to assist in motor skills research.
 
-It allows to measure
+The last stable release is available at : //TODO
 
-
-# Files organization
+## Files organization
 
 Here is the description of the project file organization. Only important files/directories are described.
 Directories names are followed by []
