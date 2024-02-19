@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -141,7 +140,6 @@ public class ListUserPageActivity extends AppCompatActivity {
         ImageButton ibEdit = new ImageButton(this);
         ibEdit.setImageResource(android.R.drawable.ic_menu_set_as);
         ibEdit.setBackgroundColor(Color.parseColor("#00000000"));
-
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
         ibEdit.setLayoutParams(params);
 
@@ -153,26 +151,12 @@ public class ListUserPageActivity extends AppCompatActivity {
             intent.putExtra(USER_ID_EXTRA, String.valueOf(actorId));
             startActivity(intent);
         });
-        return boutonModify;
-    }
 
-    /**
-     * Creates and configures the TextView for the first name.
-     *
-     * @param actor The actor for which the first name TextView is created
-     * @return      The configured first name TextView
-     */
-    @NonNull
-    private TextView createAndConfigureFirstNameTextView(Actor actor) {
-        TextView firstName = new TextView(this);
-        firstName.setText(getString(R.string.first_name_format, actor.getFirstName()));
-        firstName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
-        firstName.setLayoutParams(new LinearLayout.LayoutParams(
-                0, // width
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                2f)); // weight
-        return firstName;
-    }
+        // Setup spaces between layouts
+        Space space = new Space(this);
+        space.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                16));
 
         // Add TextView to LinearLayout
         llLayout.addView(tvName);
