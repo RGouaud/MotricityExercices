@@ -166,7 +166,7 @@ public class ListUserPageActivityTest {
         patientValues.put("firstName", patient.getFirstName());
         patientValues.put("birthDate", patient.getBirthDate());
         patientValues.put("remarks", patient.getRemarks());
-        idPatient = accesBD.getWritableDatabase().insert("patient", null, patientValues);
+        idPatient = accesBD.getWritableDatabase().insert("Patient", null, patientValues);
 
         try {
             recreateActivity();
@@ -179,7 +179,7 @@ public class ListUserPageActivityTest {
             //Verify if the patient is displayed
             onView(withText("Birthdate: " + patient.getBirthDate())).check(matches(isDisplayed()));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            accesBD.getReadableDatabase().execSQL("delete from Patient where idPatient="+idPatient+";");
         }
     }
 
@@ -192,7 +192,7 @@ public class ListUserPageActivityTest {
         ContentValues operatorValues = new ContentValues();
         operatorValues.put("name",operator.getName() );
         operatorValues.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, operatorValues);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, operatorValues);
 
         recreateActivity();
 
@@ -219,7 +219,7 @@ public class ListUserPageActivityTest {
             //Verify if the birthdate field is not visible because it's an operator
             onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            accesBD.getReadableDatabase().execSQL("delete from Operator where idOperator="+idOperator+";");
         }
     }
 
@@ -257,7 +257,7 @@ public class ListUserPageActivityTest {
                     .check(matches(isFocusable()))
                     .check(matches(withText(patient.getBirthDate())));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            accesBD.getReadableDatabase().execSQL("delete from Patient where idPatient="+idPatient+";");
         }
     }
 
@@ -270,7 +270,7 @@ public class ListUserPageActivityTest {
         ContentValues operatorValues = new ContentValues();
         operatorValues.put("name",operator.getName() );
         operatorValues.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, operatorValues);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, operatorValues);
 
         recreateActivity();
 
@@ -294,7 +294,7 @@ public class ListUserPageActivityTest {
 
             onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            accesBD.getReadableDatabase().execSQL("delete from Operator where idOperator="+idOperator+";");
         }
     }
 
@@ -332,7 +332,7 @@ public class ListUserPageActivityTest {
                     .check(matches(not(isFocusable())))
                     .check(matches(withText(patient.getBirthDate())));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            accesBD.getReadableDatabase().execSQL("delete from Patient where idPatient="+idPatient+";");
         }
     }
 
@@ -346,7 +346,7 @@ public class ListUserPageActivityTest {
         ContentValues operatorValues = new ContentValues();
         operatorValues.put("name",operator.getName() );
         operatorValues.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, operatorValues);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, operatorValues);
 
         recreateActivity();
 
@@ -356,7 +356,7 @@ public class ListUserPageActivityTest {
             onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
         }finally{
             //WHEN
-            accesBD.getWritableDatabase().execSQL("update operator set name='newName' where idOperator="+idOperator+";");
+            accesBD.getWritableDatabase().execSQL("update Operator set name='newName' where idOperator="+idOperator+";");
         }
         recreateActivity();
 
@@ -369,7 +369,7 @@ public class ListUserPageActivityTest {
             //Verify if the operator is displayed with his new name
             onView(withText("Name : newName")).check(matches(isDisplayed()));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            accesBD.getReadableDatabase().execSQL("delete from Operator where idOperator="+idOperator+";");
         }
     }
 
@@ -384,7 +384,7 @@ public class ListUserPageActivityTest {
         patientValues.put("firstName", patient.getFirstName());
         patientValues.put("birthDate", patient.getBirthDate());
         patientValues.put("remarks", patient.getRemarks());
-        idPatient = accesBD.getWritableDatabase().insert("patient", null, patientValues);
+        idPatient = accesBD.getWritableDatabase().insert("Patient", null, patientValues);
 
         recreateActivity();
 
@@ -394,7 +394,7 @@ public class ListUserPageActivityTest {
             onView(withText("Name : " + patient.getName())).check(matches(isDisplayed()));
         }finally {
             //WHEN
-            accesBD.getWritableDatabase().execSQL("update patient set name='newName' where idPatient="+idPatient+";");
+            accesBD.getWritableDatabase().execSQL("update Patient set name='newName' where idPatient="+idPatient+";");
         }
         recreateActivity();
 
@@ -405,7 +405,7 @@ public class ListUserPageActivityTest {
             //Verify if the operator is displayed with his new name
             onView(withText("Name : newName")).check(matches(isDisplayed()));
         }finally {
-            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            accesBD.getReadableDatabase().execSQL("delete from Patient where idPatient="+idPatient+";");
         }
     }
 
@@ -418,7 +418,7 @@ public class ListUserPageActivityTest {
         ContentValues operatorValues = new ContentValues();
         operatorValues.put("name",operator.getName() );
         operatorValues.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, operatorValues);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, operatorValues);
 
         recreateActivity();
 
@@ -427,7 +427,7 @@ public class ListUserPageActivityTest {
             onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
         }finally {
             //WHEN
-            accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            accesBD.getWritableDatabase().execSQL("delete from Operator where idOperator="+idOperator+";");
         }
         recreateActivity();
 
@@ -449,7 +449,7 @@ public class ListUserPageActivityTest {
         patientValues.put("firstName", patient.getFirstName());
         patientValues.put("birthDate", patient.getBirthDate());
         patientValues.put("remarks", patient.getRemarks());
-        idPatient = accesBD.getWritableDatabase().insert("patient", null, patientValues);
+        idPatient = accesBD.getWritableDatabase().insert("Patient", null, patientValues);
 
         recreateActivity();
         try {
@@ -458,7 +458,7 @@ public class ListUserPageActivityTest {
         }
         finally {
             //WHEN
-            accesBD.getWritableDatabase().execSQL("delete from patient where idPatient=" + idPatient + ";");
+            accesBD.getWritableDatabase().execSQL("delete from Patient where idPatient=" + idPatient + ";");
         }
         recreateActivity();
 
