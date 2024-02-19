@@ -50,15 +50,15 @@ public class ListUserPageActivity extends AppCompatActivity {
     /**
      * The Button for adding a user.
      */
-    private Button buttonAdd;
+    private Button bAdd;
     /**
      * The ToggleButton for selecting patients.
      */
-    private ToggleButton toggleButtonPatient;
+    private ToggleButton tbPatient;
     /**
      * The ToggleButton for selecting operators.
      */
-    private ToggleButton toggleButtonOperator;
+    private ToggleButton tbOperator;
     /**
      * The list of patients.
      */
@@ -92,20 +92,20 @@ public class ListUserPageActivity extends AppCompatActivity {
      */
     private void createActorLayout(Actor actor) {
         // Create a new LinearLayout for each actor to display
-        LinearLayout aLayout = new LinearLayout(this);
+        LinearLayout llLayout = new LinearLayout(this);
 
         // Setup the layout
-        aLayout.setOrientation(LinearLayout.HORIZONTAL);
-        aLayout.setLayoutParams(new LinearLayout.LayoutParams(
+        llLayout.setOrientation(LinearLayout.HORIZONTAL);
+        llLayout.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
         if (actor instanceof Operator) {
-            aLayout.setBackgroundResource(R.drawable.rounded_layout);
-            aLayout.setPadding(20, 50, 0, 50);
+            llLayout.setBackgroundResource(R.drawable.rounded_layout);
+            llLayout.setPadding(20, 50, 0, 50);
 
             Operator operator = (Operator) actor;
-            aLayout.setOnClickListener(v -> {
+            llLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", USER_TYPE_OPERATOR);
                 intent.putExtra("Crud", "read");
@@ -115,35 +115,35 @@ public class ListUserPageActivity extends AppCompatActivity {
         }
 
         // Create TextView for name and firstname
-        TextView name = new TextView(this);
-        TextView firstName = new TextView(this);
+        TextView tvName = new TextView(this);
+        TextView tvFirstName = new TextView(this);
 
         // Setup TextViews
-        name.setText(getString(R.string.name_format, actor.getName()));
-        name.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
+        tvName.setText(getString(R.string.name_format, actor.getName()));
+        tvName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
 
-        firstName.setText(getString(R.string.first_name_format, actor.getFirstName()));
-        firstName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
+        tvFirstName.setText(getString(R.string.first_name_format, actor.getFirstName()));
+        tvFirstName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
 
-        name.setLayoutParams(new LinearLayout.LayoutParams(
+        tvName.setLayoutParams(new LinearLayout.LayoutParams(
                 0, // width
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 2f)); // weight
 
-        firstName.setLayoutParams(new LinearLayout.LayoutParams(
+        tvFirstName.setLayoutParams(new LinearLayout.LayoutParams(
                 0, // width
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 2f)); // weight
 
         // Create and configure ImageButtons
-        ImageButton boutonModify = new ImageButton(this);
-        boutonModify.setImageResource(android.R.drawable.ic_menu_set_as);
-        boutonModify.setBackgroundColor(Color.parseColor("#00000000"));
+        ImageButton ibEdit = new ImageButton(this);
+        ibEdit.setImageResource(android.R.drawable.ic_menu_set_as);
+        ibEdit.setBackgroundColor(Color.parseColor("#00000000"));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
-        boutonModify.setLayoutParams(params);
+        ibEdit.setLayoutParams(params);
 
         long actorId = actor.getId();
-        boutonModify.setOnClickListener(v -> {
+        ibEdit.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
             intent.putExtra("User", getActorTypeString(actor));
             intent.putExtra("Crud", "update");
@@ -158,17 +158,17 @@ public class ListUserPageActivity extends AppCompatActivity {
                 16));
 
         // Add TextView to LinearLayout
-        aLayout.addView(name);
-        aLayout.addView(firstName);
-        aLayout.addView(boutonModify);
+        llLayout.addView(tvName);
+        llLayout.addView(tvFirstName);
+        llLayout.addView(ibEdit);
 
         //Creation of birthdate for patient
         if (actor instanceof Patient) {
-            LinearLayout parentLayout = new LinearLayout(this);
-            parentLayout.setOrientation(LinearLayout.VERTICAL);
-            parentLayout.setBackgroundResource(R.drawable.rounded_layout);
-            parentLayout.setPadding(20, 50, 0, 50);
-            parentLayout.setLayoutParams(new LinearLayout.LayoutParams(
+            LinearLayout llParentLayout = new LinearLayout(this);
+            llParentLayout.setOrientation(LinearLayout.VERTICAL);
+            llParentLayout.setBackgroundResource(R.drawable.rounded_layout);
+            llParentLayout.setPadding(20, 50, 0, 50);
+            llParentLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -178,10 +178,10 @@ public class ListUserPageActivity extends AppCompatActivity {
             birthDate.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
             birthDate.setPadding(0, 20, 0, 0);
 
-            parentLayout.addView(aLayout);
-            parentLayout.addView(birthDate);
+            llParentLayout.addView(llLayout);
+            llParentLayout.addView(birthDate);
 
-            parentLayout.setOnClickListener(v -> {
+            llParentLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
                 intent.putExtra("User", USER_TYPE_PATIENT);
                 intent.putExtra("Crud", "read");
@@ -189,12 +189,12 @@ public class ListUserPageActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            svList.addView(parentLayout);
+            svList.addView(llParentLayout);
         }
 
         // Add LinearLayout to sv_list
         if (actor instanceof Operator) {
-            svList.addView(aLayout);
+            svList.addView(llLayout);
         }
         svList.addView(space);
     }
@@ -257,9 +257,9 @@ public class ListUserPageActivity extends AppCompatActivity {
      */
     private void initializeViews() {
         svList = findViewById(R.id.sv_list);
-        buttonAdd = findViewById(R.id.b_Add);
-        toggleButtonPatient = findViewById(R.id.b_TogglePatient);
-        toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
+        bAdd = findViewById(R.id.b_Add);
+        tbPatient = findViewById(R.id.b_TogglePatient);
+        tbOperator = findViewById(R.id.b_ToggleOperator);
 
     }
 
@@ -285,46 +285,46 @@ public class ListUserPageActivity extends AppCompatActivity {
      * Set the click listeners for the buttons.
      */
     private void setButtonClickListeners() {
-        buttonAdd.setOnClickListener(v -> {
+        bAdd.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            String userType = toggleButtonPatient.isChecked() ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
+            String userType = tbPatient.isChecked() ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
             intent.putExtra("User", userType);
             intent.putExtra("Crud", "create");
             intent.putExtra(USER_ID_EXTRA, "");
             startActivity(intent);
         });
 
-        toggleButtonPatient.setOnClickListener(v -> handleToggleButtonClick(toggleButtonPatient, toggleButtonOperator, R.string.add_a_patient, patients));
-        toggleButtonOperator.setOnClickListener(v -> handleToggleButtonClick(toggleButtonOperator, toggleButtonPatient, R.string.add_a_operator, operators));
+        tbPatient.setOnClickListener(v -> handleToggleButtonClick(tbPatient, tbOperator, R.string.add_a_patient, patients));
+        tbOperator.setOnClickListener(v -> handleToggleButtonClick(tbOperator, tbPatient, R.string.add_a_operator, operators));
     }
 
     /**
      * Handle the click on a toggle button.
      *
      * @param clickedButton     The button that was clicked.
-     * @param otherButton       The other button.
+     * @param tbOtherButton       The other button.
      * @param buttonTextResource The text resource to display on the button.
      * @param actors            The list of actors to display.
      */
-    private void handleToggleButtonClick(ToggleButton clickedButton, ToggleButton otherButton, int buttonTextResource, ArrayList<? extends Actor> actors) {
+    private void handleToggleButtonClick(ToggleButton clickedButton, ToggleButton tbOtherButton, int buttonTextResource, ArrayList<? extends Actor> actors) {
         if (clickedButton.isChecked()) {
-            otherButton.setChecked(false);
-            buttonAdd.setText(buttonTextResource);
+            tbOtherButton.setChecked(false);
+            bAdd.setText(buttonTextResource);
             svList.removeAllViews();
             displayActors(actors);
-            buttonAdd.setOnClickListener(v1 -> {
+            bAdd.setOnClickListener(v1 -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                String userType = clickedButton == toggleButtonPatient ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
+                String userType = clickedButton == tbPatient ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
                 intent.putExtra("User", userType);
                 intent.putExtra("Crud", "create");
                 startActivity(intent);
             });
         } else {
-            if (!otherButton.isChecked()) {
+            if (!tbOtherButton.isChecked()) {
                 clickedButton.setChecked(true);
-                buttonAdd.setText(buttonTextResource);
+                bAdd.setText(buttonTextResource);
             } else {
-                otherButton.setChecked(true);
+                tbOtherButton.setChecked(true);
             }
         }
     }

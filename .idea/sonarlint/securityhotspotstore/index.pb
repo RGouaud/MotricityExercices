@@ -65,3 +65,5 @@ y
 Iapp/src/androidTest/java/com/example/ex_motricite/DeletedTestDAOTest.java,f\7\f7f06fb0de30c12ef304145bf633001d32368929
 k
 ;app/src/main/java/com/example/ex_motricite/DeletedTest.java,0\6\0608d94f69c95e17dd576ca16fc2811c4ff85569
+t
+Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6\9\690a2f8c07cb1da82d961d2142b42b25081da824
