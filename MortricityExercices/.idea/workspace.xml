@@ -10,59 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74228574-5517-44ae-8678-f679ee3cba31" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/deploymentTargetDropDown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/Ex_Motricite.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/app/Ex_Motricite.app.androidTest.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/app/Ex_Motricite.app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/app/Ex_Motricite.app.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/app/Ex_Motricite.app.unitTest.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/appInsightsSettings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/migrations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0c1644717a06601ab4ebc0cc7edcd016f2fd809a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/2/3286bc2b9b890903a5c2e7d0454675e3ccd2a853" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/370b76a27498bbd12b5ade28b3b5c150ffd16c89" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/3/632bcdfe1764f54be38613ff44adea6a48a53391" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/f/6f0831269a6d14c3957ed8d1e6acecafeaa497e3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/4/749edfcc96398253e5b3416184e95c46621da850" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/769f1ccbc241ef5410f40cd42603c3df881bbc53" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/e/ae2c2c660991a9f89d86d85b0f50b871c1f2d9ed" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/e/be7c2a51117079f4c83049b341e615e12161fadb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/2/c260997524a63a3146660c249b3ed28edba48507" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/2/d2a4383452aad84a18429a5844d31330a012a9e6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da2c6747c4271212b17b337be604afe4f743283b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/ebc50c6f9fe65b5db6ab0e4c9f7bca4816cd8483" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/c/0c1644717a06601ab4ebc0cc7edcd016f2fd809a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/2/3286bc2b9b890903a5c2e7d0454675e3ccd2a853" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/7/370b76a27498bbd12b5ade28b3b5c150ffd16c89" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/3/632bcdfe1764f54be38613ff44adea6a48a53391" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/6/66c15db5e42da2cc1d42da0c40460ff215119bdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/f/6f0831269a6d14c3957ed8d1e6acecafeaa497e3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/4/749edfcc96398253e5b3416184e95c46621da850" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/6/769f1ccbc241ef5410f40cd42603c3df881bbc53" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/e/ae2c2c660991a9f89d86d85b0f50b871c1f2d9ed" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/e/be7c2a51117079f4c83049b341e615e12161fadb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/2/c260997524a63a3146660c249b3ed28edba48507" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/2/d2a4383452aad84a18429a5844d31330a012a9e6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/a/da2c6747c4271212b17b337be604afe4f743283b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/b/ebc50c6f9fe65b5db6ab0e4c9f7bca4816cd8483" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LaZer2/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LaZer2/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/.gitignore" beforeDir="false" />
@@ -180,115 +148,6 @@
       <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/ex_motricite/OperatorTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/ex_motricite/PatientTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/allclasses-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/allpackages-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/Actor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/BdSQLiteOpenHelper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/BdSQLiteOpenHelperTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/CSVFile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/CordsSample.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/CrudUserActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/DateValidator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/DateValidatorTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/DynamicExerciseActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/ExampleInstrumentedTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/ExampleUnitTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/ExercisesSettingsActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/GraphicsTestPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/GraphicsTestPageActivity.theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/HomePageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/ListTestActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/ListUserPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/MinMaxFilter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/Operator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/OperatorDAO.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/OperatorTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/Patient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/PatientDAO.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/PatientTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/PopActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/SettingsActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/StaticExerciseActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/TestPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/UserPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/Actor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/BdSQLiteOpenHelper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/BdSQLiteOpenHelperTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/CSVFile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/CordsSample.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/CrudUserActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/DateValidator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/DateValidatorTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/DynamicExerciseActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/ExampleInstrumentedTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/ExampleUnitTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/ExercisesSettingsActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/GraphicsTestPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/GraphicsTestPageActivity.theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/HomePageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/ListTestActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/ListUserPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/MinMaxFilter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/Operator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/OperatorDAO.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/OperatorTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/Patient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/PatientDAO.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/PatientTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/PopActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/SettingsActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/StaticExerciseActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/TestPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/class-use/UserPageActivity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/com/example/ex_motricite/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/constant-values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/element-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-10.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-11.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-12.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-13.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-14.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-15.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-16.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-17.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-18.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-19.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-20.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-21.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-22.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-7.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-9.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/jquery-ui.overrides.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/legal/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/legal/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/legal/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/legal/jquery.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/legal/jqueryUI.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/member-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/module-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/package-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/resources/glass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/resources/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/script-dir/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/script-dir/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/tag-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/type-search-index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
@@ -362,7 +221,7 @@
         <entry key="$PROJECT_DIR$" value="unitTestDeletedTest" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -388,7 +247,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "livrableMain",
     "last_directory_selection": "C:/Users/rgoua/OneDrive/Bureau/MotricityExercices/app/src/main/java",
-    "last_opened_file_path": "C:/Users/rgoua/OneDrive/Bureau/MotricityExercices/MortricityExercices",
+    "last_opened_file_path": "C:/Users/rgoua/OneDrive/Bureau/MotricityExercices/Sources",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
