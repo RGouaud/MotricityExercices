@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestsFragment"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="10">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="List of tests"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:padding="20dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/light_gray_roundable_button"
+                android:drawableEnd="@android:drawable/ic_menu_set_as"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="15dp"
+            android:weightSum="9">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select all"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unselect all"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filters"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/l_listTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- Add your buttons dynamically to this LinearLayout -->
+            </LinearLayout>
+        </ScrollView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="bottom"
+    android:paddingHorizontal="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="25dp"
+            android:weightSum="10"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_exportSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="5"
+                android:background="@drawable/yellow_roundable_button"
+                android:drawableEnd="@android:drawable/ic_menu_set_as"
+                android:drawableTint="@color/black"
+                android:text="@string/export_selection"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_deleteSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="5"
+                android:background="@drawable/yellow_roundable_button"
+                android:drawableEnd="@android:drawable/ic_menu_set_as"
+                android:drawableTint="@color/black"
+                android:text="@string/export_selection"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+            <!-- x2 -->
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

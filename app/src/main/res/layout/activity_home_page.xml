@@ -5,186 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePageActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include
-            layout="@layout/header_layout"
+        android:weightSum="100">
+        <FrameLayout
+            android:layout_weight="80"
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="20" />
+            app:layout_constraintBottom_toTopOf="@+id/bottonnav"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@drawable/background_home_page"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="20dp"
-                tools:ignore="NestedWeights">
-
-                <LinearLayout
-                    android:id="@+id/layout_static"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|center_horizontal"
-                    android:background="@drawable/seethrough_grey_box"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_static"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="@string/static_exercice"
-                        android:textColor="#ffffff"
-                        android:textSize="24sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gradient_box"
-                        android:gravity="center"
-                        android:padding="20dp">
-                    <ImageView
-                        android:id="@+id/iv_static"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/test"
-                        android:contentDescription="@string/static_exercice" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:id="@+id/layout_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|center_horizontal"
-                    android:background="@drawable/seethrough_grey_box"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_patient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="center"
-                        android:text="@string/consult_profiles"
-                        android:textColor="#ffffff"
-                        android:textSize="24sp" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gradient_box"
-                        android:gravity="center"
-                        android:padding="20dp">
-                    <ImageView
-                        android:id="@+id/iv_patient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icone"
-                        android:contentDescription="@string/consult_profiles" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <ImageButton
-                    android:id="@+id/ib_ListTest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:backgroundTint="#FF9800"
-                    android:src="@android:drawable/btn_star"
-                    android:contentDescription="@string/settings" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:id="@+id/layout_rythm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|center_horizontal"
-                    android:background="@drawable/seethrough_grey_box"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_rythm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="center"
-                        android:text="@string/rhythm_exercice"
-                        android:textColor="#ffffff"
-                        android:textSize="24sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gradient_box"
-                        android:gravity="center"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:id="@+id/iv_rythm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/test"
-                            android:contentDescription="@string/rhythm_exercice" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <Space
-                    android:id="@+id/SpacerTemp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-        </LinearLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_weight="20"
+        android:id="@+id/bottonnav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

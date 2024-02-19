@@ -6,7 +6,7 @@
     <string name="_10_00">10:00</string>
 
     <string name="unselect_all">Unselect all</string>
-    <string name="export_selection">Export Selection</string>
+    <string name="export_selection">Export</string>
     <string name="select_all">Select all</string>
     <string name="list_of_test">List of Test:</string>
     <string name="filters">Filters</string>
@@ -79,5 +79,9 @@
     <string name="confirm">Confirm</string>
     <string name="xx_xx_xxxx">xx/xx/xxxx</string>
     <string name="research">Research</string>
+
+    <string name="email_underline"><u>Email</u></string>
+    <string name="server_underline"><u>Server</u></string>
+
 
 </resources>
