@@ -24,6 +24,11 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -31,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.material:material:1.11.0")
     implementation ("com.quickbirdstudios:opencv:4.5.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

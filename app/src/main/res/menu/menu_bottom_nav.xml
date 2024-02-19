@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Exercises"
+        android:id="@+id/exercises"
+        android:icon="@drawable/stylo_laser"/>
+    <item
+        android:title="Profiles"
+        android:id="@+id/profiles"
+        android:icon="@drawable/stylo_laser"/>
+    <item
+        android:title="Tests"
+        android:id="@+id/tests"
+        android:icon="@drawable/stylo_laser"/>
+    <item
+        android:title="Settings"
+        android:id="@+id/settings"
+        android:icon="@drawable/stylo_laser"/>
+</menu>
