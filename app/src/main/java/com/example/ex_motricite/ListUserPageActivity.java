@@ -92,7 +92,7 @@ public class ListUserPageActivity extends AppCompatActivity {
      * @param actor The user (operator or patient) to be displayed.
      */
     private void createActorLayout(Actor actor) {
-        LinearLayout aLayout = createActorLayout();
+        LinearLayout aLayout = createActorsLayout(actor);
 
         if (actor instanceof Operator) {
             configureBackgroundAndPaddingOfActorLayout(aLayout);
@@ -124,6 +124,12 @@ public class ListUserPageActivity extends AppCompatActivity {
         svList.addView(space);
     }
 
+    /**
+     * Configures the layout for displaying patient information, including the birth date.
+     *
+     * @param actor   The patient for which the layout is configured
+     * @param aLayout The parent layout where the patient layout will be added
+     */
     private void configurePatientLayout(Patient actor, LinearLayout aLayout) {
         //Create a parent layout to assemble the actor layout and the birthdate
         LinearLayout parentLayout = createParentLayout();
@@ -138,6 +144,13 @@ public class ListUserPageActivity extends AppCompatActivity {
         svList.addView(parentLayout);
     }
 
+    /**
+     * Configures the parent layout for displaying patient information and sets up the click event
+     * to navigate to the details page when clicked.
+     *
+     * @param parentLayout The parent layout to configure
+     * @param patient      The patient for which the layout is configured
+     */
     private void configureParentLayoutForCrudDetailsPatient(LinearLayout parentLayout, Patient patient) {
         parentLayout.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
@@ -148,11 +161,25 @@ public class ListUserPageActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Adds child views to the parent layout.
+     *
+     * @param aLayout   The actor layout to be added as a child
+     * @param parentLayout The parent layout to which child views are added
+     * @param birthDate    The TextView representing the birth date to be added as a child
+     */
     private static void addElementsToParentLayout(LinearLayout aLayout, LinearLayout parentLayout, TextView birthDate) {
         parentLayout.addView(aLayout);
         parentLayout.addView(birthDate);
     }
 
+    /**
+     * Configures the TextView for displaying the birth date of a patient.
+     *
+     * @param actor      The patient for which the birth date TextView is configured
+     * @param birthDate  The TextView representing the birth date
+     * @return           The patient object
+     */
     @NonNull
     private Patient configureBirthDateTextView(Patient actor, TextView birthDate) {
         Patient patient = actor;
@@ -162,6 +189,11 @@ public class ListUserPageActivity extends AppCompatActivity {
         return patient;
     }
 
+    /**
+     * Creates and configures the parent layout for displaying patient information.
+     *
+     * @return The configured parent layout
+     */
     @NonNull
     private LinearLayout createParentLayout() {
         LinearLayout parentLayout = new LinearLayout(this);
@@ -173,12 +205,25 @@ public class ListUserPageActivity extends AppCompatActivity {
         return parentLayout;
     }
 
+    /**
+     * Adds TextView, name, and modify button to the actor layout.
+     *
+     * @param aLayout     The actor layout to which child views are added
+     * @param name        The TextView representing the name
+     * @param firstName   The TextView representing the first name
+     * @param boutonModify The ImageButton for modifying
+     */
     private static void addElementsToActorLayout(LinearLayout aLayout, TextView name, TextView firstName, ImageButton boutonModify) {
         aLayout.addView(name);
         aLayout.addView(firstName);
         aLayout.addView(boutonModify);
     }
 
+    /**
+     * Creates a space between layouts.
+     *
+     * @return The space
+     */
     @NonNull
     private Space setupSpaceBetweenLayouts() {
         Space space = new Space(this);
@@ -188,12 +233,18 @@ public class ListUserPageActivity extends AppCompatActivity {
         return space;
     }
 
+    /**
+     * Creates and configures the modify button.
+     *
+     * @param actor The actor for which the modify button is created
+     * @return      The configured modify button
+     */
     @NonNull
     private ImageButton createAndConfigureModifyButton(Actor actor) {
         ImageButton boutonModify = new ImageButton(this);
         boutonModify.setImageResource(android.R.drawable.ic_menu_set_as);
         boutonModify.setBackgroundColor(Color.parseColor("#00000000"));
-        boutonModify.setContentDescription("navigate to modify user");
+        boutonModify.setContentDescription("navigate to modify" + actor.getName());
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
         boutonModify.setLayoutParams(params);
 
@@ -208,6 +259,12 @@ public class ListUserPageActivity extends AppCompatActivity {
         return boutonModify;
     }
 
+    /**
+     * Creates and configures the TextView for the first name.
+     *
+     * @param actor The actor for which the first name TextView is created
+     * @return      The configured first name TextView
+     */
     @NonNull
     private TextView createAndConfigureFirstNameTextView(Actor actor) {
         TextView firstName = new TextView(this);
@@ -220,6 +277,12 @@ public class ListUserPageActivity extends AppCompatActivity {
         return firstName;
     }
 
+    /**
+     * Creates and configures the TextView for the name.
+     *
+     * @param actor The actor for which the name TextView is created
+     * @return      The configured name TextView
+     */
     @NonNull
     private TextView createAndConfigureNameTextView(Actor actor) {
         TextView name = new TextView(this);
@@ -232,6 +295,13 @@ public class ListUserPageActivity extends AppCompatActivity {
         return name;
     }
 
+    /**
+     * Configures the layout for displaying operator details and sets up the click event
+     * to navigate to the details page when clicked.
+     *
+     * @param actor   The operator for which the layout is configured
+     * @param aLayout The layout to configure
+     */
     private void configureLayoutForCrudDetailsOperator(Operator actor, LinearLayout aLayout) {
         Operator operator = actor;
         aLayout.setOnClickListener(v -> {
@@ -243,19 +313,30 @@ public class ListUserPageActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Configures the background and padding of the actor layout.
+     *
+     * @param aLayout The actor layout to configure
+     */
     private static void configureBackgroundAndPaddingOfActorLayout(LinearLayout aLayout) {
         aLayout.setBackgroundResource(R.drawable.rounded_layout);
         aLayout.setPadding(20, 50, 0, 50);
     }
 
+    /**
+     * Creates the layout for an actor.
+     *
+     * @param actor The actor for which the layout is created
+     * @return      The layout created for the actor
+     */
     @NonNull
-    private LinearLayout createActorLayout() {
+    private LinearLayout createActorsLayout(Actor actor) {
         // Create a new LinearLayout for each actor to display
         LinearLayout aLayout = new LinearLayout(this);
 
         // Setup the layout
         aLayout.setOrientation(LinearLayout.HORIZONTAL);
-        aLayout.setContentDescription("navigate to details user");
+        aLayout.setContentDescription("navigate to details of " + actor.getName() );
         aLayout.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));

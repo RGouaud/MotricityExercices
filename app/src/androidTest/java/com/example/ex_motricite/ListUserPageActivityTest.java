@@ -93,7 +93,7 @@ public class ListUserPageActivityTest {
         ct = InstrumentationRegistry.getInstrumentation().getTargetContext();
         accesBD = new BdSQLiteOpenHelper(ct, "BDMotricity", null, 1);
         idPatient = 0;
-        patient = new Patient("namePatient", "firstNamePatient", "19/03/2001", "remarks");
+        patient = new Patient("namePatient", "firstNamePatient", "01/09/1111", "remarks");
         operator = new Operator("nameOperator", "firstNameOperator");
 
     }
@@ -154,26 +154,6 @@ public class ListUserPageActivityTest {
     /**
      * Test if the activity display correctly operators
      */
-    @Test
-    public void test_if_operators_are_displayed(){
-        //GIVEN
-        ContentValues operatorValues = new ContentValues();
-        operatorValues.put("name",operator.getName() );
-        operatorValues.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, operatorValues);
-
-        // Restart activity to refresh the list
-        recreateActivity();
-
-        //WHEN
-        //Click on the operator button
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
-
-        //THEN
-        //Verify if the operator is displayed
-        onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
-        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
-    }
 
     /**
      * Test if the activity display correctly patients
@@ -188,16 +168,19 @@ public class ListUserPageActivityTest {
         patientValues.put("remarks", patient.getRemarks());
         idPatient = accesBD.getWritableDatabase().insert("patient", null, patientValues);
 
-        recreateActivity();
+        try {
+            recreateActivity();
 
-        //WHEN
-        //Click on the patient button
-        onView(withId(R.id.b_TogglePatient)).perform(click());
+            //WHEN
+            //Click on the patient button
+            onView(withId(R.id.b_TogglePatient)).perform(click());
 
-        //THEN
-        //Verify if the patient is displayed
-        onView(withText("Birthdate: " + patient.getBirthDate())).check(matches(isDisplayed()));
-        accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            //THEN
+            //Verify if the patient is displayed
+            onView(withText("Birthdate: " + patient.getBirthDate())).check(matches(isDisplayed()));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+        }
     }
 
     /**
@@ -214,28 +197,30 @@ public class ListUserPageActivityTest {
         recreateActivity();
 
         //WHEN
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
-        //Verify if the edit button is displayed with his content description because we can't set correctly the id of the button
-        onView(allOf(withContentDescription("navigate to modify user"), isDisplayed()))
-                .check(matches(isDisplayed()))
-                .perform(click());
+        try {
+            onView(withId(R.id.b_ToggleOperator)).perform(click());
+            //Verify if the edit button is displayed with his content description because we can't set correctly the id of the button
+            onView(allOf(withContentDescription("navigate to modify" + operator.getName()), isDisplayed()))
+                    .check(matches(isDisplayed()))
+                    .perform(click());
 
-        //THEN
-        intended(allOf(
-                hasComponent(CrudUserActivity.class.getName()),
-                toPackage("com.example.ex_motricite")
-        ));
+            //THEN
+            intended(allOf(
+                    hasComponent(CrudUserActivity.class.getName()),
+                    toPackage("com.example.ex_motricite")
+            ));
 
-        //Verify if the fields are correctly filled with the operator's data and if he's focusable and clickable to see if its the edit page
-        onView(withId(R.id.et_firstname))
-                .check(matches(isClickable()))
-                .check(matches(isFocusable()))
-                .check(matches(withText(operator.getFirstName())));
+            //Verify if the fields are correctly filled with the operator's data and if he's focusable and clickable to see if its the edit page
+            onView(withId(R.id.et_firstname))
+                    .check(matches(isClickable()))
+                    .check(matches(isFocusable()))
+                    .check(matches(withText(operator.getFirstName())));
 
-        //Verify if the birthdate field is not visible because it's an operator
-        onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
-
-        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            //Verify if the birthdate field is not visible because it's an operator
+            onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+        }
     }
 
     /**
@@ -254,24 +239,26 @@ public class ListUserPageActivityTest {
         recreateActivity();
 
         //WHEN
-        onView(withId(R.id.b_TogglePatient)).perform(click());
-        onView(allOf(withContentDescription("navigate to modify user"), isDisplayed()))
-                .check(matches(isDisplayed()))
-                .perform(click());
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
+            onView(allOf(withContentDescription("navigate to modify" + patient.getName()), isDisplayed()))
+                    .check(matches(isDisplayed()))
+                    .perform(click());
 
-        //THEN
-        intended(allOf(
-                hasComponent(CrudUserActivity.class.getName()),
-                toPackage("com.example.ex_motricite")
-        ));
-        //Verify if the fields are correctly filled with the patient's data and if he's focusable and clickable to see if its the edit page of the patient
-        onView(withId(R.id.et_birthdate))
-                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
-                .check(matches(isClickable()))
-                .check(matches(isFocusable()))
-                .check(matches(withText(patient.getBirthDate())));
-
-        accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            //THEN
+            intended(allOf(
+                    hasComponent(CrudUserActivity.class.getName()),
+                    toPackage("com.example.ex_motricite")
+            ));
+            //Verify if the fields are correctly filled with the patient's data and if he's focusable and clickable to see if its the edit page of the patient
+            onView(withId(R.id.et_birthdate))
+                    .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                    .check(matches(isClickable()))
+                    .check(matches(isFocusable()))
+                    .check(matches(withText(patient.getBirthDate())));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+        }
     }
 
     /**
@@ -288,25 +275,27 @@ public class ListUserPageActivityTest {
         recreateActivity();
 
         //WHEN
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
-        onView(allOf(withContentDescription("navigate to details user"), isDisplayed()))
-                .check(matches(isDisplayed()))
-                .perform(click());
+        try {
+            onView(withId(R.id.b_ToggleOperator)).perform(click());
+            onView(allOf(withContentDescription("navigate to details of " + operator.getName()), isDisplayed()))
+                    .check(matches(isDisplayed()))
+                    .perform(click());
 
-        //THEN
-        intended(allOf(
-                hasComponent(CrudUserActivity.class.getName()),
-                toPackage("com.example.ex_motricite")
-        ));
-        //Verify if fields are not focusable and clickable to see if its the details page
-        onView(withId(R.id.et_firstname))
-                .check(matches(not(isClickable())))
-                .check(matches(not(isFocusable())))
-                .check(matches(withText(operator.getFirstName())));
+            //THEN
+            intended(allOf(
+                    hasComponent(CrudUserActivity.class.getName()),
+                    toPackage("com.example.ex_motricite")
+            ));
+            //Verify if fields are not focusable and clickable to see if its the details page
+            onView(withId(R.id.et_firstname))
+                    .check(matches(not(isClickable())))
+                    .check(matches(not(isFocusable())))
+                    .check(matches(withText(operator.getFirstName())));
 
-        onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
-
-        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            onView(withId(R.id.et_birthdate)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+        }
     }
 
     /**
@@ -325,24 +314,26 @@ public class ListUserPageActivityTest {
         recreateActivity();
 
         //WHEN
-        onView(withId(R.id.b_TogglePatient)).perform(click());
-        onView(allOf(withContentDescription("navigate to details user"), isDisplayed()))
-                .check(matches(isDisplayed()))
-                .perform(click());
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
+            onView(allOf(withContentDescription("navigate to details of " + patient.getName()), isDisplayed()))
+                    .check(matches(isDisplayed()))
+                    .perform(click());
 
-        //THEN
-        intended(allOf(
-                hasComponent(CrudUserActivity.class.getName()),
-                toPackage("com.example.ex_motricite")
-        ));
-        //Verify if fields are not focusable and clickable to see if its the details page
-        onView(withId(R.id.et_birthdate))
-                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
-                .check(matches(not(isClickable())))
-                .check(matches(not(isFocusable())))
-                .check(matches(withText(patient.getBirthDate())));
-
-        accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            //THEN
+            intended(allOf(
+                    hasComponent(CrudUserActivity.class.getName()),
+                    toPackage("com.example.ex_motricite")
+            ));
+            //Verify if fields are not focusable and clickable to see if its the details page
+            onView(withId(R.id.et_birthdate))
+                    .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                    .check(matches(not(isClickable())))
+                    .check(matches(not(isFocusable())))
+                    .check(matches(withText(patient.getBirthDate())));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+        }
     }
 
 
@@ -359,22 +350,27 @@ public class ListUserPageActivityTest {
 
         recreateActivity();
 
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
-        //Verify if the operator is displayed
-        onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
-
-        //WHEN
-        accesBD.getWritableDatabase().execSQL("update operator set name='newName' where idOperator="+idOperator+";");
+        try {
+            onView(withId(R.id.b_ToggleOperator)).perform(click());
+            //Verify if the operator is displayed
+            onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
+        }finally{
+            //WHEN
+            accesBD.getWritableDatabase().execSQL("update operator set name='newName' where idOperator="+idOperator+";");
+        }
         recreateActivity();
 
         //Click on the operator button to simulate the refresh from the edit page
-        onView(withId(R.id.b_TogglePatient)).perform(click());
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
+            onView(withId(R.id.b_ToggleOperator)).perform(click());
 
-        //THEN
-        //Verify if the operator is displayed with his new name
-        onView(withText("Name : newName")).check(matches(isDisplayed()));
-        accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+            //THEN
+            //Verify if the operator is displayed with his new name
+            onView(withText("Name : newName")).check(matches(isDisplayed()));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+        }
     }
 
     /**
@@ -392,20 +388,25 @@ public class ListUserPageActivityTest {
 
         recreateActivity();
 
-        onView(withId(R.id.b_TogglePatient)).perform(click());
-        //Verify if the operator is displayed
-        onView(withText("Name : " + patient.getName())).check(matches(isDisplayed()));
-
-        //WHEN
-        accesBD.getWritableDatabase().execSQL("update patient set name='newName' where idPatient="+idPatient+";");
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
+            //Verify if the operator is displayed
+            onView(withText("Name : " + patient.getName())).check(matches(isDisplayed()));
+        }finally {
+            //WHEN
+            accesBD.getWritableDatabase().execSQL("update patient set name='newName' where idPatient="+idPatient+";");
+        }
         recreateActivity();
 
-        onView(withId(R.id.b_TogglePatient)).perform(click());
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
 
-        //THEN
-        //Verify if the operator is displayed with his new name
-        onView(withText("Name : newName")).check(matches(isDisplayed()));
-        accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+            //THEN
+            //Verify if the operator is displayed with his new name
+            onView(withText("Name : newName")).check(matches(isDisplayed()));
+        }finally {
+            accesBD.getReadableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+        }
     }
 
     /**
@@ -421,11 +422,13 @@ public class ListUserPageActivityTest {
 
         recreateActivity();
 
-        onView(withId(R.id.b_ToggleOperator)).perform(click());
-        onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
-
-        //WHEN
-        accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+        try {
+            onView(withId(R.id.b_ToggleOperator)).perform(click());
+            onView(withText("Name : " + operator.getName())).check(matches(isDisplayed()));
+        }finally {
+            //WHEN
+            accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+idOperator+";");
+        }
         recreateActivity();
 
         onView(withId(R.id.b_TogglePatient)).perform(click());
@@ -449,12 +452,14 @@ public class ListUserPageActivityTest {
         idPatient = accesBD.getWritableDatabase().insert("patient", null, patientValues);
 
         recreateActivity();
-
-        onView(withId(R.id.b_TogglePatient)).perform(click());
-        onView(withText("Name : " + patient.getName())).check(matches(isDisplayed()));
-
-        //WHEN
-        accesBD.getWritableDatabase().execSQL("delete from patient where idPatient="+idPatient+";");
+        try {
+            onView(withId(R.id.b_TogglePatient)).perform(click());
+            onView(withText("Name : " + patient.getName())).check(matches(isDisplayed()));
+        }
+        finally {
+            //WHEN
+            accesBD.getWritableDatabase().execSQL("delete from patient where idPatient=" + idPatient + ";");
+        }
         recreateActivity();
 
         onView(withId(R.id.b_TogglePatient)).perform(click());

@@ -131,12 +131,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <LinearLayout
-                android:id="@+id/sv_list"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:orientation="vertical" />
+                android:layout_weight="50" >
+
+                <LinearLayout
+                    android:id="@+id/sv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:orientation="vertical" />
+            </ScrollView>
+
         </LinearLayout>
 
 
