@@ -75,7 +75,7 @@
     <string name="operator_filters">Operator :</string>
     <string name="patient_filters">Patient :</string>
     <string name="dynamic">Dynamic</string>
-    <string name="static">Static</string>
+    <string name="Static">Static</string>
     <string name="confirm">Confirm</string>
     <string name="xx_xx_xxxx">xx/xx/xxxx</string>
     <string name="research">Research</string>

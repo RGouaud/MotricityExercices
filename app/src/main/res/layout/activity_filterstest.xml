@@ -213,15 +213,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <CheckBox
                         android:id="@+id/cb_static"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
-                        android:textSize="20sp"
+                        android:text="@string/Static"
                         android:textColor="@color/white"
-                        android:text="@string/static"
-                        />
+                        android:textSize="20sp" />
                     <CheckBox
                         android:id="@+id/cb_dynamic"
                         android:layout_width="match_parent"
