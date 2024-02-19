@@ -73,3 +73,5 @@ k
 ;app/src/main/java/com/example/ex_motricite/CordsSample.java,f\c\fc1b164e452c40d1d7512faa1cf96710a49c23c8
 y
 Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
+w
+Gapp/src/main/java/com/example/ex_motricite/DynamicExerciseActivity.java,e\b\ebc50c6f9fe65b5db6ab0e4c9f7bca4816cd8483

@@ -64,7 +64,7 @@ public class DynamicExerciseActivity extends CameraActivity {
     /**
      * The countdown timer display.
      */
-    TextView countdownText;
+    TextView tvCountdownText;
     /**
      * The camera view.
      */
@@ -184,7 +184,7 @@ public class DynamicExerciseActivity extends CameraActivity {
         operator = myIntent.getStringExtra("Operator");
         tvX = findViewById(R.id.tv_x);
         tvY = findViewById(R.id.tv_y);
-        countdownText = findViewById (R.id.countdown_text);
+        tvCountdownText = findViewById (R.id.countdown_text);
         isInit = false;
         nbFrame = 0;
 
@@ -393,7 +393,7 @@ public class DynamicExerciseActivity extends CameraActivity {
         if (seconds <10) timeLeftText += "0";
         timeLeftText+=seconds;
 
-        countdownText.setText(timeLeftText);
+        tvCountdownText.setText(timeLeftText);
     }
     @Override
     protected List<?extends CameraBridgeViewBase> getCameraViewList(){
