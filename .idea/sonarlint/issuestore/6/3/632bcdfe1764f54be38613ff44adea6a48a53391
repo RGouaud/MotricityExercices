@@ -1,7 +1,11 @@
 
 q
-java:S2095Ú"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(½›§ùÿÿÿÿ8£Ç¶Ú1
+java:S2095ë"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(½›§ùÿÿÿÿ8ô¸¾”Ü1
 j
-java:S2095Ù"MUse try-with-resources or close this "FileInputStream" in a "finally" clause.(èÿŠ:8£Ç¶Ú1
+java:S2095ê"MUse try-with-resources or close this "FileInputStream" in a "finally" clause.(èÿŠ:8õ¸¾”Ü1
+U
+java:S2589ü"7Remove this expression which always evaluates to "true"(Ì·“ï8õ¸¾”Ü1
+p
+java:S3776Œ"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¯”†ñ8‹¹¾”Ü1
 q
-java:S4042ä"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(’Ä÷Ëøÿÿÿÿ8“Ç¶Ú1
+java:S4042õ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(’Ä÷Ëøÿÿÿÿ8¨¹¾”Ü1
