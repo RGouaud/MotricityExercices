@@ -87,3 +87,5 @@ v
 Fapp/src/main/java/com/example/ex_motricite/StaticExerciseActivity.java,b\e\be7c2a51117079f4c83049b341e615e12161fadb
 p
 @app/src/main/java/com/example/ex_motricite/SettingsActivity.java,e\f\ef1252fa77ad5e56c4019c20b40e3f4b618a60d1
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

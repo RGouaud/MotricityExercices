@@ -91,3 +91,5 @@ p
 @app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
 s
 Capp/src/main/java/com/example/ex_motricite/FiltersTestActivity.java,7\6\7629751cf06851a8d82e8f8600017d49d21f1075
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
