@@ -372,6 +372,8 @@ public class CrudUserActivity extends AppCompatActivity {
      */
     private void createOperator(OperatorDAO operatorDAO){
         tvNewUser.setText(R.string.create_operator);
+        etBirthdate.setVisibility((View.INVISIBLE));
+        etRemarks.setVisibility(View.INVISIBLE);
         bConfirm.setOnClickListener(v -> {
             String name = etName.getText().toString();
             String firstName = etFirstName.getText().toString();
@@ -397,7 +399,10 @@ public class CrudUserActivity extends AppCompatActivity {
     private void updateOperator(String userId, OperatorDAO operatorDAO){
         // setup display
         tvNewUser.setText(R.string.edit_operator);
+        etBirthdate.setVisibility((View.INVISIBLE));
+        etRemarks.setVisibility(View.INVISIBLE);
         bDelete.setVisibility(View.VISIBLE);
+
 
         //get previous information
         operator = operatorDAO.getOperator(Long.parseLong(userId));
@@ -443,6 +448,8 @@ public class CrudUserActivity extends AppCompatActivity {
     private void readOperator(String userId, OperatorDAO operatorDAO){
         operator = operatorDAO.getOperator(Long.parseLong(userId));
         tvNewUser.setText(R.string.operator);
+        etBirthdate.setVisibility((View.INVISIBLE));
+        etRemarks.setVisibility(View.INVISIBLE);
 
         etName.setText(operator.getName());
         etName.setTextColor(Color.parseColor(WHITE));
