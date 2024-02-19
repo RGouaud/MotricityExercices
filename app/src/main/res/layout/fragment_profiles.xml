@@ -76,6 +76,7 @@
             android:paddingVertical="35dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_AddPatient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add a patient"
@@ -92,7 +93,7 @@
             android:fillViewport="true">
 
             <LinearLayout
-                android:id="@+id/l_listActors"
+                android:id="@+id/l_listPatients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
