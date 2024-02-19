@@ -1,23 +1,23 @@
 package com.example.ex_motricite;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
-import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.SharedPreferences;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +66,7 @@ public class ListTestActivity extends AppCompatActivity {
     /**
      * The layout for the list of test files.
      */
-    private LinearLayout layoutListTest;
+    private LinearLayout llListTest;
     /**
      * The shared preferences object.
      */
@@ -78,13 +78,13 @@ public class ListTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_test);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
-        Button buttonExport = findViewById(R.id.b_exportSelection);
-        Button buttonDeselectAll = findViewById(R.id.b_deselectAll);
-        Button buttonSelectAll = findViewById(R.id.b_selectAll);
-        Button buttonFilters = findViewById(R.id.b_filters);
-        Button buttonDelete = findViewById(R.id.b_deletetests);
-        TextView textView = findViewById(R.id.tv_ListOfTest);
-        layoutListTest = findViewById(R.id.l_listTest);
+        Button bExport = findViewById(R.id.b_exportSelection);
+        Button bDeselectAll = findViewById(R.id.b_deselectAll);
+        Button bSelectAll = findViewById(R.id.b_selectAll);
+        Button bFilters = findViewById(R.id.b_filters);
+        Button bDelete = findViewById(R.id.b_deletetests);
+        TextView tvText = findViewById(R.id.tv_ListOfTest);
+        llListTest = findViewById(R.id.l_listTest);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
 
@@ -93,19 +93,19 @@ public class ListTestActivity extends AppCompatActivity {
         displayAllCSVFiles();
         selectedFiles.clear();
 
-        textView.setOnClickListener(v -> startActivity(new Intent(ListTestActivity.this, BinActivity.class)));
-        buttonSelectAll.setOnClickListener(v -> selectAllFiles());
+        tvText.setOnClickListener(v -> startActivity(new Intent(ListTestActivity.this, BinActivity.class)));
+        bSelectAll.setOnClickListener(v -> selectAllFiles());
 
-        buttonDeselectAll.setOnClickListener(v -> deselectAllFiles());
+        bDeselectAll.setOnClickListener(v -> deselectAllFiles());
 
-        buttonDelete.setOnClickListener(v -> deleteConfirmation());
+        bDelete.setOnClickListener(v -> deleteConfirmation());
 
-        buttonFilters.setOnClickListener(v -> {
+        bFilters.setOnClickListener(v -> {
             Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
 
-        buttonExport.setOnClickListener(v -> {
+        bExport.setOnClickListener(v -> {
 
             exportSelectedFilesByMail();
             Toast.makeText(ListTestActivity.this, "Exported file ", Toast.LENGTH_SHORT).show();
@@ -162,12 +162,12 @@ public class ListTestActivity extends AppCompatActivity {
      */
     private void displayFilesInLayout() {
         // Clear the previous elements in the LinearLayout
-        layoutListTest.removeAllViews();
+        llListTest.removeAllViews();
 
         // Dynamically add items for each file in the list
         for (File file : selectedFiles) {
             Button fileButton = createFileButton(file);
-            layoutListTest.addView(fileButton);
+            llListTest.addView(fileButton);
         }
     }
 
@@ -178,20 +178,20 @@ public class ListTestActivity extends AppCompatActivity {
      * @return The Button object.
      */
     private Button createFileButton(final File file) {
-        Button fileButton = new Button(this);
-        fileButton.setText(file.getName());
-        fileButton.setBackgroundColor(0xFF615321);
+        Button bFileButton = new Button(this);
+        bFileButton.setText(file.getName());
+        bFileButton.setBackgroundColor(0xFF615321);
 
         // Short click to navigate to TestPageActivity
-        fileButton.setOnClickListener(v -> navigateToTestPage(file));
+        bFileButton.setOnClickListener(v -> navigateToTestPage(file));
 
         // Long click for multiple selection
-        fileButton.setOnLongClickListener(v -> {
-            handleLongClick(fileButton, file);
+        bFileButton.setOnLongClickListener(v -> {
+            handleLongClick(bFileButton, file);
             return true;  // Consume the long click
         });
 
-        return fileButton;
+        return bFileButton;
     }
 
     /**
@@ -211,17 +211,17 @@ public class ListTestActivity extends AppCompatActivity {
     /**
      * Handle long-click for multiple file selection.
      *
-     * @param fileButton The Button associated with the file.
+     * @param bFileButton The Button associated with the file.
      * @param file       The CSV file.
      */
-    private void handleLongClick(Button fileButton, File file) {
+    private void handleLongClick(Button bFileButton, File file) {
         // Manage multiple selection here
         if (selectedFiles.contains(file)) {
             selectedFiles.remove(file);
-            fileButton.setBackgroundColor(0xFF615321);
+            bFileButton.setBackgroundColor(0xFF615321);
         } else {
             selectedFiles.add(file);
-            fileButton.setBackgroundColor(0xFFFAD552);
+            bFileButton.setBackgroundColor(0xFFFAD552);
         }
     }
 
@@ -267,14 +267,14 @@ public class ListTestActivity extends AppCompatActivity {
      */
     private void updateButtonsState(boolean isChecked) {
         // Go through all the ToggleButtons in the layout and update their state
-        for (int i = 0; i < layoutListTest.getChildCount(); i++) {
-            View view = layoutListTest.getChildAt(i);
+        for (int i = 0; i < llListTest.getChildCount(); i++) {
+            View view = llListTest.getChildAt(i);
             if (view instanceof Button) {
                 Button fileButton = (Button) view;
                 if (isChecked) {
-                    fileButton.setBackgroundColor(0xFFFAD552);
+                    fileButton.setBackgroundColor(0xFFFAD552); // Light brown
                 } else {
-                    fileButton.setBackgroundColor(0xFF615321);
+                    fileButton.setBackgroundColor(0xFF615321); // Dark brown
                 }
             }
         }
@@ -381,6 +381,4 @@ public class ListTestActivity extends AppCompatActivity {
         dialog = builder.create();
         dialog.show();
     }
-
-
 }
