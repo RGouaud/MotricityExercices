@@ -53,7 +53,7 @@ public class OperatorDAO {
     public Operator getOperator(long idOperator){
         Operator anOperator = null;
         Cursor curseur;
-        curseur = accesBD.getReadableDatabase().rawQuery("select * from operator where idOperator="+idOperator+";",null);
+        curseur = accesBD.getReadableDatabase().rawQuery("select * from Operator where idOperator="+idOperator+";",null);
         if (curseur.getCount() > 0) {
             curseur.moveToFirst();
             anOperator = new Operator(idOperator, curseur.getString(1),curseur.getString(2));
@@ -71,7 +71,7 @@ public class OperatorDAO {
         ContentValues values = new ContentValues();
         values.put("name", operator.getName());
         values.put("firstName", operator.getFirstName());
-        idOperator = accesBD.getWritableDatabase().insert("operator", null, values);
+        idOperator = accesBD.getWritableDatabase().insert("Operator", null, values);
         accesBD.close();
         return idOperator;
     }
@@ -82,7 +82,7 @@ public class OperatorDAO {
      * @param operator Operator to be deleted.
      */
     public void delOperator(Operator operator){
-        accesBD.getWritableDatabase().execSQL("delete from operator where idOperator="+operator.getId()+";");
+        accesBD.getWritableDatabase().execSQL("delete from Operator where idOperator="+operator.getId()+";");
         accesBD.close();
     }
 
@@ -93,7 +93,7 @@ public class OperatorDAO {
      */
     public ArrayList<Operator> getOperators(){
         Cursor curseur;
-        String req = "select * from operator;";
+        String req = "select * from Operator;";
         curseur = accesBD.getReadableDatabase().rawQuery(req,null);
         return cursorToOperatorArrayList(curseur);
     }
@@ -104,7 +104,7 @@ public class OperatorDAO {
      * @param operator Operator to be updated.
      */
     public void updateOperator(Operator operator) {
-        accesBD.getWritableDatabase().execSQL("UPDATE operator SET " +
+        accesBD.getWritableDatabase().execSQL("UPDATE Operator SET " +
                 "name='" + operator.getName() + "', " +
                 "firstName='" + operator.getFirstName() + "' " +  // Correction : Suppression de la virgule ici
                 "WHERE idOperator=" + operator.getId() + ";");

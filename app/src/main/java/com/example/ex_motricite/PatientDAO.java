@@ -72,7 +72,7 @@ public class PatientDAO {
         values.put("firstName", patient.getFirstName());
         values.put("birthDate", patient.getBirthDate());
         values.put("remarks", patient.getRemarks());
-        idPatient = bdAccess.getWritableDatabase().insert("patient", null, values);
+        idPatient = bdAccess.getWritableDatabase().insert("Patient", null, values);
         bdAccess.close();
         return idPatient;
     }

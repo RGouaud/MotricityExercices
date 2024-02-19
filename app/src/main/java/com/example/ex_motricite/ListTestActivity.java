@@ -58,6 +58,7 @@ import java.util.List;
  */
 public class ListTestActivity extends AppCompatActivity {
 
+    private final List<File> allFiles = new ArrayList<>();
     // You can choose any number code here
     /**
      * The List of selected files.
@@ -101,7 +102,7 @@ public class ListTestActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(v -> deleteConfirmation());
 
         buttonFilters.setOnClickListener(v -> {
-            Intent intent = new Intent(ListTestActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(ListTestActivity.this, FiltersTestActivity.class);
             startActivity(intent);
         });
 
@@ -114,7 +115,7 @@ public class ListTestActivity extends AppCompatActivity {
     }
 
     private void deleteSelection(){
-        TestDAO testDAO = new TestDAO(this);
+        DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
         File binDirectory = new File(getFilesDir(), "bin_directory");
         if (!binDirectory.exists())
         {
@@ -126,8 +127,10 @@ public class ListTestActivity extends AppCompatActivity {
             File destFile = moveFile(file,binDirectory);
             SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
-            Test testBd = new Test(destFile.getAbsolutePath(),s.format(date));
-            testDAO.addTest(testBd);
+
+            DeletedTest testBd = new DeletedTest(destFile.getAbsolutePath(),s.format(date));
+            deletedTestDAO.addTest(testBd);
+            allFiles.remove(file);
         }
         displayAllCSVFiles();
     }
@@ -135,22 +138,35 @@ public class ListTestActivity extends AppCompatActivity {
      * Display all CSV files in the internal storage directory.
      */
     private void displayAllCSVFiles() {
-        // Get directory from internal storage
-        File internalStorageDir = getFilesDir();
 
-        // List all files in directory
-        File[] files = internalStorageDir.listFiles();
-
-        // Add all CSV files to the list of selected files
-        selectedFiles.clear();
-
-        if (files != null) {
-            for (File file : files) {
-                // Check if the file is a CSV file
-                if (file.isFile() && file.getName().endsWith(".csv")) {
-                    selectedFiles.add(file);
+        Intent myIntent = getIntent();
+        if (myIntent.hasExtra("csvList")) {
+            for (String filePath : myIntent.getStringArrayListExtra("csvList")) {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    allFiles.add(file);
                 }
             }
+        }
+        else {
+            // Get directory from internal storage
+            File internalStorageDir = getFilesDir();
+
+            // List all files in directory
+            File[] files = internalStorageDir.listFiles();
+
+            // Add all CSV files to the list of selected files
+            allFiles.clear();
+
+            if (files != null) {
+                for (File file : files) {
+                    // Check if the file is a CSV file
+                    if (file.isFile() && file.getName().endsWith(".csv")) {
+                        allFiles.add(file);
+                    }
+                }
+            }
+
         }
 
         // Show files in layout
@@ -165,7 +181,7 @@ public class ListTestActivity extends AppCompatActivity {
         layoutListTest.removeAllViews();
 
         // Dynamically add items for each file in the list
-        for (File file : selectedFiles) {
+        for (File file : allFiles) {
             Button fileButton = createFileButton(file);
             layoutListTest.addView(fileButton);
         }
@@ -229,17 +245,12 @@ public class ListTestActivity extends AppCompatActivity {
      * Select all CSV files in the internal storage directory.
      */
     private void selectAllFiles() {
-        // Get directory from internal storage
-        File internalStorageDir = getFilesDir();
-
-        // List all files in directory
-        File[] files = internalStorageDir.listFiles();
 
         // Empty the list of selected files
         selectedFiles.clear();
 
-        if (files != null) {
-            for (File file : files) {
+        if (allFiles != null) {
+            for (File file : allFiles) {
                 // Check if the file is a CSV file
                 if (file.isFile() && file.getName().endsWith(".csv")) {
                     // Add the file to the list of selected files
@@ -330,6 +341,12 @@ public class ListTestActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Moves a file to a specific directory.
+     * @param sourceFile
+     * @param destDirectory
+     * @return The destination file.
+     */
     final File moveFile(File sourceFile , File destDirectory) {
 
         // Create the destination repository if it doesn't exist

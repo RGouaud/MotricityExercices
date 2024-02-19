@@ -108,17 +108,20 @@ public class CSVFile {
      public void save() {
         //retrieving the date as YYYY_MM_DD_HH_MM
         Calendar rightNow = Calendar.getInstance();
-        String date = rightNow.get(Calendar.YEAR) + "_"
-                + (rightNow.get(Calendar.MONTH) + 1) + "_"
+        String date = rightNow.get(Calendar.YEAR) + "-"
+                + (rightNow.get(Calendar.MONTH) + 1) + "-"
                 + rightNow.get(Calendar.DAY_OF_MONTH) + "_"
-                + rightNow.get(Calendar.HOUR) + "_"
-                + rightNow.get(Calendar.MINUTE) + "_"
+                + rightNow.get(Calendar.HOUR) + "-"
+                + rightNow.get(Calendar.MINUTE) + "-"
                 + rightNow.get(Calendar.SECOND);
 
         // name of the file save as csv
         String saveFileName = patientName.replaceAll("\\s", "")
+                + "_"
                 + operatorName.replaceAll("\\s", "")
+                + "_"
                 + this.exerciseType
+                + "_"
                 + date + ".csv";
 
 

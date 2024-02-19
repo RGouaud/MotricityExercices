@@ -59,6 +59,9 @@ dependencies {
     testImplementation ("org.junit.jupiter:junit-jupiter-params:5.10.0");
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.10.0")
     androidTestImplementation("org.junit.jupiter:junit-jupiter:5.8.1");
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.4.0")
+
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0");
 
     /*implementation(fileTree(mapOf("dir" to localProperties.getProperty("sdk.dir") + "/platforms/android-34",
