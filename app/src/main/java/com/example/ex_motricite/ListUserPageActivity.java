@@ -1,5 +1,6 @@
 package com.example.ex_motricite;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -51,15 +52,15 @@ public class ListUserPageActivity extends AppCompatActivity {
     /**
      * The Button for adding a user.
      */
-    private Button buttonAdd;
+    private Button bAdd;
     /**
      * The ToggleButton for selecting patients.
      */
-    private ToggleButton toggleButtonPatient;
+    private ToggleButton tbPatient;
     /**
      * The ToggleButton for selecting operators.
      */
-    private ToggleButton toggleButtonOperator;
+    private ToggleButton tbOperator;
     /**
      * The list of patients.
      */
@@ -92,164 +93,60 @@ public class ListUserPageActivity extends AppCompatActivity {
      * @param actor The user (operator or patient) to be displayed.
      */
     private void createActorLayout(Actor actor) {
-        LinearLayout aLayout = createActorsLayout(actor);
+        // Create a new LinearLayout for each actor to display
+        LinearLayout llLayout = new LinearLayout(this);
+
+        // Setup the layout
+        llLayout.setOrientation(LinearLayout.HORIZONTAL);
+        llLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
 
         if (actor instanceof Operator) {
-            configureBackgroundAndPaddingOfActorLayout(aLayout);
-            configureLayoutForCrudDetailsOperator((Operator) actor, aLayout);
+            llLayout.setBackgroundResource(R.drawable.rounded_layout);
+            llLayout.setPadding(20, 50, 0, 50);
+
+            Operator operator = (Operator) actor;
+            llLayout.setOnClickListener(v -> {
+                Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                intent.putExtra("User", USER_TYPE_OPERATOR);
+                intent.putExtra("Crud", "read");
+                intent.putExtra(USER_ID_EXTRA, String.valueOf(operator.getId()));
+                startActivity(intent);
+            });
         }
 
         // Create TextView for name and firstname
-        TextView name = createAndConfigureNameTextView(actor);
-        TextView firstName = createAndConfigureFirstNameTextView(actor);
+        TextView tvName = new TextView(this);
+        TextView tvFirstName = new TextView(this);
+
+        // Setup TextViews
+        tvName.setText(getString(R.string.name_format, actor.getName()));
+        tvName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
+
+        tvFirstName.setText(getString(R.string.first_name_format, actor.getFirstName()));
+        tvFirstName.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
+
+        tvName.setLayoutParams(new LinearLayout.LayoutParams(
+                0, // width
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                2f)); // weight
+
+        tvFirstName.setLayoutParams(new LinearLayout.LayoutParams(
+                0, // width
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                2f)); // weight
 
         // Create and configure ImageButtons
-        ImageButton boutonModify = createAndConfigureModifyButton(actor);
+        ImageButton ibEdit = new ImageButton(this);
+        ibEdit.setImageResource(android.R.drawable.ic_menu_set_as);
+        ibEdit.setBackgroundColor(Color.parseColor("#00000000"));
 
-        // Setup spaces between layouts
-        Space space = setupSpaceBetweenLayouts();
-
-        // Add TextView to LinearLayout
-        addElementsToActorLayout(aLayout, name, firstName, boutonModify);
-
-        //Creation of birthdate for patient
-        if (actor instanceof Patient) {
-            configurePatientLayout((Patient) actor, aLayout);
-        }
-
-        // Add LinearLayout to sv_list
-        if (actor instanceof Operator) {
-            svList.addView(aLayout);
-        }
-        svList.addView(space);
-    }
-
-    /**
-     * Configures the layout for displaying patient information, including the birth date.
-     *
-     * @param actor   The patient for which the layout is configured
-     * @param aLayout The parent layout where the patient layout will be added
-     */
-    private void configurePatientLayout(Patient actor, LinearLayout aLayout) {
-        //Create a parent layout to assemble the actor layout and the birthdate
-        LinearLayout parentLayout = createParentLayout();
-
-        TextView birthDate = new TextView(this);
-        Patient patient = configureBirthDateTextView(actor, birthDate);
-
-        addElementsToParentLayout(aLayout, parentLayout, birthDate);
-
-        configureParentLayoutForCrudDetailsPatient(parentLayout, patient);
-
-        svList.addView(parentLayout);
-    }
-
-    /**
-     * Configures the parent layout for displaying patient information and sets up the click event
-     * to navigate to the details page when clicked.
-     *
-     * @param parentLayout The parent layout to configure
-     * @param patient      The patient for which the layout is configured
-     */
-    private void configureParentLayoutForCrudDetailsPatient(LinearLayout parentLayout, Patient patient) {
-        parentLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            intent.putExtra("User", USER_TYPE_PATIENT);
-            intent.putExtra("Crud", "read");
-            intent.putExtra(USER_ID_EXTRA, String.valueOf(patient.getId()));
-            startActivity(intent);
-        });
-    }
-
-    /**
-     * Adds child views to the parent layout.
-     *
-     * @param aLayout   The actor layout to be added as a child
-     * @param parentLayout The parent layout to which child views are added
-     * @param birthDate    The TextView representing the birth date to be added as a child
-     */
-    private static void addElementsToParentLayout(LinearLayout aLayout, LinearLayout parentLayout, TextView birthDate) {
-        parentLayout.addView(aLayout);
-        parentLayout.addView(birthDate);
-    }
-
-    /**
-     * Configures the TextView for displaying the birth date of a patient.
-     *
-     * @param actor      The patient for which the birth date TextView is configured
-     * @param birthDate  The TextView representing the birth date
-     * @return           The patient object
-     */
-    @NonNull
-    private Patient configureBirthDateTextView(Patient actor, TextView birthDate) {
-        Patient patient = actor;
-        birthDate.setText(getString(R.string.birthdate_format, patient.getBirthDate()));
-        birthDate.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
-        birthDate.setPadding(0, 20, 0, 0);
-        return patient;
-    }
-
-    /**
-     * Creates and configures the parent layout for displaying patient information.
-     *
-     * @return The configured parent layout
-     */
-    @NonNull
-    private LinearLayout createParentLayout() {
-        LinearLayout parentLayout = new LinearLayout(this);
-        parentLayout.setOrientation(LinearLayout.VERTICAL);
-        configureBackgroundAndPaddingOfActorLayout(parentLayout);
-        parentLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        return parentLayout;
-    }
-
-    /**
-     * Adds TextView, name, and modify button to the actor layout.
-     *
-     * @param aLayout     The actor layout to which child views are added
-     * @param name        The TextView representing the name
-     * @param firstName   The TextView representing the first name
-     * @param boutonModify The ImageButton for modifying
-     */
-    private static void addElementsToActorLayout(LinearLayout aLayout, TextView name, TextView firstName, ImageButton boutonModify) {
-        aLayout.addView(name);
-        aLayout.addView(firstName);
-        aLayout.addView(boutonModify);
-    }
-
-    /**
-     * Creates a space between layouts.
-     *
-     * @return The space
-     */
-    @NonNull
-    private Space setupSpaceBetweenLayouts() {
-        Space space = new Space(this);
-        space.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                16));
-        return space;
-    }
-
-    /**
-     * Creates and configures the modify button.
-     *
-     * @param actor The actor for which the modify button is created
-     * @return      The configured modify button
-     */
-    @NonNull
-    private ImageButton createAndConfigureModifyButton(Actor actor) {
-        ImageButton boutonModify = new ImageButton(this);
-        boutonModify.setImageResource(android.R.drawable.ic_menu_set_as);
-        boutonModify.setBackgroundColor(Color.parseColor("#00000000"));
-        boutonModify.setContentDescription("navigate to modify" + actor.getName());
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(50, 50);
-        boutonModify.setLayoutParams(params);
+        ibEdit.setLayoutParams(params);
 
         long actorId = actor.getId();
-        boutonModify.setOnClickListener(v -> {
+        ibEdit.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
             intent.putExtra("User", getActorTypeString(actor));
             intent.putExtra("Crud", "update");
@@ -277,70 +174,46 @@ public class ListUserPageActivity extends AppCompatActivity {
         return firstName;
     }
 
-    /**
-     * Creates and configures the TextView for the name.
-     *
-     * @param actor The actor for which the name TextView is created
-     * @return      The configured name TextView
-     */
-    @NonNull
-    private TextView createAndConfigureNameTextView(Actor actor) {
-        TextView name = new TextView(this);
-        name.setText(getString(R.string.name_format, actor.getName()));
-        name.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
-        name.setLayoutParams(new LinearLayout.LayoutParams(
-                0, // width
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                2f)); // weight
-        return name;
-    }
+        // Add TextView to LinearLayout
+        llLayout.addView(tvName);
+        llLayout.addView(tvFirstName);
+        llLayout.addView(ibEdit);
 
-    /**
-     * Configures the layout for displaying operator details and sets up the click event
-     * to navigate to the details page when clicked.
-     *
-     * @param actor   The operator for which the layout is configured
-     * @param aLayout The layout to configure
-     */
-    private void configureLayoutForCrudDetailsOperator(Operator actor, LinearLayout aLayout) {
-        Operator operator = actor;
-        aLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            intent.putExtra("User", USER_TYPE_OPERATOR);
-            intent.putExtra("Crud", "read");
-            intent.putExtra(USER_ID_EXTRA, String.valueOf(operator.getId()));
-            startActivity(intent);
-        });
-    }
+        //Creation of birthdate for patient
+        if (actor instanceof Patient) {
+            LinearLayout llParentLayout = new LinearLayout(this);
+            llParentLayout.setOrientation(LinearLayout.VERTICAL);
+            llParentLayout.setBackgroundResource(R.drawable.rounded_layout);
+            llParentLayout.setPadding(20, 50, 0, 50);
+            llParentLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
 
-    /**
-     * Configures the background and padding of the actor layout.
-     *
-     * @param aLayout The actor layout to configure
-     */
-    private static void configureBackgroundAndPaddingOfActorLayout(LinearLayout aLayout) {
-        aLayout.setBackgroundResource(R.drawable.rounded_layout);
-        aLayout.setPadding(20, 50, 0, 50);
-    }
+            TextView birthDate = new TextView(this);
+            Patient patient = (Patient) actor;
+            birthDate.setText(getString(R.string.birthdate_format, patient.getBirthDate()));
+            birthDate.setTextColor(Color.parseColor(WHITE_COLOR_HEX));
+            birthDate.setPadding(0, 20, 0, 0);
 
-    /**
-     * Creates the layout for an actor.
-     *
-     * @param actor The actor for which the layout is created
-     * @return      The layout created for the actor
-     */
-    @NonNull
-    private LinearLayout createActorsLayout(Actor actor) {
-        // Create a new LinearLayout for each actor to display
-        LinearLayout aLayout = new LinearLayout(this);
+            llParentLayout.addView(llLayout);
+            llParentLayout.addView(birthDate);
 
-        // Setup the layout
-        aLayout.setOrientation(LinearLayout.HORIZONTAL);
-        aLayout.setContentDescription("navigate to details of " + actor.getName() );
-        aLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        return aLayout;
+            llParentLayout.setOnClickListener(v -> {
+                Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
+                intent.putExtra("User", USER_TYPE_PATIENT);
+                intent.putExtra("Crud", "read");
+                intent.putExtra(USER_ID_EXTRA, String.valueOf(patient.getId()));
+                startActivity(intent);
+            });
+
+            svList.addView(llParentLayout);
+        }
+
+        // Add LinearLayout to sv_list
+        if (actor instanceof Operator) {
+            svList.addView(llLayout);
+        }
+        svList.addView(space);
     }
 
     /**
@@ -401,15 +274,16 @@ public class ListUserPageActivity extends AppCompatActivity {
      */
     private void initializeViews() {
         svList = findViewById(R.id.sv_list);
-        buttonAdd = findViewById(R.id.b_Add);
-        toggleButtonPatient = findViewById(R.id.b_TogglePatient);
-        toggleButtonOperator = findViewById(R.id.b_ToggleOperator);
+        bAdd = findViewById(R.id.b_Add);
+        tbPatient = findViewById(R.id.b_TogglePatient);
+        tbOperator = findViewById(R.id.b_ToggleOperator);
 
     }
 
     /**
      * Set the screen orientation to portrait mode.
      */
+    @SuppressLint("SourceLockedOrientationActivity")
     private void setOrientationLock() {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -429,46 +303,46 @@ public class ListUserPageActivity extends AppCompatActivity {
      * Set the click listeners for the buttons.
      */
     private void setButtonClickListeners() {
-        buttonAdd.setOnClickListener(v -> {
+        bAdd.setOnClickListener(v -> {
             Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-            String userType = toggleButtonPatient.isChecked() ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
+            String userType = tbPatient.isChecked() ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
             intent.putExtra("User", userType);
             intent.putExtra("Crud", "create");
             intent.putExtra(USER_ID_EXTRA, "");
             startActivity(intent);
         });
 
-        toggleButtonPatient.setOnClickListener(v -> handleToggleButtonClick(toggleButtonPatient, toggleButtonOperator, R.string.add_a_patient, patients));
-        toggleButtonOperator.setOnClickListener(v -> handleToggleButtonClick(toggleButtonOperator, toggleButtonPatient, R.string.add_a_operator, operators));
+        tbPatient.setOnClickListener(v -> handleToggleButtonClick(tbPatient, tbOperator, R.string.add_a_patient, patients));
+        tbOperator.setOnClickListener(v -> handleToggleButtonClick(tbOperator, tbPatient, R.string.add_a_operator, operators));
     }
 
     /**
      * Handle the click on a toggle button.
      *
      * @param clickedButton     The button that was clicked.
-     * @param otherButton       The other button.
+     * @param tbOtherButton       The other button.
      * @param buttonTextResource The text resource to display on the button.
      * @param actors            The list of actors to display.
      */
-    private void handleToggleButtonClick(ToggleButton clickedButton, ToggleButton otherButton, int buttonTextResource, ArrayList<? extends Actor> actors) {
+    private void handleToggleButtonClick(ToggleButton clickedButton, ToggleButton tbOtherButton, int buttonTextResource, ArrayList<? extends Actor> actors) {
         if (clickedButton.isChecked()) {
-            otherButton.setChecked(false);
-            buttonAdd.setText(buttonTextResource);
+            tbOtherButton.setChecked(false);
+            bAdd.setText(buttonTextResource);
             svList.removeAllViews();
             displayActors(actors);
-            buttonAdd.setOnClickListener(v1 -> {
+            bAdd.setOnClickListener(v1 -> {
                 Intent intent = new Intent(ListUserPageActivity.this, CrudUserActivity.class);
-                String userType = clickedButton == toggleButtonPatient ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
+                String userType = clickedButton == tbPatient ? USER_TYPE_PATIENT : USER_TYPE_OPERATOR;
                 intent.putExtra("User", userType);
                 intent.putExtra("Crud", "create");
                 startActivity(intent);
             });
         } else {
-            if (!otherButton.isChecked()) {
+            if (!tbOtherButton.isChecked()) {
                 clickedButton.setChecked(true);
-                buttonAdd.setText(buttonTextResource);
+                bAdd.setText(buttonTextResource);
             } else {
-                otherButton.setChecked(true);
+                tbOtherButton.setChecked(true);
             }
         }
     }

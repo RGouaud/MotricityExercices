@@ -52,7 +52,7 @@ public class BinActivity extends AppCompatActivity {
     /**
      * The layout for the list of deleted tests.
      */
-    private LinearLayout layoutListTest;
+    private LinearLayout llListTest;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -61,12 +61,12 @@ public class BinActivity extends AppCompatActivity {
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
 
-    Button buttonRestore = findViewById(R.id.b_restore);
-    Button buttonDelete = findViewById(R.id.b_deleteTest);
-    Button buttonDeselectAll = findViewById(R.id.b_deselectAll);
-    Button buttonSelectAll = findViewById(R.id.b_selectAll);
-    Button buttonFilters = findViewById(R.id.b_filters);
-    layoutListTest = findViewById(R.id.l_listTest);
+    Button bRestore = findViewById(R.id.b_restore);
+    Button bDelete = findViewById(R.id.b_deleteTest);
+    Button bDeselectAll = findViewById(R.id.b_deselectAll);
+    Button bSelectAll = findViewById(R.id.b_selectAll);
+    Button bFilters = findViewById(R.id.b_filters);
+    llListTest = findViewById(R.id.l_listTest);
     DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
 
     try {
@@ -79,18 +79,18 @@ public class BinActivity extends AppCompatActivity {
     displayAllTests();
     selectedTests.clear();
 
-    buttonSelectAll.setOnClickListener(v -> selectAllTests());
+    bSelectAll.setOnClickListener(v -> selectAllTests());
 
-    buttonDeselectAll.setOnClickListener(v -> deselectAllTests());
+    bDeselectAll.setOnClickListener(v -> deselectAllTests());
 
-    buttonFilters.setOnClickListener(v -> {
+    bFilters.setOnClickListener(v -> {
         Intent intent = new Intent(BinActivity.this, SettingsActivity.class);
         startActivity(intent);
     });
 
-    buttonDelete.setOnClickListener(v -> deleteConfirmation());
+    bDelete.setOnClickListener(v -> deleteConfirmation());
 
-    buttonRestore.setOnClickListener(v -> restoreSelectedTest());
+    bRestore.setOnClickListener(v -> restoreSelectedTest());
 }
     /**
      * Deletes permanently the selected tests.
@@ -136,12 +136,12 @@ public class BinActivity extends AppCompatActivity {
      */
     private void displayFilesInLayout() {
     // Clear the previous elements in the LinearLayout
-    layoutListTest.removeAllViews();
+    llListTest.removeAllViews();
 
     // Dynamically add items for each file in the list
     for (DeletedTest test : selectedTests) {
-        Button testButton = createTestButton(test);
-        layoutListTest.addView(testButton);
+        Button bTest = createTestButton(test);
+        llListTest.addView(bTest);
     }
 }
 
@@ -152,18 +152,19 @@ public class BinActivity extends AppCompatActivity {
      * @return The button for the test.
      */
     private Button createTestButton(final DeletedTest test){
-    Button fileButton = new Button(this);
-    fileButton.setText(test.getSuppressionDate());
-    fileButton.setBackgroundColor(0xFF615321);
+    Button bFile = new Button(this);
+    bFile.setText(test.getSuppressionDate());
+    bFile.setBackgroundColor(0xFF615321);
 
     // Short click to navigate to TestPageActivity
 
     // Long click for multiple selection
-    fileButton.setOnClickListener(v -> {
-        handleClick(fileButton, test);
+    bFile.setOnLongClickListener(v -> {
+        handleLongClick(bFile, test);
+        return true;  // Consume the long click
     });
 
-    return fileButton;
+    return bFile;
 }
 
     /**
@@ -172,16 +173,14 @@ public class BinActivity extends AppCompatActivity {
      * @param fileButton The button representing the test.
      * @param test       The test associated with the button.
      */
-
-
-    private void handleClick(Button fileButton, DeletedTest test){
+    private void handleLongClick (Button bFile, DeletedTest test){
     // Manage multiple selection here
     if (selectedTests.contains(test)) {
         selectedTests.remove(test);
-        fileButton.setBackgroundColor(0xFF615321);
+        bFile.setBackgroundColor(0xFF615321);
     } else {
         selectedTests.add(test);
-        fileButton.setBackgroundColor(0xFFFAD552);
+        bFile.setBackgroundColor(0xFFFAD552);
     }
 }
 
@@ -213,8 +212,8 @@ public class BinActivity extends AppCompatActivity {
      */
     private void updateButtonsState ( boolean isChecked){
     // Go through all the ToggleButtons in the layout and update their state
-    for (int i = 0; i < layoutListTest.getChildCount(); i++) {
-        View view = layoutListTest.getChildAt(i);
+    for (int i = 0; i < llListTest.getChildCount(); i++) {
+        View view = llListTest.getChildAt(i);
         if (view instanceof Button) {
             Button fileButton = (Button) view;
                 if (isChecked) {

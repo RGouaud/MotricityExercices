@@ -65,3 +65,11 @@ y
 Iapp/src/androidTest/java/com/example/ex_motricite/DeletedTestDAOTest.java,f\7\f7f06fb0de30c12ef304145bf633001d32368929
 k
 ;app/src/main/java/com/example/ex_motricite/DeletedTest.java,0\6\0608d94f69c95e17dd576ca16fc2811c4ff85569
+t
+Dapp/src/main/java/com/example/ex_motricite/ListUserPageActivity.java,6\9\690a2f8c07cb1da82d961d2142b42b25081da824
+p
+@app/src/main/java/com/example/ex_motricite/UserPageActivity.java,4\d\4d0f3973d5aa643882b3c59b2eaa6159bb5d505a
+k
+;app/src/main/java/com/example/ex_motricite/CordsSample.java,f\c\fc1b164e452c40d1d7512faa1cf96710a49c23c8
+y
+Iapp/src/main/java/com/example/ex_motricite/ExercisesSettingsActivity.java,7\6\769f1ccbc241ef5410f40cd42603c3df881bbc53
