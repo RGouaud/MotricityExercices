@@ -7,6 +7,7 @@
     android:background="@color/black">
 
     <LinearLayout
+        android:id="@+id/ll_profiles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,54 +21,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:padding="20dp"
                 android:text="Exercises"
                 android:textColor="@color/white"
-                android:textSize="36sp"
-                android:padding="20dp"/>
+                android:textSize="36sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="5"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="5dp"
                         android:text="Patient"
-                        android:textSize="25sp"
                         android:textColor="@color/white"
-                        android:padding="5dp"/>
+                        android:textSize="25sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:background="#FAD552"/>
+                        android:background="#FAD552" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ll_operator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="5"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="5dp"
                         android:text="Operator"
-                        android:textSize="25sp"
                         android:textColor="@color/white"
-                        android:padding="5dp"/>
+                        android:textSize="25sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:background="#575653"/>
+                        android:background="#575653" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,13 +88,13 @@
                 android:id="@+id/b_AddPatient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add a patient"
-                android:textColor="@color/black"
-                android:textAllCaps="false"
-                android:textSize="18sp"
                 android:background="@drawable/yellow_roundable_button"
-                />
+                android:text="Add a patient"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
