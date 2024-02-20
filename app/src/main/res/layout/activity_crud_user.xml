@@ -1,118 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrudUserActivity">
+    tools:context=".CrudUserActivity"
+    android:background="@color/black">
+
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <include
-            layout="@layout/header_layout"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"/>
+            android:layout_height="10dp"/>
 
         <LinearLayout
             android:id="@+id/ll_crud"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#282424"
-            android:orientation="vertical">
-
+            android:background="@drawable/rounded_gray_box"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/x_leave_the_current_window"/>
             <TextView
                 android:id="@+id/tv_newuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/create_patient"
                 android:textColor="#ffffff"
-                android:textSize="45sp"
-                tools:ignore="NestedWeights" />
-
-
-            <EditText
-                android:id="@+id/et_name"
+                android:textSize="30sp"
+                android:paddingBottom="20dp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_rounded"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:hint="@string/hint_name"
-                android:textColorHint="@color/black"
-                android:inputType="text"
-                android:autofillHints="name" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1" />
-
-            <EditText
-                android:id="@+id/et_firstname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_rounded"
-                android:padding="10dp"
-                android:hint="@string/hint_first_name"
-                android:textColorHint="@color/black"
-
-                android:textColor="@color/black"
-                android:inputType="text"
-                android:autofillHints="name" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1" />
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textSize="19sp"
+                        android:textColor="@color/white"
+                        android:paddingHorizontal="10dp"/>
+                <EditText
+                   android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="name"
+                    android:hint="@string/hint_name"
+                    android:inputType="text"
+                    android:textSize="15sp"
+                    android:padding="10dp"
+                    android:textColor="#A0A0A0"
+                    android:textColorHint="#A0A0A0" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Firstname"
+                        android:textSize="19sp"
+                        android:textColor="@color/white"
+                        android:paddingHorizontal="10dp"/>
+                <EditText
+                    android:id="@+id/et_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="name"
+                    android:hint="@string/hint_first_name"
+                    android:paddingHorizontal="10dp"
+                    android:textSize="15sp"
+                    android:inputType="text"
+                    android:textColor="#A0A0A0"
+                    android:textColorHint="#A0A0A0" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Birthday"
+                        android:textSize="19sp"
+                        android:textColor="@color/white"
+                        android:paddingHorizontal="10dp"/>
 
             <EditText
                 android:id="@+id/et_birthdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                android:background="@drawable/edit_text_rounded"
-                android:padding="10dp"
-                android:textColor="@color/black"
                 android:hint="@string/hint_birth_date"
                 android:inputType="date"
-                android:autofillHints="" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1" />
+                android:paddingHorizontal="10dp"
+                android:textSize="15sp"
+                android:textColor="#A0A0A0"
+                android:textColorHint="#A0A0A0" />
+            </LinearLayout>
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/et_remarks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black"
+                android:gravity="left|top"
+                android:padding="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/edit_text_rounded"
+                android:background="@drawable/gray_stroke_rectangle"
                 android:hint="@string/hint_remarks"
                 android:inputType="textMultiLine"
                 android:maxHeight="150dp"
-                android:autofillHints="" />
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
+                android:textSize="15sp"
+                android:textColor="#A0A0A0"
+                android:textColorHint="#A0A0A0" />
 
             <Button
                 android:id="@+id/b_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FAD552"
+                android:layout_margin="30dp"
                 android:text="@string/button_confirm"
                 android:textColor="@color/black" />
 
@@ -123,12 +151,9 @@
                 android:backgroundTint="#FAD552"
                 android:text="@string/button_delete"
                 android:textColor="@color/black"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+
         </LinearLayout>
 
     </LinearLayout>

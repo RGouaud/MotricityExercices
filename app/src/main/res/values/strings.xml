@@ -30,8 +30,8 @@
     <string name="edit_patient">Edit patient</string>
     <string name="check_tests">Check tests</string>
 
-    <string name="hint_first_name">First name</string>
-    <string name="hint_name">Name</string>
+    <string name="hint_first_name">Write a first name</string>
+    <string name="hint_name">Write a name</string>
     <string name="hint_birth_date">Birthday DD/MM/YYYY</string>
     <string name="hint_remarks">Remarks</string>
 

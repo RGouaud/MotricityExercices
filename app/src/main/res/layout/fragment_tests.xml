@@ -27,6 +27,7 @@
                 android:textSize="36sp"
                 android:padding="20dp"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_bin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,6 +42,7 @@
             android:paddingVertical="15dp"
             android:weightSum="9">
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_selectAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select all"
@@ -51,6 +53,7 @@
                 android:layout_weight="3"
                 android:layout_marginHorizontal="5dp"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_unselectAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Unselect all"
@@ -61,6 +64,7 @@
                 android:layout_weight="3"
                 android:layout_marginHorizontal="5dp"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_filters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Filters"
