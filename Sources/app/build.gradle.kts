@@ -64,10 +64,10 @@ dependencies {
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0");
 
-    /*implementation(fileTree(mapOf("dir" to localProperties.getProperty("sdk.dir") + "/platforms/android-34",
+    implementation(fileTree(mapOf("dir" to localProperties.getProperty("sdk.dir") + "/platforms/android-34",
             "include" to listOf("*.aar", "*.jar"),
             "exclude" to listOf("")
-    )))*/
+    )))
 }
 
 sonarqube {

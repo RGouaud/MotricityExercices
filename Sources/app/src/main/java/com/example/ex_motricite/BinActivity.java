@@ -170,8 +170,8 @@ public class BinActivity extends AppCompatActivity {
     /**
      * Handles the click on a test button (add the test to the selected tests list.
      *
-     * @param fileButton The button representing the test.
-     * @param test       The test associated with the button.
+     * @param bFile The button representing the test.
+     * @param test The test associated with the button.
      */
     private void handleLongClick (Button bFile, DeletedTest test){
     // Manage multiple selection here
