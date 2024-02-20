@@ -1,0 +1,374 @@
+@startuml
+class com.example.ex_motricite.CSVFile {
+- List<Double> listX
+- List<Double> listY
+- List<Integer> listNbFrame
+- String exerciseType
+- Integer exerciseTime
+- Integer intervalTime
+- String operatorName
+- String patientName
+- int distance
+- Context context
++ void save()
++ {static} double transformFrameInTime(int,int,int)
+}
+class com.example.ex_motricite.ListUserPageActivity {
+- LinearLayout svList
+- Button bAdd
+- ToggleButton tbPatient
+- ToggleButton tbOperator
+- ArrayList<Patient> patients
+- ArrayList<Operator> operators
+- {static} String USER_TYPE_OPERATOR
+- {static} String USER_TYPE_PATIENT
+- {static} String USER_ID_EXTRA
+- {static} String WHITE_COLOR_HEX
+- void createActorLayout(Actor)
+- String getActorTypeString(Actor)
+- void displayActors(ArrayList<? extends Actor>)
+# void onCreate(Bundle)
+- void initializeViews()
+- void setOrientationLock()
+- void handleDataRetrievalError(String,Exception)
+- void setButtonClickListeners()
+- void handleToggleButtonClick(ToggleButton,ToggleButton,int,ArrayList<? extends Actor>)
+}
+class com.example.ex_motricite.DeletedTestDAO {
+- {static} String BASE
+- {static} int VERSION
+- BdSQLiteOpenHelper accesBd
++ DeletedTest getTest(long)
++ long addTest(DeletedTest)
++ void delTest(DeletedTest)
++ ArrayList<DeletedTest> getAllTests()
+- ArrayList<DeletedTest> cursorToTestArrayList(Cursor)
+}
+class com.example.ex_motricite.CordsSample {
+- String cX
+- String cY
+- String time
++ String getCX()
++ void setCX(String)
++ String getCY()
++ void setCY(String)
++ String getTime()
++ void setTime(String)
++ String toString()
+}
+class com.example.ex_motricite.DateValidator {
+- {static} String REGEX
+- {static} Pattern DATE_PATTERN
++ {static} boolean isValid(String)
+- {static} boolean isLeapYear(int)
++ {static} boolean is30daysMonth(int)
++ {static} boolean februaryValidator(int,int,int)
+}
+class com.example.ex_motricite.ListTestActivity {
+- List<File> allFiles
+- List<File> selectedFiles
+- LinearLayout llListTest
+- SharedPreferences sharedPreferences
+# void onCreate(Bundle)
+- void deleteSelection()
+- void displayAllCSVFiles()
+- void displayFilesInLayout()
+- Button createFileButton(File)
+- void navigateToTestPage(File)
+- void handleLongClick(Button,File)
+- void selectAllFiles()
+- void deselectAllFiles()
+- void updateButtonsState(boolean)
+- void exportSelectedFilesByMail()
+~ File moveFile(File,File)
+~ void deleteConfirmation()
+}
+class com.example.ex_motricite.OperatorDAO {
+- {static} String BASE
+- {static} int VERSION
+- BdSQLiteOpenHelper accesBD
++ Operator getOperator(long)
++ long addOperator(Operator)
++ void delOperator(Operator)
++ ArrayList<Operator> getOperators()
++ void updateOperator(Operator)
+- ArrayList<Operator> cursorToOperatorArrayList(Cursor)
+}
+class com.example.ex_motricite.BinActivity {
+- ArrayList<DeletedTest> tests
+- List<DeletedTest> selectedTests
+- LinearLayout llListTest
+# void onCreate(Bundle)
+- void deleteSelectedTest()
+- void restoreSelectedTest()
+- void displayAllTests()
+- void displayFilesInLayout()
+- Button createTestButton(DeletedTest)
+- void handleLongClick(Button,DeletedTest)
+- void selectAllTests()
+- void deselectAllTests()
+- void updateButtonsState(boolean)
+- void handleDataRetrievalError(Exception)
+~ void moveFile(File,File)
+~ void deleteConfirmation()
+}
+class com.example.ex_motricite.FiltersTestActivity {
+- ArrayList<Patient> patientList
+- ArrayList<Patient> currentPatientList
+- ArrayList<Operator> operatorList
+- ArrayList<Operator> currentOperatorList
+- ArrayList<File> csvList
+- ArrayList<String> filteredCsvList
+- ArrayList<String> selectedOperatorNameList
+- ArrayList<String> selectedPatientNameList
+- LinearLayout layoutListOperator
+- LinearLayout layoutListPatient
+- EditText etDateMax
+- EditText etDateMin
+- CheckBox cbStatic
+- CheckBox cbDynamic
+# void onCreate(Bundle)
+- void createNewLayoutWithActor(Actor,int,LinearLayout,ArrayList<String>)
+- void filterOperator(String)
+- void displayAllOperators()
+- void filterPatient(String)
+- void displayAllPatients()
+~ void getAllCSV()
+- void confirmSelection()
+- boolean isExisting(String,String,String[],String)
+}
+class com.example.ex_motricite.PatientDAO {
+- {static} String BASE
+- {static} int VERSION
+- BdSQLiteOpenHelper bdAccess
++ Patient getPatient(long)
++ long addPatient(Patient)
++ void delPatient(Patient)
++ ArrayList<Patient> getPatients()
++ void updatePatient(Patient)
+- ArrayList<Patient> cursorToPatientArrayList(Cursor)
+}
+class com.example.ex_motricite.CrudUserActivity {
+- Patient patient
+- Operator operator
+- {static} String USER_ID_FIELD
+- {static} String WHITE
+- {static} String COMPLETE_FIELDS_ERROR
+- {static} String UPDATE
+~ OperatorDAO operatorDAO
+~ PatientDAO patientDAO
+~ EditText etRemarks
+~ EditText etBirthdate
+~ EditText etFirstName
+~ EditText etName
+~ TextView tvNewUser
+~ Button bDelete
+~ Button bConfirm
+~ LinearLayout llCrud
+- {static} void showPopup(Context,String)
+# void onCreate(Bundle)
+- void patient(String,String,PatientDAO)
+- void createPatient(PatientDAO)
+- void updatePatient(String,PatientDAO)
+- void readPatient(String,PatientDAO)
+- void operator(String,String,OperatorDAO)
+- void createOperator(OperatorDAO)
+- void updateOperator(String,OperatorDAO)
+- void readOperator(String,OperatorDAO)
+}
+class com.example.ex_motricite.MinMaxFilter {
+- int intMin
+- int intMax
++ CharSequence filter(CharSequence,int,int,Spanned,int,int)
+- boolean isInRange(int,int,int)
+}
+class com.example.ex_motricite.UserPageActivity {
+# void onCreate(Bundle)
+}
+class com.example.ex_motricite.DeletedTest {
+- long id
+- String path
+- String suppressionDate
++ long getId()
++ void setId(long)
++ String getPath()
++ String getSuppressionDate()
++ void setSuppressionDate(String)
++ String toString()
+}
+class com.example.ex_motricite.DynamicExerciseActivity {
+~ TextView tvX
+~ TextView tvY
+~ TextView tvCountdownText
+~ CameraBridgeViewBase cameraBridgeViewBase
+~ Mat prevGray
+~ Mat rgb
+~ Mat currGray
+~ Mat diff
+~ Mat result
+~ Mat output
+~ Mat imageRgb
+~ Mat rgbDisplay
+~ ToneGenerator toneGenerator
+~ boolean isInit
+~ List<MatOfPoint> outlines
+~ CountDownTimer countDownTimer
+~ Button bStart
+~ boolean isRunning
+- long timerLeftInMilliseconds
+- int nbFrame
+- int distance
+- int time
+- int interval
+- String patient
+- String operator
+~ List<Double> listX
+~ List<Double> listY
+~ List<Integer> listNbFrame
+# void onCreate(Bundle)
++ void startStop()
++ void startTimer(int)
++ void stopTimer()
+- void updateTimer()
+# List<? extends CameraBridgeViewBase> getCameraViewList()
+~ void getPermission()
+~ void stockCoordinate(List<Rect>)
+~ void stockTime(int)
+~ void createCSV()
+}
+class com.example.ex_motricite.ExercisesSettingsActivity {
+- Spinner sPatient
+- Spinner sOperator
+- EditText etInterval
+- SeekBar sbInterval
+- ArrayList<Patient> lstPatient
+- ArrayList<Operator> lstOperator
++ void displayActorsOnSpinners(List<? extends Actor>)
+# void onCreate(Bundle)
+}
+class com.example.ex_motricite.TestPageActivity {
+- TextView tvDuration
+- TextView tvOperator
+- TextView tvPatient
+- TextView tvType
+# void onCreate(Bundle)
+- void fillTextView(String)
+}
+abstract class com.example.ex_motricite.Actor {
+# long id
+# String name
+# String firstName
++ String getName()
++ String getFirstName()
++ long getId()
++ void setName(String)
++ void setFirstName(String)
+}
+class com.example.ex_motricite.Patient {
+- String birthDate
+- String remarks
+- {static} String BIRTH_DATE_ERROR
++ String getBirthDate()
++ String getRemarks()
++ void setBirthDate(String)
++ void setRemarks(String)
++ String toString()
+}
+class com.example.ex_motricite.Operator {
++ String toString()
+}
+class com.example.ex_motricite.PopActivity {
+# void onCreate(Bundle)
+}
+class com.example.ex_motricite.SettingsActivity {
+- RadioButton rbEmail
+- RadioButton rbServer
+- EditText etEmail
+- EditText etUrlServer
+- EditText etIdServer
+- EditText etPassword
+- SharedPreferences sharedPreferences
+# void onCreate(Bundle)
+- void onRadioButtonClicked(RadioButton)
+- void loadSettings()
+- void saveSettings(JSONObject)
+}
+class com.example.ex_motricite.StaticExerciseActivity {
+~ TextView tvX
+~ TextView tvY
+~ TextView countdownText
+~ CameraBridgeViewBase cameraBridgeViewBase
+~ Mat prevGray
+~ Mat rgb
+~ Mat currGray
+~ Mat diff
+~ Mat result
+~ Mat output
+~ Mat imageRgb
+~ Mat rgbDisplay
+~ boolean isInit
+~ List<MatOfPoint> outlines
+~ CountDownTimer countDownTimer
+~ Button bStart
+~ boolean isRunning
+- long timerLeftInMilliseconds
+- int nbFrame
+- int distance
+- int time
+- String patient
+- String operator
+~ List<Double> listX
+~ List<Double> listY
+~ List<Integer> listNbFrame
+# void onCreate(Bundle)
++ void startStop()
++ void startTimer()
++ void stopTimer()
+- void updateTimer()
+# List<? extends CameraBridgeViewBase> getCameraViewList()
+~ void getPermission()
+~ void stockCoordinate(List<Rect>)
+~ void stockTime(int)
+~ void createCSV()
+}
+class com.example.ex_motricite.HomePageActivity {
+# void onCreate(Bundle)
+- boolean isOperatorAndPatientExistings()
+}
+class com.example.ex_motricite.BdSQLiteOpenHelper {
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
+}
+class com.example.ex_motricite.GraphicsTestPageActivity {
+- LineChart lineChart
+- Uri fileUri
+# void onCreate(Bundle)
+- void makeGraphic(List<CordsSample>,theme)
+- List<CordsSample> readCordsData()
+}
+enum com.example.ex_motricite.theme {
++  X
++  Y
++  Y_X
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.ListUserPageActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.ListTestActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.BinActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.FiltersTestActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.CrudUserActivity
+android.text.InputFilter <|.. com.example.ex_motricite.MinMaxFilter
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.UserPageActivity
+org.opencv.android.CameraActivity <|-- com.example.ex_motricite.DynamicExerciseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.ExercisesSettingsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.TestPageActivity
+com.example.ex_motricite.Actor <|-- com.example.ex_motricite.Patient
+com.example.ex_motricite.Actor <|-- com.example.ex_motricite.Operator
+android.app.Activity <|-- com.example.ex_motricite.PopActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.SettingsActivity
+org.opencv.android.CameraActivity <|-- com.example.ex_motricite.StaticExerciseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.HomePageActivity
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.ex_motricite.BdSQLiteOpenHelper
+androidx.appcompat.app.AppCompatActivity <|-- com.example.ex_motricite.GraphicsTestPageActivity
+@enduml
