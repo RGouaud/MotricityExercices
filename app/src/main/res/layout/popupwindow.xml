@@ -26,11 +26,11 @@
             android:id="@+id/b_Home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_box_with_stroke"
+            android:background="@drawable/yellow_roundable_button"
             android:text="@string/go_back_home"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

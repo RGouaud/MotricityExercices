@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/gradient_orange_to_pink"
+                android:background="@drawable/yellow_roundable_button"
                 android:text="@string/start"
                 android:textColor="@color/black"
                 tools:layout_editor_absoluteX="167dp"

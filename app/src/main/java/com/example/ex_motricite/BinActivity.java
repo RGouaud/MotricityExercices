@@ -68,7 +68,6 @@ public class BinActivity extends AppCompatActivity {
     Button bDelete = findViewById(R.id.b_deleteSelection_bin);
     Button bDeselectAll = findViewById(R.id.b_unselectAll_bin);
     Button bSelectAll = findViewById(R.id.b_selectAll_bin);
-    Button bFilters = findViewById(R.id.b_filters_bin);
     ivLeave = findViewById(R.id.iv_leave_bin);
     llListTest = findViewById(R.id.l_listTest_bin);
     DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
@@ -91,12 +90,6 @@ public class BinActivity extends AppCompatActivity {
     bSelectAll.setOnClickListener(v -> selectAllTests());
 
     bDeselectAll.setOnClickListener(v -> deselectAllTests());
-
-    bFilters.setOnClickListener(v -> {
-        Intent intent = new Intent(BinActivity.this, FiltersTestActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
-    });
 
     bDelete.setOnClickListener(v -> deleteConfirmation());
 
@@ -187,9 +180,11 @@ public class BinActivity extends AppCompatActivity {
     if (selectedTests.contains(test)) {
         selectedTests.remove(test);
         bFile.setBackgroundColor(0xFF615321);
+        bFile.setTextColor(getColor(R.color.white));
     } else {
         selectedTests.add(test);
         bFile.setBackgroundColor(0xFFFAD552);
+        bFile.setTextColor(getColor(R.color.black));
     }
 }
 
@@ -227,8 +222,11 @@ public class BinActivity extends AppCompatActivity {
             Button fileButton = (Button) view;
                 if (isChecked) {
                     fileButton.setBackgroundColor(0xFFFAD552);
+                    fileButton.setTextColor(getColor(R.color.white));
+
                 } else {
                     fileButton.setBackgroundColor(0xFF615321);
+                    fileButton.setTextColor(getColor(R.color.black));
                 }
             }
         }

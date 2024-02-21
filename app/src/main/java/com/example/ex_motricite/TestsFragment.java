@@ -84,7 +84,6 @@ public class TestsFragment extends Fragment {
         buttonExport.setOnClickListener(v -> {
 
             exportSelectedFilesByMail();
-            Toast.makeText(getActivity(), "Exported file ", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -190,9 +189,11 @@ public class TestsFragment extends Fragment {
         if (selectedFiles.contains(file)) {
             selectedFiles.remove(file);
             bFileButton.setBackgroundColor(0xFF615321);
+            bFileButton.setTextColor(getActivity().getColor(R.color.white));
         } else {
             selectedFiles.add(file);
             bFileButton.setBackgroundColor(0xFFFAD552);
+            bFileButton.setTextColor(getActivity().getColor(R.color.black));
         }
     }
 
@@ -239,8 +240,10 @@ public class TestsFragment extends Fragment {
                 Button fileButton = (Button) view;
                 if (isChecked) {
                     fileButton.setBackgroundColor(0xFFFAD552); // Light brown
+                    getActivity().getColor(R.color.white);
                 } else {
                     fileButton.setBackgroundColor(0xFF615321); // Dark brown
+                    getActivity().getColor(R.color.black);
                 }
             }
         }
@@ -277,7 +280,8 @@ public class TestsFragment extends Fragment {
                 ArrayList<Uri> fileUris = new ArrayList<>();
                 for (File file : selectedFiles) {
                     // Convert each file to Uri and add it to the list
-                    Uri fileUri = FileProvider.getUriForFile(getActivity(), "com.example.myapp.file-provider", file);
+                    Uri fileUri = FileProvider.getUriForFile(getActivity(), "com.example.ex_motricite.file-provider", file);
+                    Log.d("TAG", "exportSelectedFilesByMail: "+fileUri);
                     fileUris.add(fileUri);
                 }
 
@@ -291,6 +295,8 @@ public class TestsFragment extends Fragment {
                     // Handle the case where no messaging app is installed
                     Toast.makeText(getActivity(), "No application installed.", Toast.LENGTH_SHORT).show();
                 }
+
+                Toast.makeText(getActivity(), "Exported file ", Toast.LENGTH_SHORT).show();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -368,7 +374,6 @@ public class TestsFragment extends Fragment {
             File destFile = moveFile(file,binDirectory);
             SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
-
             DeletedTest testBd = new DeletedTest(destFile.getAbsolutePath(),s.format(date));
             deletedTestDAO.addTest(testBd);
             allFiles.remove(file);

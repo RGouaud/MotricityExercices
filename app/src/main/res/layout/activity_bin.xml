@@ -10,102 +10,95 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp">
-
         <LinearLayout
+            android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="10">
-            <ImageView
-                android:id="@+id/iv_leave_bin"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/x_leave_the_current_window"/>
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="Deleted tests"
-                android:textColor="@color/white"
-                android:textSize="36sp" />
+                android:gravity="top"
+                android:orientation="horizontal">
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="15dp"
-            android:weightSum="9">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/b_selectAll_bin"
+                <ImageView
+                    android:id="@+id/iv_leave_bin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/x_leave_the_current_window"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="Deleted tests"
+                    android:textColor="@color/white"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select all"
-                android:textColor="@color/black"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:background="@drawable/yellow_roundable_button"
-                android:layout_weight="3"
-                android:layout_marginHorizontal="5dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/b_unselectAll_bin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unselect all"
-                android:textColor="@color/black"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:background="@drawable/yellow_roundable_button"
-                android:layout_weight="3"
-                android:layout_marginHorizontal="5dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/b_filters_bin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Filters"
-                android:textColor="@color/black"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:background="@drawable/yellow_roundable_button"
-                android:layout_weight="3"
-                android:layout_marginHorizontal="5dp"/>
-        </LinearLayout>
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="15dp"
+                android:weightSum="10"
+                android:layout_weight="1">
 
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/b_selectAll_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/yellow_roundable_button"
+                    android:text="Select all"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-        <LinearLayout
-            android:id="@+id/l_listTest_bin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <!-- Add your buttons dynamically to this LinearLayout -->
-        </LinearLayout>
-    </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom"
-        android:paddingHorizontal="10dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/b_unselectAll_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/yellow_roundable_button"
+                    android:text="Unselect all"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/l_listTest_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingVertical="25dp"
-                android:weightSum="10">
+                android:weightSum="10"
+                android:layout_weight="1">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/b_restore_bin"
@@ -114,7 +107,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="5"
                     android:background="@drawable/yellow_roundable_button"
-                    android:drawableEnd="@android:drawable/ic_menu_set_as"
+                    android:drawableEnd="@drawable/fleche_de_retour"
                     android:drawableTint="@color/black"
                     android:text="Restore"
                     android:textAlignment="center"
@@ -134,6 +127,8 @@
                     android:textColor="#000000" />
                 <!-- x2 -->
             </LinearLayout>
-    </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@
     <item
         android:title="Exercises"
         android:id="@+id/exercises"
-        android:icon="@drawable/stylo_laser"/>
+        android:icon="@drawable/stylo_laser_1"/>
     <item
         android:title="Profiles"
         android:id="@+id/profiles"
