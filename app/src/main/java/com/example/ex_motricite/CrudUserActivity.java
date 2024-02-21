@@ -348,7 +348,7 @@ public class CrudUserActivity extends AppCompatActivity {
         TextView remarks = new TextView(this);
         remarks.setText(R.string.set_remarks);
         remarks.setTextColor(Color.parseColor(WHITE));
-        llCrud.addView(remarks, 10);
+        llCrud.addView(remarks, 8);
 
         bConfirm.setText(R.string.button_edit);
         bConfirm.setOnClickListener(v -> {

@@ -65,7 +65,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
                     android:orientation="vertical"
                     android:padding="10dp"
 
@@ -192,41 +192,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
                     />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:text="@string/test_type_filters"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <CheckBox
-                        android:id="@+id/cb_static"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test_type_filters"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="10"
-                        android:text="@string/Static"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-                    <CheckBox
-                        android:id="@+id/cb_dynamic"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
-                        android:textSize="20sp"
-                        android:textColor="@color/white"
-                        android:text="@string/dynamic"/>
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_static"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:text="@string/Static"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_dynamic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:text="@string/dynamic"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
@@ -235,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
+                android:background="@drawable/gray_rectangle_with_yellow_stroke"
                 android:padding="10dp"
                 >
                 <LinearLayout
@@ -299,7 +304,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/background_light_gray_rounded_and_gradiant_stroke"
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
                     android:padding="10dp"
                     >
                     <LinearLayout

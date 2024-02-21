@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -79,6 +80,11 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
      */
     private Uri fileUri;
 
+    /**
+     * The ImageView for leaving the graphics page.
+     */
+    private ImageView ivLeave;
+
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +108,13 @@ public class GraphicsTestPageActivity extends AppCompatActivity {
 
         ImageButton ibYOverTime = findViewById(R.id.ib_GraphYOverTime);
 
+        ivLeave = findViewById(R.id.iv_leave_graphics);
+        ivLeave.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HomePageActivity.class);
+            intent.putExtra("page", "tests");
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        });
 
 
         List<CordsSample> data ;

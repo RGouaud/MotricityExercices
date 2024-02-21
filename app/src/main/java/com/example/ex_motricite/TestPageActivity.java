@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -52,6 +53,7 @@ public class TestPageActivity extends AppCompatActivity {
      * The TextView for the type of the test.
      */
     private TextView tvType;
+    private ImageView ivLeave;
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,13 @@ public class TestPageActivity extends AppCompatActivity {
         tvOperator = findViewById(R.id.textViewOperator);
         tvPatient = findViewById(R.id.textViewPatient);
         tvType = findViewById(R.id.textViewTestType);
+        ivLeave = findViewById(R.id.iv_leave_test_page);
+        ivLeave.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HomePageActivity.class);
+            intent.putExtra("page", "tests");
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        });
 
         Button buttonViewGraphs = findViewById(R.id.b_viewGraphics);
         fillTextView(filePath);

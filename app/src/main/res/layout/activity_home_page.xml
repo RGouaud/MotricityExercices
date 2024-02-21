@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
         app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
-
+        android:background="#262626"
         app:menu="@menu/menu_bottom_nav" />
     </LinearLayout>
 
