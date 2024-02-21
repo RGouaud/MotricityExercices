@@ -101,11 +101,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <LinearLayout
+                                android:id="@+id/ll_patient_static"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/tv_patient_name"
+                                <Spinner
+                                    android:id="@+id/sp_patient_name_static"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Choose a patient"
@@ -141,11 +142,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <LinearLayout
+                                android:id="@+id/ll_operator_static"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/tv_operator_name"
+                                <Spinner
+                                    android:id="@+id/sp_operator_name_static"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Choose an operator"
@@ -196,7 +198,7 @@
                                 android:orientation="horizontal">
 
                                 <EditText
-                                    android:id="@+id/et_distance"
+                                    android:id="@+id/et_distance_static"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Distance"
@@ -234,7 +236,7 @@
                                 android:orientation="horizontal">
 
                                 <EditText
-                                    android:id="@+id/et_duration"
+                                    android:id="@+id/et_duration_static"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Time"
@@ -265,7 +267,7 @@
                 android:textSize="18sp"
                 />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/b_start_exercise"
+                android:id="@+id/b_start_exercise_static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Start"

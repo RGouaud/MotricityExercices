@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,6 +94,7 @@ public class FiltersTestActivity extends AppCompatActivity {
      */
     private CheckBox cbDynamic;
 
+    private ImageView ivLeave;
 
 
 
@@ -116,6 +118,13 @@ public class FiltersTestActivity extends AppCompatActivity {
         this.layoutListPatient = findViewById(R.id.l_listPatient);
 
         Button bConfirm = findViewById(R.id.b_confirm);
+        ivLeave = findViewById(R.id.iv_leave_filters);
+        ivLeave.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HomePageActivity.class);
+            intent.putExtra("page", "tests");
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        });
 
         bConfirm.setOnClickListener(v -> confirmSelection());
 
@@ -374,9 +383,11 @@ public class FiltersTestActivity extends AppCompatActivity {
                     filteredCsvList.add(file.getAbsolutePath());
                 }
             }
-            Intent intent = new Intent(this, ListTestActivity.class);
+            Intent intent = new Intent(this, HomePageActivity.class);
             intent.putExtra("csvList", filteredCsvList);
+            intent.putExtra("page","tests" );
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         }
     }
     /**

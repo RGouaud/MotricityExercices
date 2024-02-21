@@ -3,6 +3,7 @@
     import android.content.Intent;
     import android.content.pm.ActivityInfo;
     import android.os.Bundle;
+    import android.util.Log;
     import android.widget.ImageButton;
     import android.widget.LinearLayout;
     import android.widget.Toast;
@@ -42,27 +43,16 @@
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
-            ImageButton ibListTest;
             ActivityHomePageBinding binding;
-
-            LinearLayout llPatient;
-            LinearLayout llRhythm;
-            LinearLayout llStatic;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home_page);
             this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            String page = getIntent().getStringExtra("page");
+            binding = ActivityHomePageBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            replaceFragment(new ExercisesFragment());
 
-            /*llStatic = findViewById(R.id.layout_static);
-            llRhythm = findViewById(R.id.layout_rythm);
-            llPatient = findViewById(R.id.layout_patient);
-            ibListTest = findViewById(R.id.ib_ListTest);*/
-
-        binding = ActivityHomePageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        replaceFragment(new ExercisesFragment());
-
-        binding.bottonnav.setOnItemSelectedListener(item -> {
+            binding.bottonnav.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.exercises:
@@ -81,40 +71,61 @@
             }
             return true;
         });
+
+            switchToFragment(page);
+    }
+
+    private void switchToFragment(String page) {
+        Intent intent = getIntent();
+        if (page != null) {
+            switch (page) {
+                case "exerciseDynamic":
+                    final ExercisesSettingsDynamicFragment fragmentDynamic = new ExercisesSettingsDynamicFragment();
+                    if (intent.getStringExtra("exerciseType") != null && intent.getStringExtra("name") != null && intent.getStringExtra("actorType") != null){
+                        final Bundle args = new Bundle();
+                        args.putString("name", intent.getStringExtra("name"));
+                        args.putString("actorType", intent.getStringExtra("actorType"));
+                        fragmentDynamic.setArguments(args);
+                    }
+                    replaceFragment(fragmentDynamic);
+                    break;
+                case "exerciseStatic":
+                    final ExercisesFragment fragmentStatic = new ExercisesFragment();
+                    if (intent.getStringExtra("exerciseType") != null && intent.getStringExtra("name") != null && intent.getStringExtra("actorType") != null){
+                        final Bundle args = new Bundle();
+                        args.putString("name", intent.getStringExtra("name"));
+                        args.putString("actorType", intent.getStringExtra("actorType"));
+                        fragmentStatic.setArguments(args);
+                    }
+                    replaceFragment(new ExercisesFragment());
+                    break;
+                case "profilesPatient":
+                    replaceFragment(new PatientFragment());
+                    break;
+                case "profilesOperator":
+                    replaceFragment(new OperatorFragment());
+                    break;
+                case "tests":
+                    final TestsFragment fragmentTests = new TestsFragment();
+                    if (intent.hasExtra("csvList")) {
+                        final Bundle args = new Bundle();
+                        args.putStringArrayList("actorType", intent.getStringArrayListExtra("actorType"));
+                        fragmentTests.setArguments(args);
+                    }
+                    replaceFragment(new TestsFragment());
+                    break;
+                case "settings":
+                    replaceFragment(new SettingsFragment());
+                    break;
+            }
+        }
     }
         void replaceFragment(Fragment fragment) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frameLayout, fragment);
-            transaction.commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
+                    fragment).commit();
+
         }
 
-        /*layoutStatic = findViewById(R.id.layout_static);
-        layoutRhythm = findViewById(R.id.layout_rythm);
-        layoutPatient = findViewById(R.id.layout_patient);
-        imageButtonListTest = findViewById(R.id.ib_ListTest);
-
-
-            llRhythm.setOnClickListener(v -> {
-                if (isOperatorAndPatientExistings()) {
-                    Toast.makeText(this, "First, you need to create a patient and an operator.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent intent = new Intent(HomePageActivity.this, ExercisesSettingsActivity.class);
-                intent.putExtra("exercise", "rhythm");
-                startActivity(intent);
-            });
-
-            llPatient.setOnClickListener(v -> {
-                Intent intent = new Intent(HomePageActivity.this, ListUserPageActivity.class);
-                startActivity(intent);
-            });
-
-            ibListTest.setOnClickListener(v -> {
-                Intent intent = new Intent(HomePageActivity.this, ListTestActivity.class);
-                startActivity(intent);
-            });
-
-        }*/
 
         private boolean isOperatorAndPatientExistings() {
             OperatorDAO operatorDAO = new OperatorDAO(this);

@@ -91,6 +91,7 @@ public class OperatorFragment extends Fragment {
                 intent.putExtra("Crud", "read");
                 intent.putExtra(USER_ID_EXTRA, String.valueOf(operator.getId()));
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
             });
         }
 
@@ -129,6 +130,7 @@ public class OperatorFragment extends Fragment {
             intent.putExtra("Crud", "update");
             intent.putExtra(USER_ID_EXTRA, String.valueOf(actorId));
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
 
         // Setup spaces between layouts
@@ -178,6 +180,7 @@ public class OperatorFragment extends Fragment {
             intent.putExtra("Crud", "create");
             intent.putExtra(USER_ID_EXTRA, "");
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
 
     }

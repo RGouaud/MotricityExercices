@@ -4,204 +4,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BinActivity">
+    tools:context=".BinActivity"
+    android:background="@color/black">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="10">
+            <ImageView
+                android:id="@+id/iv_leave_bin"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/x_leave_the_current_window"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="List of tests"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:padding="20dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="15dp"
+            android:weightSum="9">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_selectAll_bin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select all"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_unselectAll_bin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unselect all"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_filters_bin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filters"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:background="@drawable/yellow_roundable_button"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/l_listTest_bin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Add your buttons dynamically to this LinearLayout -->
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-        <include
-            layout="@layout/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#2D2D2D"
-            android:orientation="vertical">
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights" />
+        android:gravity="bottom"
+        android:paddingHorizontal="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-
-                <TextView
-                    android:id="@+id/tv_ListOfTest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center|center_vertical"
-                    android:text="Deleted Tests"
-                    android:textColor="#FFFFFF"
-                    android:textSize="48sp" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/b_selectAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@drawable/gradient_orange_to_pink"
-                    android:text="@string/select_all"
-                    android:textAllCaps="false"
-                    android:textColor="#000000" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/b_deselectAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/gradient_orange_to_pink"
-                    android:text="@string/unselect_all"
-                    android:textAllCaps="false"
-                    android:textColor="#000000" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/b_filters"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/filters"
-                    android:textColor="@color/black"
-                    android:textAllCaps="false"
-                    android:background="@drawable/gradient_orange_to_pink"
-                    android:drawableEnd="@android:drawable/ic_menu_set_as"
-                    android:drawableTint="@color/black"
-                    android:paddingHorizontal="10dp"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="30"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:id="@+id/l_listTest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!-- Add your buttons dynamically to this LinearLayout -->
-                </LinearLayout>
-            </ScrollView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="horizontal"
-                android:background="@drawable/gradient_black_to_see_through">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                android:paddingVertical="25dp"
+                android:weightSum="10">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/b_restore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/gradient_orange_to_pink"
+                    android:id="@+id/b_restore_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/yellow_roundable_button"
                     android:drawableEnd="@android:drawable/ic_menu_set_as"
                     android:drawableTint="@color/black"
-                    android:paddingHorizontal="10dp"
                     android:text="Restore"
                     android:textAlignment="center"
                     android:textColor="#000000" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/b_deleteTest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/gradient_orange_to_pink"
-                    android:drawableEnd="@android:drawable/ic_menu_set_as"
+                    android:id="@+id/b_deleteSelection_bin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/yellow_roundable_button"
+                    android:drawableEnd="@drawable/poubelle_de_recyclage__1_"
                     android:drawableTint="@color/black"
-                    android:paddingHorizontal="10dp"
-                    android:text="DELETE"
+                    android:text="Delete"
                     android:textAlignment="center"
                     android:textColor="#000000" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                <!-- x2 -->
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="@android:color/black"
-                />
-
-        </LinearLayout>
-
+    </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

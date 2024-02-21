@@ -113,7 +113,6 @@ public class SettingsFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Settings saved", Toast.LENGTH_SHORT).show();
 
-                getActivity().finish();
 
             } catch (JSONException e) {
                 e.printStackTrace();

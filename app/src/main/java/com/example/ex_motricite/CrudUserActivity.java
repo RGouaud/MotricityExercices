@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -107,6 +108,8 @@ public class CrudUserActivity extends AppCompatActivity {
      * The LinearLayout for CRUD operations.
      */
     LinearLayout llCrud;
+    TextView tvBirthdate;
+    ImageView ivLeave;
 
     /**
      * Displays a popup dialog with an error message.
@@ -141,6 +144,15 @@ public class CrudUserActivity extends AppCompatActivity {
         etFirstName = findViewById(R.id.et_firstname);
         etBirthdate = findViewById(R.id.et_birthdate);
         etRemarks = findViewById(R.id.et_remarks);
+        tvBirthdate = findViewById(R.id.tv_birthdate);
+        ivLeave = findViewById(R.id.iv_leave_crud);
+
+        ivLeave.setOnClickListener(v -> {
+            Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+            intent.putExtra("page", "profilesPatient");
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        });
 
         Intent myIntent = getIntent();
         String user = myIntent.getStringExtra("User");
@@ -209,8 +221,10 @@ public class CrudUserActivity extends AppCompatActivity {
                 if(DateValidator.isValid(birthDate)){//check if birthdate seems to be on the waited format DD/MM/YYYY
                     patient = new Patient(name, firstName, birthDate, remarks);
                     patientDAO.addPatient(patient);
-                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                    Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+                    intent.putExtra("page", "profilesPatient");
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
                 }
                 else{ // error on date
                     showPopup(CrudUserActivity.this, "Type a valid date");
@@ -258,8 +272,10 @@ public class CrudUserActivity extends AppCompatActivity {
                     patient.setBirthDate(birthDate);
                     patient.setRemarks(remarks);
                     patientDAO.updatePatient(patient);
-                    Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                    Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+                    intent.putExtra("page", "profilesPatient");
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
                 } else { // error on date
                     showPopup(CrudUserActivity.this, "Type a valid date");
                 }
@@ -272,8 +288,10 @@ public class CrudUserActivity extends AppCompatActivity {
         bDelete.setOnClickListener(v -> {
             // Check if patient is in an existing test
             patientDAO.delPatient(patient);
-            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+            Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+            intent.putExtra("page", "profilesPatient");
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
     }
 
@@ -339,6 +357,7 @@ public class CrudUserActivity extends AppCompatActivity {
             intent.putExtra("Crud", UPDATE);
             intent.putExtra(USER_ID_FIELD, String.valueOf(patient.getId()));
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
     }
 
@@ -374,6 +393,7 @@ public class CrudUserActivity extends AppCompatActivity {
         tvNewUser.setText(R.string.create_operator);
         etBirthdate.setVisibility((View.INVISIBLE));
         etRemarks.setVisibility(View.INVISIBLE);
+        tvBirthdate.setVisibility(View.INVISIBLE);
         bConfirm.setOnClickListener(v -> {
             String name = etName.getText().toString();
             String firstName = etFirstName.getText().toString();
@@ -381,8 +401,10 @@ public class CrudUserActivity extends AppCompatActivity {
             if(!(name.isEmpty()) && !(firstName.isEmpty())){
                 operator = new Operator(name, firstName);
                 operatorDAO.addOperator(operator);
-                Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+                intent.putExtra("page", "profilesOperator");
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
             }
             else{
                 showPopup(CrudUserActivity.this, COMPLETE_FIELDS_ERROR);
@@ -402,7 +424,7 @@ public class CrudUserActivity extends AppCompatActivity {
         etBirthdate.setVisibility((View.INVISIBLE));
         etRemarks.setVisibility(View.INVISIBLE);
         bDelete.setVisibility(View.VISIBLE);
-
+        tvBirthdate.setVisibility(View.INVISIBLE);
 
         //get previous information
         operator = operatorDAO.getOperator(Long.parseLong(userId));
@@ -421,8 +443,10 @@ public class CrudUserActivity extends AppCompatActivity {
                 operator.setName(name);
                 operator.setFirstName(firstName);
                 operatorDAO.updateOperator(operator);
-                Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+                Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+                intent.putExtra("page", "profilesOperator");
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
             }
 
             else{ // not all obligatory fields are completed
@@ -434,8 +458,10 @@ public class CrudUserActivity extends AppCompatActivity {
         // Check if operator is in an existing test
         bDelete.setOnClickListener(v -> {
             operatorDAO.delOperator(operator);
-            Intent intent = new Intent(CrudUserActivity.this, ListUserPageActivity.class);
+            Intent intent = new Intent(CrudUserActivity.this, HomePageActivity.class);
+            intent.putExtra("page", "profilesOperator");
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
     }
 
@@ -450,6 +476,7 @@ public class CrudUserActivity extends AppCompatActivity {
         tvNewUser.setText(R.string.operator);
         etBirthdate.setVisibility((View.INVISIBLE));
         etRemarks.setVisibility(View.INVISIBLE);
+        tvBirthdate.setVisibility(View.INVISIBLE);
 
         etName.setText(operator.getName());
         etName.setTextColor(Color.parseColor(WHITE));
@@ -482,6 +509,7 @@ public class CrudUserActivity extends AppCompatActivity {
             intent.putExtra("Crud", UPDATE);
             intent.putExtra(USER_ID_FIELD, String.valueOf(operator.getId()));
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         });
     }
 }

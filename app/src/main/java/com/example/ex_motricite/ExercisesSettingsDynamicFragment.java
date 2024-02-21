@@ -11,9 +11,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,11 +35,18 @@ import java.util.ArrayList;
 public class ExercisesSettingsDynamicFragment extends Fragment {
 
     LinearLayout layoutStatic;
+    LinearLayout layoutPatient;
+    LinearLayout layoutOperator;
+    String name;
+    OperatorDAO operatorDAO;
+    PatientDAO patientDAO;
+
+
     /**
      * The spinner for patients.
      */
-    TextView tvPatientName;
-    TextView tvOperatorName;
+    Spinner spPatientName;
+    Spinner spOperatorName;
     private EditText etInterval;
     /**
      * The SeekBar for the interval.
@@ -45,6 +55,14 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
     /**
      * The list of patients.
      */
+    /**
+     * The list of patients.
+     */
+    private ArrayList<Patient> lstPatient;
+    /**
+     * The list of operators.
+     */
+    private ArrayList<Operator> lstOperator;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -53,6 +71,8 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
         EditText etDistance;
         Button bStart;
         layoutStatic = getActivity().findViewById(R.id.ll_static);
+        layoutPatient = getActivity().findViewById(R.id.ll_patient_dynamic);
+        layoutOperator = getActivity().findViewById(R.id.ll_operator_dynamic);
 
         layoutStatic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,18 +86,36 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
             }
         });
 
+        patientDAO = new PatientDAO(getActivity());
+        operatorDAO = new OperatorDAO(getActivity());
 
+        try {
+            lstOperator = operatorDAO.getOperators();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Error while getting operators", Toast.LENGTH_SHORT).show();
+        }
+
+        try {
+            lstPatient = patientDAO.getPatients();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Error while getting patients", Toast.LENGTH_SHORT).show();
+        }
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-        etDistance = getActivity().findViewById(R.id.et_distance);
-        etInterval = getActivity().findViewById(R.id.et_interval);
-        etSeconds = getActivity().findViewById(R.id.et_duration);
-        sbInterval = getActivity().findViewById(R.id.sb_interval);
-        bStart = getActivity().findViewById(R.id.b_start_exercise);
-        tvOperatorName = getActivity().findViewById(R.id.tv_operator_name);
-        tvPatientName = getActivity().findViewById(R.id.tv_patient_name);
+        etDistance = getActivity().findViewById(R.id.et_distance_dynamic);
+        etInterval = getActivity().findViewById(R.id.et_interval_dynamic);
+        etSeconds = getActivity().findViewById(R.id.et_duration_dynamic);
+        sbInterval = getActivity().findViewById(R.id.sb_interval_dynamic);
+        bStart = getActivity().findViewById(R.id.b_start_exercise_dynamic);
+        spOperatorName = getActivity().findViewById(R.id.sp_operator_name_dynamic);
+        spPatientName = getActivity().findViewById(R.id.sp_patient_name_dynamic);
+
 
 
         etInterval.setFilters(new InputFilter[]{new MinMaxFilter(1, 15)});
@@ -87,8 +125,6 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
 
 
         sbInterval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-
             // When Progress value changed.
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
@@ -112,9 +148,8 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
                 sbInterval.setProgress(Integer.parseInt(etInterval.getText().toString()));
             }
         });
-
         bStart.setOnClickListener(v -> {
-            if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches("")|| etInterval.getText().toString().matches("") || tvPatientName.getText().toString().matches("Choose a patient") || tvOperatorName.getText().toString().matches("Choose an operator"))
+            if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches("")|| etInterval.getText().toString().matches("") || spPatientName.getSelectedItem().toString().matches("Choose a patient") || spOperatorName.getSelectedItem().toString().matches("Choose an operator"))
             {
                 Toast.makeText(getActivity(), "You must complete each fields !", Toast.LENGTH_SHORT).show();
             }
@@ -123,20 +158,43 @@ public class ExercisesSettingsDynamicFragment extends Fragment {
                 intent.putExtra("Distance", etDistance.getText().toString());
                 intent.putExtra("Interval", etInterval.getText().toString());
                 intent.putExtra("Time", etSeconds.getText().toString());
-                intent.putExtra("Patient", tvPatientName.getText().toString());
-                intent.putExtra("Operator", tvOperatorName.getText().toString());
+                intent.putExtra("Patient", spPatientName.getSelectedItem().toString());
+                intent.putExtra("Operator", spOperatorName.getSelectedItem().toString());
                 startActivity(intent);
 
             }
         });
-
+        if (lstOperator.isEmpty() || lstPatient.isEmpty()) {
+            Toast.makeText(getActivity(), "No actors found", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            displayActorsOnSpinners(lstOperator);
+            displayActorsOnSpinners(lstPatient);
+        }
     }
 
+    public void displayActorsOnSpinners(List<? extends Actor> actors) {
+        ArrayAdapter<String> dataSpinner = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
+        if (actors.get(0) instanceof Operator) {
+            dataSpinner.add("Choose an operator");
+        } else {
+            dataSpinner.add("Choose a patient");
+        }
+        for (int i = 0; i < actors.size(); i++) {
+            dataSpinner.add(actors.get(i).getName());
+        }
+        if (actors.get(0) instanceof Operator) {
+            spOperatorName.setAdapter(dataSpinner);
+        } else {
+            spPatientName.setAdapter(dataSpinner);
+        }
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        LayoutInflater lf = getActivity().getLayoutInflater();
         return inflater.inflate(R.layout.fragment_exercises_settings_dynamic, container, false);
     }
 }

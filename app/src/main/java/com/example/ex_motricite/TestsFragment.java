@@ -3,6 +3,7 @@ package com.example.ex_motricite;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -65,12 +66,17 @@ public class TestsFragment extends Fragment {
         buttonUnselectAll = getActivity().findViewById(R.id.b_unselectAll);
         buttonDelete = getActivity().findViewById(R.id.b_deleteSelection);
         buttonExport = getActivity().findViewById(R.id.b_exportSelection);
-        layoutTests = getActivity().findViewById(R.id.l_listTest);
+        layoutTests = getActivity().findViewById(R.id.l_listTest_Scroll);
 
+        sharedPreferences = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
         // Show all CSV files on startup
         displayAllCSVFiles();
         selectedFiles.clear();
-        buttonBin.setOnClickListener(v -> startActivity(new Intent(getActivity(), BinActivity.class)));
+        buttonBin.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), BinActivity.class));
+            getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+                }
+        );
         buttonFilter.setOnClickListener(v -> startActivity(new Intent(getActivity(), FiltersTestActivity.class)));
         buttonSelectAll.setOnClickListener(v -> selectAllFiles());
         buttonUnselectAll.setOnClickListener(v -> deselectAllFiles());
@@ -116,7 +122,6 @@ public class TestsFragment extends Fragment {
             }
 
         }
-
         // Show files in layout
         displayFilesInLayout();
     }
@@ -132,6 +137,7 @@ public class TestsFragment extends Fragment {
         for (File file : allFiles) {
             Button fileButton = createFileButton(file);
             layoutTests.addView(fileButton);
+            Log.d("File", "displayFilesInLayout: " + file.getName());
         }
     }
 
@@ -170,6 +176,7 @@ public class TestsFragment extends Fragment {
         // Add additional data to the intent if necessary
         intent.putExtra("file_path", file.getAbsolutePath());
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
     }
 
     /**
@@ -246,7 +253,9 @@ public class TestsFragment extends Fragment {
     private void exportSelectedFilesByMail() {
 
         String settingsJson = sharedPreferences.getString("settings_json", null);
-
+        if (selectedFiles.isEmpty()){
+            return;
+        }
         if (settingsJson != null) {
             try {
                 // Convert JSON to object

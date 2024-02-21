@@ -42,6 +42,7 @@
                     android:orientation="horizontal"
                     android:paddingBottom="20dp">
                     <ImageView
+                        android:id="@+id/iv_leave_filters"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/x_leave_the_current_window"

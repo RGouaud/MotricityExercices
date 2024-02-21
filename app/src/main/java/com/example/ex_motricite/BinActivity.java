@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class BinActivity extends AppCompatActivity {
      */
     private LinearLayout llListTest;
 
+    private ImageView ivLeave;
+
     @Override
     protected void onCreate (Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
@@ -61,14 +64,20 @@ public class BinActivity extends AppCompatActivity {
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
 
-    Button bRestore = findViewById(R.id.b_restore);
-    Button bDelete = findViewById(R.id.b_deleteTest);
-    Button bDeselectAll = findViewById(R.id.b_deselectAll);
-    Button bSelectAll = findViewById(R.id.b_selectAll);
-    Button bFilters = findViewById(R.id.b_filters);
-    llListTest = findViewById(R.id.l_listTest);
+    Button bRestore = findViewById(R.id.b_restore_bin);
+    Button bDelete = findViewById(R.id.b_deleteSelection_bin);
+    Button bDeselectAll = findViewById(R.id.b_unselectAll_bin);
+    Button bSelectAll = findViewById(R.id.b_selectAll_bin);
+    Button bFilters = findViewById(R.id.b_filters_bin);
+    ivLeave = findViewById(R.id.iv_leave_bin);
+    llListTest = findViewById(R.id.l_listTest_bin);
     DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
-
+    ivLeave.setOnClickListener(v -> {
+        Intent intent = new Intent(BinActivity.this, HomePageActivity.class);
+        intent.putExtra("page", "tests");
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+    });
     try {
         tests = deletedTestDAO.getAllTests();
     } catch (Exception e) {
@@ -84,8 +93,9 @@ public class BinActivity extends AppCompatActivity {
     bDeselectAll.setOnClickListener(v -> deselectAllTests());
 
     bFilters.setOnClickListener(v -> {
-        Intent intent = new Intent(BinActivity.this, SettingsActivity.class);
+        Intent intent = new Intent(BinActivity.this, FiltersTestActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
     });
 
     bDelete.setOnClickListener(v -> deleteConfirmation());
@@ -170,7 +180,6 @@ public class BinActivity extends AppCompatActivity {
     /**
      * Handles the click on a test button (add the test to the selected tests list.
      *
-     * @param fileButton The button representing the test.
      * @param test       The test associated with the button.
      */
     private void handleLongClick (Button bFile, DeletedTest test){
