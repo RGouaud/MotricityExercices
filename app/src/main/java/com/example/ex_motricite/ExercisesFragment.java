@@ -116,26 +116,6 @@ public class ExercisesFragment extends Fragment {
         spPatientName = getActivity().findViewById(R.id.sp_patient_name_static);
 
 
-        layoutOperator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {;
-                Intent intent = new Intent(getActivity(), ListActorActivity.class);
-                intent.putExtra("actorType", "Operator");
-                intent.putExtra("exerciseType", "Static");
-                startActivity(intent);
-
-            }
-        });
-        layoutPatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ListActorActivity.class);
-                intent.putExtra("actorType", "Patient");
-                intent.putExtra("exerciseType", "Static");
-                startActivity(intent);
-
-            }
-        });
 
         bStart.setOnClickListener(v -> {
             if (etDistance.getText().toString().matches("") || etSeconds.getText().toString().matches("")|| spPatientName.getSelectedItem().toString().matches("Choose a patient") || spOperatorName.getSelectedItem().toString().matches("Choose an operator"))
