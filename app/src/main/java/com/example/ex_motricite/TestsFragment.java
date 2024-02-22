@@ -82,7 +82,6 @@ public class TestsFragment extends Fragment {
         buttonUnselectAll.setOnClickListener(v -> deselectAllFiles());
         buttonDelete.setOnClickListener(v -> deleteConfirmation());
         buttonExport.setOnClickListener(v -> {
-
             exportSelectedFilesByMail();
         });
     }
