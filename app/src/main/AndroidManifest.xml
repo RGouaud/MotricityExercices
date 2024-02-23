@@ -73,7 +73,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.ex_motricite.file-provider"
+            android:authorities="com.example.myapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
