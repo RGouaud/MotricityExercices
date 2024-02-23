@@ -63,15 +63,10 @@ public class SettingsFragment extends Fragment {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         rbEmail = getActivity().findViewById(R.id.rb_email);
-        rbServer = getActivity().findViewById(R.id.rb_server);
 
         etEmail = getActivity().findViewById(R.id.et_email);
-        etUrlServer = getActivity().findViewById(R.id.et_urlServer);
-        etIdServer = getActivity().findViewById(R.id.et_id);
-        etPassword = getActivity().findViewById(R.id.et_password);
 
         Button bConfirm = getActivity().findViewById(R.id.b_confirmSave);
-        Button bTestConnection = getActivity().findViewById(R.id.b_testConnection);
 
         //get shared preferences
         sharedPreferences = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -82,10 +77,6 @@ public class SettingsFragment extends Fragment {
         rbEmail.setOnClickListener(v -> onRadioButtonClicked(rbEmail));
 
         rbServer.setOnClickListener(v -> onRadioButtonClicked(rbServer));
-
-        bTestConnection.setOnClickListener(v -> {
-            // TODO: HTTP request to test the connection
-        });
 
         bConfirm.setOnClickListener(v -> {
             // Logic for the "Confirm" button
