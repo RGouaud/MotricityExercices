@@ -1,5 +1,7 @@
     package com.example.ex_motricite;
 
+    import static java.lang.Integer.parseInt;
+
     import android.content.Intent;
     import android.content.pm.ActivityInfo;
     import android.os.Bundle;
@@ -18,6 +20,14 @@
 
     import com.example.ex_motricite.databinding.ActivityHomePageBinding;
     import androidx.appcompat.app.AppCompatActivity;
+
+    import java.io.File;
+    import java.text.DateFormat;
+    import java.text.ParseException;
+    import java.text.SimpleDateFormat;
+    import java.util.ArrayList;
+    import java.util.Calendar;
+    import java.util.Date;
 
     /**
      * The {@code HomePageActivity} class represents an Android activity for the home page,
@@ -73,8 +83,36 @@
         });
 
             switchToFragment(page);
+            updateBin();
     }
 
+    private void updateBin() {
+        DeletedTestDAO deletedTestDAO = new DeletedTestDAO(this);
+        ArrayList<DeletedTest> deletedTests = deletedTestDAO.getAllTests();
+        //Same format as the one in the database
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        for (DeletedTest deletedTest : deletedTests) {
+            try {
+                Date date = dateFormat.parse(deletedTest.getSuppressionDate());
+                Calendar currentDate = Calendar.getInstance();
+                currentDate.add(Calendar.DAY_OF_MONTH, -15);
+                if (date.before(currentDate.getTime())) {
+                    deletedTestDAO.delTest(deletedTest);
+                    File fileToDelete = new File(deletedTest.getPath());
+
+                    // check if the file exists
+                    if (fileToDelete.exists()) {
+                        fileToDelete.delete();
+                    } else {
+                        Log.d("HomePageActivity", "File not found");
+                    }
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     private void switchToFragment(String page) {
         Intent intent = getIntent();
         if (page != null) {

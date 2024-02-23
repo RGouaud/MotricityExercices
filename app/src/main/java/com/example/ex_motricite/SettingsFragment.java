@@ -31,27 +31,11 @@ public class SettingsFragment extends Fragment {
      */
     private RadioButton rbEmail;
 
-    /**
-     * The radio button for server settings.
-     */
-    private RadioButton rbServer;
 
     /**
      * The EditText for the email address.
      */
     private EditText etEmail;
-    /**
-     * The EditText for the server URL.
-     */
-    private EditText etUrlServer;
-    /**
-     * The EditText for the server ID.
-     */
-    private EditText etIdServer;
-    /**
-     * The EditText for the server password.
-     */
-    private EditText etPassword;
     /**
      * The SharedPreferences object for storing settings.
      */
@@ -63,15 +47,10 @@ public class SettingsFragment extends Fragment {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         rbEmail = getActivity().findViewById(R.id.rb_email);
-        rbServer = getActivity().findViewById(R.id.rb_server);
 
         etEmail = getActivity().findViewById(R.id.et_email);
-        etUrlServer = getActivity().findViewById(R.id.et_urlServer);
-        etIdServer = getActivity().findViewById(R.id.et_id);
-        etPassword = getActivity().findViewById(R.id.et_password);
 
         Button bConfirm = getActivity().findViewById(R.id.b_confirmSave);
-        Button bTestConnection = getActivity().findViewById(R.id.b_testConnection);
 
         //get shared preferences
         sharedPreferences = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -79,35 +58,22 @@ public class SettingsFragment extends Fragment {
         //load settings
         loadSettings();
 
-        rbEmail.setOnClickListener(v -> onRadioButtonClicked(rbEmail));
 
-        rbServer.setOnClickListener(v -> onRadioButtonClicked(rbServer));
 
-        bTestConnection.setOnClickListener(v -> {
-            // TODO: HTTP request to test the connection
-        });
 
         bConfirm.setOnClickListener(v -> {
             // Logic for the "Confirm" button
             // Get data from EditText and RadioButton fields
             String email = etEmail.getText().toString();
-            String urlServer = etUrlServer.getText().toString();
-            String idServer = etIdServer.getText().toString();
-            String password = etPassword.getText().toString();
 
             boolean isEmailSelected = rbEmail.isChecked();
-            boolean isServerSelected = rbServer.isChecked();
 
             // Create a JSON object to store the data
             JSONObject jsonData = new JSONObject();
 
             try {
                 jsonData.put("email", email);
-                jsonData.put("urlServer", urlServer);
-                jsonData.put("idServer", idServer);
-                jsonData.put("password", password);
                 jsonData.put("isEmailSelected", isEmailSelected);
-                jsonData.put("isServerSelected", isServerSelected);
 
                 saveSettings(jsonData);
 
@@ -126,13 +92,7 @@ public class SettingsFragment extends Fragment {
      *
      * @param clickedRadioButton The radio button that was clicked.
      */
-    private void onRadioButtonClicked(RadioButton clickedRadioButton) {
-        if (clickedRadioButton == rbEmail) {
-            rbServer.setChecked(false);
-        } else if (clickedRadioButton == rbServer) {
-            rbEmail.setChecked(false);
-        }
-    }
+
 
     /**
      * Loads the saved settings from SharedPreferences and updates the UI.
@@ -146,11 +106,7 @@ public class SettingsFragment extends Fragment {
                 // Convert JSON to object and update EditText and RadioButton fields
                 JSONObject jsonObject = new JSONObject(settingsJson);
                 etEmail.setText(jsonObject.getString("email"));
-                etUrlServer.setText(jsonObject.getString("urlServer"));
-                etIdServer.setText(jsonObject.getString("idServer"));
-                etPassword.setText(jsonObject.getString("password"));
                 rbEmail.setChecked(jsonObject.getBoolean("isEmailSelected"));
-                rbServer.setChecked(jsonObject.getBoolean("isServerSelected"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
