@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FiltersTestActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:background="@color/black">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:fillViewport="true"
+                tools:ignore="NestedWeights">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_gray_box"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="20dp">
+                    <ImageView
+                        android:id="@+id/iv_leave_filters"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/x_leave_the_current_window"
+
+                        android:contentDescription="@string/cross_to_leave_the_filter_page" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingEnd="35dp"
+                        android:gravity="center|center_vertical"
+                        android:text="@string/filters_text_title"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:ignore="RtlSymmetry" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:text="@string/date_min"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="10"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/et_dateMin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="2"
+                                    android:autofillHints=""
+                                    android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                                    android:gravity="center_vertical"
+                                    android:hint="@string/xx_xx_xxxx"
+                                    android:inputType="date"
+                                    android:paddingHorizontal="12dp"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/white"
+                                    android:textSize="16sp"
+                                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="10"
+                                    android:src="@drawable/calendar_days"
+                                    android:importantForAccessibility="no" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="10"
+                                android:paddingHorizontal="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/date_max"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="10"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/et_dateMax"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="2"
+                                        android:autofillHints=""
+                                        android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                                        android:gravity="center_vertical"
+                                        android:hint="@string/xx_xx_xxxx"
+                                        android:inputType="date"
+                                        android:paddingHorizontal="12dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:textColor="@color/white"
+                                        android:textColorHint="@color/white"
+                                        android:textSize="16sp"
+                                        tools:ignore="NestedWeights,TouchTargetSizeCheck" />
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="10"
+                                        android:src="@drawable/calendar_days"
+                                        android:importantForAccessibility="no" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test_type_filters"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_static"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:text="@string/Static"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_dynamic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:text="@string/dynamic"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/gray_rectangle_with_yellow_stroke"
+                android:padding="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/operator_filters"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:padding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/et_researchOperator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:autofillHints=""
+                        android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                        android:gravity="center_vertical"
+                        android:hint="@string/research"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="30"
+                    android:contentDescription="@string/_10_00"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:id="@+id/l_listOperator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <!-- Add your buttons dynamically to this LinearLayout -->
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/gray_rectangle_with_yellow_stroke"
+                    android:padding="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/patient_filters"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:padding="10dp"/>
+
+                        <EditText
+                            android:id="@+id/et_researchPatient"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:autofillHints=""
+                            android:background="@drawable/gray_rectangle_rounded_with_black_stroke"
+                            android:gravity="center_vertical"
+                            android:hint="@string/research"
+                            android:inputType="date"
+                            android:minHeight="48dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="30"
+                        android:contentDescription="@string/_10_00"
+                        android:fillViewport="true">
+
+                        <LinearLayout
+                            android:id="@+id/l_listPatient"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:weightSum="9">
+                            <!-- Add your buttons dynamically to this LinearLayout -->
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/b_confirm"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirm"
+                    android:background="@drawable/yellow_rounded_button"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textSize="26sp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
