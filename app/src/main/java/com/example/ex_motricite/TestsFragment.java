@@ -82,7 +82,6 @@ public class TestsFragment extends Fragment {
         buttonUnselectAll.setOnClickListener(v -> deselectAllFiles());
         buttonDelete.setOnClickListener(v -> deleteConfirmation());
         buttonExport.setOnClickListener(v -> {
-
             exportSelectedFilesByMail();
         });
     }
@@ -280,7 +279,7 @@ public class TestsFragment extends Fragment {
                 ArrayList<Uri> fileUris = new ArrayList<>();
                 for (File file : selectedFiles) {
                     // Convert each file to Uri and add it to the list
-                    Uri fileUri = FileProvider.getUriForFile(getActivity(), "com.example.ex_motricite.file-provider", file);
+                    Uri fileUri = FileProvider.getUriForFile(getActivity(), "com.example.myapp.fileprovider", file);
                     Log.d("TAG", "exportSelectedFilesByMail: "+fileUri);
                     fileUris.add(fileUri);
                 }
