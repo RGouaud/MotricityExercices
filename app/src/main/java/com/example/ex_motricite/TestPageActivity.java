@@ -93,7 +93,7 @@ public class TestPageActivity extends AppCompatActivity {
      */
     private void fillTextView(String filePath){
         File monCsv = new File(filePath);
-        Uri fileUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", monCsv);
+        Uri fileUri = FileProvider.getUriForFile(this, "com.example.ex_motricite.file-provider", monCsv);
         ArrayList<String> lineList = new ArrayList<>();
 
         InputStream is;
